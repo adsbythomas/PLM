@@ -7,56 +7,39 @@
 <title>PLB | Área Contable</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --black: #0d0d0d;
-  --dark2: #2c2c2c;
-  --gray: #5a5a5a;
-  --gray-light: #9a9a9a;
-  --gray-line: #d8d8d8;
-  --white: #ffffff;
-  --off-white: #f0f0f0;
-  --bg: #e8e8e8;
-  --p: #9b4a1e;
-  --p-dark: #742f0e;
-  --p-light: #c4693a;
-  --blue: #1a4fa3;
-  --blue-dark: #133a7a;
+  --black: #0d0d0d; --dark2: #2c2c2c; --gray: #5a5a5a; --gray-light: #9a9a9a;
+  --gray-line: #d8d8d8; --white: #ffffff; --off-white: #f0f0f0; --bg: #e8e8e8;
+  --p: #9b4a1e; --p-dark: #742f0e; --p-light: #c4693a;
+  --blue: #1a4fa3; --blue-dark: #133a7a;
 }
-
 html { scroll-behavior: smooth; }
 body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--black); line-height: 1.6; overflow-x: hidden; }
-
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 68px; display: flex; align-items: center; justify-content: space-between; padding: 0 3.5rem; background: var(--white); border-bottom: 1px solid var(--gray-line); transition: box-shadow 0.3s; }
 nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,0.08); }
-
 .logo { display: flex; align-items: baseline; gap: 0.6rem; text-decoration: none; }
 .logo-abbr { font-size: 1.6rem; font-weight: 700; color: var(--black); }
 .logo-abbr span { color: var(--p); }
 .logo-sep { width: 1px; height: 20px; background: var(--gray-line); }
 .logo-name { font-size: 0.68rem; color: var(--gray); max-width: 180px; line-height: 1.3; }
-
 .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
 .nav-links a { font-size: 0.78rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dark2); text-decoration: none; transition: color 0.2s; }
 .nav-links a:hover { color: var(--p); }
 .btn-nav-solid { background: var(--p) !important; color: var(--white) !important; padding: 0.45rem 1.2rem; font-weight: 700 !important; }
 .btn-nav-solid:hover { background: var(--p-dark) !important; color: var(--white) !important; }
-.btn-nav-outline { border: 1.5px solid var(--blue) !important; color: var(--blue) !important; padding: 0.4rem 1.1rem; font-weight: 700 !important; }
-.btn-nav-outline:hover { background: var(--blue) !important; color: var(--white) !important; }
-
+.btn-nav-juridico { background: var(--black) !important; color: var(--white) !important; padding: 0.45rem 1.3rem; font-weight: 700 !important; font-size: 0.82rem !important; letter-spacing: 0.08em !important; border: 2px solid var(--black) !important; }
+.btn-nav-juridico:hover { background: var(--blue) !important; border-color: var(--blue) !important; color: var(--white) !important; }
 .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
 .hamburger span { display: block; width: 22px; height: 2px; background: var(--black); }
-
 .mob { display: none; position: fixed; inset: 0; background: var(--white); z-index: 99; flex-direction: column; padding: 6rem 2.5rem 2.5rem; }
 .mob.open { display: flex; }
 .mob a { display: block; font-size: 1.2rem; font-weight: 700; color: var(--black); text-decoration: none; padding: 1rem 0; border-bottom: 1px solid var(--gray-line); }
 .mob a:hover { color: var(--p); }
 .mob-close { position: absolute; top: 1.4rem; right: 1.8rem; background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--gray); }
-
 .hero { min-height: 100vh; display: flex; align-items: center; background: var(--white); padding: 0 3.5rem; position: relative; overflow: hidden; border-bottom: 1px solid var(--gray-line); }
 .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px); background-size: 60px 60px; }
 .hero-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--p); }
-.hero-content { position: relative; z-index: 1; max-width: 760px; will-change: opacity; }
+.hero-content { position: relative; z-index: 1; max-width: 760px; }
 .hero-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--p); margin-bottom: 1.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(155,74,30,0.25); }
 .hero-title { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 700; color: var(--black); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
 .hero-title .accent { color: var(--p); }
@@ -70,66 +53,68 @@ nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,0.08); }
 .stat-num { font-size: 2.8rem; font-weight: 700; color: var(--black); line-height: 1; }
 .stat-num span { color: var(--p); }
 .stat-label { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-light); margin-top: 0.2rem; }
-
 section { padding: 6rem 3.5rem; }
 .label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--p); margin-bottom: 0.75rem; }
 .section-title { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; color: var(--black); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 1rem; }
-
 .nosotros { background: var(--bg); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
 .nosotros-text p { font-size: 0.95rem; color: var(--gray); line-height: 1.85; margin-bottom: 1rem; }
 .highlights { background: var(--white); border: 1px solid var(--gray-line); padding: 0 2rem; }
-.hl { display: grid; grid-template-columns: 80px 1fr; gap: 1.5rem; align-items: start; padding: 1.75rem 0; border-bottom: 1px solid var(--gray-line); }
+.hl { display: grid; grid-template-columns: 80px 1fr; gap: 1.5rem; align-items: start; padding: 1.75rem 0; border-bottom: 1px solid var(--gray-line); transition: background 0.2s, padding-left 0.25s; }
 .hl:last-child { border-bottom: none; }
+.hl:hover { background: rgba(255,255,255,0.6); padding-left: 0.75rem; }
 .hl-num { font-size: 2.2rem; font-weight: 700; color: var(--black); line-height: 1; }
 .hl-num span { color: var(--p); }
 .hl-text strong { display: block; font-size: 0.82rem; font-weight: 700; color: var(--black); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.25rem; }
 .hl-text p { font-size: 0.85rem; color: var(--gray); }
-
 .areas { background: var(--bg); border-top: 1px solid var(--gray-line); }
 .areas-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
 .areas-sub { font-size: 0.92rem; color: var(--gray); margin-top: 0.5rem; }
 .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--gray-line); border: 1px solid var(--gray-line); }
-.card { background: var(--white); padding: 2.25rem 2rem; position: relative; transition: background 0.25s; }
+.card { background: var(--white); padding: 2.25rem 2rem; position: relative; transition: background 0.2s, transform 0.25s, box-shadow 0.25s; }
 .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--p); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
-.card:hover { background: var(--off-white); }
+.card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,0.09); }
 .card:hover::before { transform: scaleX(1); }
-.card-icon { width: 28px; height: 28px; margin-bottom: 1.25rem; }
+.card-icon { width: 28px; height: 28px; margin-bottom: 1.25rem; transition: transform 0.25s; }
+.card:hover .card-icon { transform: scale(1.15); }
 .card-name { font-size: 1rem; font-weight: 700; color: var(--black); margin-bottom: 0.6rem; }
 .card-desc { font-size: 0.83rem; color: var(--gray); line-height: 1.7; }
-
 .equipo { background: var(--bg); }
 .equipo-header { margin-bottom: 3.5rem; }
 .grid-team { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--gray-line); border: 1px solid var(--gray-line); }
-.member { background: var(--white); padding: 2rem 1.5rem; transition: background 0.2s; }
-.member:hover { background: var(--off-white); }
+.member { background: var(--white); padding: 2rem 1.5rem; transition: background 0.2s, transform 0.25s; }
+.member:hover { background: var(--off-white); transform: translateY(-3px); }
 .avatar { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 1.25rem; }
 .member-name { font-size: 0.95rem; font-weight: 700; color: var(--black); margin-bottom: 0.2rem; }
 .member-role { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--p); margin-bottom: 0.6rem; }
 .member-spec { font-size: 0.8rem; color: var(--gray-light); line-height: 1.55; }
 .member-cta { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: var(--off-white); border: 2px dashed var(--gray-line); padding: 2rem 1.5rem; }
 .member-cta p { font-size: 0.82rem; color: var(--gray); line-height: 1.6; margin-bottom: 1.25rem; }
-
 .insights { background: var(--bg); border-top: 1px solid var(--gray-line); }
 .insights-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
 .link-arr { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--p); text-decoration: none; }
 .link-arr:hover { text-decoration: underline; }
 .grid-insights { display: grid; grid-template-columns: 1.6fr 1fr; gap: 1px; background: var(--gray-line); border: 1px solid var(--gray-line); }
-.insight { background: var(--white); padding: 2rem 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; transition: background 0.2s; }
-.insight:hover { background: var(--off-white); }
+.insight { background: var(--white); padding: 2rem 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; transition: background 0.2s, transform 0.25s; }
+.insight:hover { background: var(--off-white); transform: translateY(-3px); }
 .insight-tag { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--p); }
 .insight-title { font-size: 1rem; font-weight: 700; color: var(--black); line-height: 1.4; }
 .insight.featured .insight-title { font-size: 1.2rem; }
 .insight-excerpt { font-size: 0.83rem; color: var(--gray); line-height: 1.7; }
 .insight-date { font-size: 0.68rem; color: var(--gray-light); }
-
-.contacto { background: var(--bg); border-top: 1px solid var(--gray-line); }
-.contacto-inner { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; }
-.contacto-desc { font-size: 0.92rem; color: var(--gray); line-height: 1.8; margin-bottom: 2.5rem; }
-.contact-list { list-style: none; display: flex; flex-direction: column; gap: 1.5rem; }
-.contact-list li { display: grid; grid-template-columns: 90px 1fr; gap: 1rem; font-size: 0.85rem; }
-.ci-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--p); padding-top: 0.1rem; }
-.ci-val { color: var(--dark2); line-height: 1.55; }
-.contact-form { display: flex; flex-direction: column; gap: 1.1rem; }
+.contacto { padding: 0; background: var(--bg); }
+.contacto-top { background: var(--black); padding: 4rem 3.5rem; }
+.contacto-top-inner { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
+.contacto-data { display: flex; flex-direction: column; gap: 1.5rem; }
+.cdata-item { display: flex; align-items: flex-start; gap: 1rem; transition: transform 0.2s; }
+.cdata-item:hover { transform: translateX(5px); }
+.cdata-icon { width: 36px; height: 36px; min-width: 36px; background: #3a3a3a; border: 1px solid #555; display: flex; align-items: center; justify-content: center; color: #aaa; }
+.cdata-icon svg { width: 16px; height: 16px; }
+.cdata-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--p-light); margin-bottom: 0.25rem; }
+.cdata-val { font-size: 0.85rem; color: rgba(255,255,255,0.92); line-height: 1.6; }
+.contacto-bottom { display: grid; grid-template-columns: 1fr 1fr; min-height: 480px; }
+.contacto-map { position: relative; min-height: 480px; }
+.contacto-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+.contacto-form-new { display: flex; flex-direction: column; gap: 1rem; padding: 3rem; background: var(--white); border-left: 1px solid var(--gray-line); }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
 .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
 .form-group label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray); }
@@ -140,7 +125,6 @@ section { padding: 6rem 3.5rem; }
 .form-group textarea { resize: vertical; min-height: 120px; }
 .btn-submit { background: var(--p); color: var(--white); font-family: Arial; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; border: none; padding: 0.9rem 2rem; cursor: pointer; align-self: flex-start; transition: background 0.2s; }
 .btn-submit:hover { background: var(--p-dark); }
-
 footer { background: var(--black); padding: 3.5rem 3.5rem 2rem; }
 .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 2rem; }
 .footer-logo { font-size: 1.3rem; font-weight: 700; color: var(--white); margin-bottom: 0.75rem; }
@@ -154,15 +138,50 @@ footer { background: var(--black); padding: 3.5rem 3.5rem 2rem; }
 .footer-social { display: flex; gap: 1rem; }
 .footer-social a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.75rem; font-weight: 700; transition: all 0.2s; }
 .footer-social a:hover { border-color: var(--p-light); color: var(--p-light); }
-
-
-
-
+/* ANIMATIONS */
+@keyframes fadeUp  { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
+@keyframes barGrow { from { height:0; } to { height:100%; } }
+@keyframes lineGrow { from { width:0; } to { width:48px; } }
+.hero-bar { animation: barGrow 0.8s cubic-bezier(.4,0,.2,1) both; }
+.hero-tag { animation: fadeUp 0.6s ease both 0.2s; }
+.hero-title { animation: fadeUp 0.6s ease both 0.35s; }
+.hero-sub { animation: fadeUp 0.6s ease both 0.5s; }
+.hero-actions { animation: fadeUp 0.6s ease both 0.65s; }
+.hero-stats { animation: fadeIn 0.6s ease both 0.8s; }
+.section-line { display:block; height:2px; background:var(--p); width:0; animation: lineGrow 0.6s ease both 0.2s; }
+@supports (animation-timeline: scroll()) {
+  .card, .insight, .member { animation: fadeUp 0.5s ease both; animation-timeline: view(); animation-range: entry 0% entry 22%; }
+  .nosotros-text { animation: fadeUp 0.7s ease both; animation-timeline: view(); animation-range: entry 0% entry 28%; }
+  .highlights { animation: fadeUp 0.7s ease both; animation-timeline: view(); animation-range: entry 5% entry 30%; }
+  .equipo-header, .areas-header, .insights-header { animation: fadeUp 0.5s ease both; animation-timeline: view(); animation-range: entry 0% entry 18%; }
+  .hl { animation: fadeUp 0.4s ease both; animation-timeline: view(); animation-range: entry 0% entry 20%; }
+  .contacto-top-inner { animation: fadeUp 0.6s ease both; animation-timeline: view(); animation-range: entry 0% entry 25%; }
+}
+.nav-links a:not(.btn-nav-solid):not(.btn-nav-juridico) { position: relative; }
+.nav-links a:not(.btn-nav-solid):not(.btn-nav-juridico)::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px; background: var(--p); transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease; }
+.nav-links a:not(.btn-nav-solid):not(.btn-nav-juridico):hover::after { transform: scaleX(1); }
+.btn-solid, .btn-ghost, .btn-submit, .btn-nav-solid, .btn-nav-juridico { transition: background 0.2s, transform 0.15s, box-shadow 0.2s; }
+.btn-solid:active, .btn-submit:active, .btn-nav-solid:active, .btn-nav-juridico:active { transform: scale(0.97); }
+/* LANG */
+.lang-wrap { position: relative; display: flex; align-items: center; }
+.lang-btn { background: none; border: 1.5px solid var(--gray-line); padding: 0.35rem 0.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s; }
+.lang-btn:hover { border-color: var(--p); }
+.lang-btn svg { width: 18px; height: 18px; color: var(--dark2); transition: color 0.2s; }
+.lang-btn:hover svg { color: var(--p); }
+.lang-menu { display: none; position: absolute; top: calc(100% + 8px); right: 0; background: var(--white); border: 1px solid var(--gray-line); box-shadow: 0 8px 24px rgba(0,0,0,0.1); z-index: 200; min-width: 130px; }
+.lang-menu.open { display: block; }
+.lang-menu a { display: block; padding: 0.6rem 1rem; font-size: 0.8rem; color: var(--dark2); cursor: pointer; transition: background 0.15s, color 0.15s; text-decoration: none; }
+.lang-menu a:hover { background: var(--off-white); color: var(--p); }
+.lang-menu a.active { color: var(--p); font-weight: 700; }
 @media (max-width: 1100px) {
   .nosotros { grid-template-columns: 1fr; gap: 3rem; }
   .grid-3 { grid-template-columns: repeat(2,1fr); }
-  .contacto-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .contacto-top-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .contacto-bottom { grid-template-columns: 1fr; }
+  .contacto-map { min-height: 300px; }
   .grid-insights { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 768px) {
   nav { padding: 0 1.5rem; }
@@ -174,531 +193,360 @@ footer { background: var(--black); padding: 3.5rem 3.5rem 2rem; }
   .grid-3 { grid-template-columns: 1fr; }
   .grid-team { grid-template-columns: 1fr 1fr; }
   footer { padding: 3rem 1.5rem 1.5rem; }
-  .footer-top { grid-template-columns: 1fr 1fr; }
   .footer-bottom { flex-direction: column; gap: 1rem; }
   .areas-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
   .insights-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
   .form-row { grid-template-columns: 1fr; }
-}
-
-/* CONTACTO REDESIGN */
-.contacto { padding: 0; background: var(--bg); }
-.contacto-top { background: var(--black); padding: 4rem 3.5rem; }
-.contacto-top-inner { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
-.contacto-data { display: flex; flex-direction: column; gap: 1.5rem; }
-.cdata-item { display: flex; align-items: flex-start; gap: 1rem; }
-.cdata-icon { width: 36px; height: 36px; min-width: 36px; background: #3a3a3a; border: 1px solid #555; display: flex; align-items: center; justify-content: center; color: #aaa; }
-.cdata-icon svg { width: 16px; height: 16px; }
-.cdata-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--p-light); margin-bottom: 0.25rem; }
-.cdata-val { font-size: 0.85rem; color: rgba(255,255,255,0.92); line-height: 1.6; }
-.contacto-bottom { display: grid; grid-template-columns: 1fr 1fr; min-height: 480px; }
-.contacto-map { position: relative; min-height: 480px; }
-.map-link-block { display: block; width: 100%; height: 100%; text-decoration: none; }
-.map-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 480px; background: #1a1a1a; color: rgba(255,255,255,0.7); text-align: center; padding: 3rem; gap: 1rem; transition: background 0.3s; }
-.map-link-block:hover .map-placeholder { background: #222; }
-.map-placeholder svg { width: 52px; height: 52px; color: var(--p-light); margin-bottom: 0.5rem; }
-.map-placeholder-title { font-size: 1.2rem; font-weight: 700; color: var(--white); }
-.map-placeholder-sub { font-size: 0.88rem; color: rgba(255,255,255,0.5); }
-.map-placeholder-btn { margin-top: 1rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--p-light); border: 1px solid var(--p-light); padding: 0.6rem 1.4rem; transition: all 0.2s; }
-.map-link-block:hover .map-placeholder-btn { background: var(--p-light); color: var(--white); }
-.contacto-form-new { display: flex; flex-direction: column; gap: 1rem; padding: 3rem; background: var(--white); border-left: 1px solid var(--gray-line); }
-@media (max-width: 1100px) {
-  .contacto-top-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-  .contacto-bottom { grid-template-columns: 1fr; }
-  .contacto-map { min-height: 300px; }
-}
-@media (max-width: 768px) {
   .contacto-top { padding: 3rem 1.5rem; }
   .contacto-form-new { padding: 2rem 1.5rem; }
 }
-
-/* TRANSLATE WIDGET */
-
-
-
-/* ── PURE CSS ANIMATIONS ── */
-
-/* Hero entrance - triggered on load */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(22px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-@keyframes barGrow {
-  from { height: 0; }
-  to   { height: 100%; }
-}
-@keyframes slideRight {
-  from { width: 0; }
-  to   { width: 48px; }
-}
-
-.hero-bar    { animation: barGrow 0.9s ease both; }
-.hero-tag    { animation: fadeUp 0.5s ease both 0.15s; }
-.hero-title  { animation: fadeUp 0.5s ease both 0.3s; }
-.hero-sub    { animation: fadeUp 0.5s ease both 0.45s; }
-.hero-actions { animation: fadeUp 0.5s ease both 0.6s; }
-.hero-stats  { animation: fadeIn 0.6s ease both 0.8s; }
-
-/* Section labels underline */
-.section-line { display: block; height: 2px; background: var(--p); width: 0; animation: slideRight 0.6s ease both 0.2s; }
-
-/* Cards - simple CSS scroll animation using animation-timeline */
-@supports (animation-timeline: scroll()) {
-  .card, .insight, .member {
-    animation: fadeUp 0.5s ease both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 25%;
-  }
-  .nosotros-text {
-    animation: fadeUp 0.6s ease both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 30%;
-  }
-  .highlights {
-    animation: fadeUp 0.6s ease both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 30%;
-  }
-  .equipo-header, .insights-header, .areas-header {
-    animation: fadeUp 0.5s ease both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 20%;
-  }
-}
-
-/* Hover effects - cards */
-.card {
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-}
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 28px rgba(0,0,0,0.08);
-}
-.card:hover .card-icon {
-  transform: scale(1.12);
-  transition: transform 0.2s;
-}
-.card-icon { transition: transform 0.2s; }
-
-/* Hover effects - insights */
-.insight { transition: background 0.2s, transform 0.2s; }
-.insight:hover { transform: translateY(-3px); }
-
-/* Hover effects - members */
-.member { transition: background 0.2s, transform 0.2s; }
-.member:hover { transform: translateY(-3px); }
-
-/* Hover effects - highlights */
-.hl:hover { background: rgba(255,255,255,0.5); }
-
-/* Nav underline on hover */
-.nav-links a:not(.btn-nav-solid):not(.btn-nav-outline):not(.btn-nav-contable) {
-  position: relative;
-}
-.nav-links a:not(.btn-nav-solid):not(.btn-nav-outline):not(.btn-nav-contable)::after {
-  content: '';
-  position: absolute;
-  bottom: -4px; left: 0; right: 0;
-  height: 2px;
-  background: var(--p);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.25s ease;
-}
-.nav-links a:not(.btn-nav-solid):not(.btn-nav-outline):not(.btn-nav-contable):hover::after {
-  transform: scaleX(1);
-}
-
-/* Button press */
-.btn-solid:active, .btn-submit:active, .btn-nav-solid:active, .btn-nav-contable:active {
-  transform: scale(0.97);
-}
-
-/* Contact data hover */
-.cdata-item { transition: transform 0.2s; }
-.cdata-item:hover { transform: translateX(4px); }
-
-/* Map button hover */
-.map-placeholder-btn { transition: background 0.2s, color 0.2s; }
-
-.btn-solid, .btn-ghost, .btn-submit, .btn-nav-solid, .btn-nav-contable {
-  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-}
-.btn-solid:active, .btn-submit:active, .btn-nav-solid:active, .btn-nav-contable:active {
-  transform: scale(0.97);
-}
-
-/* Area card icon rotate on hover */
-.card:hover .card-icon { transform: scale(1.15); transition: transform 0.3s cubic-bezier(.4,0,.2,1); }
-.card-icon { transition: transform 0.3s; }
-
-/* Contact data items */
-.cdata-item { transition: transform 0.3s; }
-.cdata-item:hover { transform: translateX(4px); }
-
-
-
-/* ── ANIMATIONS ── */
-
-/* Keyframes */
-@keyframes fadeUp   { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
-@keyframes fadeIn   { from { opacity:0; } to { opacity:1; } }
-@keyframes barGrow  { from { height:0; } to { height:100%; } }
-@keyframes lineGrow { from { width:0; } to { width:48px; } }
-
-/* Hero entrance */
-.hero-bar     { animation: barGrow  0.8s cubic-bezier(.4,0,.2,1) both; }
-.hero-tag     { animation: fadeUp   0.6s ease both 0.2s; }
-.hero-title   { animation: fadeUp   0.6s ease both 0.35s; }
-.hero-sub     { animation: fadeUp   0.6s ease both 0.5s; }
-.hero-actions { animation: fadeUp   0.6s ease both 0.65s; }
-.hero-stats   { animation: fadeIn   0.6s ease both 0.8s; }
-
-/* Section label underline */
-.section-line { display:block; height:2px; background:var(--p); width:0; animation: lineGrow 0.6s ease both 0.2s; }
-
-/* Scroll animations via CSS view() - works on https */
-@supports (animation-timeline: scroll()) {
-  .card {
-    animation: fadeUp 0.5s ease both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 22%;
-  }
-  .insight {
-    animation: fadeUp 0.5s ease both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 22%;
-  }
-  .member {
-    animation: fadeUp 0.5s ease both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 22%;
-  }
-  .nosotros-text {
-    animation: fadeUp 0.7s ease both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 28%;
-  }
-  .highlights {
-    animation: fadeUp 0.7s ease both;
-    animation-timeline: view();
-    animation-range: entry 5% entry 30%;
-  }
-  .equipo-header, .areas-header, .insights-header {
-    animation: fadeUp 0.5s ease both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 18%;
-  }
-  .hl {
-    animation: fadeUp 0.4s ease both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 20%;
-  }
-  .contacto-top-inner {
-    animation: fadeUp 0.6s ease both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 25%;
-  }
-}
-
-/* Card hover */
-.card { transition: background 0.2s, transform 0.25s, box-shadow 0.25s; }
-.card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,0.09); }
-.card-icon { transition: transform 0.25s; }
-.card:hover .card-icon { transform: scale(1.15); }
-
-/* Insight hover */
-.insight { transition: background 0.2s, transform 0.25s, box-shadow 0.25s; }
-.insight:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
-
-/* Member hover */
-.member { transition: background 0.2s, transform 0.25s; }
-.member:hover { transform: translateY(-3px); }
-
-/* Highlight hover */
-.hl { transition: background 0.2s, padding-left 0.25s; }
-.hl:hover { background: rgba(255,255,255,0.6); padding-left: 0.75rem; }
-
-/* Nav underline */
-.nav-links a:not(.btn-nav-solid):not(.btn-nav-outline):not(.btn-nav-contable) { position: relative; }
-.nav-links a:not(.btn-nav-solid):not(.btn-nav-outline):not(.btn-nav-contable)::after {
-  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
-  height: 2px; background: var(--p);
-  transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease;
-}
-.nav-links a:not(.btn-nav-solid):not(.btn-nav-outline):not(.btn-nav-contable):hover::after { transform: scaleX(1); }
-
-/* Button effects */
-.btn-solid, .btn-ghost, .btn-submit, .btn-nav-solid, .btn-nav-contable { transition: background 0.2s, transform 0.15s, box-shadow 0.2s; }
-.btn-solid:hover  { box-shadow: 0 4px 16px rgba(26,79,163,0.3); }
-.btn-solid:active, .btn-submit:active, .btn-nav-solid:active, .btn-nav-contable:active { transform: scale(0.97); }
-
-/* Contact data hover */
-.cdata-item { transition: transform 0.2s; }
-.cdata-item:hover { transform: translateX(5px); }
-
-/* Map button */
-.map-placeholder-btn { transition: background 0.2s, color 0.2s; }
-
-/* Google Translate */
-.lang-wrap { position: relative; display: flex; align-items: center; }
-.lang-btn { background: none; border: 1.5px solid var(--gray-line); padding: 0.35rem 0.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s; }
-.lang-btn:hover { border-color: var(--p); }
-.lang-btn svg { width: 18px; height: 18px; color: var(--dark2); }
-.lang-btn:hover svg { color: var(--p); }
-.lang-menu { display: none; position: absolute; top: calc(100% + 8px); right: 0; background: var(--white); border: 1px solid var(--gray-line); box-shadow: 0 8px 24px rgba(0,0,0,0.1); z-index: 200; min-width: 130px; }
-.lang-menu.open { display: block; }
-.lang-menu a { display: block; padding: 0.6rem 1rem; font-size: 0.8rem; color: var(--dark2); cursor: pointer; transition: background 0.15s, color 0.15s; text-decoration: none; }
-.lang-menu a:hover { background: var(--off-white); color: var(--p); }
-.goog-te-banner-frame { display: none !important; }
-body { top: 0 !important; }
-.skiptranslate iframe { display: none !important; }
 </style>
 </head>
 <body>
 
 <div class="mob" id="mob">
   <button class="mob-close" onclick="closeMob()">✕</button>
-  <a href="#nosotros" onclick="closeMob()">Nosotros</a>
-  <a href="#areas" onclick="closeMob()">Servicios</a>
-  <a href="#equipo" onclick="closeMob()">Equipo</a>
-  <a href="#insights" onclick="closeMob()">Novedades</a>
-  <a href="plb_abogados.html" style="color:var(--blue)">Estudio Jurídico</a>
-  <a href="#contacto" onclick="closeMob()">Contacto</a>
+  <a href="#nosotros" onclick="closeMob()" data-i18n="nav.about">Nosotros</a>
+  <a href="#areas" onclick="closeMob()" data-i18n="nav.areas">Servicios</a>
+  <a href="#equipo" onclick="closeMob()" data-i18n="nav.team">Equipo</a>
+  <a href="#insights" onclick="closeMob()" data-i18n="nav.news">Novedades</a>
+  <a href="plb_abogados.html" style="color:var(--blue);font-weight:700" data-i18n="nav.legal">Estudio Jurídico</a>
+  <a href="#contacto" onclick="closeMob()" data-i18n="nav.contact">Contacto</a>
 </div>
 
 <nav id="mainNav">
   <a href="#inicio" class="logo">
     <span class="logo-abbr">PL<span>B</span></span>
     <div class="logo-sep"></div>
-    <span class="logo-name">Área Contable</span>
+    <span class="logo-name" data-i18n="nav.division">Área Contable</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#nosotros">Nosotros</a></li>
-    <li><a href="#areas">Servicios</a></li>
-    <li><a href="#equipo">Equipo</a></li>
-    <li><a href="#insights">Novedades</a></li>
-    <li><a href="plb_abogados.html" class="btn-nav-outline">Estudio Jurídico</a></li>
-    <li><a href="#contacto" class="btn-nav-solid">Contacto</a></li>
+    <li><a href="#nosotros" data-i18n="nav.about">Nosotros</a></li>
+    <li><a href="#areas" data-i18n="nav.areas">Servicios</a></li>
+    <li><a href="#equipo" data-i18n="nav.team">Equipo</a></li>
+    <li><a href="#insights" data-i18n="nav.news">Novedades</a></li>
+    <li><a href="plb_abogados.html" class="btn-nav-juridico" data-i18n="nav.legal">Estudio Jurídico</a></li>
+    <li><a href="#contacto" class="btn-nav-solid" data-i18n="nav.contact">Contacto</a></li>
   </ul>
-  
-
-
-<!-- TRANSLATE -->
-<div class="lang-wrap" id="langWrap">
-  <button class="lang-btn" onclick="toggleLang(event)" aria-label="Idioma">
-    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
-      <circle cx="10" cy="10" r="8"/>
-      <path d="M2 10h16M10 2a14 14 0 010 16M10 2a14 14 0 000 16"/>
-    </svg>
-  </button>
-  <div class="lang-menu" id="langMenu">
-    <a onclick="setLang('es')">Español</a>
-    <a onclick="setLang('en')">English</a>
-    <a onclick="setLang('pt')">Português</a>
-    <a onclick="setLang('fr')">Français</a>
-    <a onclick="setLang('it')">Italiano</a>
-    <a onclick="setLang('de')">Deutsch</a>
+  <div class="lang-wrap" id="langWrap">
+    <button class="lang-btn" onclick="toggleLang(event)" aria-label="Idioma">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M2 10h16M10 2a14 14 0 010 16M10 2a14 14 0 000 16"/></svg>
+    </button>
+    <div class="lang-menu" id="langMenu">
+      <a onclick="setLang('es')" class="active">Español</a>
+      <a onclick="setLang('en')">English</a>
+      <a onclick="setLang('pt')">Português</a>
+      <a onclick="setLang('fr')">Français</a>
+      <a onclick="setLang('it')">Italiano</a>
+      <a onclick="setLang('de')">Deutsch</a>
+    </div>
   </div>
-</div>
-<div id="google_translate_element" style="display:none"></div>
-<script>
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({
-    pageLanguage: 'es',
-    includedLanguages: 'en,pt,fr,it,de,es',
-    autoDisplay: false
-  }, 'google_translate_element');
-}
-function toggleLang(e) {
-  e.stopPropagation();
-  document.getElementById('langMenu').classList.toggle('open');
-}
-function setLang(lang) {
-  var select = document.querySelector('.goog-te-combo');
-  if (select) {
-    select.value = lang;
-    select.dispatchEvent(new Event('change'));
-  }
-  document.getElementById('langMenu').classList.remove('open');
-}
-document.addEventListener('click', function() {
-  document.getElementById('langMenu').classList.remove('open');
-});
-</script>
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
-<button class="hamburger" onclick="openMob()"><span></span><span></span><span></span></button>
+  <button class="hamburger" onclick="openMob()"><span></span><span></span><span></span></button>
 </nav>
 
 <section class="hero" id="inicio">
   <div class="hero-grid"></div>
   <div class="hero-bar"></div>
   <div class="hero-content">
-    <div class="hero-tag">Área Contable · Pantarotto Lértora Bardagí & Asocs.</div>
-    <h1 class="hero-title">Contadores públicos<br>al servicio de <span class="accent">su empresa</span></h1>
-    <p class="hero-sub">Asesoramiento contable e impositivo integral para empresas nacionales e internacionales. Liquidación de impuestos, auditoría, estados contables y planificación financiera con más de 20 años de trayectoria.</p>
+    <div class="hero-tag" data-i18n="hero.tag">Contadores Públicos · Buenos Aires</div>
+    <h1 class="hero-title" data-i18n="hero.title">Contabilidad e impuestos con <span class="accent">20 años</span> de trayectoria</h1>
+    <p class="hero-sub" data-i18n="hero.sub">Área contable integral con sede en Buenos Aires y corresponsales en Estados Unidos y Uruguay. Especializados en liquidación de impuestos, auditoría, estados contables y planificación fiscal.</p>
     <div class="hero-actions">
-      <a href="#contacto" class="btn-solid">Consultar ahora</a>
-      <a href="#areas" class="btn-ghost">Ver servicios</a>
+      <a href="#contacto" class="btn-solid" data-i18n="hero.cta1">Consultar ahora</a>
+      <a href="#areas" class="btn-ghost" data-i18n="hero.cta2">Ver servicios</a>
     </div>
   </div>
   <div class="hero-stats">
-    <div><div class="stat-num">20<span>+</span></div><div class="stat-label">Años de experiencia</div></div>
-    <div><div class="stat-num">6</div><div class="stat-label">Servicios contables</div></div>
-    <div><div class="stat-num">3</div><div class="stat-label">Países de operación</div></div>
+    <div><div class="stat-num">20<span>+</span></div><div class="stat-label" data-i18n="hero.stat1">Años de experiencia</div></div>
+    <div><div class="stat-num">6</div><div class="stat-label" data-i18n="hero.stat2">Servicios contables</div></div>
+    <div><div class="stat-num">3</div><div class="stat-label" data-i18n="hero.stat3">Países de operación</div></div>
   </div>
 </section>
 
 <section class="nosotros" id="nosotros">
   <div class="nosotros-text">
-    <div class="label">El área contable</div><span class="section-line"></span>
-    <h2 class="section-title">Contabilidad y asesoramiento impositivo de excelencia</h2>
-    <p>El área contable de Pantarotto Lértora Bardagí & Asocs. brinda servicios integrales de contabilidad, auditoría e impuestos para empresas de todos los tamaños y sectores de actividad, tanto en el mercado local como en operaciones internacionales.</p>
-    <p>Trabajamos en estrecha coordinación con el área legal del estudio, lo que nos permite ofrecer soluciones unificadas ante situaciones que requieren abordaje jurídico y contable simultáneo: reestructuraciones, due diligence, conflictos fiscales o expansión internacional.</p>
-    <p>Nuestro equipo de contadores públicos matriculados actualiza permanentemente su formación en materia impositiva, normativa contable y regulatoria para garantizar el más alto estándar de calidad en cada servicio prestado.</p>
+    <div class="label" data-i18n="about.label">El área contable</div><span class="section-line"></span>
+    <h2 class="section-title" data-i18n="about.title">Contabilidad y asesoramiento impositivo de excelencia</h2>
+    <p data-i18n="about.p1">El área contable de Pantarotto Lértora Bardagí & Asocs. brinda servicios integrales de contabilidad, auditoría e impuestos para empresas de todos los tamaños y sectores, tanto en el mercado local como en operaciones internacionales.</p>
+    <p data-i18n="about.p2">Trabajamos en estrecha coordinación con el área legal del estudio, lo que nos permite ofrecer soluciones unificadas ante situaciones que requieren abordaje jurídico y contable simultáneo: reestructuraciones, due diligence, conflictos fiscales o expansión internacional.</p>
+    <p data-i18n="about.p3">Nuestro equipo de contadores públicos matriculados actualiza permanentemente su formación en materia impositiva, normativa contable y regulatoria para garantizar el más alto estándar de calidad en cada servicio prestado.</p>
   </div>
   <div class="highlights">
-    <div class="hl"><div class="hl-num">20<span>+</span></div><div class="hl-text"><strong>Años de trayectoria</strong><p>Experiencia consolidada en contabilidad empresarial y asesoramiento impositivo en Argentina y el exterior.</p></div></div>
-    <div class="hl"><div class="hl-num">3</div><div class="hl-text"><strong>Jurisdicciones activas</strong><p>Operamos con corresponsales en Argentina, Estados Unidos y Uruguay para atender operaciones transfronterizas.</p></div></div>
-    <div class="hl"><div class="hl-num">100<span>%</span></div><div class="hl-text"><strong>Integración con el área legal</strong><p>Coordinación permanente entre contadores y abogados del estudio para soluciones jurídico-contables unificadas.</p></div></div>
+    <div class="hl"><div class="hl-num">20<span>+</span></div><div class="hl-text"><strong data-i18n="about.hl1t">Años de trayectoria</strong><p data-i18n="about.hl1p">Experiencia consolidada en contabilidad empresarial y asesoramiento impositivo en Argentina y el exterior.</p></div></div>
+    <div class="hl"><div class="hl-num">3</div><div class="hl-text"><strong data-i18n="about.hl2t">Jurisdicciones activas</strong><p data-i18n="about.hl2p">Argentina, Estados Unidos y Uruguay, con corresponsales activos para atender operaciones transfronterizas.</p></div></div>
+    <div class="hl"><div class="hl-num">100<span>%</span></div><div class="hl-text"><strong data-i18n="about.hl3t">Integración con el área legal</strong><p data-i18n="about.hl3p">Coordinación permanente entre contadores y abogados para soluciones jurídico-contables unificadas.</p></div></div>
   </div>
 </section>
 
 <section class="areas" id="areas">
   <div class="areas-header">
     <div>
-      <div class="label">Servicios contables</div><span class="section-line"></span>
-      <h2 class="section-title">Áreas de servicio</h2>
-      <p class="areas-sub">Cobertura completa de las necesidades contables e impositivas de su empresa.</p>
+      <div class="label" data-i18n="areas.label">Servicios contables</div><span class="section-line"></span>
+      <h2 class="section-title" data-i18n="areas.title">Áreas de servicio</h2>
+      <p class="areas-sub" data-i18n="areas.sub">Cobertura completa de las necesidades contables e impositivas de su empresa.</p>
     </div>
   </div>
   <div class="grid-3">
-    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#9b4a1e" stroke-width="1.5"><rect x="3" y="3" width="22" height="22" rx="2"/><path d="M8 10h12M8 14h8M8 18h10"/></svg><div class="card-name">Liquidación de Impuestos</div><p class="card-desc">Liquidación mensual y anual de IVA, Ganancias, Ingresos Brutos, Bienes Personales, retenciones y percepciones. Presentación ante AFIP y organismos provinciales.</p></div>
-    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#9b4a1e" stroke-width="1.5"><path d="M5 22V8l9-5 9 5v14"/><rect x="10" y="14" width="8" height="8"/><path d="M14 14v8"/></svg><div class="card-name">Estados Contables</div><p class="card-desc">Preparación de estados contables anuales e intermedios bajo normas NIIF y normas contables profesionales argentinas. Memoria y anexos complementarios.</p></div>
-    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#9b4a1e" stroke-width="1.5"><circle cx="14" cy="14" r="10"/><path d="M14 8v6l4 2"/></svg><div class="card-name">Auditoría Contable</div><p class="card-desc">Auditoría de estados financieros, revisiones limitadas, procedimientos acordados y due diligence contable para operaciones de compraventa de empresas.</p></div>
-    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#9b4a1e" stroke-width="1.5"><path d="M4 20 Q10 6 14 14 Q18 22 24 8"/><path d="M4 24h20"/></svg><div class="card-name">Planificación Impositiva</div><p class="card-desc">Estructuración fiscal de operaciones, análisis de carga tributaria, reorganizaciones empresariales y planificación de precios de transferencia para grupos multinacionales.</p></div>
-    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#9b4a1e" stroke-width="1.5"><rect x="4" y="6" width="20" height="16" rx="2"/><path d="M4 11h20M9 6V4M19 6V4"/></svg><div class="card-name">Liquidación de Sueldos</div><p class="card-desc">Liquidación de haberes, cargas sociales, aportes y contribuciones. Presentación de declaraciones juradas ante AFIP y organismos sindicales. Certificados laborales.</p></div>
-    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#9b4a1e" stroke-width="1.5"><path d="M14 3L3 9v10l11 6 11-6V9z"/><path d="M14 3v22M3 9l11 6 11-6"/></svg><div class="card-name">Contabilidad Internacional</div><p class="card-desc">Asesoramiento contable para empresas con operaciones en el exterior. Consolidación de estados financieros, conversión de moneda y cumplimiento de normas NIIF.</p></div>
+    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#9b4a1e" stroke-width="1.5"><rect x="3" y="3" width="22" height="22" rx="2"/><path d="M8 10h12M8 14h8M8 18h10"/></svg><div class="card-name" data-i18n="area1.name">Liquidación de Impuestos</div><p class="card-desc" data-i18n="area1.desc">Liquidación mensual y anual de IVA, Ganancias, Ingresos Brutos, Bienes Personales, retenciones y percepciones. Presentación ante AFIP y organismos provinciales.</p></div>
+    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#9b4a1e" stroke-width="1.5"><path d="M5 22V8l9-5 9 5v14"/><rect x="10" y="14" width="8" height="8"/><path d="M14 14v8"/></svg><div class="card-name" data-i18n="area2.name">Estados Contables</div><p class="card-desc" data-i18n="area2.desc">Preparación de estados contables anuales e intermedios bajo normas NIIF y normas contables profesionales argentinas. Memoria y anexos complementarios.</p></div>
+    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#9b4a1e" stroke-width="1.5"><circle cx="14" cy="14" r="10"/><path d="M14 8v6l4 2"/></svg><div class="card-name" data-i18n="area3.name">Auditoría Contable</div><p class="card-desc" data-i18n="area3.desc">Auditoría de estados financieros, revisiones limitadas, procedimientos acordados y due diligence contable para operaciones de compraventa de empresas.</p></div>
+    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#9b4a1e" stroke-width="1.5"><path d="M4 20 Q10 6 14 14 Q18 22 24 8"/><path d="M4 24h20"/></svg><div class="card-name" data-i18n="area4.name">Planificación Impositiva</div><p class="card-desc" data-i18n="area4.desc">Estructuración fiscal de operaciones, análisis de carga tributaria, reorganizaciones empresariales y planificación de precios de transferencia para grupos multinacionales.</p></div>
+    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#9b4a1e" stroke-width="1.5"><rect x="4" y="6" width="20" height="16" rx="2"/><path d="M4 11h20M9 6V4M19 6V4"/></svg><div class="card-name" data-i18n="area5.name">Liquidación de Sueldos</div><p class="card-desc" data-i18n="area5.desc">Liquidación de haberes, cargas sociales, aportes y contribuciones. Presentación de declaraciones juradas ante AFIP y organismos sindicales. Certificados laborales.</p></div>
+    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#9b4a1e" stroke-width="1.5"><path d="M14 3L3 9v10l11 6 11-6V9z"/><path d="M14 3v22M3 9l11 6 11-6"/></svg><div class="card-name" data-i18n="area6.name">Contabilidad Internacional</div><p class="card-desc" data-i18n="area6.desc">Asesoramiento contable para empresas con operaciones en el exterior. Consolidación de estados financieros, conversión de moneda y cumplimiento de normas NIIF.</p></div>
   </div>
 </section>
 
 <section class="equipo" id="equipo">
   <div class="equipo-header">
-    <div class="label">Nuestros contadores</div><span class="section-line"></span>
-    <h2 class="section-title">El equipo</h2>
-    <p style="color:var(--gray);font-size:0.95rem;margin-top:0.5rem;max-width:520px;">Contadores públicos matriculados con especialización en impuestos, auditoría y contabilidad internacional, en permanente coordinación con el equipo legal del estudio.</p>
+    <div class="label" data-i18n="team.label">Nuestros contadores</div><span class="section-line"></span>
+    <h2 class="section-title" data-i18n="team.title">El equipo</h2>
+    <p style="color:var(--gray);font-size:0.95rem;margin-top:0.5rem;max-width:520px;" data-i18n="team.sub">Contadores públicos matriculados con especialización en impuestos, auditoría y contabilidad internacional, en permanente coordinación con el equipo legal del estudio.</p>
   </div>
   <div class="grid-team">
-    <div class="member"><div class="avatar" style="background:var(--p)">CP</div><div class="member-name">Contador Público</div><div class="member-role">Responsable del Área</div><div class="member-spec">Impuestos · Auditoría · Estados Contables</div></div>
-    <div class="member"><div class="avatar" style="background:var(--dark2)">CP</div><div class="member-name">Contador Público</div><div class="member-role">Especialista Impositivo</div><div class="member-spec">Planificación Fiscal · Precios de Transferencia</div></div>
-    <div class="member-cta"><div style="font-size:2rem;color:var(--gray-line);margin-bottom:1rem">+</div><p>Equipo completo de contadores y auxiliares especializados por sector</p><a href="https://pl-abogados.com/integrantes/" target="_blank" class="link-arr">Ver todos →</a></div>
+    <div class="member"><div class="avatar" style="background:var(--p)">CP</div><div class="member-name" data-i18n="team.role1name">Contador Público</div><div class="member-role" data-i18n="team.role1">Responsable del Área</div><div class="member-spec" data-i18n="team.spec1">Impuestos · Auditoría · Estados Contables</div></div>
+    <div class="member"><div class="avatar" style="background:var(--dark2)">CP</div><div class="member-name" data-i18n="team.role2name">Contador Público</div><div class="member-role" data-i18n="team.role2">Especialista Impositivo</div><div class="member-spec" data-i18n="team.spec2">Planificación Fiscal · Precios de Transferencia</div></div>
+    <div class="member-cta"><div style="font-size:2rem;color:var(--gray-line);margin-bottom:1rem">+</div><p data-i18n="team.cta">Equipo completo de contadores y auxiliares especializados por sector</p><a href="https://pl-abogados.com/integrantes/" target="_blank" class="link-arr" data-i18n="team.ctaLink">Ver todos →</a></div>
   </div>
 </section>
 
 <section class="insights" id="insights">
   <div class="insights-header">
-    <div><div class="label">Novedades contables</div><span class="section-line"></span><h2 class="section-title">Actualidad impositiva</h2></div>
-    <a href="https://pl-abogados.com/home/insights-2/" target="_blank" class="link-arr">Ver todos →</a>
+    <div><div class="label" data-i18n="news.label">Novedades contables</div><span class="section-line"></span><h2 class="section-title" data-i18n="news.title">Actualidad impositiva</h2></div>
+    <a href="https://pl-abogados.com/home/insights-2/" target="_blank" class="link-arr" data-i18n="news.all">Ver todos →</a>
   </div>
   <div class="grid-insights">
-    <div class="insight featured"><div class="insight-tag">Impuestos · AFIP</div><div class="insight-title">Acuerdo FATCA: impacto contable e impositivo para contribuyentes argentinos con activos en Estados Unidos</div><p class="insight-excerpt">El intercambio automático de información financiera entre la AFIP y el IRS implica nuevas obligaciones de declaración y exposición patrimonial para personas físicas y jurídicas con cuentas o activos en el exterior.</p><div class="insight-date">Septiembre 2024</div></div>
-    <div class="insight"><div class="insight-tag">Normativa Contable</div><div class="insight-title">Actualizaciones en normas contables profesionales: impacto en la preparación de estados financieros</div><p class="insight-excerpt">Las modificaciones recientes en las RT de la FACPCE introducen nuevos criterios de medición y exposición que afectan a empresas de todos los sectores.</p><div class="insight-date">Octubre 2024</div></div>
+    <div class="insight featured">
+      <div class="insight-tag" data-i18n="news1.tag">Impuestos · AFIP</div>
+      <div class="insight-title" data-i18n="news1.title">Acuerdo FATCA: impacto contable e impositivo para contribuyentes argentinos con activos en Estados Unidos</div>
+      <p class="insight-excerpt" data-i18n="news1.excerpt">El intercambio automático de información financiera entre la AFIP y el IRS implica nuevas obligaciones de declaración y exposición patrimonial para personas físicas y jurídicas con cuentas o activos en el exterior.</p>
+      <div class="insight-date" data-i18n="news1.date">Septiembre 2024</div>
+    </div>
+    <div class="insight">
+      <div class="insight-tag" data-i18n="news2.tag">Normativa Contable</div>
+      <div class="insight-title" data-i18n="news2.title">Actualizaciones en normas contables profesionales: impacto en la preparación de estados financieros</div>
+      <p class="insight-excerpt" data-i18n="news2.excerpt">Las modificaciones recientes en las RT de la FACPCE introducen nuevos criterios de medición y exposición que afectan a empresas de todos los sectores.</p>
+      <div class="insight-date" data-i18n="news2.date">Octubre 2024</div>
+    </div>
   </div>
 </section>
 
 <section class="contacto" id="contacto">
-
   <div class="contacto-top">
     <div class="contacto-top-inner">
       <div>
-        <div class="label" style="color:rgba(255,255,255,0.5)">Contacto</div><span class="section-line"></span>
-        <h2 class="section-title" style="color:var(--white)">Hablemos de <span style="color:var(--p-light)">su situación</span></h2>
-        <p style="color:rgba(255,255,255,0.9);font-size:0.95rem;margin-top:0.5rem;max-width:420px;line-height:1.75">Nuestro equipo contable le brinda una consulta inicial para evaluar sus necesidades y proponer el servicio más adecuado. Le responderemos dentro de las 24 horas hábiles.</p>
+        <div class="label" style="color:rgba(255,255,255,0.5)" data-i18n="contact.label">Contacto</div><span class="section-line"></span>
+        <h2 class="section-title" style="color:var(--white)"><span data-i18n="contact.title">Hablemos de</span> <span style="color:var(--p-light)" data-i18n="contact.titleAccent">su situación</span></h2>
+        <p style="color:rgba(255,255,255,0.9);font-size:0.95rem;margin-top:0.5rem;max-width:420px;line-height:1.75" data-i18n="contact.desc">Nuestro equipo contable le brinda una consulta inicial para evaluar sus necesidades y proponer el servicio más adecuado. Le responderemos dentro de las 24 horas hábiles.</p>
       </div>
       <div class="contacto-data">
-        <div class="cdata-item">
-          <div class="cdata-icon">
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 2a6 6 0 016 6c0 4-6 10-6 10S4 12 4 8a6 6 0 016-6z"/><circle cx="10" cy="8" r="2"/></svg>
-          </div>
-          <div>
-            <div class="cdata-label">Dirección</div>
-            <div class="cdata-val">Av. Corrientes 1464, Piso 16 Of. 1605<br>C1042 · Ciudad Autónoma de Buenos Aires</div>
-          </div>
-        </div>
-        <div class="cdata-item">
-          <div class="cdata-icon">
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="16" height="12" rx="2"/><path d="M2 7l8 5 8-5"/></svg>
-          </div>
-          <div>
-            <div class="cdata-label">Email</div>
-            <div class="cdata-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bcdfd3d2c8ddded0d9fcccd091ddded3dbddd8d3cf92dfd3d1">[email&#160;protected]</a></div>
-          </div>
-        </div>
-        <div class="cdata-item">
-          <div class="cdata-icon">
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 2"/></svg>
-          </div>
-          <div>
-            <div class="cdata-label">Horario</div>
-            <div class="cdata-val">Lunes a viernes, 9:00 – 18:00 hs.</div>
-          </div>
-        </div>
-        <div class="cdata-item">
-          <div class="cdata-icon">
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M2 10h16M10 2a14 14 0 010 16M10 2a14 14 0 000 16"/></svg>
-          </div>
-          <div>
-            <div class="cdata-label">Sedes</div>
-            <div class="cdata-val">Buenos Aires · EEUU · Uruguay</div>
-          </div>
-        </div>
+        <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 2a6 6 0 016 6c0 4-6 10-6 10S4 12 4 8a6 6 0 016-6z"/><circle cx="10" cy="8" r="2"/></svg></div><div><div class="cdata-label" data-i18n="contact.addr">Dirección</div><div class="cdata-val">Av. Corrientes 1464, Piso 16 Of. 1605<br>C1042 · Ciudad Autónoma de Buenos Aires</div></div></div>
+        <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="16" height="12" rx="2"/><path d="M2 7l8 5 8-5"/></svg></div><div><div class="cdata-label" data-i18n="contact.email">Email</div><div class="cdata-val">contable@pl-abogados.com</div></div></div>
+        <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 2"/></svg></div><div><div class="cdata-label" data-i18n="contact.hours">Horario</div><div class="cdata-val" data-i18n="contact.hoursVal">Lunes a viernes, 9:00 – 18:00 hs.</div></div></div>
+        <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M2 10h16M10 2a14 14 0 010 16M10 2a14 14 0 000 16"/></svg></div><div><div class="cdata-label" data-i18n="contact.offices">Sedes</div><div class="cdata-val">Buenos Aires · EEUU · Uruguay</div></div></div>
       </div>
     </div>
   </div>
-
   <div class="contacto-bottom">
     <div class="contacto-map">
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.9973518279826!2d-58.390031323855155!3d-34.60422847295404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccac1942fc08d%3A0x90e50a4d7964f611!2sPantarotto%20L%C3%A9rtora%20%26%20Asocs!5e0!3m2!1ses-419!2sar!4v1775170188725!5m2!1ses-419!2sar" width="100%" height="100%" style="border:0;min-height:480px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <form class="contacto-form-new" onsubmit="handleForm(event)">
       <div class="form-row">
-        <div class="form-group"><label>Nombre</label><input type="text" placeholder="Nombre completo"></div>
-        <div class="form-group"><label>Empresa</label><input type="text" placeholder="Empresa u organización"></div>
+        <div class="form-group"><label data-i18n="form.name">Nombre</label><input type="text" data-i18n-placeholder="form.namePh" placeholder="Nombre completo"></div>
+        <div class="form-group"><label data-i18n="form.company">Empresa</label><input type="text" data-i18n-placeholder="form.companyPh" placeholder="Empresa u organización"></div>
       </div>
       <div class="form-row">
         <div class="form-group"><label>Email</label><input type="email" placeholder="su@email.com"></div>
-        <div class="form-group"><label>Teléfono</label><input type="tel" placeholder="+54 11 0000-0000"></div>
+        <div class="form-group"><label data-i18n="form.phone">Teléfono</label><input type="tel" placeholder="+54 11 0000-0000"></div>
       </div>
-      <div class="form-group"><label>Servicio requerido</label>
-        <select><option value="" disabled selected>Seleccione un servicio</option><option>Liquidación de Impuestos</option><option>Estados Contables</option><option>Auditoría Contable</option><option>Planificación Impositiva</option><option>Liquidación de Sueldos</option><option>Contabilidad Internacional</option><option>Otro</option></select>
+      <div class="form-group">
+        <label data-i18n="form.area">Servicio requerido</label>
+        <select>
+          <option value="" disabled selected data-i18n="form.areaSelect">Seleccione un servicio</option>
+          <option data-i18n="area1.name">Liquidación de Impuestos</option>
+          <option data-i18n="area2.name">Estados Contables</option>
+          <option data-i18n="area3.name">Auditoría Contable</option>
+          <option data-i18n="area4.name">Planificación Impositiva</option>
+          <option data-i18n="area5.name">Liquidación de Sueldos</option>
+          <option data-i18n="area6.name">Contabilidad Internacional</option>
+          <option data-i18n="form.other">Otro</option>
+        </select>
       </div>
-      <div class="form-group"><label>Mensaje</label><textarea placeholder="Describa brevemente su consulta o necesidad…"></textarea></div>
-      <button type="submit" class="btn-submit">Enviar consulta</button>
+      <div class="form-group"><label data-i18n="form.message">Mensaje</label><textarea data-i18n-placeholder="form.messagePh" placeholder="Describa brevemente su consulta o necesidad…"></textarea></div>
+      <button type="submit" class="btn-submit" data-i18n="form.submit">Enviar consulta</button>
     </form>
   </div>
-
 </section>
 
 <footer>
   <div class="footer-top">
-    <div><div class="footer-logo">PL<span>B</span> & Asocs.</div><p class="footer-tagline">Pantarotto Lértora Bardagí & Asociados — Área Contable. Buenos Aires, Argentina.</p></div>
-    <div class="footer-col"><h4>El área</h4><ul><li><a href="#nosotros">Quiénes somos</a></li><li><a href="#equipo">Nuestro equipo</a></li><li><a href="plb_abogados.html">Área Jurídica</a></li><li><a href="https://pl-abogados.com/integrantes/" target="_blank">Integrantes</a></li></ul></div>
-    <div class="footer-col"><h4>Servicios</h4><ul><li><a href="#areas">Liquidación de Impuestos</a></li><li><a href="#areas">Estados Contables</a></li><li><a href="#areas">Auditoría</a></li><li><a href="#areas">Planificación Impositiva</a></li><li><a href="#areas">Sueldos</a></li></ul></div>
-    <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Política de privacidad</a></li><li><a href="#">Términos de uso</a></li><li><a href="#">Disclaimer</a></li><li><a href="#contacto">Contacto</a></li></ul></div>
+    <div><div class="footer-logo">PL<span>B</span> & Asocs.</div><p class="footer-tagline" data-i18n="footer.tagline">Pantarotto Lértora Bardagí & Asociados — Área Contable. Buenos Aires, Argentina.</p></div>
+    <div class="footer-col"><h4 data-i18n="footer.col1">El área</h4><ul><li><a href="#nosotros" data-i18n="footer.about">Quiénes somos</a></li><li><a href="#equipo" data-i18n="nav.team">Equipo</a></li><li><a href="plb_abogados.html" data-i18n="nav.legal">Estudio Jurídico</a></li><li><a href="https://pl-abogados.com/integrantes/" target="_blank" data-i18n="footer.correspondents">Corresponsales</a></li></ul></div>
+    <div class="footer-col"><h4 data-i18n="footer.col2">Servicios</h4><ul><li><a href="#areas" data-i18n="area1.name">Liquidación de Impuestos</a></li><li><a href="#areas" data-i18n="area2.name">Estados Contables</a></li><li><a href="#areas" data-i18n="area3.name">Auditoría</a></li><li><a href="#areas" data-i18n="area4.name">Planificación</a></li><li><a href="#areas" data-i18n="area5.name">Sueldos</a></li></ul></div>
+    <div class="footer-col"><h4 data-i18n="footer.col3">Legal</h4><ul><li><a href="#" data-i18n="footer.privacy">Política de privacidad</a></li><li><a href="#" data-i18n="footer.terms">Términos de uso</a></li><li><a href="#">Disclaimer</a></li><li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li></ul></div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 Pantarotto Lértora Bardagí & Asocs. Todos los derechos reservados.</span>
+    <span data-i18n="footer.copy">© 2025 Pantarotto Lértora Bardagí & Asocs. Todos los derechos reservados.</span>
     <div class="footer-social"><a href="https://www.linkedin.com/company/pl-abogados/" target="_blank">in</a><a href="#">𝕏</a></div>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-function openMob() { document.getElementById('mob').classList.add('open'); document.body.style.overflow = 'hidden'; }
-function closeMob() { document.getElementById('mob').classList.remove('open'); document.body.style.overflow = ''; }
-function handleForm(e) { e.preventDefault(); const b = e.target.querySelector('.btn-submit'); b.textContent = 'Consulta enviada ✓'; b.style.background = '#1a5c1a'; b.disabled = true; }
+<script>
+const i18n = {
+  es: {
+    "nav.about":"Nosotros","nav.areas":"Servicios","nav.team":"Equipo","nav.news":"Novedades","nav.legal":"Estudio Jurídico","nav.contact":"Contacto","nav.division":"Área Contable",
+    "hero.tag":"Contadores Públicos · Buenos Aires","hero.title":"Contabilidad e impuestos con <span class=\"accent\">20 años</span> de trayectoria","hero.sub":"Área contable integral con sede en Buenos Aires y corresponsales en Estados Unidos y Uruguay. Especializados en liquidación de impuestos, auditoría, estados contables y planificación fiscal.","hero.cta1":"Consultar ahora","hero.cta2":"Ver servicios","hero.stat1":"Años de experiencia","hero.stat2":"Servicios contables","hero.stat3":"Países de operación",
+    "about.label":"El área contable","about.title":"Contabilidad y asesoramiento impositivo de excelencia","about.p1":"El área contable de Pantarotto Lértora Bardagí & Asocs. brinda servicios integrales de contabilidad, auditoría e impuestos para empresas de todos los tamaños y sectores, tanto en el mercado local como en operaciones internacionales.","about.p2":"Trabajamos en estrecha coordinación con el área legal del estudio, lo que nos permite ofrecer soluciones unificadas ante situaciones que requieren abordaje jurídico y contable simultáneo: reestructuraciones, due diligence, conflictos fiscales o expansión internacional.","about.p3":"Nuestro equipo de contadores públicos matriculados actualiza permanentemente su formación en materia impositiva, normativa contable y regulatoria para garantizar el más alto estándar de calidad en cada servicio prestado.",
+    "about.hl1t":"Años de trayectoria","about.hl1p":"Experiencia consolidada en contabilidad empresarial y asesoramiento impositivo en Argentina y el exterior.","about.hl2t":"Jurisdicciones activas","about.hl2p":"Argentina, Estados Unidos y Uruguay, con corresponsales activos para atender operaciones transfronterizas.","about.hl3t":"Integración con el área legal","about.hl3p":"Coordinación permanente entre contadores y abogados para soluciones jurídico-contables unificadas.",
+    "areas.label":"Servicios contables","areas.title":"Áreas de servicio","areas.sub":"Cobertura completa de las necesidades contables e impositivas de su empresa.",
+    "area1.name":"Liquidación de Impuestos","area1.desc":"Liquidación mensual y anual de IVA, Ganancias, Ingresos Brutos, Bienes Personales, retenciones y percepciones. Presentación ante AFIP y organismos provinciales.",
+    "area2.name":"Estados Contables","area2.desc":"Preparación de estados contables anuales e intermedios bajo normas NIIF y normas contables profesionales argentinas. Memoria y anexos complementarios.",
+    "area3.name":"Auditoría Contable","area3.desc":"Auditoría de estados financieros, revisiones limitadas, procedimientos acordados y due diligence contable para operaciones de compraventa de empresas.",
+    "area4.name":"Planificación Impositiva","area4.desc":"Estructuración fiscal de operaciones, análisis de carga tributaria, reorganizaciones empresariales y planificación de precios de transferencia para grupos multinacionales.",
+    "area5.name":"Liquidación de Sueldos","area5.desc":"Liquidación de haberes, cargas sociales, aportes y contribuciones. Presentación de declaraciones juradas ante AFIP y organismos sindicales. Certificados laborales.",
+    "area6.name":"Contabilidad Internacional","area6.desc":"Asesoramiento contable para empresas con operaciones en el exterior. Consolidación de estados financieros, conversión de moneda y cumplimiento de normas NIIF.",
+    "team.label":"Nuestros contadores","team.title":"El equipo","team.sub":"Contadores públicos matriculados con especialización en impuestos, auditoría y contabilidad internacional, en permanente coordinación con el equipo legal del estudio.",
+    "team.role1name":"Contador Público","team.role1":"Responsable del Área","team.spec1":"Impuestos · Auditoría · Estados Contables","team.role2name":"Contador Público","team.role2":"Especialista Impositivo","team.spec2":"Planificación Fiscal · Precios de Transferencia",
+    "team.cta":"Equipo completo de contadores y auxiliares especializados por sector","team.ctaLink":"Ver todos →",
+    "news.label":"Novedades contables","news.title":"Actualidad impositiva","news.all":"Ver todos →",
+    "news1.tag":"Impuestos · AFIP","news1.title":"Acuerdo FATCA: impacto contable e impositivo para contribuyentes argentinos con activos en Estados Unidos","news1.excerpt":"El intercambio automático de información financiera entre la AFIP y el IRS implica nuevas obligaciones de declaración y exposición patrimonial para personas físicas y jurídicas con cuentas o activos en el exterior.","news1.date":"Septiembre 2024",
+    "news2.tag":"Normativa Contable","news2.title":"Actualizaciones en normas contables profesionales: impacto en la preparación de estados financieros","news2.excerpt":"Las modificaciones recientes en las RT de la FACPCE introducen nuevos criterios de medición y exposición que afectan a empresas de todos los sectores.","news2.date":"Octubre 2024",
+    "contact.label":"Contacto","contact.title":"Hablemos de","contact.titleAccent":"su situación","contact.desc":"Nuestro equipo contable le brinda una consulta inicial para evaluar sus necesidades y proponer el servicio más adecuado. Le responderemos dentro de las 24 horas hábiles.",
+    "contact.addr":"Dirección","contact.email":"Email","contact.hours":"Horario","contact.hoursVal":"Lunes a viernes, 9:00 – 18:00 hs.","contact.offices":"Sedes",
+    "form.name":"Nombre","form.namePh":"Nombre completo","form.company":"Empresa","form.companyPh":"Empresa u organización","form.phone":"Teléfono","form.area":"Servicio requerido","form.areaSelect":"Seleccione un servicio","form.other":"Otro","form.message":"Mensaje","form.messagePh":"Describa brevemente su consulta o necesidad…","form.submit":"Enviar consulta",
+    "footer.tagline":"Pantarotto Lértora Bardagí & Asociados — Área Contable. Buenos Aires, Argentina.","footer.col1":"El área","footer.about":"Quiénes somos","footer.correspondents":"Corresponsales","footer.col2":"Servicios","footer.col3":"Legal","footer.privacy":"Política de privacidad","footer.terms":"Términos de uso","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Todos los derechos reservados."
+  },
+  en: {
+    "nav.about":"About","nav.areas":"Services","nav.team":"Team","nav.news":"News","nav.legal":"Law Firm","nav.contact":"Contact","nav.division":"Accounting Division",
+    "hero.tag":"Certified Public Accountants · Buenos Aires","hero.title":"Accounting & tax services with <span class=\"accent\">20 years</span> of experience","hero.sub":"Full-service accounting division based in Buenos Aires with correspondents in the United States and Uruguay. Specialized in tax compliance, audit, financial statements and tax planning.","hero.cta1":"Get in touch","hero.cta2":"View services","hero.stat1":"Years of experience","hero.stat2":"Accounting services","hero.stat3":"Countries of operation",
+    "about.label":"The accounting division","about.title":"Accounting and tax advisory of excellence","about.p1":"The accounting division of Pantarotto Lértora Bardagí & Asocs. provides comprehensive accounting, audit and tax services for companies of all sizes and industries, both in the local market and in international operations.","about.p2":"We work in close coordination with the firm's legal department, allowing us to offer unified solutions when situations require simultaneous legal and accounting advice: restructurings, due diligence, tax disputes or international expansion.","about.p3":"Our team of certified public accountants continuously updates their expertise in tax law, accounting standards and regulatory matters to ensure the highest quality in every service.",
+    "about.hl1t":"Years of experience","about.hl1p":"Consolidated expertise in business accounting and tax advisory in Argentina and abroad.","about.hl2t":"Active jurisdictions","about.hl2p":"Argentina, United States and Uruguay, with active correspondents to handle cross-border operations.","about.hl3t":"Integration with the legal team","about.hl3p":"Permanent coordination between accountants and lawyers for unified legal-accounting solutions.",
+    "areas.label":"Accounting services","areas.title":"Service areas","areas.sub":"Complete coverage of your company's accounting and tax needs.",
+    "area1.name":"Tax Compliance","area1.desc":"Monthly and annual filing of VAT, income tax, gross receipts, personal assets, withholdings and collections. Submissions to AFIP and provincial agencies.",
+    "area2.name":"Financial Statements","area2.desc":"Preparation of annual and interim financial statements under IFRS and Argentine professional accounting standards. Management report and supplementary schedules.",
+    "area3.name":"Accounting Audit","area3.desc":"Financial statement audits, limited reviews, agreed-upon procedures and accounting due diligence for business acquisitions.",
+    "area4.name":"Tax Planning","area4.desc":"Fiscal structuring of transactions, tax burden analysis, corporate reorganizations and transfer pricing planning for multinational groups.",
+    "area5.name":"Payroll Processing","area5.desc":"Payroll calculation, social security contributions, employer contributions. Filing of tax returns with AFIP and labor unions. Employment certificates.",
+    "area6.name":"International Accounting","area6.desc":"Accounting advisory for companies with foreign operations. Consolidation of financial statements, currency conversion and IFRS compliance.",
+    "team.label":"Our accountants","team.title":"The team","team.sub":"Certified public accountants specialized in taxation, audit and international accounting, in permanent coordination with the firm's legal team.",
+    "team.role1name":"Certified Public Accountant","team.role1":"Division Head","team.spec1":"Taxation · Audit · Financial Statements","team.role2name":"Certified Public Accountant","team.role2":"Tax Specialist","team.spec2":"Tax Planning · Transfer Pricing",
+    "team.cta":"Full team of accountants and specialists by sector","team.ctaLink":"View all →",
+    "news.label":"Accounting news","news.title":"Tax updates","news.all":"View all →",
+    "news1.tag":"Taxes · AFIP","news1.title":"FATCA Agreement: accounting and tax impact for Argentine taxpayers with assets in the United States","news1.excerpt":"The automatic exchange of financial information between AFIP and the IRS creates new reporting and disclosure obligations for individuals and entities with accounts or assets abroad.","news1.date":"September 2024",
+    "news2.tag":"Accounting Standards","news2.title":"Updates to professional accounting standards: impact on financial statement preparation","news2.excerpt":"Recent amendments to the FACPCE's technical standards introduce new measurement and disclosure criteria affecting companies across all sectors.","news2.date":"October 2024",
+    "contact.label":"Contact","contact.title":"Let's talk about","contact.titleAccent":"your situation","contact.desc":"Our accounting team offers a free initial consultation to assess your needs and propose the most suitable service. We will respond within 24 business hours.",
+    "contact.addr":"Address","contact.email":"Email","contact.hours":"Hours","contact.hoursVal":"Monday to Friday, 9:00 AM – 6:00 PM","contact.offices":"Offices",
+    "form.name":"Name","form.namePh":"Full name","form.company":"Company","form.companyPh":"Company or organization","form.phone":"Phone","form.area":"Service required","form.areaSelect":"Select a service","form.other":"Other","form.message":"Message","form.messagePh":"Briefly describe your inquiry or need…","form.submit":"Send inquiry",
+    "footer.tagline":"Pantarotto Lértora Bardagí & Associates — Accounting Division. Buenos Aires, Argentina.","footer.col1":"The division","footer.about":"About us","footer.correspondents":"Correspondents","footer.col2":"Services","footer.col3":"Legal","footer.privacy":"Privacy policy","footer.terms":"Terms of use","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. All rights reserved."
+  },
+  pt: {
+    "nav.about":"Sobre nós","nav.areas":"Serviços","nav.team":"Equipe","nav.news":"Notícias","nav.legal":"Escritório Jurídico","nav.contact":"Contato","nav.division":"Área Contábil",
+    "hero.tag":"Contadores Públicos · Buenos Aires","hero.title":"Contabilidade e impostos com <span class=\"accent\">20 anos</span> de trajetória","hero.sub":"Área contábil integral com sede em Buenos Aires e correspondentes nos Estados Unidos e Uruguai. Especializados em apuração de impostos, auditoria, demonstrações financeiras e planejamento tributário.","hero.cta1":"Consultar agora","hero.cta2":"Ver serviços","hero.stat1":"Anos de experiência","hero.stat2":"Serviços contábeis","hero.stat3":"Países de operação",
+    "about.label":"A área contábil","about.title":"Contabilidade e assessoria fiscal de excelência","about.p1":"A área contábil da Pantarotto Lértora Bardagí & Asocs. presta serviços integrais de contabilidade, auditoria e impostos para empresas de todos os tamanhos e setores, tanto no mercado local como em operações internacionais.","about.p2":"Trabalhamos em estreita coordenação com a área jurídica do escritório, o que nos permite oferecer soluções unificadas quando as situações exigem abordagem jurídica e contábil simultânea.","about.p3":"Nossa equipe de contadores públicos atualiza permanentemente sua formação em matéria tributária, normativa contábil e regulatória para garantir o mais alto padrão de qualidade em cada serviço prestado.",
+    "about.hl1t":"Anos de trajetória","about.hl1p":"Experiência consolidada em contabilidade empresarial e assessoria fiscal na Argentina e no exterior.","about.hl2t":"Jurisdições ativas","about.hl2p":"Argentina, Estados Unidos e Uruguai, com correspondentes ativos para atender operações transfronteiriças.","about.hl3t":"Integração com a área jurídica","about.hl3p":"Coordenação permanente entre contadores e advogados para soluções jurídico-contábeis unificadas.",
+    "areas.label":"Serviços contábeis","areas.title":"Áreas de serviço","areas.sub":"Cobertura completa das necessidades contábeis e fiscais da sua empresa.",
+    "area1.name":"Apuração de Impostos","area1.desc":"Apuração mensal e anual de IVA, imposto de renda, receita bruta, ativos pessoais, retenções e percepções. Envio à AFIP e organismos provinciais.","area2.name":"Demonstrações Financeiras","area2.desc":"Elaboração de demonstrações financeiras anuais e intermediárias sob normas IFRS e normas contábeis profissionais argentinas.","area3.name":"Auditoria Contábil","area3.desc":"Auditoria de demonstrações financeiras, revisões limitadas, procedimentos acordados e due diligence contábil para operações de compra e venda de empresas.","area4.name":"Planejamento Tributário","area4.desc":"Estruturação fiscal de operações, análise de carga tributária, reorganizações empresariais e planejamento de preços de transferência para grupos multinacionais.","area5.name":"Folha de Pagamento","area5.desc":"Cálculo de salários, encargos sociais, contribuições. Envio de declarações à AFIP e organismos sindicais. Certificados trabalhistas.","area6.name":"Contabilidade Internacional","area6.desc":"Assessoria contábil para empresas com operações no exterior. Consolidação de demonstrações financeiras, conversão de moeda e cumprimento das normas IFRS.",
+    "team.label":"Nossos contadores","team.title":"A equipe","team.sub":"Contadores públicos especializados em impostos, auditoria e contabilidade internacional, em permanente coordenação com a equipe jurídica do escritório.",
+    "team.role1name":"Contador Público","team.role1":"Responsável pela Área","team.spec1":"Impostos · Auditoria · Demonstrações Financeiras","team.role2name":"Contador Público","team.role2":"Especialista Fiscal","team.spec2":"Planejamento Fiscal · Preços de Transferência",
+    "team.cta":"Equipe completa de contadores e auxiliares especializados por setor","team.ctaLink":"Ver todos →",
+    "news.label":"Novidades contábeis","news.title":"Atualidade fiscal","news.all":"Ver todos →",
+    "news1.tag":"Impostos · AFIP","news1.title":"Acordo FATCA: impacto contábil e fiscal para contribuintes argentinos com ativos nos Estados Unidos","news1.excerpt":"O intercâmbio automático de informações financeiras entre a AFIP e o IRS implica novas obrigações de declaração e exposição patrimonial para pessoas físicas e jurídicas com contas ou ativos no exterior.","news1.date":"Setembro 2024",
+    "news2.tag":"Normas Contábeis","news2.title":"Atualizações nas normas contábeis profissionais: impacto na elaboração de demonstrações financeiras","news2.excerpt":"As modificações recentes nas RT da FACPCE introduzem novos critérios de mensuração e divulgação que afetam empresas de todos os setores.","news2.date":"Outubro 2024",
+    "contact.label":"Contato","contact.title":"Vamos falar sobre","contact.titleAccent":"a sua situação","contact.desc":"Nossa equipe contábil oferece uma consulta inicial gratuita para avaliar suas necessidades e propor o serviço mais adequado. Responderemos dentro de 24 horas úteis.",
+    "contact.addr":"Endereço","contact.email":"E-mail","contact.hours":"Horário","contact.hoursVal":"Segunda a sexta, 9h – 18h","contact.offices":"Escritórios",
+    "form.name":"Nome","form.namePh":"Nome completo","form.company":"Empresa","form.companyPh":"Empresa ou organização","form.phone":"Telefone","form.area":"Serviço requerido","form.areaSelect":"Selecione um serviço","form.other":"Outro","form.message":"Mensagem","form.messagePh":"Descreva brevemente sua consulta ou necessidade…","form.submit":"Enviar consulta",
+    "footer.tagline":"Pantarotto Lértora Bardagí & Associados — Área Contábil. Buenos Aires, Argentina.","footer.col1":"A área","footer.about":"Quem somos","footer.correspondents":"Correspondentes","footer.col2":"Serviços","footer.col3":"Legal","footer.privacy":"Política de privacidade","footer.terms":"Termos de uso","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Todos os direitos reservados."
+  },
+  fr: {
+    "nav.about":"À propos","nav.areas":"Services","nav.team":"Équipe","nav.news":"Actualités","nav.legal":"Cabinet Juridique","nav.contact":"Contact","nav.division":"Division Comptable",
+    "hero.tag":"Experts-Comptables · Buenos Aires","hero.title":"Comptabilité et fiscalité avec <span class=\"accent\">20 ans</span> d'expérience","hero.sub":"Division comptable complète basée à Buenos Aires avec des correspondants aux États-Unis et en Uruguay. Spécialisés en conformité fiscale, audit, états financiers et planification fiscale.","hero.cta1":"Nous contacter","hero.cta2":"Voir les services","hero.stat1":"Années d'expérience","hero.stat2":"Services comptables","hero.stat3":"Pays d'opération",
+    "about.label":"La division comptable","about.title":"Comptabilité et conseil fiscal d'excellence","about.p1":"La division comptable de Pantarotto Lértora Bardagí & Asocs. fournit des services complets de comptabilité, d'audit et de fiscalité pour des entreprises de toutes tailles et de tous secteurs, sur le marché local et à l'international.","about.p2":"Nous travaillons en étroite coordination avec le département juridique du cabinet, ce qui nous permet d'offrir des solutions unifiées lorsque les situations nécessitent une approche juridique et comptable simultanée.","about.p3":"Notre équipe d'experts-comptables certifiés met continuellement à jour ses connaissances en matière fiscale, comptable et réglementaire pour garantir le plus haut niveau de qualité dans chaque service.",
+    "about.hl1t":"Années d'expérience","about.hl1p":"Expertise consolidée en comptabilité d'entreprise et conseil fiscal en Argentine et à l'étranger.","about.hl2t":"Juridictions actives","about.hl2p":"Argentine, États-Unis et Uruguay, avec des correspondants actifs pour les opérations transfrontalières.","about.hl3t":"Intégration avec l'équipe juridique","about.hl3p":"Coordination permanente entre comptables et avocats pour des solutions juridico-comptables unifiées.",
+    "areas.label":"Services comptables","areas.title":"Domaines de service","areas.sub":"Couverture complète des besoins comptables et fiscaux de votre entreprise.",
+    "area1.name":"Conformité Fiscale","area1.desc":"Déclarations mensuelles et annuelles de TVA, impôt sur le revenu, taxes locales, retenues et perceptions. Dépôt auprès de l'AFIP et des organismes provinciaux.","area2.name":"États Financiers","area2.desc":"Préparation d'états financiers annuels et intermédiaires selon les normes IFRS et les normes comptables professionnelles argentines.","area3.name":"Audit Comptable","area3.desc":"Audit des états financiers, examens limités, procédures convenues et due diligence comptable pour les opérations d'acquisition.","area4.name":"Planification Fiscale","area4.desc":"Structuration fiscale des opérations, analyse de la charge fiscale, réorganisations d'entreprises et planification des prix de transfert pour les groupes multinationaux.","area5.name":"Gestion de la Paie","area5.desc":"Calcul des salaires, charges sociales, cotisations. Dépôt des déclarations auprès de l'AFIP et des organismes syndicaux. Attestations d'emploi.","area6.name":"Comptabilité Internationale","area6.desc":"Conseil comptable pour les entreprises ayant des opérations à l'étranger. Consolidation des états financiers, conversion des devises et conformité aux normes IFRS.",
+    "team.label":"Nos comptables","team.title":"L'équipe","team.sub":"Experts-comptables certifiés spécialisés en fiscalité, audit et comptabilité internationale, en coordination permanente avec l'équipe juridique du cabinet.",
+    "team.role1name":"Expert-Comptable","team.role1":"Responsable de la Division","team.spec1":"Fiscalité · Audit · États Financiers","team.role2name":"Expert-Comptable","team.role2":"Spécialiste Fiscal","team.spec2":"Planification Fiscale · Prix de Transfert",
+    "team.cta":"Équipe complète de comptables et spécialistes par secteur","team.ctaLink":"Voir tous →",
+    "news.label":"Actualités comptables","news.title":"Actualité fiscale","news.all":"Voir tout →",
+    "news1.tag":"Fiscalité · AFIP","news1.title":"Accord FATCA : impact comptable et fiscal pour les contribuables argentins ayant des actifs aux États-Unis","news1.excerpt":"L'échange automatique d'informations financières entre l'AFIP et l'IRS implique de nouvelles obligations déclaratives et de transparence patrimoniale pour les personnes physiques et morales ayant des comptes ou des actifs à l'étranger.","news1.date":"Septembre 2024",
+    "news2.tag":"Normes Comptables","news2.title":"Mises à jour des normes comptables professionnelles : impact sur l'établissement des états financiers","news2.excerpt":"Les récentes modifications des normes techniques de la FACPCE introduisent de nouveaux critères d'évaluation et de présentation affectant les entreprises de tous les secteurs.","news2.date":"Octobre 2024",
+    "contact.label":"Contact","contact.title":"Parlons de","contact.titleAccent":"votre situation","contact.desc":"Notre équipe comptable vous offre une consultation initiale gratuite pour évaluer vos besoins et proposer le service le plus adapté. Nous vous répondrons dans les 24 heures ouvrables.",
+    "contact.addr":"Adresse","contact.email":"E-mail","contact.hours":"Horaires","contact.hoursVal":"Lundi au vendredi, 9h – 18h","contact.offices":"Bureaux",
+    "form.name":"Nom","form.namePh":"Nom complet","form.company":"Entreprise","form.companyPh":"Entreprise ou organisation","form.phone":"Téléphone","form.area":"Service requis","form.areaSelect":"Sélectionnez un service","form.other":"Autre","form.message":"Message","form.messagePh":"Décrivez brièvement votre demande…","form.submit":"Envoyer la demande",
+    "footer.tagline":"Pantarotto Lértora Bardagí & Associés — Division Comptable. Buenos Aires, Argentine.","footer.col1":"La division","footer.about":"Qui sommes-nous","footer.correspondents":"Correspondants","footer.col2":"Services","footer.col3":"Juridique","footer.privacy":"Politique de confidentialité","footer.terms":"Conditions d'utilisation","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Tous droits réservés."
+  },
+  it: {
+    "nav.about":"Chi siamo","nav.areas":"Servizi","nav.team":"Team","nav.news":"Novità","nav.legal":"Studio Legale","nav.contact":"Contatto","nav.division":"Area Contabile",
+    "hero.tag":"Commercialisti · Buenos Aires","hero.title":"Contabilità e fiscalità con <span class=\"accent\">20 anni</span> di esperienza","hero.sub":"Area contabile integrata con sede a Buenos Aires e corrispondenti negli Stati Uniti e in Uruguay. Specializzati in adempimenti fiscali, revisione, bilanci e pianificazione tributaria.","hero.cta1":"Contattaci ora","hero.cta2":"Scopri i servizi","hero.stat1":"Anni di esperienza","hero.stat2":"Servizi contabili","hero.stat3":"Paesi di operazione",
+    "about.label":"L'area contabile","about.title":"Contabilità e consulenza fiscale di eccellenza","about.p1":"L'area contabile di Pantarotto Lértora Bardagí & Asocs. fornisce servizi integrali di contabilità, revisione e fiscalità per aziende di tutte le dimensioni e settori, sia nel mercato locale che nelle operazioni internazionali.","about.p2":"Lavoriamo in stretta coordinazione con il dipartimento legale dello studio, il che ci permette di offrire soluzioni unificate quando le situazioni richiedono un approccio legale e contabile simultaneo.","about.p3":"Il nostro team di commercialisti abilitati aggiorna costantemente la propria formazione in materia fiscale, normativa contabile e regolatoria per garantire il massimo standard di qualità in ogni servizio.",
+    "about.hl1t":"Anni di esperienza","about.hl1p":"Esperienza consolidata in contabilità aziendale e consulenza fiscale in Argentina e all'estero.","about.hl2t":"Giurisdizioni attive","about.hl2p":"Argentina, Stati Uniti e Uruguay, con corrispondenti attivi per le operazioni transfrontaliere.","about.hl3t":"Integrazione con il team legale","about.hl3p":"Coordinazione permanente tra commercialisti e avvocati per soluzioni legali-contabili unificate.",
+    "areas.label":"Servizi contabili","areas.title":"Aree di servizio","areas.sub":"Copertura completa delle esigenze contabili e fiscali della vostra azienda.",
+    "area1.name":"Adempimenti Fiscali","area1.desc":"Dichiarazioni mensili e annuali di IVA, imposte sul reddito, ritenute e versamenti. Presentazione all'AFIP e agli organismi provinciali.","area2.name":"Bilanci d'Esercizio","area2.desc":"Redazione di bilanci annuali e intermediari secondo gli IFRS e i principi contabili professionali argentini. Relazione di gestione e allegati.","area3.name":"Revisione Contabile","area3.desc":"Revisione dei bilanci, esami limitati, procedure concordate e due diligence contabile per operazioni di acquisizione.","area4.name":"Pianificazione Fiscale","area4.desc":"Strutturazione fiscale delle operazioni, analisi del carico fiscale, riorganizzazioni aziendali e pianificazione dei prezzi di trasferimento per gruppi multinazionali.","area5.name":"Elaborazione Buste Paga","area5.desc":"Calcolo delle retribuzioni, contributi previdenziali e assistenziali. Presentazione delle dichiarazioni all'AFIP e agli enti sindacali. Certificati di lavoro.","area6.name":"Contabilità Internazionale","area6.desc":"Consulenza contabile per aziende con operazioni all'estero. Consolidamento dei bilanci, conversione delle valute e conformità agli IFRS.",
+    "team.label":"I nostri commercialisti","team.title":"Il team","team.sub":"Commercialisti abilitati specializzati in fiscalità, revisione e contabilità internazionale, in permanente coordinazione con il team legale dello studio.",
+    "team.role1name":"Commercialista","team.role1":"Responsabile dell'Area","team.spec1":"Fiscalità · Revisione · Bilanci","team.role2name":"Commercialista","team.role2":"Specialista Fiscale","team.spec2":"Pianificazione Fiscale · Prezzi di Trasferimento",
+    "team.cta":"Team completo di commercialisti e specialisti per settore","team.ctaLink":"Vedi tutti →",
+    "news.label":"Novità contabili","news.title":"Aggiornamenti fiscali","news.all":"Vedi tutto →",
+    "news1.tag":"Fiscalità · AFIP","news1.title":"Accordo FATCA: impatto contabile e fiscale per i contribuenti argentini con attività negli Stati Uniti","news1.excerpt":"Lo scambio automatico di informazioni finanziarie tra l'AFIP e l'IRS implica nuovi obblighi dichiarativi e di trasparenza patrimoniale per le persone fisiche e giuridiche con conti o attività all'estero.","news1.date":"Settembre 2024",
+    "news2.tag":"Principi Contabili","news2.title":"Aggiornamenti ai principi contabili professionali: impatto sulla redazione dei bilanci","news2.excerpt":"Le recenti modifiche alle norme tecniche della FACPCE introducono nuovi criteri di valutazione e presentazione che interessano le aziende di tutti i settori.","news2.date":"Ottobre 2024",
+    "contact.label":"Contatto","contact.title":"Parliamo della","contact.titleAccent":"vostra situazione","contact.desc":"Il nostro team contabile offre una consulenza iniziale gratuita per valutare le vostre esigenze e proporre il servizio più adatto. Risponderemo entro 24 ore lavorative.",
+    "contact.addr":"Indirizzo","contact.email":"E-mail","contact.hours":"Orario","contact.hoursVal":"Lunedì–venerdì, 9:00 – 18:00","contact.offices":"Uffici",
+    "form.name":"Nome","form.namePh":"Nome completo","form.company":"Azienda","form.companyPh":"Azienda o organizzazione","form.phone":"Telefono","form.area":"Servizio richiesto","form.areaSelect":"Seleziona un servizio","form.other":"Altro","form.message":"Messaggio","form.messagePh":"Descrivi brevemente la tua richiesta…","form.submit":"Invia richiesta",
+    "footer.tagline":"Pantarotto Lértora Bardagí & Associati — Area Contabile. Buenos Aires, Argentina.","footer.col1":"L'area","footer.about":"Chi siamo","footer.correspondents":"Corrispondenti","footer.col2":"Servizi","footer.col3":"Legale","footer.privacy":"Informativa sulla privacy","footer.terms":"Termini di utilizzo","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Tutti i diritti riservati."
+  },
+  de: {
+    "nav.about":"Über uns","nav.areas":"Leistungen","nav.team":"Team","nav.news":"Neuigkeiten","nav.legal":"Rechtskanzlei","nav.contact":"Kontakt","nav.division":"Buchhaltungsabteilung",
+    "hero.tag":"Wirtschaftsprüfer · Buenos Aires","hero.title":"Buchhaltung & Steuern mit <span class=\"accent\">20 Jahren</span> Erfahrung","hero.sub":"Vollservice-Buchhaltungsabteilung mit Sitz in Buenos Aires und Korrespondenten in den USA und Uruguay. Spezialisiert auf Steuererfüllung, Prüfung, Jahresabschlüsse und Steuerplanung.","hero.cta1":"Jetzt anfragen","hero.cta2":"Leistungen entdecken","hero.stat1":"Jahre Erfahrung","hero.stat2":"Buchhaltungsleistungen","hero.stat3":"Länder",
+    "about.label":"Die Buchhaltungsabteilung","about.title":"Buchhaltung und Steuerberatung der Spitzenklasse","about.p1":"Die Buchhaltungsabteilung von Pantarotto Lértora Bardagí & Asocs. bietet umfassende Buchhaltungs-, Prüfungs- und Steuerdienstleistungen für Unternehmen aller Größen und Branchen, sowohl auf dem lokalen Markt als auch bei internationalen Operationen.","about.p2":"Wir arbeiten eng mit der Rechtsabteilung zusammen, was es uns ermöglicht, einheitliche Lösungen anzubieten, wenn Situationen eine gleichzeitige rechtliche und buchhalterische Bearbeitung erfordern.","about.p3":"Unser Team zertifizierter Wirtschaftsprüfer aktualisiert kontinuierlich seine Fachkenntnisse in Steuerrecht, Rechnungslegungsstandards und regulatorischen Fragen, um höchste Qualität zu gewährleisten.",
+    "about.hl1t":"Jahre Erfahrung","about.hl1p":"Fundierte Expertise in Unternehmensbesteuerung und Steuerberatung in Argentinien und im Ausland.","about.hl2t":"Aktive Jurisdiktionen","about.hl2p":"Argentinien, USA und Uruguay, mit aktiven Korrespondenten für grenzüberschreitende Operationen.","about.hl3t":"Integration mit dem Rechtsteam","about.hl3p":"Permanente Koordination zwischen Buchhaltern und Anwälten für einheitliche Rechts- und Buchhaltungslösungen.",
+    "areas.label":"Buchhaltungsleistungen","areas.title":"Leistungsbereiche","areas.sub":"Vollständige Abdeckung der buchhalterischen und steuerlichen Bedürfnisse Ihres Unternehmens.",
+    "area1.name":"Steuererfüllung","area1.desc":"Monatliche und jährliche Erklärungen für Umsatzsteuer, Einkommensteuer, Einbehaltungen und Vorauszahlungen. Einreichung bei AFIP und Provinzbehörden.","area2.name":"Jahresabschlüsse","area2.desc":"Erstellung von Jahres- und Zwischenabschlüssen nach IFRS und argentinischen Rechnungslegungsstandards. Lagebericht und Anhang.","area3.name":"Wirtschaftsprüfung","area3.desc":"Abschlussprüfung, eingeschränkte Prüfungen, vereinbarte Prüfhandlungen und buchhalterische Due Diligence für Unternehmenstransaktionen.","area4.name":"Steuerplanung","area4.desc":"Steuerliche Strukturierung von Transaktionen, Steuerbelastungsanalyse, Unternehmensumstrukturierungen und Verrechnungspreisplanung für multinationale Gruppen.","area5.name":"Gehaltsabrechnung","area5.desc":"Gehaltsberechnung, Sozialversicherungsbeiträge, Arbeitgeberbeiträge. Einreichung von Erklärungen bei AFIP und Gewerkschaftsorganisationen.","area6.name":"Internationale Buchhaltung","area6.desc":"Buchhaltungsberatung für Unternehmen mit Auslandsoperationen. Konsolidierung von Abschlüssen, Währungsumrechnung und IFRS-Compliance.",
+    "team.label":"Unsere Wirtschaftsprüfer","team.title":"Das Team","team.sub":"Zertifizierte Wirtschaftsprüfer mit Spezialisierung auf Steuern, Prüfung und internationale Buchhaltung, in permanenter Koordination mit dem Rechtsteam der Kanzlei.",
+    "team.role1name":"Wirtschaftsprüfer","team.role1":"Abteilungsleiter","team.spec1":"Steuern · Prüfung · Jahresabschlüsse","team.role2name":"Wirtschaftsprüfer","team.role2":"Steuerspezialist","team.spec2":"Steuerplanung · Verrechnungspreise",
+    "team.cta":"Vollständiges Team aus Buchhaltern und Spezialisten nach Branche","team.ctaLink":"Alle anzeigen →",
+    "news.label":"Buchhaltungsneuigkeiten","news.title":"Steuerliche Aktualisierungen","news.all":"Alle anzeigen →",
+    "news1.tag":"Steuern · AFIP","news1.title":"FATCA-Abkommen: buchhalterische und steuerliche Auswirkungen für argentinische Steuerzahler mit Vermögenswerten in den USA","news1.excerpt":"Der automatische Austausch von Finanzinformationen zwischen AFIP und IRS schafft neue Meldepflichten und Vermögenstransparenzpflichten für natürliche und juristische Personen mit Auslandskonten oder -vermögen.","news1.date":"September 2024",
+    "news2.tag":"Rechnungslegungsstandards","news2.title":"Aktualisierungen der professionellen Rechnungslegungsstandards: Auswirkungen auf die Erstellung von Jahresabschlüssen","news2.excerpt":"Die jüngsten Änderungen an den technischen Normen der FACPCE führen neue Bewertungs- und Darstellungskriterien ein, die Unternehmen aller Branchen betreffen.","news2.date":"Oktober 2024",
+    "contact.label":"Kontakt","contact.title":"Sprechen wir über","contact.titleAccent":"Ihre Situation","contact.desc":"Unser Buchhaltungsteam bietet eine kostenlose Erstberatung an, um Ihre Bedürfnisse zu beurteilen und den geeignetsten Service vorzuschlagen. Wir antworten innerhalb von 24 Geschäftsstunden.",
+    "contact.addr":"Adresse","contact.email":"E-Mail","contact.hours":"Öffnungszeiten","contact.hoursVal":"Montag–Freitag, 9:00 – 18:00 Uhr","contact.offices":"Büros",
+    "form.name":"Name","form.namePh":"Vollständiger Name","form.company":"Unternehmen","form.companyPh":"Unternehmen oder Organisation","form.phone":"Telefon","form.area":"Gewünschter Service","form.areaSelect":"Service auswählen","form.other":"Sonstiges","form.message":"Nachricht","form.messagePh":"Beschreiben Sie kurz Ihre Anfrage…","form.submit":"Anfrage senden",
+    "footer.tagline":"Pantarotto Lértora Bardagí & Partner — Buchhaltungsabteilung. Buenos Aires, Argentinien.","footer.col1":"Die Abteilung","footer.about":"Über uns","footer.correspondents":"Korrespondenten","footer.col2":"Leistungen","footer.col3":"Rechtliches","footer.privacy":"Datenschutzrichtlinie","footer.terms":"Nutzungsbedingungen","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Alle Rechte vorbehalten."
+  }
+};
+
+let currentLang = 'es';
+
+function setLang(lang) {
+  currentLang = lang;
+  const t = i18n[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key] !== undefined) el.placeholder = t[key];
+  });
+  document.querySelectorAll('.lang-menu a').forEach((a, i) => {
+    a.classList.toggle('active', ['es','en','pt','fr','it','de'][i] === lang);
+  });
+  document.getElementById('langMenu').classList.remove('open');
+  document.documentElement.lang = lang;
+}
+
+function toggleLang(e) {
+  e.stopPropagation();
+  document.getElementById('langMenu').classList.toggle('open');
+}
+document.addEventListener('click', () => document.getElementById('langMenu').classList.remove('open'));
+function openMob() { document.getElementById('mob').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeMob() { document.getElementById('mob').classList.remove('open'); document.body.style.overflow=''; }
+function handleForm(e) {
+  e.preventDefault();
+  const b = e.target.querySelector('.btn-submit');
+  const msgs = {es:'Consulta enviada ✓',en:'Inquiry sent ✓',pt:'Consulta enviada ✓',fr:'Demande envoyée ✓',it:'Richiesta inviata ✓',de:'Anfrage gesendet ✓'};
+  b.textContent = msgs[currentLang]||msgs.es; b.style.background='#2a6b2a'; b.disabled=true;
+}
 window.addEventListener('scroll', () => { document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60); });
-const obs = new
+</script>
+</body>
+</html>
