@@ -445,21 +445,15 @@ footer { background: var(--black); padding: 3.5rem 3.5rem 2rem; }
 .map-placeholder-btn { transition: background 0.2s, color 0.2s; }
 
 /* Google Translate */
-#google_translate_element { display: inline-flex; align-items: center; }
-#google_translate_element select {
-  font-family: Arial, sans-serif;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  background: var(--black);
-  color: var(--white);
-  border: 1.5px solid var(--p);
-  padding: 0.38rem 0.8rem;
-  cursor: pointer;
-  outline: none;
-  appearance: none;
-  -webkit-appearance: none;
-}
+.lang-wrap { position: relative; display: flex; align-items: center; }
+.lang-btn { background: none; border: 1.5px solid var(--gray-line); padding: 0.35rem 0.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s; }
+.lang-btn:hover { border-color: var(--p); }
+.lang-btn svg { width: 18px; height: 18px; color: var(--dark2); }
+.lang-btn:hover svg { color: var(--p); }
+.lang-menu { display: none; position: absolute; top: calc(100% + 8px); right: 0; background: var(--white); border: 1px solid var(--gray-line); box-shadow: 0 8px 24px rgba(0,0,0,0.1); z-index: 200; min-width: 130px; }
+.lang-menu.open { display: block; }
+.lang-menu a { display: block; padding: 0.6rem 1rem; font-size: 0.8rem; color: var(--dark2); cursor: pointer; transition: background 0.15s, color 0.15s; text-decoration: none; }
+.lang-menu a:hover { background: var(--off-white); color: var(--p); }
 .goog-te-banner-frame { display: none !important; }
 body { top: 0 !important; }
 .skiptranslate iframe { display: none !important; }
@@ -495,16 +489,46 @@ body { top: 0 !important; }
 
 
 <!-- TRANSLATE -->
-<div id="google_translate_element"></div>
+<div class="lang-wrap" id="langWrap">
+  <button class="lang-btn" onclick="toggleLang(event)" aria-label="Idioma">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+      <circle cx="10" cy="10" r="8"/>
+      <path d="M2 10h16M10 2a14 14 0 010 16M10 2a14 14 0 000 16"/>
+    </svg>
+  </button>
+  <div class="lang-menu" id="langMenu">
+    <a onclick="setLang('es')">Español</a>
+    <a onclick="setLang('en')">English</a>
+    <a onclick="setLang('pt')">Português</a>
+    <a onclick="setLang('fr')">Français</a>
+    <a onclick="setLang('it')">Italiano</a>
+    <a onclick="setLang('de')">Deutsch</a>
+  </div>
+</div>
+<div id="google_translate_element" style="display:none"></div>
 <script>
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({
     pageLanguage: 'es',
-    includedLanguages: 'en,pt,fr,it,de',
-    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    includedLanguages: 'en,pt,fr,it,de,es',
     autoDisplay: false
   }, 'google_translate_element');
 }
+function toggleLang(e) {
+  e.stopPropagation();
+  document.getElementById('langMenu').classList.toggle('open');
+}
+function setLang(lang) {
+  var select = document.querySelector('.goog-te-combo');
+  if (select) {
+    select.value = lang;
+    select.dispatchEvent(new Event('change'));
+  }
+  document.getElementById('langMenu').classList.remove('open');
+}
+document.addEventListener('click', function() {
+  document.getElementById('langMenu').classList.remove('open');
+});
 </script>
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
 <button class="hamburger" onclick="openMob()"><span></span><span></span><span></span></button>
