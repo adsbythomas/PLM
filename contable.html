@@ -196,6 +196,42 @@ footer { background: var(--black); padding: 3.5rem 3.5rem 2rem; }
   .contacto-top { padding: 3rem 1.5rem; }
   .contacto-form-new { padding: 2rem 1.5rem; }
 }
+
+/* COUNTER ANIMATION */
+.stat-num .counter { display: inline; }
+
+/* BAR CHART in hero */
+.hero-bars {
+  position: absolute;
+  right: 3.5rem;
+  bottom: 4rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  height: 140px;
+  opacity: 0.1;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-bar-col {
+  width: 18px;
+  border-radius: 3px 3px 0 0;
+  background: var(--p);
+  transform-origin: bottom;
+  animation: barRise 1.5s cubic-bezier(.4,0,.2,1) both;
+}
+.hero-bar-col:nth-child(1) { height: 40%;  animation-delay: 0.2s; }
+.hero-bar-col:nth-child(2) { height: 70%;  animation-delay: 0.35s; }
+.hero-bar-col:nth-child(3) { height: 55%;  animation-delay: 0.5s; }
+.hero-bar-col:nth-child(4) { height: 90%;  animation-delay: 0.65s; }
+.hero-bar-col:nth-child(5) { height: 65%;  animation-delay: 0.8s; }
+.hero-bar-col:nth-child(6) { height: 100%; animation-delay: 0.95s; }
+
+@keyframes barRise {
+  from { transform: scaleY(0); opacity: 0; }
+  to   { transform: scaleY(1); opacity: 1; }
+}
+@media (max-width: 768px) { .hero-bars { display: none; } }
 </style>
 </head>
 <body>
@@ -252,10 +288,20 @@ footer { background: var(--black); padding: 3.5rem 3.5rem 2rem; }
       <a href="#areas" class="btn-ghost" data-i18n="hero.cta2">Ver servicios</a>
     </div>
   </div>
+
+  <!-- Barras decorativas -->
+  <div class="hero-bars" aria-hidden="true">
+    <div class="hero-bar-col"></div>
+    <div class="hero-bar-col"></div>
+    <div class="hero-bar-col"></div>
+    <div class="hero-bar-col"></div>
+    <div class="hero-bar-col"></div>
+    <div class="hero-bar-col"></div>
+  </div>
   <div class="hero-stats">
-    <div><div class="stat-num">20<span>+</span></div><div class="stat-label" data-i18n="hero.stat1">Años de experiencia</div></div>
-    <div><div class="stat-num">6</div><div class="stat-label" data-i18n="hero.stat2">Servicios contables</div></div>
-    <div><div class="stat-num">3</div><div class="stat-label" data-i18n="hero.stat3">Países de operación</div></div>
+    <div><div class="stat-num"><span class="counter">20</span><span>+</span></div><div class="stat-label" data-i18n="hero.stat1">Años de experiencia</div></div>
+    <div><div class="stat-num"><span class="counter">6</span></div><div class="stat-label" data-i18n="hero.stat2">Servicios contables</div></div>
+    <div><div class="stat-num"><span class="counter">3</span></div><div class="stat-label" data-i18n="hero.stat3">Países de operación</div></div>
   </div>
 </section>
 
@@ -326,7 +372,7 @@ footer { background: var(--black); padding: 3.5rem 3.5rem 2rem; }
       </div>
       <div class="contacto-data">
         <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 2a6 6 0 016 6c0 4-6 10-6 10S4 12 4 8a6 6 0 016-6z"/><circle cx="10" cy="8" r="2"/></svg></div><div><div class="cdata-label" data-i18n="contact.addr">Dirección</div><div class="cdata-val">Av. Corrientes 1464, Piso 16 Of. 1605<br>C1042 · Ciudad Autónoma de Buenos Aires</div></div></div>
-        <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="16" height="12" rx="2"/><path d="M2 7l8 5 8-5"/></svg></div><div><div class="cdata-label" data-i18n="contact.email">Email</div><div class="cdata-val">contable@pl-abogados.com</div></div></div>
+        <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="16" height="12" rx="2"/><path d="M2 7l8 5 8-5"/></svg></div><div><div class="cdata-label" data-i18n="contact.email">Email</div><div class="cdata-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="afccc0c1dbcecdc3caefdfc382cecdc0c8cecbc0dc81ccc0c2">[email&#160;protected]</a></div></div></div>
         <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 2"/></svg></div><div><div class="cdata-label" data-i18n="contact.hours">Horario</div><div class="cdata-val" data-i18n="contact.hoursVal">Lunes a viernes, 9:00 – 18:00 hs.</div></div></div>
         <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M2 10h16M10 2a14 14 0 010 16M10 2a14 14 0 000 16"/></svg></div><div><div class="cdata-label" data-i18n="contact.offices">Sedes</div><div class="cdata-val">Buenos Aires · EEUU · Uruguay</div></div></div>
       </div>
@@ -376,7 +422,7 @@ footer { background: var(--black); padding: 3.5rem 3.5rem 2rem; }
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 var currentLang = 'es';
 
 function toggleLang(e) {
@@ -556,9 +602,64 @@ var i18n = {
     "contact.label":"Kontakt","contact.title":"Sprechen wir über","contact.titleAccent":"Ihre Situation","contact.desc":"Unser Buchhaltungsteam bietet eine kostenlose Erstberatung. Wir antworten innerhalb von 24 Geschäftsstunden.",
     "contact.addr":"Adresse","contact.email":"E-Mail","contact.hours":"Öffnungszeiten","contact.hoursVal":"Montag–Freitag, 9:00 – 18:00 Uhr","contact.offices":"Büros",
     "form.name":"Name","form.namePh":"Vollständiger Name","form.company":"Unternehmen","form.companyPh":"Unternehmen oder Organisation","form.phone":"Telefon","form.area":"Gewünschter Service","form.areaSelect":"Service auswählen","form.other":"Sonstiges","form.message":"Nachricht","form.messagePh":"Beschreiben Sie kurz Ihre Anfrage…","form.submit":"Anfrage senden",
-    "footer.tagline":"Pantarotto Lértora Bardagí & Partner — Buchhaltungsabteilung. Buenos Aires, Argentinien.","footer.col1":"Die Abteilung","footer.about":"Über uns","footer.correspondents":"Korrespondenten","footer.col2":"Leistungen","footer.col3":"Rechtliches","footer.privacy":"Datenschutzrichtlinie","footer.terms":"Nutzungsbedingungen","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Alle Rechte vorbehalten."
+    "footer.tagline":"Pantarotto Lértora Bardagí & Partner — Buchhaltungsabteilung. Buenos Aires, Argentinien.","footer.col1":"Die Abteilung","footer.about":"Über uns","footer.correspondents":"Korrespondenten",stungen","footer.col3":"Rechtliches","footer.privacy":"Datenschutzrichtlinie","footer.terms":"Nutzungsbedingungen","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Alle Rechte vorbehalten."
   }
 };
+
+// Counter animation
+function animateCounter(el, target, suffix) {
+  var duration = 1800;
+  var start = performance.now();
+  function update(now) {
+    var elapsed = now - start;
+    var progress = Math.min(elapsed / duration, 1);
+    var eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(eased * target) + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+  // Counter observer
+  var statLabels = document.querySelectorAll('.stat-label');
+  var statNums = document.querySelectorAll('.stat-num');
+  var targets = [{n:20,s:'+'},{n:6,s:''},{n:3,s:''}];
+  var done = [];
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        var idx = Array.from(statNums).indexOf(e.target);
+        if (idx > -1 && !done[idx] && targets[idx]) {
+          done[idx] = true;
+          var span = e.target.querySelector('span') || null;
+          var textNode = e.target.childNodes[0];
+          animateCounter({textContent: ''}, targets[idx].n, targets[idx].s);
+          (function(el, t, s) {
+            var dur = 1800, st = performance.now();
+            function upd(now) {
+              var prog = Math.min((now-st)/dur,1);
+              var v = Math.floor((1-Math.pow(1-prog,3))*t);
+              el.childNodes[0].textContent = v;
+              if (prog<1) requestAnimationFrame(upd);
+              else el.childNodes[0].textContent = t;
+            }
+            requestAnimationFrame(upd);
+          })(e.target, targets[idx].n, targets[idx].s);
+          obs.unobserve(e.target);
+        }
+      }
+    });
+  }, {threshold: 0.5});
+  statNums.forEach(function(el) { obs.observe(el); });
+
+  // Lang from URL
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var lang = params.get('lang');
+    if (lang && i18n[lang]) setLang(lang);
+  } catch(e) {}
+});
 </script>
 </body>
 </html>
