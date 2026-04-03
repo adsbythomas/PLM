@@ -6,207 +6,168 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PLB | Pantarotto Lértora Bardagí & Asocs.</title>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --black: #0d0d0d; --dark2: #2c2c2c; --gray: #5a5a5a; --gray-light: #9a9a9a;
-  --gray-line: #d8d8d8; --white: #ffffff; --off-white: #f0f0f0; --bg: #e8e8e8;
-  --p: #1a4fa3; --p-dark: #133a7a; --p-light: #2d6bc4;
-}
-html { scroll-behavior: smooth; }
-body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--black); line-height: 1.6; overflow-x: hidden; }
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 68px; display: flex; align-items: center; justify-content: space-between; padding: 0 3.5rem; background: var(--white); border-bottom: 1px solid var(--gray-line); transition: box-shadow 0.3s; }
-nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,0.08); }
-.logo { display: flex; align-items: baseline; gap: 0.6rem; text-decoration: none; }
-.logo-abbr { font-size: 1.6rem; font-weight: 700; color: var(--black); }
-.logo-abbr span { color: var(--p); }
-.logo-sep { width: 1px; height: 20px; background: var(--gray-line); }
-.logo-name { font-size: 0.68rem; color: var(--gray); max-width: 180px; line-height: 1.3; }
-.nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
-.nav-links a { font-size: 0.78rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dark2); text-decoration: none; transition: color 0.2s; }
-.nav-links a:hover { color: var(--p); }
-.btn-nav-solid { background: var(--p) !important; color: var(--white) !important; padding: 0.45rem 1.2rem; font-weight: 700 !important; }
-.btn-nav-solid:hover { background: var(--p-dark) !important; color: var(--white) !important; }
-.btn-nav-contable { background: var(--black) !important; color: var(--white) !important; padding: 0.45rem 1.3rem; font-weight: 700 !important; font-size: 0.82rem !important; letter-spacing: 0.08em !important; border: 2px solid var(--black) !important; }
-.btn-nav-contable:hover { background: var(--p) !important; border-color: var(--p) !important; color: var(--white) !important; }
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-.hamburger span { display: block; width: 22px; height: 2px; background: var(--black); }
-.mob { display: none; position: fixed; inset: 0; background: var(--white); z-index: 99; flex-direction: column; padding: 6rem 2.5rem 2.5rem; }
-.mob.open { display: flex; }
-.mob a { display: block; font-size: 1.2rem; font-weight: 700; color: var(--black); text-decoration: none; padding: 1rem 0; border-bottom: 1px solid var(--gray-line); }
-.mob a:hover { color: var(--p); }
-.mob-close { position: absolute; top: 1.4rem; right: 1.8rem; background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--gray); }
-.hero { min-height: 100vh; display: flex; align-items: center; background: var(--white); padding: 0 3.5rem; position: relative; overflow: hidden; border-bottom: 1px solid var(--gray-line); }
-.hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px); background-size: 60px 60px; }
-.hero-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--p); }
-.hero-content { position: relative; z-index: 1; max-width: 760px; }
-.hero-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--p); margin-bottom: 1.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(26,79,163,0.25); }
-.hero-title { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 700; color: var(--black); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
-.hero-title .accent { color: var(--p); }
-.hero-sub { font-size: 1.05rem; color: var(--gray); line-height: 1.75; margin-bottom: 2.5rem; max-width: 560px; }
-.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-.btn-solid { display: inline-block; padding: 0.85rem 2rem; background: var(--p); color: var(--white); font-family: Arial; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
-.btn-solid:hover { background: var(--p-dark); }
-.btn-ghost { display: inline-block; padding: 0.85rem 2rem; background: transparent; color: var(--black); font-family: Arial; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--gray-line); transition: border-color 0.2s, color 0.2s; }
-.btn-ghost:hover { border-color: var(--p); color: var(--p); }
-.hero-stats { position: absolute; right: 3.5rem; bottom: 4rem; display: flex; flex-direction: column; gap: 2rem; z-index: 1; text-align: right; }
-.stat-num { font-size: 2.8rem; font-weight: 700; color: var(--black); line-height: 1; }
-.stat-num span { color: var(--p); }
-.stat-label { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-light); margin-top: 0.2rem; }
-section { padding: 6rem 3.5rem; }
-.label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--p); margin-bottom: 0.75rem; }
-.section-title { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; color: var(--black); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 1rem; }
-.nosotros { background: var(--bg); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-.nosotros-text p { font-size: 0.95rem; color: var(--gray); line-height: 1.85; margin-bottom: 1rem; }
-.highlights { background: var(--white); border: 1px solid var(--gray-line); padding: 0 2rem; }
-.hl { display: grid; grid-template-columns: 80px 1fr; gap: 1.5rem; align-items: start; padding: 1.75rem 0; border-bottom: 1px solid var(--gray-line); }
-.hl:last-child { border-bottom: none; }
-.hl-num { font-size: 2.2rem; font-weight: 700; color: var(--black); line-height: 1; }
-.hl-num span { color: var(--p); }
-.hl-text strong { display: block; font-size: 0.82rem; font-weight: 700; color: var(--black); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.25rem; }
-.hl-text p { font-size: 0.85rem; color: var(--gray); }
-.areas { background: var(--bg); border-top: 1px solid var(--gray-line); }
-.areas-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
-.areas-sub { font-size: 0.92rem; color: var(--gray); margin-top: 0.5rem; }
-.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--gray-line); border: 1px solid var(--gray-line); }
-.card { background: var(--white); padding: 2.25rem 2rem; position: relative; }
-.card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--p); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
-.card:hover::before { transform: scaleX(1); }
-.card-icon { width: 28px; height: 28px; margin-bottom: 1.25rem; }
-.card-name { font-size: 1rem; font-weight: 700; color: var(--black); margin-bottom: 0.6rem; }
-.card-desc { font-size: 0.83rem; color: var(--gray); line-height: 1.7; }
-.equipo { background: var(--bg); }
-.equipo-header { margin-bottom: 3.5rem; }
-.grid-team { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--gray-line); border: 1px solid var(--gray-line); }
-.member { background: var(--white); padding: 2rem 1.5rem; transition: background 0.2s, transform 0.25s; }
-.member:hover { background: var(--off-white); transform: translateY(-3px); }
-.avatar { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 1.25rem; }
-.member-name { font-size: 0.95rem; font-weight: 700; color: var(--black); margin-bottom: 0.2rem; }
-.member-role { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--p); margin-bottom: 0.6rem; }
-.member-spec { font-size: 0.8rem; color: var(--gray-light); line-height: 1.55; }
-.member-cta { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: var(--off-white); border: 2px dashed var(--gray-line); padding: 2rem 1.5rem; }
-.member-cta p { font-size: 0.82rem; color: var(--gray); line-height: 1.6; margin-bottom: 1.25rem; }
-.insights { background: var(--bg); border-top: 1px solid var(--gray-line); }
-.insights-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
-.link-arr { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--p); text-decoration: none; }
-.link-arr:hover { text-decoration: underline; }
-.grid-insights { display: grid; grid-template-columns: 1.6fr 1fr; gap: 1px; background: var(--gray-line); border: 1px solid var(--gray-line); }
-.insight { background: var(--white); padding: 2rem 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; transition: background 0.2s, transform 0.25s; }
-.insight:hover { background: var(--off-white); transform: translateY(-3px); }
-.insight-tag { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--p); }
-.insight-title { font-size: 1rem; font-weight: 700; color: var(--black); line-height: 1.4; }
-.insight.featured .insight-title { font-size: 1.2rem; }
-.insight-excerpt { font-size: 0.83rem; color: var(--gray); line-height: 1.7; }
-.insight-date { font-size: 0.68rem; color: var(--gray-light); }
-.contacto { padding: 0; background: var(--bg); }
-.contacto-top { background: var(--black); padding: 4rem 3.5rem; }
-.contacto-top-inner { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
-.contacto-data { display: flex; flex-direction: column; gap: 1.5rem; }
-.cdata-item { display: flex; align-items: flex-start; gap: 1rem; transition: transform 0.2s; }
-.cdata-item:hover { transform: translateX(5px); }
-.cdata-icon { width: 36px; height: 36px; min-width: 36px; background: #3a3a3a; border: 1px solid #555; display: flex; align-items: center; justify-content: center; color: #aaa; }
-.cdata-icon svg { width: 16px; height: 16px; }
-.cdata-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--p-light); margin-bottom: 0.25rem; }
-.cdata-val { font-size: 0.85rem; color: rgba(255,255,255,0.92); line-height: 1.6; }
-.contacto-bottom { display: grid; grid-template-columns: 1fr 1fr; min-height: 480px; }
-.contacto-map { position: relative; min-height: 480px; }
-.contacto-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
-.contacto-form-new { display: flex; flex-direction: column; gap: 1rem; padding: 3rem; background: var(--white); border-left: 1px solid var(--gray-line); }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
-.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-.form-group label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray); }
-.form-group input, .form-group select, .form-group textarea { background: var(--white); border: 1px solid var(--gray-line); color: var(--black); font-family: Arial; font-size: 0.88rem; padding: 0.75rem 1rem; outline: none; transition: border-color 0.2s; width: 100%; }
-.form-group input::placeholder, .form-group textarea::placeholder { color: var(--gray-light); }
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--p); }
-.form-group select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%231a4fa3' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
-.form-group textarea { resize: vertical; min-height: 120px; }
-.btn-submit { background: var(--p); color: var(--white); font-family: Arial; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; border: none; padding: 0.9rem 2rem; cursor: pointer; align-self: flex-start; transition: background 0.2s; }
-.btn-submit:hover { background: var(--p-dark); }
-footer { background: var(--black); padding: 3.5rem 3.5rem 2rem; }
-.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 2rem; }
-.footer-logo { font-size: 1.3rem; font-weight: 700; color: var(--white); margin-bottom: 0.75rem; }
-.footer-logo span { color: var(--p-light); }
-.footer-tagline { font-size: 0.8rem; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 240px; }
-.footer-col h4 { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 1.1rem; }
-.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
-.footer-col ul a { font-size: 0.82rem; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
-.footer-col ul a:hover { color: var(--white); }
-.footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; color: rgba(255,255,255,0.25); }
-.footer-social { display: flex; gap: 1rem; }
-.footer-social a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.75rem; font-weight: 700; transition: all 0.2s; }
-.footer-social a:hover { border-color: var(--p-light); color: var(--p-light); }
-/* ANIMATIONS */
-@keyframes fadeUp  { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
-@keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
-@keyframes barGrow { from { height:0; } to { height:100%; } }
-@keyframes lineGrow { from { width:0; } to { width:48px; } }
-.hero-bar { animation: barGrow 0.8s cubic-bezier(.4,0,.2,1) both; }
-.hero-tag { animation: fadeUp 0.6s ease both 0.2s; }
-.hero-title { animation: fadeUp 0.6s ease both 0.35s; }
-.hero-sub { animation: fadeUp 0.6s ease both 0.5s; }
-.hero-actions { animation: fadeUp 0.6s ease both 0.65s; }
-.hero-stats { animation: fadeIn 0.6s ease both 0.8s; }
-.section-line { display:block; height:2px; background:var(--p); width:0; animation: lineGrow 0.6s ease both 0.2s; }
-@supports (animation-timeline: scroll()) {
-  .card, .insight, .member { animation: fadeUp 0.5s ease both; animation-timeline: view(); animation-range: entry 0% entry 22%; }
-  .nosotros-text { animation: fadeUp 0.7s ease both; animation-timeline: view(); animation-range: entry 0% entry 28%; }
-  .highlights { animation: fadeUp 0.7s ease both; animation-timeline: view(); animation-range: entry 5% entry 30%; }
-  .equipo-header, .areas-header, .insights-header { animation: fadeUp 0.5s ease both; animation-timeline: view(); animation-range: entry 0% entry 18%; }
-  .hl { animation: fadeUp 0.4s ease both; animation-timeline: view(); animation-range: entry 0% entry 20%; }
-  .contacto-top-inner { animation: fadeUp 0.6s ease both; animation-timeline: view(); animation-range: entry 0% entry 25%; }
-}
-.card { transition: background 0.2s, transform 0.25s, box-shadow 0.25s; }
-.card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,0.09); }
-.card-icon { transition: transform 0.25s; }
-.card:hover .card-icon { transform: scale(1.15); }
-.hl { transition: background 0.2s, padding-left 0.25s; }
-.hl:hover { background: rgba(255,255,255,0.6); padding-left: 0.75rem; }
-.nav-links a:not(.btn-nav-solid):not(.btn-nav-contable) { position: relative; }
-.nav-links a:not(.btn-nav-solid):not(.btn-nav-contable)::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px; background: var(--p); transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease; }
-.nav-links a:not(.btn-nav-solid):not(.btn-nav-contable):hover::after { transform: scaleX(1); }
-.btn-solid, .btn-ghost, .btn-submit, .btn-nav-solid, .btn-nav-contable { transition: background 0.2s, transform 0.15s, box-shadow 0.2s; }
-.btn-solid:hover { box-shadow: 0 4px 16px rgba(26,79,163,0.3); }
-.btn-solid:active, .btn-submit:active, .btn-nav-solid:active, .btn-nav-contable:active { transform: scale(0.97); }
-/* LANG */
-.lang-wrap { position: relative; display: flex; align-items: center; }
-.lang-btn { background: none; border: 1.5px solid var(--gray-line); padding: 0.35rem 0.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s; }
-.lang-btn:hover { border-color: var(--p); }
-.lang-btn svg { width: 18px; height: 18px; color: var(--dark2); transition: color 0.2s; }
-.lang-btn:hover svg { color: var(--p); }
-.lang-menu { display: none; position: absolute; top: calc(100% + 8px); right: 0; background: var(--white); border: 1px solid var(--gray-line); box-shadow: 0 8px 24px rgba(0,0,0,0.1); z-index: 200; min-width: 130px; }
-.lang-menu.open { display: block; }
-.lang-menu a { display: block; padding: 0.6rem 1rem; font-size: 0.8rem; color: var(--dark2); cursor: pointer; transition: background 0.15s, color 0.15s; text-decoration: none; }
-.lang-menu a:hover { background: var(--off-white); color: var(--p); }
-.lang-menu a.active { color: var(--p); font-weight: 700; }
-@media (max-width: 1100px) {
-  .nosotros { grid-template-columns: 1fr; gap: 3rem; }
-  .grid-3 { grid-template-columns: repeat(2,1fr); }
-  .contacto-top-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-  .contacto-bottom { grid-template-columns: 1fr; }
-  .contacto-map { min-height: 300px; }
-  .grid-insights { grid-template-columns: 1fr; }
-  .footer-top { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 768px) {
-  nav { padding: 0 1.5rem; }
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
-  section { padding: 4rem 1.5rem; }
-  .hero { padding: 1.5rem; padding-top: 100px; min-height: auto; }
-  .hero-stats { position: static; flex-direction: row; flex-wrap: wrap; gap: 2rem; margin-top: 3rem; text-align: left; }
-  .grid-3 { grid-template-columns: 1fr; }
-  .grid-team { grid-template-columns: 1fr 1fr; }
-  footer { padding: 3rem 1.5rem 1.5rem; }
-  .footer-bottom { flex-direction: column; gap: 1rem; }
-  .areas-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-  .insights-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-  .form-row { grid-template-columns: 1fr; }
-  .contacto-top { padding: 3rem 1.5rem; }
-  .contacto-form-new { padding: 2rem 1.5rem; }
-}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0d0d0d;--dark2:#2c2c2c;--gray:#5a5a5a;--gray-light:#9a9a9a;--gray-line:#d8d8d8;--white:#ffffff;--off-white:#f0f0f0;--bg:#e8e8e8;--p:#1a4fa3;--p-dark:#133a7a;--p-light:#2d6bc4}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--black);line-height:1.6;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 3.5rem;background:var(--white);border-bottom:1px solid var(--gray-line);transition:box-shadow 0.3s}
+nav.scrolled{box-shadow:0 2px 16px rgba(0,0,0,0.08)}
+.logo{display:flex;align-items:baseline;gap:0.6rem;text-decoration:none}
+.logo-abbr{font-size:1.6rem;font-weight:700;color:var(--black)}
+.logo-abbr span{color:var(--p)}
+.logo-sep{width:1px;height:20px;background:var(--gray-line)}
+.logo-name{font-size:0.68rem;color:var(--gray);max-width:180px;line-height:1.3}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:0.78rem;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;color:var(--dark2);text-decoration:none;transition:color 0.2s;position:relative}
+.nav-links a:hover{color:var(--p)}
+.nav-links a:not(.btn-nav-solid):not(.btn-nav-contable)::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--p);transform:scaleX(0);transform-origin:left;transition:transform 0.25s ease}
+.nav-links a:not(.btn-nav-solid):not(.btn-nav-contable):hover::after{transform:scaleX(1)}
+.btn-nav-solid{background:var(--p)!important;color:var(--white)!important;padding:0.45rem 1.2rem;font-weight:700!important}
+.btn-nav-solid:hover{background:var(--p-dark)!important}
+.btn-nav-contable{background:var(--black)!important;color:var(--white)!important;padding:0.45rem 1.3rem;font-weight:700!important;font-size:0.82rem!important;border:2px solid var(--black)!important}
+.btn-nav-contable:hover{background:var(--p)!important;border-color:var(--p)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--black)}
+.mob{display:none;position:fixed;inset:0;background:var(--white);z-index:99;flex-direction:column;padding:6rem 2.5rem 2.5rem}
+.mob.open{display:flex}
+.mob a{display:block;font-size:1.2rem;font-weight:700;color:var(--black);text-decoration:none;padding:1rem 0;border-bottom:1px solid var(--gray-line)}
+.mob a:hover{color:var(--p)}
+.mob-close{position:absolute;top:1.4rem;right:1.8rem;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--gray)}
+.lang-wrap{position:relative;display:flex;align-items:center}
+.lang-btn{background:none;border:1.5px solid var(--gray-line);padding:0.35rem 0.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color 0.2s}
+.lang-btn:hover{border-color:var(--p)}
+.lang-btn svg{width:18px;height:18px;color:var(--dark2);transition:color 0.2s}
+.lang-btn:hover svg{color:var(--p)}
+.lang-menu{display:none;position:absolute;top:calc(100% + 8px);right:0;background:var(--white);border:1px solid var(--gray-line);box-shadow:0 8px 24px rgba(0,0,0,0.1);z-index:200;min-width:130px}
+.lang-menu.open{display:block}
+.lang-menu a{display:block;padding:0.6rem 1rem;font-size:0.8rem;color:var(--dark2);cursor:pointer;transition:background 0.15s,color 0.15s;text-decoration:none}
+.lang-menu a:hover{background:var(--off-white);color:var(--p)}
+.lang-menu a.active{color:var(--p);font-weight:700}
+.hero{min-height:100vh;display:flex;align-items:center;background:var(--white);padding:0 3.5rem;position:relative;overflow:hidden;border-bottom:1px solid var(--gray-line)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.04) 1px,transparent 1px);background-size:60px 60px}
+.hero-bar{position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--p)}
+.hero-content{position:relative;z-index:1;max-width:760px}
+.hero-tag{display:inline-block;font-size:0.68rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--p);margin-bottom:1.75rem;padding-bottom:0.75rem;border-bottom:1px solid rgba(26,79,163,0.25)}
+.hero-title{font-size:clamp(2.4rem,5vw,4rem);font-weight:700;color:var(--black);line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.5rem}
+.hero-title .accent{color:var(--p)}
+.hero-sub{font-size:1.05rem;color:var(--gray);line-height:1.75;margin-bottom:2.5rem;max-width:560px}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-solid{display:inline-block;padding:0.85rem 2rem;background:var(--p);color:var(--white);font-family:Arial;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background 0.2s}
+.btn-solid:hover{background:var(--p-dark)}
+.btn-ghost{display:inline-block;padding:0.85rem 2rem;background:transparent;color:var(--black);font-family:Arial;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:1px solid var(--gray-line);transition:border-color 0.2s,color 0.2s}
+.btn-ghost:hover{border-color:var(--p);color:var(--p)}
+.hero-stats{position:absolute;right:3.5rem;bottom:4rem;display:flex;flex-direction:column;gap:2rem;z-index:1;text-align:right}
+.stat-num{font-size:2.8rem;font-weight:700;color:var(--black);line-height:1}
+.stat-num span{color:var(--p)}
+.stat-label{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gray-light);margin-top:0.2rem}
+section{padding:6rem 3.5rem}
+.label{font-size:0.65rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--p);margin-bottom:0.75rem}
+.section-line{display:block;height:2px;background:var(--p);width:0;animation:lineGrow 0.6s ease both 0.2s}
+.section-title{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;color:var(--black);letter-spacing:-0.02em;line-height:1.15;margin-bottom:1rem}
+.nosotros{background:var(--bg);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.nosotros-text p{font-size:0.95rem;color:var(--gray);line-height:1.85;margin-bottom:1rem}
+.highlights{background:var(--white);border:1px solid var(--gray-line);padding:0 2rem}
+.hl{display:grid;grid-template-columns:80px 1fr;gap:1.5rem;align-items:start;padding:1.75rem 0;border-bottom:1px solid var(--gray-line);transition:background 0.2s,padding-left 0.25s}
+.hl:last-child{border-bottom:none}
+.hl:hover{background:rgba(255,255,255,0.6);padding-left:0.75rem}
+.hl-num{font-size:2.2rem;font-weight:700;color:var(--black);line-height:1}
+.hl-num span{color:var(--p)}
+.hl-text strong{display:block;font-size:0.82rem;font-weight:700;color:var(--black);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.25rem}
+.hl-text p{font-size:0.85rem;color:var(--gray)}
+.areas{background:var(--bg);border-top:1px solid var(--gray-line)}
+.areas-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem}
+.areas-sub{font-size:0.92rem;color:var(--gray);margin-top:0.5rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gray-line);border:1px solid var(--gray-line)}
+.card{background:var(--white);padding:2.25rem 2rem;position:relative;transition:background 0.2s,transform 0.25s,box-shadow 0.25s}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--p);transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+.card:hover{transform:translateY(-5px);box-shadow:0 12px 32px rgba(0,0,0,0.09)}
+.card:hover::before{transform:scaleX(1)}
+.card-icon{width:28px;height:28px;margin-bottom:1.25rem;transition:transform 0.25s}
+.card:hover .card-icon{transform:scale(1.15)}
+.card-name{font-size:1rem;font-weight:700;color:var(--black);margin-bottom:0.6rem}
+.card-desc{font-size:0.83rem;color:var(--gray);line-height:1.7}
+.equipo{background:var(--bg)}
+.equipo-header{margin-bottom:3.5rem}
+.grid-team{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--gray-line);border:1px solid var(--gray-line)}
+.member{background:var(--white);padding:2rem 1.5rem;transition:background 0.2s,transform 0.25s}
+.member:hover{background:var(--off-white);transform:translateY(-3px)}
+.avatar{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;color:var(--white);margin-bottom:1.25rem}
+.member-name{font-size:0.95rem;font-weight:700;color:var(--black);margin-bottom:0.2rem}
+.member-role{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--p);margin-bottom:0.6rem}
+.member-spec{font-size:0.8rem;color:var(--gray-light);line-height:1.55}
+.member-cta{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:var(--off-white);border:2px dashed var(--gray-line);padding:2rem 1.5rem}
+.member-cta p{font-size:0.82rem;color:var(--gray);line-height:1.6;margin-bottom:1.25rem}
+.insights{background:var(--bg);border-top:1px solid var(--gray-line)}
+.insights-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem}
+.link-arr{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--p);text-decoration:none}
+.link-arr:hover{text-decoration:underline}
+.grid-insights{display:grid;grid-template-columns:1.6fr 1fr;gap:1px;background:var(--gray-line);border:1px solid var(--gray-line)}
+.insight{background:var(--white);padding:2rem 1.75rem;display:flex;flex-direction:column;gap:0.75rem;transition:background 0.2s,transform 0.25s}
+.insight:hover{background:var(--off-white);transform:translateY(-3px)}
+.insight-tag{font-size:0.62rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--p)}
+.insight-title{font-size:1rem;font-weight:700;color:var(--black);line-height:1.4}
+.insight.featured .insight-title{font-size:1.2rem}
+.insight-excerpt{font-size:0.83rem;color:var(--gray);line-height:1.7}
+.insight-date{font-size:0.68rem;color:var(--gray-light)}
+.contacto{padding:0;background:var(--bg)}
+.contacto-top{background:var(--black);padding:4rem 3.5rem}
+.contacto-top-inner{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start}
+.contacto-data{display:flex;flex-direction:column;gap:1.5rem}
+.cdata-item{display:flex;align-items:flex-start;gap:1rem;transition:transform 0.2s}
+.cdata-item:hover{transform:translateX(5px)}
+.cdata-icon{width:36px;height:36px;min-width:36px;background:#3a3a3a;border:1px solid #555;display:flex;align-items:center;justify-content:center;color:#aaa}
+.cdata-icon svg{width:16px;height:16px}
+.cdata-label{font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--p-light);margin-bottom:0.25rem}
+.cdata-val{font-size:0.85rem;color:rgba(255,255,255,0.92);line-height:1.6}
+.contacto-bottom{display:grid;grid-template-columns:1fr 1fr;min-height:480px}
+.contacto-map{position:relative;min-height:480px}
+.contacto-map iframe{position:absolute;inset:0;width:100%;height:100%}
+.contacto-form-new{display:flex;flex-direction:column;gap:1rem;padding:3rem;background:var(--white);border-left:1px solid var(--gray-line)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.form-group{display:flex;flex-direction:column;gap:0.4rem}
+.form-group label{font-size:0.62rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--gray)}
+.form-group input,.form-group select,.form-group textarea{background:var(--white);border:1px solid var(--gray-line);color:var(--black);font-family:Arial;font-size:0.88rem;padding:0.75rem 1rem;outline:none;transition:border-color 0.2s;width:100%}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--gray-light)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--p)}
+.form-group select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%231a4fa3' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+.form-group textarea{resize:vertical;min-height:120px}
+.btn-submit{background:var(--p);color:var(--white);font-family:Arial;font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;border:none;padding:0.9rem 2rem;cursor:pointer;align-self:flex-start;transition:background 0.2s}
+.btn-submit:hover{background:var(--p-dark)}
+footer{background:var(--black);padding:3.5rem 3.5rem 2rem}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:2rem}
+.footer-logo{font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:0.75rem}
+.footer-logo span{color:var(--p-light)}
+.footer-tagline{font-size:0.8rem;color:rgba(255,255,255,0.35);line-height:1.7;max-width:240px}
+.footer-col h4{font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1.1rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:0.65rem}
+.footer-col ul a{font-size:0.82rem;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.2s}
+.footer-col ul a:hover{color:var(--white)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;font-size:0.72rem;color:rgba(255,255,255,0.25)}
+.footer-social{display:flex;gap:1rem}
+.footer-social a{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.75rem;font-weight:700;transition:all 0.2s}
+.footer-social a:hover{border-color:var(--p-light);color:var(--p-light)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes barGrow{from{height:0}to{height:100%}}
+@keyframes lineGrow{from{width:0}to{width:48px}}
+.hero-bar{animation:barGrow 0.8s cubic-bezier(.4,0,.2,1) both}
+.hero-tag{animation:fadeUp 0.6s ease both 0.2s}
+.hero-title{animation:fadeUp 0.6s ease both 0.35s}
+.hero-sub{animation:fadeUp 0.6s ease both 0.5s}
+.hero-actions{animation:fadeUp 0.6s ease both 0.65s}
+.hero-stats{animation:fadeIn 0.6s ease both 0.8s}
+@supports(animation-timeline:scroll()){
+.card,.insight,.member{animation:fadeUp 0.5s ease both;animation-timeline:view();animation-range:entry 0% entry 22%}
+.nosotros-text{animation:fadeUp 0.7s ease both;animation-timeline:view();animation-range:entry 0% entry 28%}
+.highlights{animation:fadeUp 0.7s ease both;animation-timeline:view();animation-range:entry 5% entry 30%}
+.equipo-header,.areas-header,.insights-header{animation:fadeUp 0.5s ease both;animation-timeline:view();animation-range:entry 0% entry 18%}
+.contacto-top-inner{animation:fadeUp 0.6s ease both;animation-timeline:view();animation-range:entry 0% entry 25%}}
+.btn-solid:active,.btn-submit:active,.btn-nav-solid:active,.btn-nav-contable:active{transform:scale(0.97)}
+@media(max-width:1100px){.nosotros{grid-template-columns:1fr;gap:3rem}.grid-3{grid-template-columns:repeat(2,1fr)}.contacto-top-inner{grid-template-columns:1fr;gap:2.5rem}.contacto-bottom{grid-template-columns:1fr}.contacto-map{min-height:300px}.grid-insights{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){nav{padding:0 1.5rem}.nav-links{display:none}.hamburger{display:flex}section{padding:4rem 1.5rem}.hero{padding:1.5rem;padding-top:100px;min-height:auto}.hero-stats{position:static;flex-direction:row;flex-wrap:wrap;gap:2rem;margin-top:3rem;text-align:left}.grid-3{grid-template-columns:1fr}.grid-team{grid-template-columns:1fr 1fr}footer{padding:3rem 1.5rem 1.5rem}.footer-bottom{flex-direction:column;gap:1rem}.areas-header{flex-direction:column;align-items:flex-start;gap:1rem}.insights-header{flex-direction:column;align-items:flex-start;gap:1rem}.form-row{grid-template-columns:1fr}.contacto-top{padding:3rem 1.5rem}.contacto-form-new{padding:2rem 1.5rem}}
 </style>
 </head>
 <body>
-
 <div class="mob" id="mob">
   <button class="mob-close" onclick="closeMob()">✕</button>
   <a href="#nosotros" onclick="closeMob()" data-i18n="nav.about">Nosotros</a>
@@ -216,7 +177,6 @@ footer { background: var(--black); padding: 3.5rem 3.5rem 2rem; }
   <a href="contable.html" style="color:var(--p);font-weight:700" data-i18n="nav.accounting">Área Contable</a>
   <a href="#contacto" onclick="closeMob()" data-i18n="nav.contact">Contacto</a>
 </div>
-
 <nav id="mainNav">
   <a href="#inicio" class="logo">
     <span class="logo-abbr">PL<span>B</span></span>
@@ -246,7 +206,6 @@ footer { background: var(--black); padding: 3.5rem 3.5rem 2rem; }
   </div>
   <button class="hamburger" onclick="openMob()"><span></span><span></span><span></span></button>
 </nav>
-
 <section class="hero" id="inicio">
   <div class="hero-grid"></div>
   <div class="hero-bar"></div>
@@ -265,7 +224,6 @@ footer { background: var(--black); padding: 3.5rem 3.5rem 2rem; }
     <div><div class="stat-num">3</div><div class="stat-label" data-i18n="hero.stat3">Países de operación</div></div>
   </div>
 </section>
-
 <section class="nosotros" id="nosotros">
   <div class="nosotros-text">
     <div class="label" data-i18n="about.label">El estudio</div><span class="section-line"></span>
@@ -280,7 +238,6 @@ footer { background: var(--black); padding: 3.5rem 3.5rem 2rem; }
     <div class="hl"><div class="hl-num">5</div><div class="hl-text"><strong data-i18n="about.hl3t">Áreas especializadas</strong><p data-i18n="about.hl3p">Práctica profunda en tributario, aduanero, laboral, societario y aerocomercial.</p></div></div>
   </div>
 </section>
-
 <section class="areas" id="areas">
   <div class="areas-header">
     <div>
@@ -298,12 +255,11 @@ footer { background: var(--black); padding: 3.5rem 3.5rem 2rem; }
     <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#1a4fa3" stroke-width="1.5"><rect x="4" y="8" width="20" height="14" rx="2"/><path d="M10 8V6a4 4 0 018 0v2"/><circle cx="14" cy="15" r="2"/></svg><div class="card-name" data-i18n="area6.name">Penal Económico</div><p class="card-desc" data-i18n="area6.desc">Defensa penal en delitos económicos, lavado de activos, fraudes, corrupción corporativa y compliance penal preventivo.</p></div>
   </div>
 </section>
-
 <section class="equipo" id="equipo">
   <div class="equipo-header">
     <div class="label" data-i18n="team.label">Equipo</div><span class="section-line"></span>
     <h2 class="section-title" data-i18n="team.title">Nuestro equipo</h2>
-    <p style="color:var(--gray);font-size:0.95rem;margin-top:0.5rem;max-width:520px;" data-i18n="team.sub">Un equipo multidisciplinario de abogados y contadores públicos con formación de excelencia y amplia trayectoria en sus respectivas especialidades.</p>
+    <p style="color:var(--gray);font-size:0.95rem;margin-top:0.5rem;max-width:520px" data-i18n="team.sub">Un equipo multidisciplinario de abogados y contadores públicos con formación de excelencia y amplia trayectoria en sus respectivas especialidades.</p>
   </div>
   <div class="grid-team">
     <div class="member"><div class="avatar" style="background:var(--p)">PL</div><div class="member-name">Pantarotto Lértora</div><div class="member-role" data-i18n="team.partner">Socio</div><div class="member-spec" data-i18n="team.spec1">Área Tributaria · Penal Económico · Aduanero</div></div>
@@ -311,28 +267,16 @@ footer { background: var(--black); padding: 3.5rem 3.5rem 2rem; }
     <div class="member-cta"><div style="font-size:2rem;color:var(--gray-line);margin-bottom:1rem">+</div><p data-i18n="team.cta">Equipo completo de asociados y contadores públicos especializados</p><a href="https://pl-abogados.com/integrantes/" target="_blank" class="link-arr" data-i18n="team.ctaLink">Ver todos →</a></div>
   </div>
 </section>
-
 <section class="insights" id="insights">
   <div class="insights-header">
     <div><div class="label" data-i18n="news.label">Publicaciones</div><span class="section-line"></span><h2 class="section-title" data-i18n="news.title">Novedades</h2></div>
     <a href="https://pl-abogados.com/home/insights-2/" target="_blank" class="link-arr" data-i18n="news.all">Ver todos →</a>
   </div>
   <div class="grid-insights">
-    <div class="insight featured">
-      <div class="insight-tag" data-i18n="news1.tag">Impuestos · Penal Económico</div>
-      <div class="insight-title" data-i18n="news1.title">Acuerdo FATCA: intercambio automático de información financiera entre Argentina y Estados Unidos</div>
-      <p class="insight-excerpt" data-i18n="news1.excerpt">El acuerdo firmado en diciembre de 2022 establece el intercambio anual automático de datos entre la AFIP y el IRS, con consecuencias directas para contribuyentes con activos en ambas jurisdicciones.</p>
-      <div class="insight-date" data-i18n="news1.date">Septiembre 2024</div>
-    </div>
-    <div class="insight">
-      <div class="insight-tag" data-i18n="news2.tag">Derecho Aerocomercial</div>
-      <div class="insight-title" data-i18n="news2.title">Resolución 516/ANAC/2024: nuevo límite de edad para pilotos</div>
-      <p class="insight-excerpt" data-i18n="news2.excerpt">La ANAC modificó el Art. 61.3(h) de las RAAC, elevando la edad máxima permitida para pilotos en actividad comercial.</p>
-      <div class="insight-date" data-i18n="news2.date">Noviembre 2024</div>
-    </div>
+    <div class="insight featured"><div class="insight-tag" data-i18n="news1.tag">Impuestos · Penal Económico</div><div class="insight-title" data-i18n="news1.title">Acuerdo FATCA: intercambio automático de información financiera entre Argentina y Estados Unidos</div><p class="insight-excerpt" data-i18n="news1.excerpt">El acuerdo firmado en diciembre de 2022 establece el intercambio anual automático de datos entre la AFIP y el IRS, con consecuencias directas para contribuyentes con activos en ambas jurisdicciones.</p><div class="insight-date" data-i18n="news1.date">Septiembre 2024</div></div>
+    <div class="insight"><div class="insight-tag" data-i18n="news2.tag">Derecho Aerocomercial</div><div class="insight-title" data-i18n="news2.title">Resolución 516/ANAC/2024: nuevo límite de edad para pilotos</div><p class="insight-excerpt" data-i18n="news2.excerpt">La ANAC modificó el Art. 61.3(h) de las RAAC, elevando la edad máxima permitida para pilotos en actividad comercial.</p><div class="insight-date" data-i18n="news2.date">Noviembre 2024</div></div>
   </div>
 </section>
-
 <section class="contacto" id="contacto">
   <div class="contacto-top">
     <div class="contacto-top-inner">
@@ -343,7 +287,7 @@ footer { background: var(--black); padding: 3.5rem 3.5rem 2rem; }
       </div>
       <div class="contacto-data">
         <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 2a6 6 0 016 6c0 4-6 10-6 10S4 12 4 8a6 6 0 016-6z"/><circle cx="10" cy="8" r="2"/></svg></div><div><div class="cdata-label" data-i18n="contact.addr">Dirección</div><div class="cdata-val">Av. Corrientes 1464, Piso 16 Of. 1605<br>C1042 · Ciudad Autónoma de Buenos Aires</div></div></div>
-        <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="16" height="12" rx="2"/><path d="M2 7l8 5 8-5"/></svg></div><div><div class="cdata-label" data-i18n="contact.email">Email</div><div class="cdata-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="43202c2d372220372c03332f6e22212c2422272c306d202c2e">[email&#160;protected]</a></div></div></div>
+        <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="16" height="12" rx="2"/><path d="M2 7l8 5 8-5"/></svg></div><div><div class="cdata-label" data-i18n="contact.email">Email</div><div class="cdata-val">contacto@pl-abogados.com</div></div></div>
         <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 2"/></svg></div><div><div class="cdata-label" data-i18n="contact.hours">Horario</div><div class="cdata-val" data-i18n="contact.hoursVal">Lunes a viernes, 9:00 – 18:00 hs.</div></div></div>
         <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M2 10h16M10 2a14 14 0 010 16M10 2a14 14 0 000 16"/></svg></div><div><div class="cdata-label" data-i18n="contact.offices">Sedes</div><div class="cdata-val">Buenos Aires · EEUU · Uruguay</div></div></div>
       </div>
@@ -351,7 +295,7 @@ footer { background: var(--black); padding: 3.5rem 3.5rem 2rem; }
   </div>
   <div class="contacto-bottom">
     <div class="contacto-map">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.9973518279826!2d-58.390031323855155!3d-34.60422847295404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccac1942fc08d%3A0x90e50a4d7964f611!2sPantarotto%20L%C3%A9rtora%20%26%20Asocs!5e0!3m2!1ses-419!2sar!4v1775170188725!5m2!1ses-419!2sar" width="100%" height="100%" style="border:0;min-height:480px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.9973518279826!2d-58.390031323855155!3d-34.60422847295404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccac1942fc08d%3A0x90e50a4d7964f611!2sPantarotto%20L%C3%A9rtora%20%26%20Asocs!5e0!3m2!1ses-419!2sar!4v1775170188725!5m2!1ses-419!2sar" width="100%" height="100%" style="border:0;min-height:480px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <form class="contacto-form-new" onsubmit="handleForm(event)">
       <div class="form-row">
@@ -362,25 +306,14 @@ footer { background: var(--black); padding: 3.5rem 3.5rem 2rem; }
         <div class="form-group"><label>Email</label><input type="email" placeholder="su@email.com"></div>
         <div class="form-group"><label data-i18n="form.phone">Teléfono</label><input type="tel" placeholder="+54 11 0000-0000"></div>
       </div>
-      <div class="form-group">
-        <label data-i18n="form.area">Área de consulta</label>
-        <select>
-          <option value="" disabled selected data-i18n="form.areaSelect">Seleccione un área</option>
-          <option data-i18n="area1.name">Tributario</option>
-          <option data-i18n="area2.name">Aduanero</option>
-          <option data-i18n="area3.name">Laboral</option>
-          <option data-i18n="area4.name">Societario</option>
-          <option data-i18n="area5.name">Aerocomercial</option>
-          <option data-i18n="area6.name">Penal Económico</option>
-          <option data-i18n="form.other">Otro</option>
-        </select>
+      <div class="form-group"><label data-i18n="form.area">Área de consulta</label>
+        <select><option value="" disabled selected data-i18n="form.areaSelect">Seleccione un área</option><option data-i18n="area1.name">Tributario</option><option data-i18n="area2.name">Aduanero</option><option data-i18n="area3.name">Laboral</option><option data-i18n="area4.name">Societario</option><option data-i18n="area5.name">Aerocomercial</option><option data-i18n="area6.name">Penal Económico</option><option data-i18n="form.other">Otro</option></select>
       </div>
       <div class="form-group"><label data-i18n="form.message">Mensaje</label><textarea data-i18n-placeholder="form.messagePh" placeholder="Describa brevemente su consulta…"></textarea></div>
       <button type="submit" class="btn-submit" data-i18n="form.submit">Enviar consulta</button>
     </form>
   </div>
 </section>
-
 <footer>
   <div class="footer-top">
     <div><div class="footer-logo">PL<span>B</span> & Asocs.</div><p class="footer-tagline" data-i18n="footer.tagline">Pantarotto Lértora Bardagí & Asociados — Abogados & Contadores Públicos. Buenos Aires, Argentina.</p></div>
@@ -393,683 +326,17 @@ footer { background: var(--black); padding: 3.5rem 3.5rem 2rem; }
     <div class="footer-social"><a href="https://www.linkedin.com/company/pl-abogados/" target="_blank">in</a><a href="#">𝕏</a></div>
   </div>
 </footer>
-
 <script>
-const i18n = {
-  es: {
-    "nav.about":"Nosotros","nav.areas":"Áreas","nav.team":"Equipo","nav.news":"Novedades","nav.accounting":"Área Contable","nav.contact":"Contacto",
-    "hero.tag":"Abogados · Buenos Aires","hero.title":"Derecho empresarial con <span class=\"accent\">20 años</span> de trayectoria","hero.sub":"Estudio integral con sede en Buenos Aires y corresponsales en Estados Unidos y Uruguay. Especializados en derecho tributario, aduanero, societario, laboral y aerocomercial.","hero.cta1":"Consultar ahora","hero.cta2":"Ver áreas de práctica","hero.stat1":"Años de experiencia","hero.stat2":"Áreas de práctica","hero.stat3":"Países de operación",
-    "about.label":"El estudio","about.title":"Soluciones jurídicas integrales para el mundo de los negocios","about.p1":"Pantarotto Lértora Bardagí & Asocs. es un estudio integral de abogados y contadores públicos con sede en la Ciudad de Buenos Aires, con más de 20 años de trayectoria en el asesoramiento a empresas nacionales e internacionales.","about.p2":"Nuestra práctica se centra en derecho económico empresarial, penal aduanero y tributario, societario, laboral, inversiones e impuestos, con especial desarrollo en las industrias de aviación aerocomercial, seguros, fintech e inmobiliaria.","about.p3":"Contamos con corresponsales en Estados Unidos y Uruguay, lo que nos permite acompañar a nuestros clientes en operaciones transfronterizas con la misma profundidad de análisis que en el mercado local.","about.hl1t":"Años de trayectoria","about.hl1p":"Más de dos décadas acompañando a empresas en sus decisiones jurídicas más relevantes.","about.hl2t":"Países de operación","about.hl2p":"Argentina, Estados Unidos y Uruguay, con red de corresponsales activos en cada jurisdicción.","about.hl3t":"Áreas especializadas","about.hl3p":"Práctica profunda en tributario, aduanero, laboral, societario y aerocomercial.",
-    "areas.label":"Práctica profesional","areas.title":"Áreas de práctica","areas.sub":"Asesoramiento especializado en las principales ramas del derecho corporativo y contencioso.",
-    "area1.name":"Tributario","area1.desc":"Planificación fiscal, litigios ante el fisco, precios de transferencia, tributario internacional y reestructuraciones impositivas.","area2.name":"Aduanero","area2.desc":"Penal aduanero, comercio exterior, importación y exportación, infracciones y representación ante la AFIP-DGA.","area3.name":"Laboral","area3.desc":"Relaciones individuales y colectivas de trabajo, negociación sindical, conflictos laborales y reestructuraciones de personal.","area4.name":"Societario","area4.desc":"Constitución y gobierno corporativo, fusiones y adquisiciones, due diligence, acuerdos de accionistas y transformaciones societarias.","area5.name":"Aerocomercial","area5.desc":"Derecho aeronáutico, contratos de aviación, regulación de aerolíneas, seguros aéreos y representación ante la ANAC.","area6.name":"Penal Económico","area6.desc":"Defensa penal en delitos económicos, lavado de activos, fraudes, corrupción corporativa y compliance penal preventivo.",
-    "team.label":"Equipo","team.title":"Nuestro equipo","team.sub":"Un equipo multidisciplinario de abogados y contadores públicos con formación de excelencia y amplia trayectoria en sus respectivas especialidades.","team.partner":"Socio","team.spec1":"Área Tributaria · Penal Económico · Aduanero","team.spec2":"Área Aerocomercial · Administrativo Regulatorio","team.cta":"Equipo completo de asociados y contadores públicos especializados","team.ctaLink":"Ver todos →",
-    "news.label":"Publicaciones","news.title":"Novedades","news.all":"Ver todos →","news1.tag":"Impuestos · Penal Económico","news1.title":"Acuerdo FATCA: intercambio automático de información financiera entre Argentina y Estados Unidos","news1.excerpt":"El acuerdo firmado en diciembre de 2022 establece el intercambio anual automático de datos entre la AFIP y el IRS, con consecuencias directas para contribuyentes con activos en ambas jurisdicciones.","news1.date":"Septiembre 2024","news2.tag":"Derecho Aerocomercial","news2.title":"Resolución 516/ANAC/2024: nuevo límite de edad para pilotos","news2.excerpt":"La ANAC modificó el Art. 61.3(h) de las RAAC, elevando la edad máxima permitida para pilotos en actividad comercial.","news2.date":"Noviembre 2024",
-    "contact.label":"Contacto","contact.title":"Hablemos de","contact.titleAccent":"su caso","contact.desc":"Le ofrecemos una consulta inicial para evaluar su situación. Nuestro equipo le responderá dentro de las 24 horas hábiles.","contact.addr":"Dirección","contact.email":"Email","contact.hours":"Horario","contact.hoursVal":"Lunes a viernes, 9:00 – 18:00 hs.","contact.offices":"Sedes",
-    "form.name":"Nombre","form.namePh":"Nombre completo","form.company":"Empresa","form.companyPh":"Empresa u organización","form.phone":"Teléfono","form.area":"Área de consulta","form.areaSelect":"Seleccione un área","form.other":"Otro","form.message":"Mensaje","form.messagePh":"Describa brevemente su consulta…","form.submit":"Enviar consulta",
-    "footer.tagline":"Pantarotto Lértora Bardagí & Asociados — Abogados & Contadores Públicos. Buenos Aires, Argentina.","footer.col1":"El estudio","footer.about":"Quiénes somos","footer.correspondents":"Corresponsales","footer.col2":"Práctica","footer.col3":"Legal","footer.privacy":"Política de privacidad","footer.terms":"Términos de uso","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Todos los derechos reservados."
-  },
-  en: {
-    "nav.about":"About","nav.areas":"Practice Areas","nav.team":"Team","nav.news":"News","nav.accounting":"Accounting Division","nav.contact":"Contact",
-    "hero.tag":"Lawyers · Buenos Aires","hero.title":"Business law with <span class=\"accent\">20 years</span> of experience","hero.sub":"Full-service firm based in Buenos Aires with correspondents in the United States and Uruguay. Specialized in tax, customs, corporate, labor and aviation law.","hero.cta1":"Get in touch","hero.cta2":"Explore practice areas","hero.stat1":"Years of experience","hero.stat2":"Practice areas","hero.stat3":"Countries of operation",
-    "about.label":"The firm","about.title":"Comprehensive legal solutions for the business world","about.p1":"Pantarotto Lértora Bardagí & Asocs. is a full-service law and accounting firm based in Buenos Aires, with over 20 years of experience advising domestic and international companies.","about.p2":"Our practice focuses on business economic law, criminal customs and tax law, corporate law, labor law, investments and taxes, with particular expertise in commercial aviation, insurance, fintech and real estate.","about.p3":"We have correspondents in the United States and Uruguay, allowing us to support clients in cross-border transactions with the same depth of analysis as in the local market.","about.hl1t":"Years of experience","about.hl1p":"Over two decades advising companies on their most significant legal decisions.","about.hl2t":"Countries of operation","about.hl2p":"Argentina, United States and Uruguay, with an active network of correspondents in each jurisdiction.","about.hl3t":"Specialized practice areas","about.hl3p":"Deep expertise in tax, customs, labor, corporate and aviation law.",
-    "areas.label":"Professional practice","areas.title":"Practice areas","areas.sub":"Specialized advice across the main areas of corporate and litigation law.",
-    "area1.name":"Tax Law","area1.desc":"Tax planning, tax litigation, transfer pricing, international taxation and corporate restructuring.","area2.name":"Customs Law","area2.desc":"Criminal customs law, foreign trade, import and export operations, violations and representation before customs authorities.","area3.name":"Labor Law","area3.desc":"Individual and collective labor relations, union negotiations, labor disputes and workforce restructuring.","area4.name":"Corporate Law","area4.desc":"Corporate governance, mergers and acquisitions, due diligence, shareholder agreements and corporate transformations.","area5.name":"Aviation Law","area5.desc":"Aeronautical law, aviation contracts, airline regulation, aviation insurance and representation before the ANAC.","area6.name":"White-Collar Crime","area6.desc":"Criminal defense in economic crimes, money laundering, fraud, corporate corruption and preventive criminal compliance.",
-    "team.label":"Team","team.title":"Our team","team.sub":"A multidisciplinary team of lawyers and certified public accountants with outstanding training and extensive experience in their respective fields.","team.partner":"Partner","team.spec1":"Tax Law · White-Collar Crime · Customs","team.spec2":"Aviation Law · Administrative & Regulatory","team.cta":"Full team of associates and specialized certified public accountants","team.ctaLink":"View all →",
-    "news.label":"Publications","news.title":"News","news.all":"View all →","news1.tag":"Taxes · White-Collar Crime","news1.title":"FATCA Agreement: automatic exchange of financial information between Argentina and the United States","news1.excerpt":"The agreement signed in December 2022 establishes the annual automatic exchange of data between AFIP and the IRS, with direct consequences for taxpayers with assets in both jurisdictions.","news1.date":"September 2024","news2.tag":"Aviation Law","news2.title":"Resolution 516/ANAC/2024: new age limit for pilots","news2.excerpt":"The ANAC amended Art. 61.3(h) of the RAAC, raising the maximum permitted age for pilots in commercial operations.","news2.date":"November 2024",
-    "contact.label":"Contact","contact.title":"Let's talk about","contact.titleAccent":"your case","contact.desc":"We offer a free initial consultation to assess your situation. Our team will respond within 24 business hours.","contact.addr":"Address","contact.email":"Email","contact.hours":"Hours","contact.hoursVal":"Monday to Friday, 9:00 AM – 6:00 PM","contact.offices":"Offices",
-    "form.name":"Name","form.namePh":"Full name","form.company":"Company","form.companyPh":"Company or organization","form.phone":"Phone","form.area":"Practice area","form.areaSelect":"Select an area","form.other":"Other","form.message":"Message","form.messagePh":"Briefly describe your inquiry…","form.submit":"Send inquiry",
-    "footer.tagline":"Pantarotto Lértora Bardagí & Associates — Lawyers & Certified Public Accountants. Buenos Aires, Argentina.","footer.col1":"The firm","footer.about":"About us","footer.correspondents":"Correspondents","footer.col2":"Practice","footer.col3":"Legal","footer.privacy":"Privacy policy","footer.terms":"Terms of use","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. All rights reserved."
-  },
-  pt: {
-    "nav.about":"Sobre nós","nav.areas":"Áreas","nav.team":"Equipe","nav.news":"Notícias","nav.accounting":"Área Contábil","nav.contact":"Contato",
-    "hero.tag":"Advogados · Buenos Aires","hero.title":"Direito empresarial com <span class=\"accent\">20 anos</span> de trajetória","hero.sub":"Escritório integral com sede em Buenos Aires e correspondentes nos Estados Unidos e Uruguai. Especializados em direito tributário, aduaneiro, societário, trabalhista e aeronáutico.","hero.cta1":"Consultar agora","hero.cta2":"Ver áreas de atuação","hero.stat1":"Anos de experiência","hero.stat2":"Áreas de atuação","hero.stat3":"Países de operação",
-    "about.label":"O escritório","about.title":"Soluções jurídicas integrais para o mundo dos negócios","about.p1":"Pantarotto Lértora Bardagí & Asocs. é um escritório integral de advogados e contadores com sede em Buenos Aires, com mais de 20 anos de trajetória no assessoramento a empresas nacionais e internacionais.","about.p2":"Nossa prática centra-se no direito econômico empresarial, penal aduaneiro e tributário, societário, trabalhista, investimentos e impostos, com especial desenvolvimento nas indústrias de aviação, seguros, fintech e imobiliária.","about.p3":"Contamos com correspondentes nos Estados Unidos e Uruguai, o que nos permite acompanhar nossos clientes em operações transfronteiriças com a mesma profundidade de análise do mercado local.","about.hl1t":"Anos de trajetória","about.hl1p":"Mais de duas décadas acompanhando empresas em suas decisões jurídicas mais relevantes.","about.hl2t":"Países de operação","about.hl2p":"Argentina, Estados Unidos e Uruguai, com rede de correspondentes ativos em cada jurisdição.","about.hl3t":"Áreas especializadas","about.hl3p":"Prática profunda em tributário, aduaneiro, trabalhista, societário e aeronáutico.",
-    "areas.label":"Prática profissional","areas.title":"Áreas de atuação","areas.sub":"Assessoramento especializado nas principais ramas do direito corporativo e contencioso.",
-    "area1.name":"Direito Tributário","area1.desc":"Planejamento fiscal, litígios fiscais, preços de transferência, tributário internacional e reestruturações.","area2.name":"Direito Aduaneiro","area2.desc":"Penal aduaneiro, comércio exterior, importação e exportação, infrações e representação perante autoridades aduaneiras.","area3.name":"Direito Trabalhista","area3.desc":"Relações de trabalho individuais e coletivas, negociação sindical, conflitos trabalhistas e reestruturações de pessoal.","area4.name":"Direito Societário","area4.desc":"Constituição e governança corporativa, fusões e aquisições, due diligence, acordos de acionistas e transformações societárias.","area5.name":"Direito Aeronáutico","area5.desc":"Direito aeronáutico, contratos de aviação, regulação de companhias aéreas, seguros aeronáuticos e representação perante a ANAC.","area6.name":"Direito Penal Econômico","area6.desc":"Defesa penal em crimes econômicos, lavagem de dinheiro, fraudes, corrupção corporativa e compliance penal preventivo.",
-    "team.label":"Equipe","team.title":"Nossa equipe","team.sub":"Uma equipe multidisciplinar de advogados e contadores com formação de excelência e ampla trajetória em suas respectivas especialidades.","team.partner":"Sócio","team.spec1":"Área Tributária · Penal Econômico · Aduaneiro","team.spec2":"Área Aeronáutica · Administrativo Regulatório","team.cta":"Equipe completa de associados e contadores especializados","team.ctaLink":"Ver todos →",
-    "news.label":"Publicações","news.title":"Notícias","news.all":"Ver todos →","news1.tag":"Impostos · Penal Econômico","news1.title":"Acordo FATCA: intercâmbio automático de informações financeiras entre Argentina e Estados Unidos","news1.excerpt":"O acordo assinado em dezembro de 2022 estabelece o intercâmbio anual automático de dados entre a AFIP e o IRS, com consequências diretas para contribuintes com ativos em ambas as jurisdições.","news1.date":"Setembro 2024","news2.tag":"Direito Aeronáutico","news2.title":"Resolução 516/ANAC/2024: novo limite de idade para pilotos","news2.excerpt":"A ANAC modificou o Art. 61.3(h) das RAAC, elevando a idade máxima permitida para pilotos em atividade comercial.","news2.date":"Novembro 2024",
-    "contact.label":"Contato","contact.title":"Vamos falar sobre","contact.titleAccent":"o seu caso","contact.desc":"Oferecemos uma consulta inicial para avaliar sua situação. Nossa equipe responderá dentro de 24 horas úteis.","contact.addr":"Endereço","contact.email":"E-mail","contact.hours":"Horário","contact.hoursVal":"Segunda a sexta, 9h – 18h","contact.offices":"Escritórios",
-    "form.name":"Nome","form.namePh":"Nome completo","form.company":"Empresa","form.companyPh":"Empresa ou organização","form.phone":"Telefone","form.area":"Área de consulta","form.areaSelect":"Selecione uma área","form.other":"Outro","form.message":"Mensagem","form.messagePh":"Descreva brevemente sua consulta…","form.submit":"Enviar consulta",
-    "footer.tagline":"Pantarotto Lértora Bardagí & Associados — Advogados & Contadores. Buenos Aires, Argentina.","footer.col1":"O escritório","footer.about":"Quem somos","footer.correspondents":"Correspondentes","footer.col2":"Prática","footer.col3":"Legal","footer.privacy":"Política de privacidade","footer.terms":"Termos de uso","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Todos os direitos reservados."
-  },
-  fr: {
-    "nav.about":"À propos","nav.areas":"Domaines","nav.team":"Équipe","nav.news":"Actualités","nav.accounting":"Division Comptable","nav.contact":"Contact",
-    "hero.tag":"Avocats · Buenos Aires","hero.title":"Droit des affaires avec <span class=\"accent\">20 ans</span> d'expérience","hero.sub":"Cabinet intégré basé à Buenos Aires avec des correspondants aux États-Unis et en Uruguay. Spécialisés en droit fiscal, douanier, des sociétés, du travail et de l'aviation.","hero.cta1":"Nous contacter","hero.cta2":"Voir nos domaines","hero.stat1":"Années d'expérience","hero.stat2":"Domaines de pratique","hero.stat3":"Pays d'opération",
-    "about.label":"Le cabinet","about.title":"Solutions juridiques complètes pour le monde des affaires","about.p1":"Pantarotto Lértora Bardagí & Asocs. est un cabinet intégré d'avocats et d'experts-comptables basé à Buenos Aires, avec plus de 20 ans d'expérience dans le conseil aux entreprises nationales et internationales.","about.p2":"Notre pratique se concentre sur le droit économique des affaires, le droit pénal douanier et fiscal, le droit des sociétés, le droit du travail et les investissements, avec un développement particulier dans l'aviation commerciale, les assurances, la fintech et l'immobilier.","about.p3":"Nous disposons de correspondants aux États-Unis et en Uruguay, ce qui nous permet d'accompagner nos clients dans leurs opérations transfrontalières avec la même profondeur d'analyse que sur le marché local.","about.hl1t":"Années d'expérience","about.hl1p":"Plus de deux décennies à accompagner les entreprises dans leurs décisions juridiques les plus importantes.","about.hl2t":"Pays d'opération","about.hl2p":"Argentine, États-Unis et Uruguay, avec un réseau de correspondants actifs dans chaque juridiction.","about.hl3t":"Domaines spécialisés","about.hl3p":"Expertise approfondie en droit fiscal, douanier, du travail, des sociétés et de l'aviation.",
-    "areas.label":"Pratique professionnelle","areas.title":"Domaines de pratique","areas.sub":"Conseil spécialisé dans les principales branches du droit des affaires et du contentieux.",
-    "area1.name":"Droit Fiscal","area1.desc":"Planification fiscale, litiges fiscaux, prix de transfert, fiscalité internationale et restructurations fiscales.","area2.name":"Droit Douanier","area2.desc":"Droit pénal douanier, commerce extérieur, import-export, infractions et représentation devant les autorités douanières.","area3.name":"Droit du Travail","area3.desc":"Relations de travail individuelles et collectives, négociation syndicale, conflits du travail et restructurations du personnel.","area4.name":"Droit des Sociétés","area4.desc":"Gouvernance d'entreprise, fusions-acquisitions, due diligence, pactes d'actionnaires et transformations.","area5.name":"Droit Aérien","area5.desc":"Droit aéronautique, contrats d'aviation, réglementation des compagnies aériennes, assurances aériennes et représentation.","area6.name":"Droit Pénal des Affaires","area6.desc":"Défense pénale en matière de criminalité économique, blanchiment d'argent, fraudes, corruption d'entreprise et conformité pénale.",
-    "team.label":"Équipe","team.title":"Notre équipe","team.sub":"Une équipe multidisciplinaire d'avocats et d'experts-comptables avec une formation d'excellence et une large expérience dans leurs spécialités respectives.","team.partner":"Associé","team.spec1":"Droit Fiscal · Pénal des Affaires · Douanier","team.spec2":"Droit Aérien · Administratif et Réglementaire","team.cta":"Équipe complète d'associés et d'experts-comptables spécialisés","team.ctaLink":"Voir tous →",
-    "news.label":"Publications","news.title":"Actualités","news.all":"Voir tout →","news1.tag":"Fiscalité · Pénal des Affaires","news1.title":"Accord FATCA : échange automatique d'informations financières entre l'Argentine et les États-Unis","news1.excerpt":"L'accord signé en décembre 2022 établit l'échange annuel automatique de données entre l'AFIP et l'IRS, avec des conséquences directes pour les contribuables ayant des actifs dans les deux juridictions.","news1.date":"Septembre 2024","news2.tag":"Droit Aérien","news2.title":"Résolution 516/ANAC/2024 : nouvelle limite d'âge pour les pilotes","news2.excerpt":"L'ANAC a modifié l'Art. 61.3(h) des RAAC, relevant la limite d'âge maximale autorisée pour les pilotes en activité commerciale.","news2.date":"Novembre 2024",
-    "contact.label":"Contact","contact.title":"Parlons de","contact.titleAccent":"votre dossier","contact.desc":"Nous proposons une consultation initiale gratuite pour évaluer votre situation. Notre équipe vous répondra dans les 24 heures ouvrables.","contact.addr":"Adresse","contact.email":"E-mail","contact.hours":"Horaires","contact.hoursVal":"Lundi au vendredi, 9h – 18h","contact.offices":"Bureaux",
-    "form.name":"Nom","form.namePh":"Nom complet","form.company":"Entreprise","form.companyPh":"Entreprise ou organisation","form.phone":"Téléphone","form.area":"Domaine de consultation","form.areaSelect":"Sélectionnez un domaine","form.other":"Autre","form.message":"Message","form.messagePh":"Décrivez brièvement votre demande…","form.submit":"Envoyer la demande",
-    "footer.tagline":"Pantarotto Lértora Bardagí & Associés — Avocats & Experts-Comptables. Buenos Aires, Argentine.","footer.col1":"Le cabinet","footer.about":"Qui sommes-nous","footer.correspondents":"Correspondants","footer.col2":"Pratique","footer.col3":"Juridique","footer.privacy":"Politique de confidentialité","footer.terms":"Conditions d'utilisation","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Tous droits réservés."
-  },
-  it: {
-    "nav.about":"Chi siamo","nav.areas":"Aree","nav.team":"Team","nav.news":"Novità","nav.accounting":"Area Contabile","nav.contact":"Contatto",
-    "hero.tag":"Avvocati · Buenos Aires","hero.title":"Diritto d'impresa con <span class=\"accent\">20 anni</span> di esperienza","hero.sub":"Studio integrato con sede a Buenos Aires e corrispondenti negli Stati Uniti e in Uruguay. Specializzati in diritto tributario, doganale, societario, del lavoro e aeronautico.","hero.cta1":"Contattaci ora","hero.cta2":"Scopri le aree di pratica","hero.stat1":"Anni di esperienza","hero.stat2":"Aree di pratica","hero.stat3":"Paesi di operazione",
-    "about.label":"Lo studio","about.title":"Soluzioni legali complete per il mondo degli affari","about.p1":"Pantarotto Lértora Bardagí & Asocs. è uno studio integrato di avvocati e commercialisti con sede a Buenos Aires, con oltre 20 anni di esperienza nella consulenza a imprese nazionali e internazionali.","about.p2":"La nostra pratica si concentra sul diritto economico d'impresa, penale doganale e tributario, societario, del lavoro, investimenti e imposte, con particolare sviluppo nei settori dell'aviazione, assicurazioni, fintech e immobiliare.","about.p3":"Disponiamo di corrispondenti negli Stati Uniti e in Uruguay, il che ci permette di accompagnare i nostri clienti in operazioni transfrontaliere con la stessa profondità di analisi del mercato locale.","about.hl1t":"Anni di esperienza","about.hl1p":"Oltre due decenni ad accompagnare le imprese nelle loro decisioni legali più rilevanti.","about.hl2t":"Paesi di operazione","about.hl2p":"Argentina, Stati Uniti e Uruguay, con una rete di corrispondenti attivi in ogni giurisdizione.","about.hl3t":"Aree specializzate","about.hl3p":"Expertise approfondita in diritto tributario, doganale, del lavoro, societario e aeronautico.",
-    "areas.label":"Pratica professionale","areas.title":"Aree di pratica","areas.sub":"Consulenza specializzata nelle principali branche del diritto societario e del contenzioso.",
-    "area1.name":"Diritto Tributario","area1.desc":"Pianificazione fiscale, contenziosi fiscali, prezzi di trasferimento, fiscalità internazionale e ristrutturazioni.","area2.name":"Diritto Doganale","area2.desc":"Diritto penale doganale, commercio estero, import-export, violazioni e rappresentanza davanti alle autorità doganali.","area3.name":"Diritto del Lavoro","area3.desc":"Rapporti di lavoro individuali e collettivi, contrattazione sindacale, controversie di lavoro e ristrutturazioni del personale.","area4.name":"Diritto Societario","area4.desc":"Corporate governance, fusioni e acquisizioni, due diligence, patti parasociali e trasformazioni societarie.","area5.name":"Diritto Aeronautico","area5.desc":"Diritto aeronautico, contratti di aviazione, regolamentazione delle compagnie aeree, assicurazioni aeree e rappresentanza.","area6.name":"Diritto Penale d'Impresa","area6.desc":"Difesa penale in crimini economici, riciclaggio di denaro, frodi, corruzione aziendale e compliance penale preventiva.",
-    "team.label":"Team","team.title":"Il nostro team","team.sub":"Un team multidisciplinare di avvocati e commercialisti con formazione d'eccellenza e ampia esperienza nelle rispettive specialità.","team.partner":"Socio","team.spec1":"Area Tributaria · Penale d'Impresa · Doganale","team.spec2":"Area Aeronautica · Amministrativo e Regolatorio","team.cta":"Team completo di associati e commercialisti specializzati","team.ctaLink":"Vedi tutti →",
-    "news.label":"Pubblicazioni","news.title":"Novità","news.all":"Vedi tutto →","news1.tag":"Fisco · Penale d'Impresa","news1.title":"Accordo FATCA: scambio automatico di informazioni finanziarie tra Argentina e Stati Uniti","news1.excerpt":"L'accordo firmato nel dicembre 2022 stabilisce lo scambio automatico annuale di dati tra l'AFIP e l'IRS, con conseguenze dirette per i contribuenti con attività in entrambe le giurisdizioni.","news1.date":"Settembre 2024","news2.tag":"Diritto Aeronautico","news2.title":"Risoluzione 516/ANAC/2024: nuovo limite di età per i piloti","news2.excerpt":"L'ANAC ha modificato l'Art. 61.3(h) delle RAAC, elevando l'età massima consentita per i piloti nell'attività commerciale.","news2.date":"Novembre 2024",
-    "contact.label":"Contatto","contact.title":"Parliamo del","contact.titleAccent":"vostro caso","contact.desc":"Offriamo una consulenza iniziale gratuita per valutare la vostra situazione. Il nostro team risponderà entro 24 ore lavorative.","contact.addr":"Indirizzo","contact.email":"E-mail","contact.hours":"Orario","contact.hoursVal":"Lunedì–venerdì, 9:00 – 18:00","contact.offices":"Uffici",
-    "form.name":"Nome","form.namePh":"Nome completo","form.company":"Azienda","form.companyPh":"Azienda o organizzazione","form.phone":"Telefono","form.area":"Area di consulenza","form.areaSelect":"Seleziona un'area","form.other":"Altro","form.message":"Messaggio","form.messagePh":"Descrivi brevemente la tua richiesta…","form.submit":"Invia richiesta",
-    "footer.tagline":"Pantarotto Lértora Bardagí & Associati — Avvocati & Commercialisti. Buenos Aires, Argentina.","footer.col1":"Lo studio","footer.about":"Chi siamo","footer.correspondents":"Corrispondenti","footer.col2":"Pratica","footer.col3":"Legale","footer.privacy":"Informativa sulla privacy","footer.terms":"Termini di utilizzo","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Tutti i diritti riservati."
-  },
-  de: {
-    "nav.about":"Über uns","nav.areas":"Fachgebiete","nav.team":"Team","nav.news":"Neuigkeiten","nav.accounting":"Buchhaltung","nav.contact":"Kontakt",
-    "hero.tag":"Rechtsanwälte · Buenos Aires","hero.title":"Wirtschaftsrecht mit <span class=\"accent\">20 Jahren</span> Erfahrung","hero.sub":"Vollservice-Kanzlei mit Sitz in Buenos Aires und Korrespondenten in den USA und Uruguay. Spezialisiert auf Steuer-, Zoll-, Gesellschafts-, Arbeits- und Luftfahrtrecht.","hero.cta1":"Jetzt anfragen","hero.cta2":"Fachgebiete entdecken","hero.stat1":"Jahre Erfahrung","hero.stat2":"Fachgebiete","hero.stat3":"Länder",
-    "about.label":"Die Kanzlei","about.title":"Umfassende Rechtslösungen für die Geschäftswelt","about.p1":"Pantarotto Lértora Bardagí & Asocs. ist eine vollintegrierte Rechts- und Wirtschaftsprüfungskanzlei mit Sitz in Buenos Aires und über 20 Jahren Erfahrung in der Beratung in- und ausländischer Unternehmen.","about.p2":"Unsere Praxis konzentriert sich auf Wirtschaftsrecht, Zoll- und Steuerstrafrecht, Gesellschaftsrecht, Arbeitsrecht, Investitionen und Steuern, mit besonderer Expertise in kommerzieller Luftfahrt, Versicherungen, Fintech und Immobilien.","about.p3":"Wir verfügen über Korrespondenten in den USA und Uruguay, was es uns ermöglicht, Mandanten bei grenzüberschreitenden Transaktionen mit der gleichen Analysetiefe wie im lokalen Markt zu begleiten.","about.hl1t":"Jahre Erfahrung","about.hl1p":"Über zwei Jahrzehnte Begleitung von Unternehmen bei ihren wichtigsten rechtlichen Entscheidungen.","about.hl2t":"Länder","about.hl2p":"Argentinien, USA und Uruguay mit einem aktiven Korrespondentennetz in jeder Jurisdiktion.","about.hl3t":"Spezialisierte Fachgebiete","about.hl3p":"Tiefgreifende Expertise in Steuer-, Zoll-, Arbeits-, Gesellschafts- und Luftfahrtrecht.",
-    "areas.label":"Fachgebiete","areas.title":"Rechtsbereiche","areas.sub":"Spezialisierte Beratung in den wichtigsten Bereichen des Wirtschafts- und Streitrechts.",
-    "area1.name":"Steuerrecht","area1.desc":"Steuerplanung, Steuerstreitigkeiten, Verrechnungspreise, internationales Steuerrecht und Unternehmensumstrukturierungen.","area2.name":"Zollrecht","area2.desc":"Zollstrafrecht, Außenhandel, Import und Export, Verstöße und Vertretung vor Zollbehörden.","area3.name":"Arbeitsrecht","area3.desc":"Individuelle und kollektive Arbeitsverhältnisse, Tarifverhandlungen, Arbeitsstreitigkeiten und Personalumstrukturierungen.","area4.name":"Gesellschaftsrecht","area4.desc":"Corporate Governance, M&A, Due Diligence, Aktionärsvereinbarungen und gesellschaftsrechtliche Umwandlungen.","area5.name":"Luftfahrtrecht","area5.desc":"Luftfahrtrecht, Luftfahrtverträge, Fluglinienregulierung, Luftfahrtversicherungen und Vertretung vor der ANAC.","area6.name":"Wirtschaftsstrafrecht","area6.desc":"Strafrechtliche Verteidigung bei Wirtschaftsdelikten, Geldwäsche, Betrug, Unternehmenskorruption und präventive Compliance.",
-    "team.label":"Team","team.title":"Unser Team","team.sub":"Ein multidisziplinäres Team aus Rechtsanwälten und Wirtschaftsprüfern mit erstklassiger Ausbildung und umfangreicher Erfahrung in ihren jeweiligen Fachgebieten.","team.partner":"Partner","team.spec1":"Steuerrecht · Wirtschaftsstrafrecht · Zoll","team.spec2":"Luftfahrtrecht · Verwaltungs- und Regulierungsrecht","team.cta":"Vollständiges Team aus spezialisierten Anwälten und Wirtschaftsprüfern","team.ctaLink":"Alle anzeigen →",
-    "news.label":"Publikationen","news.title":"Neuigkeiten","news.all":"Alle anzeigen →","news1.tag":"Steuern · Wirtschaftsstrafrecht","news1.title":"FATCA-Abkommen: automatischer Informationsaustausch zwischen Argentinien und den USA","news1.excerpt":"Das im Dezember 2022 unterzeichnete Abkommen legt den jährlichen automatischen Datenaustausch zwischen AFIP und IRS fest, mit direkten Folgen für Steuerzahler mit Vermögenswerten in beiden Ländern.","news1.date":"September 2024","news2.tag":"Luftfahrtrecht","news2.title":"Resolution 516/ANAC/2024: neues Höchstalter für Piloten","news2.excerpt":"Die ANAC hat Art. 61.3(h) der RAAC geändert und die zulässige Altersgrenze für Piloten im kommerziellen Betrieb angehoben.","news2.date":"November 2024",
-    "contact.label":"Kontakt","contact.title":"Sprechen wir über","contact.titleAccent":"Ihren Fall","contact.desc":"Wir bieten eine kostenlose Erstberatung zur Beurteilung Ihrer Situation. Unser Team antwortet innerhalb von 24 Geschäftsstunden.","contact.addr":"Adresse","contact.email":"E-Mail","contact.hours":"Öffnungszeiten","contact.hoursVal":"Montag–Freitag, 9:00 – 18:00 Uhr","contact.offices":"Büros",
-    "form.name":"Name","form.namePh":"Vollständiger Name","form.company":"Unternehmen","form.companyPh":"Unternehmen oder Organisation","form.phone":"Telefon","form.area":"Beratungsbereich","form.areaSelect":"Bereich auswählen","form.other":"Sonstiges","form.message":"Nachricht","form.messagePh":"Beschreiben Sie kurz Ihre Anfrage…","form.submit":"Anfrage senden",
-    "footer.tagline":"Pantarotto Lértora Bardagí & Partner — Rechtsanwälte & Wirtschaftsprüfer. Buenos Aires, Argentinien.","footer.col1":"Die Kanzlei","footer.about":"Über uns","footer.correspondents":"Korrespondenten","footer.col2":"Praxis","footer.col3":"Rechtliches","footer.privacy":"Datenschutzrichtlinie","footer.terms":"Nutzungsbedingungen","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Alle Rechte vorbehalten."
-  }
-};
-
-var currentLang = 'es';
-
-function toggleLang(e) {
-  e.stopPropagation();
-  var menu = document.getElementById('langMenu');
-  if (menu) menu.classList.toggle('open');
-}
-
-function setLang(lang) {
-  if (!i18n[lang]) return;
-  currentLang = lang;
-  var t = i18n[lang];
-  var els = document.querySelectorAll('[data-i18n]');
-  for (var i = 0; i < els.length; i++) {
-    var key = els[i].getAttribute('data-i18n');
-    if (t[key] !== undefined) els[i].innerHTML = t[key];
-  }
-  var phs = document.querySelectorAll('[data-i18n-placeholder]');
-  for (var j = 0; j < phs.length; j++) {
-    var key2 = phs[j].getAttribute('data-i18n-placeholder');
-    if (t[key2] !== undefined) phs[j].placeholder = t[key2];
-  }
-  var items = document.querySelectorAll('.lang-menu a');
-  var langs = ['es','en','pt','fr','it','de'];
-  for (var k = 0; k < items.length; k++) {
-    items[k].className = langs[k] === lang ? 'active' : '';
-  }
-  var menu = document.getElementById('langMenu');
-  if (menu) menu.classList.remove('open');
-  document.documentElement.lang = lang;
-  var links = document.querySelectorAll('a[href*="contable.html"]');
-  for (var l = 0; l < links.length; l++) {
-    links[l].href = 'contable.html?lang=' + lang;
-  }
-  try {
-    var url = new URL(window.location.href);
-    url.searchParams.set('lang', lang);
-    window.history.replaceState({}, '', url.toString());
-  } catch(err) {}
-}
-
-document.addEventListener('click', function() {
-  var menu = document.getElementById('langMenu');
-  if (menu) menu.classList.remove('open');
-});
-
-function openMob() {
-  var m = document.getElementById('mob');
-  if (m) { m.classList.add('open'); document.body.style.overflow = 'hidden'; }
-}
-function closeMob() {
-  var m = document.getElementById('mob');
-  if (m) { m.classList.remove('open'); document.body.style.overflow = ''; }
-}
-function handleForm(e) {
-  e.preventDefault();
-  var b = e.target.querySelector('.btn-submit');
-  var msgs = {es:'Consulta enviada ✓',en:'Inquiry sent ✓',pt:'Consulta enviada ✓',fr:'Demande envoyée ✓',it:'Richiesta inviata ✓',de:'Anfrage gesendet ✓'};
-  b.textContent = msgs[currentLang] || msgs.es;
-  b.style.background = '#2a6b2a';
-  b.disabled = true;
-}
-
-window.addEventListener('scroll', function() {
-  var nav = document.getElementById('mainNav');
-  if (nav) nav.classList.toggle('scrolled', window.scrollY > 60);
-});
-
-window.addEventListener('DOMContentLoaded', function() {
-  try {
-    var params = new URLSearchParams(window.location.search);
-    var lang = params.get('lang');
-    if (lang && i18n[lang]) setLang(lang);
-  } catch(err) {}
-});
-
-</script>E html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PLB | Pantarotto Lértora Bardagí & Asocs.</title>
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --black: #0d0d0d; --dark2: #2c2c2c; --gray: #5a5a5a; --gray-light: #9a9a9a;
-  --gray-line: #d8d8d8; --white: #ffffff; --off-white: #f0f0f0; --bg: #e8e8e8;
-  --p: #1a4fa3; --p-dark: #133a7a; --p-light: #2d6bc4;
-}
-html { scroll-behavior: smooth; }
-body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--black); line-height: 1.6; overflow-x: hidden; }
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 68px; display: flex; align-items: center; justify-content: space-between; padding: 0 3.5rem; background: var(--white); border-bottom: 1px solid var(--gray-line); transition: box-shadow 0.3s; }
-nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,0.08); }
-.logo { display: flex; align-items: baseline; gap: 0.6rem; text-decoration: none; }
-.logo-abbr { font-size: 1.6rem; font-weight: 700; color: var(--black); }
-.logo-abbr span { color: var(--p); }
-.logo-sep { width: 1px; height: 20px; background: var(--gray-line); }
-.logo-name { font-size: 0.68rem; color: var(--gray); max-width: 180px; line-height: 1.3; }
-.nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
-.nav-links a { font-size: 0.78rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dark2); text-decoration: none; transition: color 0.2s; }
-.nav-links a:hover { color: var(--p); }
-.btn-nav-solid { background: var(--p) !important; color: var(--white) !important; padding: 0.45rem 1.2rem; font-weight: 700 !important; }
-.btn-nav-solid:hover { background: var(--p-dark) !important; color: var(--white) !important; }
-.btn-nav-contable { background: var(--black) !important; color: var(--white) !important; padding: 0.45rem 1.3rem; font-weight: 700 !important; font-size: 0.82rem !important; letter-spacing: 0.08em !important; border: 2px solid var(--black) !important; }
-.btn-nav-contable:hover { background: var(--p) !important; border-color: var(--p) !important; color: var(--white) !important; }
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-.hamburger span { display: block; width: 22px; height: 2px; background: var(--black); }
-.mob { display: none; position: fixed; inset: 0; background: var(--white); z-index: 99; flex-direction: column; padding: 6rem 2.5rem 2.5rem; }
-.mob.open { display: flex; }
-.mob a { display: block; font-size: 1.2rem; font-weight: 700; color: var(--black); text-decoration: none; padding: 1rem 0; border-bottom: 1px solid var(--gray-line); }
-.mob a:hover { color: var(--p); }
-.mob-close { position: absolute; top: 1.4rem; right: 1.8rem; background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--gray); }
-.hero { min-height: 100vh; display: flex; align-items: center; background: var(--white); padding: 0 3.5rem; position: relative; overflow: hidden; border-bottom: 1px solid var(--gray-line); }
-.hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px); background-size: 60px 60px; }
-.hero-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--p); }
-.hero-content { position: relative; z-index: 1; max-width: 760px; }
-.hero-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--p); margin-bottom: 1.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(26,79,163,0.25); }
-.hero-title { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 700; color: var(--black); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
-.hero-title .accent { color: var(--p); }
-.hero-sub { font-size: 1.05rem; color: var(--gray); line-height: 1.75; margin-bottom: 2.5rem; max-width: 560px; }
-.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-.btn-solid { display: inline-block; padding: 0.85rem 2rem; background: var(--p); color: var(--white); font-family: Arial; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
-.btn-solid:hover { background: var(--p-dark); }
-.btn-ghost { display: inline-block; padding: 0.85rem 2rem; background: transparent; color: var(--black); font-family: Arial; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--gray-line); transition: border-color 0.2s, color 0.2s; }
-.btn-ghost:hover { border-color: var(--p); color: var(--p); }
-.hero-stats { position: absolute; right: 3.5rem; bottom: 4rem; display: flex; flex-direction: column; gap: 2rem; z-index: 1; text-align: right; }
-.stat-num { font-size: 2.8rem; font-weight: 700; color: var(--black); line-height: 1; }
-.stat-num span { color: var(--p); }
-.stat-label { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-light); margin-top: 0.2rem; }
-section { padding: 6rem 3.5rem; }
-.label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--p); margin-bottom: 0.75rem; }
-.section-title { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; color: var(--black); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 1rem; }
-.nosotros { background: var(--bg); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-.nosotros-text p { font-size: 0.95rem; color: var(--gray); line-height: 1.85; margin-bottom: 1rem; }
-.highlights { background: var(--white); border: 1px solid var(--gray-line); padding: 0 2rem; }
-.hl { display: grid; grid-template-columns: 80px 1fr; gap: 1.5rem; align-items: start; padding: 1.75rem 0; border-bottom: 1px solid var(--gray-line); }
-.hl:last-child { border-bottom: none; }
-.hl-num { font-size: 2.2rem; font-weight: 700; color: var(--black); line-height: 1; }
-.hl-num span { color: var(--p); }
-.hl-text strong { display: block; font-size: 0.82rem; font-weight: 700; color: var(--black); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.25rem; }
-.hl-text p { font-size: 0.85rem; color: var(--gray); }
-.areas { background: var(--bg); border-top: 1px solid var(--gray-line); }
-.areas-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
-.areas-sub { font-size: 0.92rem; color: var(--gray); margin-top: 0.5rem; }
-.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--gray-line); border: 1px solid var(--gray-line); }
-.card { background: var(--white); padding: 2.25rem 2rem; position: relative; }
-.card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--p); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
-.card:hover::before { transform: scaleX(1); }
-.card-icon { width: 28px; height: 28px; margin-bottom: 1.25rem; }
-.card-name { font-size: 1rem; font-weight: 700; color: var(--black); margin-bottom: 0.6rem; }
-.card-desc { font-size: 0.83rem; color: var(--gray); line-height: 1.7; }
-.equipo { background: var(--bg); }
-.equipo-header { margin-bottom: 3.5rem; }
-.grid-team { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--gray-line); border: 1px solid var(--gray-line); }
-.member { background: var(--white); padding: 2rem 1.5rem; transition: background 0.2s, transform 0.25s; }
-.member:hover { background: var(--off-white); transform: translateY(-3px); }
-.avatar { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 1.25rem; }
-.member-name { font-size: 0.95rem; font-weight: 700; color: var(--black); margin-bottom: 0.2rem; }
-.member-role { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--p); margin-bottom: 0.6rem; }
-.member-spec { font-size: 0.8rem; color: var(--gray-light); line-height: 1.55; }
-.member-cta { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: var(--off-white); border: 2px dashed var(--gray-line); padding: 2rem 1.5rem; }
-.member-cta p { font-size: 0.82rem; color: var(--gray); line-height: 1.6; margin-bottom: 1.25rem; }
-.insights { background: var(--bg); border-top: 1px solid var(--gray-line); }
-.insights-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
-.link-arr { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--p); text-decoration: none; }
-.link-arr:hover { text-decoration: underline; }
-.grid-insights { display: grid; grid-template-columns: 1.6fr 1fr; gap: 1px; background: var(--gray-line); border: 1px solid var(--gray-line); }
-.insight { background: var(--white); padding: 2rem 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; transition: background 0.2s, transform 0.25s; }
-.insight:hover { background: var(--off-white); transform: translateY(-3px); }
-.insight-tag { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--p); }
-.insight-title { font-size: 1rem; font-weight: 700; color: var(--black); line-height: 1.4; }
-.insight.featured .insight-title { font-size: 1.2rem; }
-.insight-excerpt { font-size: 0.83rem; color: var(--gray); line-height: 1.7; }
-.insight-date { font-size: 0.68rem; color: var(--gray-light); }
-.contacto { padding: 0; background: var(--bg); }
-.contacto-top { background: var(--black); padding: 4rem 3.5rem; }
-.contacto-top-inner { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
-.contacto-data { display: flex; flex-direction: column; gap: 1.5rem; }
-.cdata-item { display: flex; align-items: flex-start; gap: 1rem; transition: transform 0.2s; }
-.cdata-item:hover { transform: translateX(5px); }
-.cdata-icon { width: 36px; height: 36px; min-width: 36px; background: #3a3a3a; border: 1px solid #555; display: flex; align-items: center; justify-content: center; color: #aaa; }
-.cdata-icon svg { width: 16px; height: 16px; }
-.cdata-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--p-light); margin-bottom: 0.25rem; }
-.cdata-val { font-size: 0.85rem; color: rgba(255,255,255,0.92); line-height: 1.6; }
-.contacto-bottom { display: grid; grid-template-columns: 1fr 1fr; min-height: 480px; }
-.contacto-map { position: relative; min-height: 480px; }
-.contacto-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
-.contacto-form-new { display: flex; flex-direction: column; gap: 1rem; padding: 3rem; background: var(--white); border-left: 1px solid var(--gray-line); }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
-.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-.form-group label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray); }
-.form-group input, .form-group select, .form-group textarea { background: var(--white); border: 1px solid var(--gray-line); color: var(--black); font-family: Arial; font-size: 0.88rem; padding: 0.75rem 1rem; outline: none; transition: border-color 0.2s; width: 100%; }
-.form-group input::placeholder, .form-group textarea::placeholder { color: var(--gray-light); }
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--p); }
-.form-group select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%231a4fa3' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
-.form-group textarea { resize: vertical; min-height: 120px; }
-.btn-submit { background: var(--p); color: var(--white); font-family: Arial; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; border: none; padding: 0.9rem 2rem; cursor: pointer; align-self: flex-start; transition: background 0.2s; }
-.btn-submit:hover { background: var(--p-dark); }
-footer { background: var(--black); padding: 3.5rem 3.5rem 2rem; }
-.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 2rem; }
-.footer-logo { font-size: 1.3rem; font-weight: 700; color: var(--white); margin-bottom: 0.75rem; }
-.footer-logo span { color: var(--p-light); }
-.footer-tagline { font-size: 0.8rem; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 240px; }
-.footer-col h4 { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 1.1rem; }
-.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
-.footer-col ul a { font-size: 0.82rem; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
-.footer-col ul a:hover { color: var(--white); }
-.footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; color: rgba(255,255,255,0.25); }
-.footer-social { display: flex; gap: 1rem; }
-.footer-social a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.75rem; font-weight: 700; transition: all 0.2s; }
-.footer-social a:hover { border-color: var(--p-light); color: var(--p-light); }
-/* ANIMATIONS */
-@keyframes fadeUp  { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
-@keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
-@keyframes barGrow { from { height:0; } to { height:100%; } }
-@keyframes lineGrow { from { width:0; } to { width:48px; } }
-.hero-bar { animation: barGrow 0.8s cubic-bezier(.4,0,.2,1) both; }
-.hero-tag { animation: fadeUp 0.6s ease both 0.2s; }
-.hero-title { animation: fadeUp 0.6s ease both 0.35s; }
-.hero-sub { animation: fadeUp 0.6s ease both 0.5s; }
-.hero-actions { animation: fadeUp 0.6s ease both 0.65s; }
-.hero-stats { animation: fadeIn 0.6s ease both 0.8s; }
-.section-line { display:block; height:2px; background:var(--p); width:0; animation: lineGrow 0.6s ease both 0.2s; }
-@supports (animation-timeline: scroll()) {
-  .card, .insight, .member { animation: fadeUp 0.5s ease both; animation-timeline: view(); animation-range: entry 0% entry 22%; }
-  .nosotros-text { animation: fadeUp 0.7s ease both; animation-timeline: view(); animation-range: entry 0% entry 28%; }
-  .highlights { animation: fadeUp 0.7s ease both; animation-timeline: view(); animation-range: entry 5% entry 30%; }
-  .equipo-header, .areas-header, .insights-header { animation: fadeUp 0.5s ease both; animation-timeline: view(); animation-range: entry 0% entry 18%; }
-  .hl { animation: fadeUp 0.4s ease both; animation-timeline: view(); animation-range: entry 0% entry 20%; }
-  .contacto-top-inner { animation: fadeUp 0.6s ease both; animation-timeline: view(); animation-range: entry 0% entry 25%; }
-}
-.card { transition: background 0.2s, transform 0.25s, box-shadow 0.25s; }
-.card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,0.09); }
-.card-icon { transition: transform 0.25s; }
-.card:hover .card-icon { transform: scale(1.15); }
-.hl { transition: background 0.2s, padding-left 0.25s; }
-.hl:hover { background: rgba(255,255,255,0.6); padding-left: 0.75rem; }
-.nav-links a:not(.btn-nav-solid):not(.btn-nav-contable) { position: relative; }
-.nav-links a:not(.btn-nav-solid):not(.btn-nav-contable)::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px; background: var(--p); transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease; }
-.nav-links a:not(.btn-nav-solid):not(.btn-nav-contable):hover::after { transform: scaleX(1); }
-.btn-solid, .btn-ghost, .btn-submit, .btn-nav-solid, .btn-nav-contable { transition: background 0.2s, transform 0.15s, box-shadow 0.2s; }
-.btn-solid:hover { box-shadow: 0 4px 16px rgba(26,79,163,0.3); }
-.btn-solid:active, .btn-submit:active, .btn-nav-solid:active, .btn-nav-contable:active { transform: scale(0.97); }
-/* LANG */
-.lang-wrap { position: relative; display: flex; align-items: center; }
-.lang-btn { background: none; border: 1.5px solid var(--gray-line); padding: 0.35rem 0.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s; }
-.lang-btn:hover { border-color: var(--p); }
-.lang-btn svg { width: 18px; height: 18px; color: var(--dark2); transition: color 0.2s; }
-.lang-btn:hover svg { color: var(--p); }
-.lang-menu { display: none; position: absolute; top: calc(100% + 8px); right: 0; background: var(--white); border: 1px solid var(--gray-line); box-shadow: 0 8px 24px rgba(0,0,0,0.1); z-index: 200; min-width: 130px; }
-.lang-menu.open { display: block; }
-.lang-menu a { display: block; padding: 0.6rem 1rem; font-size: 0.8rem; color: var(--dark2); cursor: pointer; transition: background 0.15s, color 0.15s; text-decoration: none; }
-.lang-menu a:hover { background: var(--off-white); color: var(--p); }
-.lang-menu a.active { color: var(--p); font-weight: 700; }
-@media (max-width: 1100px) {
-  .nosotros { grid-template-columns: 1fr; gap: 3rem; }
-  .grid-3 { grid-template-columns: repeat(2,1fr); }
-  .contacto-top-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-  .contacto-bottom { grid-template-columns: 1fr; }
-  .contacto-map { min-height: 300px; }
-  .grid-insights { grid-template-columns: 1fr; }
-  .footer-top { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 768px) {
-  nav { padding: 0 1.5rem; }
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
-  section { padding: 4rem 1.5rem; }
-  .hero { padding: 1.5rem; padding-top: 100px; min-height: auto; }
-  .hero-stats { position: static; flex-direction: row; flex-wrap: wrap; gap: 2rem; margin-top: 3rem; text-align: left; }
-  .grid-3 { grid-template-columns: 1fr; }
-  .grid-team { grid-template-columns: 1fr 1fr; }
-  footer { padding: 3rem 1.5rem 1.5rem; }
-  .footer-bottom { flex-direction: column; gap: 1rem; }
-  .areas-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-  .insights-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-  .form-row { grid-template-columns: 1fr; }
-  .contacto-top { padding: 3rem 1.5rem; }
-  .contacto-form-new { padding: 2rem 1.5rem; }
-}
-</style>
-</head>
-<body>
-
-<div class="mob" id="mob">
-  <button class="mob-close" onclick="closeMob()">✕</button>
-  <a href="#nosotros" onclick="closeMob()" data-i18n="nav.about">Nosotros</a>
-  <a href="#areas" onclick="closeMob()" data-i18n="nav.areas">Áreas</a>
-  <a href="#equipo" onclick="closeMob()" data-i18n="nav.team">Equipo</a>
-  <a href="#insights" onclick="closeMob()" data-i18n="nav.news">Novedades</a>
-  <a href="contable.html" style="color:var(--p);font-weight:700" data-i18n="nav.accounting">Área Contable</a>
-  <a href="#contacto" onclick="closeMob()" data-i18n="nav.contact">Contacto</a>
-</div>
-
-<nav id="mainNav">
-  <a href="#inicio" class="logo">
-    <span class="logo-abbr">PL<span>B</span></span>
-    <div class="logo-sep"></div>
-    <span class="logo-name">Pantarotto Lértora Bardagí & Asocs.</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#nosotros" data-i18n="nav.about">Nosotros</a></li>
-    <li><a href="#areas" data-i18n="nav.areas">Áreas</a></li>
-    <li><a href="#equipo" data-i18n="nav.team">Equipo</a></li>
-    <li><a href="#insights" data-i18n="nav.news">Novedades</a></li>
-    <li><a href="contable.html" class="btn-nav-contable" data-i18n="nav.accounting">Área Contable</a></li>
-    <li><a href="#contacto" class="btn-nav-solid" data-i18n="nav.contact">Contacto</a></li>
-  </ul>
-  <div class="lang-wrap" id="langWrap">
-    <button class="lang-btn" onclick="toggleLang(event)" aria-label="Idioma">
-      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M2 10h16M10 2a14 14 0 010 16M10 2a14 14 0 000 16"/></svg>
-    </button>
-    <div class="lang-menu" id="langMenu">
-      <a onclick="setLang('es')" class="active">Español</a>
-      <a onclick="setLang('en')">English</a>
-      <a onclick="setLang('pt')">Português</a>
-      <a onclick="setLang('fr')">Français</a>
-      <a onclick="setLang('it')">Italiano</a>
-      <a onclick="setLang('de')">Deutsch</a>
-    </div>
-  </div>
-  <button class="hamburger" onclick="openMob()"><span></span><span></span><span></span></button>
-</nav>
-
-<section class="hero" id="inicio">
-  <div class="hero-grid"></div>
-  <div class="hero-bar"></div>
-  <div class="hero-content">
-    <div class="hero-tag" data-i18n="hero.tag">Abogados · Buenos Aires</div>
-    <h1 class="hero-title" data-i18n="hero.title">Derecho empresarial con <span class="accent">20 años</span> de trayectoria</h1>
-    <p class="hero-sub" data-i18n="hero.sub">Estudio integral con sede en Buenos Aires y corresponsales en Estados Unidos y Uruguay. Especializados en derecho tributario, aduanero, societario, laboral y aerocomercial.</p>
-    <div class="hero-actions">
-      <a href="#contacto" class="btn-solid" data-i18n="hero.cta1">Consultar ahora</a>
-      <a href="#areas" class="btn-ghost" data-i18n="hero.cta2">Ver áreas de práctica</a>
-    </div>
-  </div>
-  <div class="hero-stats">
-    <div><div class="stat-num">20<span>+</span></div><div class="stat-label" data-i18n="hero.stat1">Años de experiencia</div></div>
-    <div><div class="stat-num">5</div><div class="stat-label" data-i18n="hero.stat2">Áreas de práctica</div></div>
-    <div><div class="stat-num">3</div><div class="stat-label" data-i18n="hero.stat3">Países de operación</div></div>
-  </div>
-</section>
-
-<section class="nosotros" id="nosotros">
-  <div class="nosotros-text">
-    <div class="label" data-i18n="about.label">El estudio</div><span class="section-line"></span>
-    <h2 class="section-title" data-i18n="about.title">Soluciones jurídicas integrales para el mundo de los negocios</h2>
-    <p data-i18n="about.p1">Pantarotto Lértora Bardagí & Asocs. es un estudio integral de abogados y contadores públicos con sede en la Ciudad de Buenos Aires, con más de 20 años de trayectoria en el asesoramiento a empresas nacionales e internacionales.</p>
-    <p data-i18n="about.p2">Nuestra práctica se centra en derecho económico empresarial, penal aduanero y tributario, societario, laboral, inversiones e impuestos, con especial desarrollo en las industrias de aviación aerocomercial, seguros, fintech e inmobiliaria.</p>
-    <p data-i18n="about.p3">Contamos con corresponsales en Estados Unidos y Uruguay, lo que nos permite acompañar a nuestros clientes en operaciones transfronterizas con la misma profundidad de análisis que en el mercado local.</p>
-  </div>
-  <div class="highlights">
-    <div class="hl"><div class="hl-num">20<span>+</span></div><div class="hl-text"><strong data-i18n="about.hl1t">Años de trayectoria</strong><p data-i18n="about.hl1p">Más de dos décadas acompañando a empresas en sus decisiones jurídicas más relevantes.</p></div></div>
-    <div class="hl"><div class="hl-num">3</div><div class="hl-text"><strong data-i18n="about.hl2t">Países de operación</strong><p data-i18n="about.hl2p">Argentina, Estados Unidos y Uruguay, con red de corresponsales activos en cada jurisdicción.</p></div></div>
-    <div class="hl"><div class="hl-num">5</div><div class="hl-text"><strong data-i18n="about.hl3t">Áreas especializadas</strong><p data-i18n="about.hl3p">Práctica profunda en tributario, aduanero, laboral, societario y aerocomercial.</p></div></div>
-  </div>
-</section>
-
-<section class="areas" id="areas">
-  <div class="areas-header">
-    <div>
-      <div class="label" data-i18n="areas.label">Práctica profesional</div><span class="section-line"></span>
-      <h2 class="section-title" data-i18n="areas.title">Áreas de práctica</h2>
-      <p class="areas-sub" data-i18n="areas.sub">Asesoramiento especializado en las principales ramas del derecho corporativo y contencioso.</p>
-    </div>
-  </div>
-  <div class="grid-3">
-    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#1a4fa3" stroke-width="1.5"><rect x="3" y="3" width="22" height="22" rx="2"/><path d="M8 10h12M8 14h8M8 18h10"/></svg><div class="card-name" data-i18n="area1.name">Tributario</div><p class="card-desc" data-i18n="area1.desc">Planificación fiscal, litigios ante el fisco, precios de transferencia, tributario internacional y reestructuraciones impositivas.</p></div>
-    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#1a4fa3" stroke-width="1.5"><path d="M14 3L3 9v10l11 6 11-6V9z"/><path d="M14 3v22M3 9l11 6 11-6"/></svg><div class="card-name" data-i18n="area2.name">Aduanero</div><p class="card-desc" data-i18n="area2.desc">Penal aduanero, comercio exterior, importación y exportación, infracciones y representación ante la AFIP-DGA.</p></div>
-    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#1a4fa3" stroke-width="1.5"><circle cx="14" cy="10" r="5"/><path d="M5 24c0-5 4-8 9-8s9 3 9 8"/></svg><div class="card-name" data-i18n="area3.name">Laboral</div><p class="card-desc" data-i18n="area3.desc">Relaciones individuales y colectivas de trabajo, negociación sindical, conflictos laborales y reestructuraciones de personal.</p></div>
-    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#1a4fa3" stroke-width="1.5"><path d="M5 6h18v16H5z"/><path d="M10 6V4h8v2M9 13h10M9 17h6"/></svg><div class="card-name" data-i18n="area4.name">Societario</div><p class="card-desc" data-i18n="area4.desc">Constitución y gobierno corporativo, fusiones y adquisiciones, due diligence, acuerdos de accionistas y transformaciones societarias.</p></div>
-    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#1a4fa3" stroke-width="1.5"><path d="M4 20 Q10 8 14 12 Q18 16 24 4"/><circle cx="14" cy="12" r="2" fill="#1a4fa3"/><path d="M6 23h16"/></svg><div class="card-name" data-i18n="area5.name">Aerocomercial</div><p class="card-desc" data-i18n="area5.desc">Derecho aeronáutico, contratos de aviación, regulación de aerolíneas, seguros aéreos y representación ante la ANAC.</p></div>
-    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#1a4fa3" stroke-width="1.5"><rect x="4" y="8" width="20" height="14" rx="2"/><path d="M10 8V6a4 4 0 018 0v2"/><circle cx="14" cy="15" r="2"/></svg><div class="card-name" data-i18n="area6.name">Penal Económico</div><p class="card-desc" data-i18n="area6.desc">Defensa penal en delitos económicos, lavado de activos, fraudes, corrupción corporativa y compliance penal preventivo.</p></div>
-  </div>
-</section>
-
-<section class="equipo" id="equipo">
-  <div class="equipo-header">
-    <div class="label" data-i18n="team.label">Equipo</div><span class="section-line"></span>
-    <h2 class="section-title" data-i18n="team.title">Nuestro equipo</h2>
-    <p style="color:var(--gray);font-size:0.95rem;margin-top:0.5rem;max-width:520px;" data-i18n="team.sub">Un equipo multidisciplinario de abogados y contadores públicos con formación de excelencia y amplia trayectoria en sus respectivas especialidades.</p>
-  </div>
-  <div class="grid-team">
-    <div class="member"><div class="avatar" style="background:var(--p)">PL</div><div class="member-name">Pantarotto Lértora</div><div class="member-role" data-i18n="team.partner">Socio</div><div class="member-spec" data-i18n="team.spec1">Área Tributaria · Penal Económico · Aduanero</div></div>
-    <div class="member"><div class="avatar" style="background:var(--dark2)">B</div><div class="member-name">Bardagí</div><div class="member-role" data-i18n="team.partner">Socio</div><div class="member-spec" data-i18n="team.spec2">Área Aerocomercial · Administrativo Regulatorio</div></div>
-    <div class="member-cta"><div style="font-size:2rem;color:var(--gray-line);margin-bottom:1rem">+</div><p data-i18n="team.cta">Equipo completo de asociados y contadores públicos especializados</p><a href="https://pl-abogados.com/integrantes/" target="_blank" class="link-arr" data-i18n="team.ctaLink">Ver todos →</a></div>
-  </div>
-</section>
-
-<section class="insights" id="insights">
-  <div class="insights-header">
-    <div><div class="label" data-i18n="news.label">Publicaciones</div><span class="section-line"></span><h2 class="section-title" data-i18n="news.title">Novedades</h2></div>
-    <a href="https://pl-abogados.com/home/insights-2/" target="_blank" class="link-arr" data-i18n="news.all">Ver todos →</a>
-  </div>
-  <div class="grid-insights">
-    <div class="insight featured">
-      <div class="insight-tag" data-i18n="news1.tag">Impuestos · Penal Económico</div>
-      <div class="insight-title" data-i18n="news1.title">Acuerdo FATCA: intercambio automático de información financiera entre Argentina y Estados Unidos</div>
-      <p class="insight-excerpt" data-i18n="news1.excerpt">El acuerdo firmado en diciembre de 2022 establece el intercambio anual automático de datos entre la AFIP y el IRS, con consecuencias directas para contribuyentes con activos en ambas jurisdicciones.</p>
-      <div class="insight-date" data-i18n="news1.date">Septiembre 2024</div>
-    </div>
-    <div class="insight">
-      <div class="insight-tag" data-i18n="news2.tag">Derecho Aerocomercial</div>
-      <div class="insight-title" data-i18n="news2.title">Resolución 516/ANAC/2024: nuevo límite de edad para pilotos</div>
-      <p class="insight-excerpt" data-i18n="news2.excerpt">La ANAC modificó el Art. 61.3(h) de las RAAC, elevando la edad máxima permitida para pilotos en actividad comercial.</p>
-      <div class="insight-date" data-i18n="news2.date">Noviembre 2024</div>
-    </div>
-  </div>
-</section>
-
-<section class="contacto" id="contacto">
-  <div class="contacto-top">
-    <div class="contacto-top-inner">
-      <div>
-        <div class="label" style="color:rgba(255,255,255,0.5)" data-i18n="contact.label">Contacto</div><span class="section-line"></span>
-        <h2 class="section-title" style="color:var(--white)"><span data-i18n="contact.title">Hablemos de</span> <span style="color:var(--p-light)" data-i18n="contact.titleAccent">su caso</span></h2>
-        <p style="color:rgba(255,255,255,0.9);font-size:0.95rem;margin-top:0.5rem;max-width:420px;line-height:1.75" data-i18n="contact.desc">Le ofrecemos una consulta inicial para evaluar su situación. Nuestro equipo le responderá dentro de las 24 horas hábiles.</p>
-      </div>
-      <div class="contacto-data">
-        <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 2a6 6 0 016 6c0 4-6 10-6 10S4 12 4 8a6 6 0 016-6z"/><circle cx="10" cy="8" r="2"/></svg></div><div><div class="cdata-label" data-i18n="contact.addr">Dirección</div><div class="cdata-val">Av. Corrientes 1464, Piso 16 Of. 1605<br>C1042 · Ciudad Autónoma de Buenos Aires</div></div></div>
-        <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="16" height="12" rx="2"/><path d="M2 7l8 5 8-5"/></svg></div><div><div class="cdata-label" data-i18n="contact.email">Email</div><div class="cdata-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="43202c2d372220372c03332f6e22212c2422272c306d202c2e">[email&#160;protected]</a></div></div></div>
-        <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 2"/></svg></div><div><div class="cdata-label" data-i18n="contact.hours">Horario</div><div class="cdata-val" data-i18n="contact.hoursVal">Lunes a viernes, 9:00 – 18:00 hs.</div></div></div>
-        <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M2 10h16M10 2a14 14 0 010 16M10 2a14 14 0 000 16"/></svg></div><div><div class="cdata-label" data-i18n="contact.offices">Sedes</div><div class="cdata-val">Buenos Aires · EEUU · Uruguay</div></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="contacto-bottom">
-    <div class="contacto-map">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.9973518279826!2d-58.390031323855155!3d-34.60422847295404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccac1942fc08d%3A0x90e50a4d7964f611!2sPantarotto%20L%C3%A9rtora%20%26%20Asocs!5e0!3m2!1ses-419!2sar!4v1775170188725!5m2!1ses-419!2sar" width="100%" height="100%" style="border:0;min-height:480px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-    <form class="contacto-form-new" onsubmit="handleForm(event)">
-      <div class="form-row">
-        <div class="form-group"><label data-i18n="form.name">Nombre</label><input type="text" data-i18n-placeholder="form.namePh" placeholder="Nombre completo"></div>
-        <div class="form-group"><label data-i18n="form.company">Empresa</label><input type="text" data-i18n-placeholder="form.companyPh" placeholder="Empresa u organización"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>Email</label><input type="email" placeholder="su@email.com"></div>
-        <div class="form-group"><label data-i18n="form.phone">Teléfono</label><input type="tel" placeholder="+54 11 0000-0000"></div>
-      </div>
-      <div class="form-group">
-        <label data-i18n="form.area">Área de consulta</label>
-        <select>
-          <option value="" disabled selected data-i18n="form.areaSelect">Seleccione un área</option>
-          <option data-i18n="area1.name">Tributario</option>
-          <option data-i18n="area2.name">Aduanero</option>
-          <option data-i18n="area3.name">Laboral</option>
-          <option data-i18n="area4.name">Societario</option>
-          <option data-i18n="area5.name">Aerocomercial</option>
-          <option data-i18n="area6.name">Penal Económico</option>
-          <option data-i18n="form.other">Otro</option>
-        </select>
-      </div>
-      <div class="form-group"><label data-i18n="form.message">Mensaje</label><textarea data-i18n-placeholder="form.messagePh" placeholder="Describa brevemente su consulta…"></textarea></div>
-      <button type="submit" class="btn-submit" data-i18n="form.submit">Enviar consulta</button>
-    </form>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-top">
-    <div><div class="footer-logo">PL<span>B</span> & Asocs.</div><p class="footer-tagline" data-i18n="footer.tagline">Pantarotto Lértora Bardagí & Asociados — Abogados & Contadores Públicos. Buenos Aires, Argentina.</p></div>
-    <div class="footer-col"><h4 data-i18n="footer.col1">El estudio</h4><ul><li><a href="#nosotros" data-i18n="footer.about">Quiénes somos</a></li><li><a href="#equipo" data-i18n="nav.team">Equipo</a></li><li><a href="contable.html" data-i18n="nav.accounting">Área Contable</a></li><li><a href="https://pl-abogados.com/integrantes/" target="_blank" data-i18n="footer.correspondents">Corresponsales</a></li></ul></div>
-    <div class="footer-col"><h4 data-i18n="footer.col2">Práctica</h4><ul><li><a href="#areas" data-i18n="area1.name">Tributario</a></li><li><a href="#areas" data-i18n="area2.name">Aduanero</a></li><li><a href="#areas" data-i18n="area3.name">Laboral</a></li><li><a href="#areas" data-i18n="area4.name">Societario</a></li><li><a href="#areas" data-i18n="area5.name">Aerocomercial</a></li></ul></div>
-    <div class="footer-col"><h4 data-i18n="footer.col3">Legal</h4><ul><li><a href="#" data-i18n="footer.privacy">Política de privacidad</a></li><li><a href="#" data-i18n="footer.terms">Términos de uso</a></li><li><a href="#">Disclaimer</a></li><li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li></ul></div>
-  </div>
-  <div class="footer-bottom">
-    <span data-i18n="footer.copy">© 2025 Pantarotto Lértora Bardagí & Asocs. Todos los derechos reservados.</span>
-    <div class="footer-social"><a href="https://www.linkedin.com/company/pl-abogados/" target="_blank">in</a><a href="#">𝕏</a></div>
-  </div>
-</footer>
-
-<script>
-const i18n = {
-  es: {
-    "nav.about":"Nosotros","nav.areas":"Áreas","nav.team":"Equipo","nav.news":"Novedades","nav.accounting":"Área Contable","nav.contact":"Contacto",
-    "hero.tag":"Abogados · Buenos Aires","hero.title":"Derecho empresarial con <span class=\"accent\">20 años</span> de trayectoria","hero.sub":"Estudio integral con sede en Buenos Aires y corresponsales en Estados Unidos y Uruguay. Especializados en derecho tributario, aduanero, societario, laboral y aerocomercial.","hero.cta1":"Consultar ahora","hero.cta2":"Ver áreas de práctica","hero.stat1":"Años de experiencia","hero.stat2":"Áreas de práctica","hero.stat3":"Países de operación",
-    "about.label":"El estudio","about.title":"Soluciones jurídicas integrales para el mundo de los negocios","about.p1":"Pantarotto Lértora Bardagí & Asocs. es un estudio integral de abogados y contadores públicos con sede en la Ciudad de Buenos Aires, con más de 20 años de trayectoria en el asesoramiento a empresas nacionales e internacionales.","about.p2":"Nuestra práctica se centra en derecho económico empresarial, penal aduanero y tributario, societario, laboral, inversiones e impuestos, con especial desarrollo en las industrias de aviación aerocomercial, seguros, fintech e inmobiliaria.","about.p3":"Contamos con corresponsales en Estados Unidos y Uruguay, lo que nos permite acompañar a nuestros clientes en operaciones transfronterizas con la misma profundidad de análisis que en el mercado local.","about.hl1t":"Años de trayectoria","about.hl1p":"Más de dos décadas acompañando a empresas en sus decisiones jurídicas más relevantes.","about.hl2t":"Países de operación","about.hl2p":"Argentina, Estados Unidos y Uruguay, con red de corresponsales activos en cada jurisdicción.","about.hl3t":"Áreas especializadas","about.hl3p":"Práctica profunda en tributario, aduanero, laboral, societario y aerocomercial.",
-    "areas.label":"Práctica profesional","areas.title":"Áreas de práctica","areas.sub":"Asesoramiento especializado en las principales ramas del derecho corporativo y contencioso.",
-    "area1.name":"Tributario","area1.desc":"Planificación fiscal, litigios ante el fisco, precios de transferencia, tributario internacional y reestructuraciones impositivas.","area2.name":"Aduanero","area2.desc":"Penal aduanero, comercio exterior, importación y exportación, infracciones y representación ante la AFIP-DGA.","area3.name":"Laboral","area3.desc":"Relaciones individuales y colectivas de trabajo, negociación sindical, conflictos laborales y reestructuraciones de personal.","area4.name":"Societario","area4.desc":"Constitución y gobierno corporativo, fusiones y adquisiciones, due diligence, acuerdos de accionistas y transformaciones societarias.","area5.name":"Aerocomercial","area5.desc":"Derecho aeronáutico, contratos de aviación, regulación de aerolíneas, seguros aéreos y representación ante la ANAC.","area6.name":"Penal Económico","area6.desc":"Defensa penal en delitos económicos, lavado de activos, fraudes, corrupción corporativa y compliance penal preventivo.",
-    "team.label":"Equipo","team.title":"Nuestro equipo","team.sub":"Un equipo multidisciplinario de abogados y contadores públicos con formación de excelencia y amplia trayectoria en sus respectivas especialidades.","team.partner":"Socio","team.spec1":"Área Tributaria · Penal Económico · Aduanero","team.spec2":"Área Aerocomercial · Administrativo Regulatorio","team.cta":"Equipo completo de asociados y contadores públicos especializados","team.ctaLink":"Ver todos →",
-    "news.label":"Publicaciones","news.title":"Novedades","news.all":"Ver todos →","news1.tag":"Impuestos · Penal Económico","news1.title":"Acuerdo FATCA: intercambio automático de información financiera entre Argentina y Estados Unidos","news1.excerpt":"El acuerdo firmado en diciembre de 2022 establece el intercambio anual automático de datos entre la AFIP y el IRS, con consecuencias directas para contribuyentes con activos en ambas jurisdicciones.","news1.date":"Septiembre 2024","news2.tag":"Derecho Aerocomercial","news2.title":"Resolución 516/ANAC/2024: nuevo límite de edad para pilotos","news2.excerpt":"La ANAC modificó el Art. 61.3(h) de las RAAC, elevando la edad máxima permitida para pilotos en actividad comercial.","news2.date":"Noviembre 2024",
-    "contact.label":"Contacto","contact.title":"Hablemos de","contact.titleAccent":"su caso","contact.desc":"Le ofrecemos una consulta inicial para evaluar su situación. Nuestro equipo le responderá dentro de las 24 horas hábiles.","contact.addr":"Dirección","contact.email":"Email","contact.hours":"Horario","contact.hoursVal":"Lunes a viernes, 9:00 – 18:00 hs.","contact.offices":"Sedes",
-    "form.name":"Nombre","form.namePh":"Nombre completo","form.company":"Empresa","form.companyPh":"Empresa u organización","form.phone":"Teléfono","form.area":"Área de consulta","form.areaSelect":"Seleccione un área","form.other":"Otro","form.message":"Mensaje","form.messagePh":"Describa brevemente su consulta…","form.submit":"Enviar consulta",
-    "footer.tagline":"Pantarotto Lértora Bardagí & Asociados — Abogados & Contadores Públicos. Buenos Aires, Argentina.","footer.col1":"El estudio","footer.about":"Quiénes somos","footer.correspondents":"Corresponsales","footer.col2":"Práctica","footer.col3":"Legal","footer.privacy":"Política de privacidad","footer.terms":"Términos de uso","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Todos los derechos reservados."
-  },
-  en: {
-    "nav.about":"About","nav.areas":"Practice Areas","nav.team":"Team","nav.news":"News","nav.accounting":"Accounting Division","nav.contact":"Contact",
-    "hero.tag":"Lawyers · Buenos Aires","hero.title":"Business law with <span class=\"accent\">20 years</span> of experience","hero.sub":"Full-service firm based in Buenos Aires with correspondents in the United States and Uruguay. Specialized in tax, customs, corporate, labor and aviation law.","hero.cta1":"Get in touch","hero.cta2":"Explore practice areas","hero.stat1":"Years of experience","hero.stat2":"Practice areas","hero.stat3":"Countries of operation",
-    "about.label":"The firm","about.title":"Comprehensive legal solutions for the business world","about.p1":"Pantarotto Lértora Bardagí & Asocs. is a full-service law and accounting firm based in Buenos Aires, with over 20 years of experience advising domestic and international companies.","about.p2":"Our practice focuses on business economic law, criminal customs and tax law, corporate law, labor law, investments and taxes, with particular expertise in commercial aviation, insurance, fintech and real estate.","about.p3":"We have correspondents in the United States and Uruguay, allowing us to support clients in cross-border transactions with the same depth of analysis as in the local market.","about.hl1t":"Years of experience","about.hl1p":"Over two decades advising companies on their most significant legal decisions.","about.hl2t":"Countries of operation","about.hl2p":"Argentina, United States and Uruguay, with an active network of correspondents in each jurisdiction.","about.hl3t":"Specialized practice areas","about.hl3p":"Deep expertise in tax, customs, labor, corporate and aviation law.",
-    "areas.label":"Professional practice","areas.title":"Practice areas","areas.sub":"Specialized advice across the main areas of corporate and litigation law.",
-    "area1.name":"Tax Law","area1.desc":"Tax planning, tax litigation, transfer pricing, international taxation and corporate restructuring.","area2.name":"Customs Law","area2.desc":"Criminal customs law, foreign trade, import and export operations, violations and representation before customs authorities.","area3.name":"Labor Law","area3.desc":"Individual and collective labor relations, union negotiations, labor disputes and workforce restructuring.","area4.name":"Corporate Law","area4.desc":"Corporate governance, mergers and acquisitions, due diligence, shareholder agreements and corporate transformations.","area5.name":"Aviation Law","area5.desc":"Aeronautical law, aviation contracts, airline regulation, aviation insurance and representation before the ANAC.","area6.name":"White-Collar Crime","area6.desc":"Criminal defense in economic crimes, money laundering, fraud, corporate corruption and preventive criminal compliance.",
-    "team.label":"Team","team.title":"Our team","team.sub":"A multidisciplinary team of lawyers and certified public accountants with outstanding training and extensive experience in their respective fields.","team.partner":"Partner","team.spec1":"Tax Law · White-Collar Crime · Customs","team.spec2":"Aviation Law · Administrative & Regulatory","team.cta":"Full team of associates and specialized certified public accountants","team.ctaLink":"View all →",
-    "news.label":"Publications","news.title":"News","news.all":"View all →","news1.tag":"Taxes · White-Collar Crime","news1.title":"FATCA Agreement: automatic exchange of financial information between Argentina and the United States","news1.excerpt":"The agreement signed in December 2022 establishes the annual automatic exchange of data between AFIP and the IRS, with direct consequences for taxpayers with assets in both jurisdictions.","news1.date":"September 2024","news2.tag":"Aviation Law","news2.title":"Resolution 516/ANAC/2024: new age limit for pilots","news2.excerpt":"The ANAC amended Art. 61.3(h) of the RAAC, raising the maximum permitted age for pilots in commercial operations.","news2.date":"November 2024",
-    "contact.label":"Contact","contact.title":"Let's talk about","contact.titleAccent":"your case","contact.desc":"We offer a free initial consultation to assess your situation. Our team will respond within 24 business hours.","contact.addr":"Address","contact.email":"Email","contact.hours":"Hours","contact.hoursVal":"Monday to Friday, 9:00 AM – 6:00 PM","contact.offices":"Offices",
-    "form.name":"Name","form.namePh":"Full name","form.company":"Company","form.companyPh":"Company or organization","form.phone":"Phone","form.area":"Practice area","form.areaSelect":"Select an area","form.other":"Other","form.message":"Message","form.messagePh":"Briefly describe your inquiry…","form.submit":"Send inquiry",
-    "footer.tagline":"Pantarotto Lértora Bardagí & Associates — Lawyers & Certified Public Accountants. Buenos Aires, Argentina.","footer.col1":"The firm","footer.about":"About us","footer.correspondents":"Correspondents","footer.col2":"Practice","footer.col3":"Legal","footer.privacy":"Privacy policy","footer.terms":"Terms of use","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. All rights reserved."
-  },
-  pt: {
-    "nav.about":"Sobre nós","nav.areas":"Áreas","nav.team":"Equipe","nav.news":"Notícias","nav.accounting":"Área Contábil","nav.contact":"Contato",
-    "hero.tag":"Advogados · Buenos Aires","hero.title":"Direito empresarial com <span class=\"accent\">20 anos</span> de trajetória","hero.sub":"Escritório integral com sede em Buenos Aires e correspondentes nos Estados Unidos e Uruguai. Especializados em direito tributário, aduaneiro, societário, trabalhista e aeronáutico.","hero.cta1":"Consultar agora","hero.cta2":"Ver áreas de atuação","hero.stat1":"Anos de experiência","hero.stat2":"Áreas de atuação","hero.stat3":"Países de operação",
-    "about.label":"O escritório","about.title":"Soluções jurídicas integrais para o mundo dos negócios","about.p1":"Pantarotto Lértora Bardagí & Asocs. é um escritório integral de advogados e contadores com sede em Buenos Aires, com mais de 20 anos de trajetória no assessoramento a empresas nacionais e internacionais.","about.p2":"Nossa prática centra-se no direito econômico empresarial, penal aduaneiro e tributário, societário, trabalhista, investimentos e impostos, com especial desenvolvimento nas indústrias de aviação, seguros, fintech e imobiliária.","about.p3":"Contamos com correspondentes nos Estados Unidos e Uruguai, o que nos permite acompanhar nossos clientes em operações transfronteiriças com a mesma profundidade de análise do mercado local.","about.hl1t":"Anos de trajetória","about.hl1p":"Mais de duas décadas acompanhando empresas em suas decisões jurídicas mais relevantes.","about.hl2t":"Países de operação","about.hl2p":"Argentina, Estados Unidos e Uruguai, com rede de correspondentes ativos em cada jurisdição.","about.hl3t":"Áreas especializadas","about.hl3p":"Prática profunda em tributário, aduaneiro, trabalhista, societário e aeronáutico.",
-    "areas.label":"Prática profissional","areas.title":"Áreas de atuação","areas.sub":"Assessoramento especializado nas principais ramas do direito corporativo e contencioso.",
-    "area1.name":"Direito Tributário","area1.desc":"Planejamento fiscal, litígios fiscais, preços de transferência, tributário internacional e reestruturações.","area2.name":"Direito Aduaneiro","area2.desc":"Penal aduaneiro, comércio exterior, importação e exportação, infrações e representação perante autoridades aduaneiras.","area3.name":"Direito Trabalhista","area3.desc":"Relações de trabalho individuais e coletivas, negociação sindical, conflitos trabalhistas e reestruturações de pessoal.","area4.name":"Direito Societário","area4.desc":"Constituição e governança corporativa, fusões e aquisições, due diligence, acordos de acionistas e transformações societárias.","area5.name":"Direito Aeronáutico","area5.desc":"Direito aeronáutico, contratos de aviação, regulação de companhias aéreas, seguros aeronáuticos e representação perante a ANAC.","area6.name":"Direito Penal Econômico","area6.desc":"Defesa penal em crimes econômicos, lavagem de dinheiro, fraudes, corrupção corporativa e compliance penal preventivo.",
-    "team.label":"Equipe","team.title":"Nossa equipe","team.sub":"Uma equipe multidisciplinar de advogados e contadores com formação de excelência e ampla trajetória em suas respectivas especialidades.","team.partner":"Sócio","team.spec1":"Área Tributária · Penal Econômico · Aduaneiro","team.spec2":"Área Aeronáutica · Administrativo Regulatório","team.cta":"Equipe completa de associados e contadores especializados","team.ctaLink":"Ver todos →",
-    "news.label":"Publicações","news.title":"Notícias","news.all":"Ver todos →","news1.tag":"Impostos · Penal Econômico","news1.title":"Acordo FATCA: intercâmbio automático de informações financeiras entre Argentina e Estados Unidos","news1.excerpt":"O acordo assinado em dezembro de 2022 estabelece o intercâmbio anual automático de dados entre a AFIP e o IRS, com consequências diretas para contribuintes com ativos em ambas as jurisdições.","news1.date":"Setembro 2024","news2.tag":"Direito Aeronáutico","news2.title":"Resolução 516/ANAC/2024: novo limite de idade para pilotos","news2.excerpt":"A ANAC modificou o Art. 61.3(h) das RAAC, elevando a idade máxima permitida para pilotos em atividade comercial.","news2.date":"Novembro 2024",
-    "contact.label":"Contato","contact.title":"Vamos falar sobre","contact.titleAccent":"o seu caso","contact.desc":"Oferecemos uma consulta inicial para avaliar sua situação. Nossa equipe responderá dentro de 24 horas úteis.","contact.addr":"Endereço","contact.email":"E-mail","contact.hours":"Horário","contact.hoursVal":"Segunda a sexta, 9h – 18h","contact.offices":"Escritórios",
-    "form.name":"Nome","form.namePh":"Nome completo","form.company":"Empresa","form.companyPh":"Empresa ou organização","form.phone":"Telefone","form.area":"Área de consulta","form.areaSelect":"Selecione uma área","form.other":"Outro","form.message":"Mensagem","form.messagePh":"Descreva brevemente sua consulta…","form.submit":"Enviar consulta",
-    "footer.tagline":"Pantarotto Lértora Bardagí & Associados — Advogados & Contadores. Buenos Aires, Argentina.","footer.col1":"O escritório","footer.about":"Quem somos","footer.correspondents":"Correspondentes","footer.col2":"Prática","footer.col3":"Legal","footer.privacy":"Política de privacidade","footer.terms":"Termos de uso","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Todos os direitos reservados."
-  },
-  fr: {
-    "nav.about":"À propos","nav.areas":"Domaines","nav.team":"Équipe","nav.news":"Actualités","nav.accounting":"Division Comptable","nav.contact":"Contact",
-    "hero.tag":"Avocats · Buenos Aires","hero.title":"Droit des affaires avec <span class=\"accent\">20 ans</span> d'expérience","hero.sub":"Cabinet intégré basé à Buenos Aires avec des correspondants aux États-Unis et en Uruguay. Spécialisés en droit fiscal, douanier, des sociétés, du travail et de l'aviation.","hero.cta1":"Nous contacter","hero.cta2":"Voir nos domaines","hero.stat1":"Années d'expérience","hero.stat2":"Domaines de pratique","hero.stat3":"Pays d'opération",
-    "about.label":"Le cabinet","about.title":"Solutions juridiques complètes pour le monde des affaires","about.p1":"Pantarotto Lértora Bardagí & Asocs. est un cabinet intégré d'avocats et d'experts-comptables basé à Buenos Aires, avec plus de 20 ans d'expérience dans le conseil aux entreprises nationales et internationales.","about.p2":"Notre pratique se concentre sur le droit économique des affaires, le droit pénal douanier et fiscal, le droit des sociétés, le droit du travail et les investissements, avec un développement particulier dans l'aviation commerciale, les assurances, la fintech et l'immobilier.","about.p3":"Nous disposons de correspondants aux États-Unis et en Uruguay, ce qui nous permet d'accompagner nos clients dans leurs opérations transfrontalières avec la même profondeur d'analyse que sur le marché local.","about.hl1t":"Années d'expérience","about.hl1p":"Plus de deux décennies à accompagner les entreprises dans leurs décisions juridiques les plus importantes.","about.hl2t":"Pays d'opération","about.hl2p":"Argentine, États-Unis et Uruguay, avec un réseau de correspondants actifs dans chaque juridiction.","about.hl3t":"Domaines spécialisés","about.hl3p":"Expertise approfondie en droit fiscal, douanier, du travail, des sociétés et de l'aviation.",
-    "areas.label":"Pratique professionnelle","areas.title":"Domaines de pratique","areas.sub":"Conseil spécialisé dans les principales branches du droit des affaires et du contentieux.",
-    "area1.name":"Droit Fiscal","area1.desc":"Planification fiscale, litiges fiscaux, prix de transfert, fiscalité internationale et restructurations fiscales.","area2.name":"Droit Douanier","area2.desc":"Droit pénal douanier, commerce extérieur, import-export, infractions et représentation devant les autorités douanières.","area3.name":"Droit du Travail","area3.desc":"Relations de travail individuelles et collectives, négociation syndicale, conflits du travail et restructurations du personnel.","area4.name":"Droit des Sociétés","area4.desc":"Gouvernance d'entreprise, fusions-acquisitions, due diligence, pactes d'actionnaires et transformations.","area5.name":"Droit Aérien","area5.desc":"Droit aéronautique, contrats d'aviation, réglementation des compagnies aériennes, assurances aériennes et représentation.","area6.name":"Droit Pénal des Affaires","area6.desc":"Défense pénale en matière de criminalité économique, blanchiment d'argent, fraudes, corruption d'entreprise et conformité pénale.",
-    "team.label":"Équipe","team.title":"Notre équipe","team.sub":"Une équipe multidisciplinaire d'avocats et d'experts-comptables avec une formation d'excellence et une large expérience dans leurs spécialités respectives.","team.partner":"Associé","team.spec1":"Droit Fiscal · Pénal des Affaires · Douanier","team.spec2":"Droit Aérien · Administratif et Réglementaire","team.cta":"Équipe complète d'associés et d'experts-comptables spécialisés","team.ctaLink":"Voir tous →",
-    "news.label":"Publications","news.title":"Actualités","news.all":"Voir tout →","news1.tag":"Fiscalité · Pénal des Affaires","news1.title":"Accord FATCA : échange automatique d'informations financières entre l'Argentine et les États-Unis","news1.excerpt":"L'accord signé en décembre 2022 établit l'échange annuel automatique de données entre l'AFIP et l'IRS, avec des conséquences directes pour les contribuables ayant des actifs dans les deux juridictions.","news1.date":"Septembre 2024","news2.tag":"Droit Aérien","news2.title":"Résolution 516/ANAC/2024 : nouvelle limite d'âge pour les pilotes","news2.excerpt":"L'ANAC a modifié l'Art. 61.3(h) des RAAC, relevant la limite d'âge maximale autorisée pour les pilotes en activité commerciale.","news2.date":"Novembre 2024",
-    "contact.label":"Contact","contact.title":"Parlons de","contact.titleAccent":"votre dossier","contact.desc":"Nous proposons une consultation initiale gratuite pour évaluer votre situation. Notre équipe vous répondra dans les 24 heures ouvrables.","contact.addr":"Adresse","contact.email":"E-mail","contact.hours":"Horaires","contact.hoursVal":"Lundi au vendredi, 9h – 18h","contact.offices":"Bureaux",
-    "form.name":"Nom","form.namePh":"Nom complet","form.company":"Entreprise","form.companyPh":"Entreprise ou organisation","form.phone":"Téléphone","form.area":"Domaine de consultation","form.areaSelect":"Sélectionnez un domaine","form.other":"Autre","form.message":"Message","form.messagePh":"Décrivez brièvement votre demande…","form.submit":"Envoyer la demande",
-    "footer.tagline":"Pantarotto Lértora Bardagí & Associés — Avocats & Experts-Comptables. Buenos Aires, Argentine.","footer.col1":"Le cabinet","footer.about":"Qui sommes-nous","footer.correspondents":"Correspondants","footer.col2":"Pratique","footer.col3":"Juridique","footer.privacy":"Politique de confidentialité","footer.terms":"Conditions d'utilisation","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Tous droits réservés."
-  },
-  it: {
-    "nav.about":"Chi siamo","nav.areas":"Aree","nav.team":"Team","nav.news":"Novità","nav.accounting":"Area Contabile","nav.contact":"Contatto",
-    "hero.tag":"Avvocati · Buenos Aires","hero.title":"Diritto d'impresa con <span class=\"accent\">20 anni</span> di esperienza","hero.sub":"Studio integrato con sede a Buenos Aires e corrispondenti negli Stati Uniti e in Uruguay. Specializzati in diritto tributario, doganale, societario, del lavoro e aeronautico.","hero.cta1":"Contattaci ora","hero.cta2":"Scopri le aree di pratica","hero.stat1":"Anni di esperienza","hero.stat2":"Aree di pratica","hero.stat3":"Paesi di operazione",
-    "about.label":"Lo studio","about.title":"Soluzioni legali complete per il mondo degli affari","about.p1":"Pantarotto Lértora Bardagí & Asocs. è uno studio integrato di avvocati e commercialisti con sede a Buenos Aires, con oltre 20 anni di esperienza nella consulenza a imprese nazionali e internazionali.","about.p2":"La nostra pratica si concentra sul diritto economico d'impresa, penale doganale e tributario, societario, del lavoro, investimenti e imposte, con particolare sviluppo nei settori dell'aviazione, assicurazioni, fintech e immobiliare.","about.p3":"Disponiamo di corrispondenti negli Stati Uniti e in Uruguay, il che ci permette di accompagnare i nostri clienti in operazioni transfrontaliere con la stessa profondità di analisi del mercato locale.","about.hl1t":"Anni di esperienza","about.hl1p":"Oltre due decenni ad accompagnare le imprese nelle loro decisioni legali più rilevanti.","about.hl2t":"Paesi di operazione","about.hl2p":"Argentina, Stati Uniti e Uruguay, con una rete di corrispondenti attivi in ogni giurisdizione.","about.hl3t":"Aree specializzate","about.hl3p":"Expertise approfondita in diritto tributario, doganale, del lavoro, societario e aeronautico.",
-    "areas.label":"Pratica professionale","areas.title":"Aree di pratica","areas.sub":"Consulenza specializzata nelle principali branche del diritto societario e del contenzioso.",
-    "area1.name":"Diritto Tributario","area1.desc":"Pianificazione fiscale, contenziosi fiscali, prezzi di trasferimento, fiscalità internazionale e ristrutturazioni.","area2.name":"Diritto Doganale","area2.desc":"Diritto penale doganale, commercio estero, import-export, violazioni e rappresentanza davanti alle autorità doganali.","area3.name":"Diritto del Lavoro","area3.desc":"Rapporti di lavoro individuali e collettivi, contrattazione sindacale, controversie di lavoro e ristrutturazioni del personale.","area4.name":"Diritto Societario","area4.desc":"Corporate governance, fusioni e acquisizioni, due diligence, patti parasociali e trasformazioni societarie.","area5.name":"Diritto Aeronautico","area5.desc":"Diritto aeronautico, contratti di aviazione, regolamentazione delle compagnie aeree, assicurazioni aeree e rappresentanza.","area6.name":"Diritto Penale d'Impresa","area6.desc":"Difesa penale in crimini economici, riciclaggio di denaro, frodi, corruzione aziendale e compliance penale preventiva.",
-    "team.label":"Team","team.title":"Il nostro team","team.sub":"Un team multidisciplinare di avvocati e commercialisti con formazione d'eccellenza e ampia esperienza nelle rispettive specialità.","team.partner":"Socio","team.spec1":"Area Tributaria · Penale d'Impresa · Doganale","team.spec2":"Area Aeronautica · Amministrativo e Regolatorio","team.cta":"Team completo di associati e commercialisti specializzati","team.ctaLink":"Vedi tutti →",
-    "news.label":"Pubblicazioni","news.title":"Novità","news.all":"Vedi tutto →","news1.tag":"Fisco · Penale d'Impresa","news1.title":"Accordo FATCA: scambio automatico di informazioni finanziarie tra Argentina e Stati Uniti","news1.excerpt":"L'accordo firmato nel dicembre 2022 stabilisce lo scambio automatico annuale di dati tra l'AFIP e l'IRS, con conseguenze dirette per i contribuenti con attività in entrambe le giurisdizioni.","news1.date":"Settembre 2024","news2.tag":"Diritto Aeronautico","news2.title":"Risoluzione 516/ANAC/2024: nuovo limite di età per i piloti","news2.excerpt":"L'ANAC ha modificato l'Art. 61.3(h) delle RAAC, elevando l'età massima consentita per i piloti nell'attività commerciale.","news2.date":"Novembre 2024",
-    "contact.label":"Contatto","contact.title":"Parliamo del","contact.titleAccent":"vostro caso","contact.desc":"Offriamo una consulenza iniziale gratuita per valutare la vostra situazione. Il nostro team risponderà entro 24 ore lavorative.","contact.addr":"Indirizzo","contact.email":"E-mail","contact.hours":"Orario","contact.hoursVal":"Lunedì–venerdì, 9:00 – 18:00","contact.offices":"Uffici",
-    "form.name":"Nome","form.namePh":"Nome completo","form.company":"Azienda","form.companyPh":"Azienda o organizzazione","form.phone":"Telefono","form.area":"Area di consulenza","form.areaSelect":"Seleziona un'area","form.other":"Altro","form.message":"Messaggio","form.messagePh":"Descrivi brevemente la tua richiesta…","form.submit":"Invia richiesta",
-    "footer.tagline":"Pantarotto Lértora Bardagí & Associati — Avvocati & Commercialisti. Buenos Aires, Argentina.","footer.col1":"Lo studio","footer.about":"Chi siamo","footer.correspondents":"Corrispondenti","footer.col2":"Pratica","footer.col3":"Legale","footer.privacy":"Informativa sulla privacy","footer.terms":"Termini di utilizzo","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Tutti i diritti riservati."
-  },
-  de: {
-    "nav.about":"Über uns","nav.areas":"Fachgebiete","nav.team":"Team","nav.news":"Neuigkeiten","nav.accounting":"Buchhaltung","nav.contact":"Kontakt",
-    "hero.tag":"Rechtsanwälte · Buenos Aires","hero.title":"Wirtschaftsrecht mit <span class=\"accent\">20 Jahren</span> Erfahrung","hero.sub":"Vollservice-Kanzlei mit Sitz in Buenos Aires und Korrespondenten in den USA und Uruguay. Spezialisiert auf Steuer-, Zoll-, Gesellschafts-, Arbeits- und Luftfahrtrecht.","hero.cta1":"Jetzt anfragen","hero.cta2":"Fachgebiete entdecken","hero.stat1":"Jahre Erfahrung","hero.stat2":"Fachgebiete","hero.stat3":"Länder",
-    "about.label":"Die Kanzlei","about.title":"Umfassende Rechtslösungen für die Geschäftswelt","about.p1":"Pantarotto Lértora Bardagí & Asocs. ist eine vollintegrierte Rechts- und Wirtschaftsprüfungskanzlei mit Sitz in Buenos Aires und über 20 Jahren Erfahrung in der Beratung in- und ausländischer Unternehmen.","about.p2":"Unsere Praxis konzentriert sich auf Wirtschaftsrecht, Zoll- und Steuerstrafrecht, Gesellschaftsrecht, Arbeitsrecht, Investitionen und Steuern, mit besonderer Expertise in kommerzieller Luftfahrt, Versicherungen, Fintech und Immobilien.","about.p3":"Wir verfügen über Korrespondenten in den USA und Uruguay, was es uns ermöglicht, Mandanten bei grenzüberschreitenden Transaktionen mit der gleichen Analysetiefe wie im lokalen Markt zu begleiten.","about.hl1t":"Jahre Erfahrung","about.hl1p":"Über zwei Jahrzehnte Begleitung von Unternehmen bei ihren wichtigsten rechtlichen Entscheidungen.","about.hl2t":"Länder","about.hl2p":"Argentinien, USA und Uruguay mit einem aktiven Korrespondentennetz in jeder Jurisdiktion.","about.hl3t":"Spezialisierte Fachgebiete","about.hl3p":"Tiefgreifende Expertise in Steuer-, Zoll-, Arbeits-, Gesellschafts- und Luftfahrtrecht.",
-    "areas.label":"Fachgebiete","areas.title":"Rechtsbereiche","areas.sub":"Spezialisierte Beratung in den wichtigsten Bereichen des Wirtschafts- und Streitrechts.",
-    "area1.name":"Steuerrecht","area1.desc":"Steuerplanung, Steuerstreitigkeiten, Verrechnungspreise, internationales Steuerrecht und Unternehmensumstrukturierungen.","area2.name":"Zollrecht","area2.desc":"Zollstrafrecht, Außenhandel, Import und Export, Verstöße und Vertretung vor Zollbehörden.","area3.name":"Arbeitsrecht","area3.desc":"Individuelle und kollektive Arbeitsverhältnisse, Tarifverhandlungen, Arbeitsstreitigkeiten und Personalumstrukturierungen.","area4.name":"Gesellschaftsrecht","area4.desc":"Corporate Governance, M&A, Due Diligence, Aktionärsvereinbarungen und gesellschaftsrechtliche Umwandlungen.","area5.name":"Luftfahrtrecht","area5.desc":"Luftfahrtrecht, Luftfahrtverträge, Fluglinienregulierung, Luftfahrtversicherungen und Vertretung vor der ANAC.","area6.name":"Wirtschaftsstrafrecht","area6.desc":"Strafrechtliche Verteidigung bei Wirtschaftsdelikten, Geldwäsche, Betrug, Unternehmenskorruption und präventive Compliance.",
-    "team.label":"Team","team.title":"Unser Team","team.sub":"Ein multidisziplinäres Team aus Rechtsanwälten und Wirtschaftsprüfern mit erstklassiger Ausbildung und umfangreicher Erfahrung in ihren jeweiligen Fachgebieten.","team.partner":"Partner","team.spec1":"Steuerrecht · Wirtschaftsstrafrecht · Zoll","team.spec2":"Luftfahrtrecht · Verwaltungs- und Regulierungsrecht","team.cta":"Vollständiges Team aus spezialisierten Anwälten und Wirtschaftsprüfern","team.ctaLink":"Alle anzeigen →",
-    "news.label":"Publikationen","news.title":"Neuigkeiten","news.all":"Alle anzeigen →","news1.tag":"Steuern · Wirtschaftsstrafrecht","news1.title":"FATCA-Abkommen: automatischer Informationsaustausch zwischen Argentinien und den USA","news1.excerpt":"Das im Dezember 2022 unterzeichnete Abkommen legt den jährlichen automatischen Datenaustausch zwischen AFIP und IRS fest, mit direkten Folgen für Steuerzahler mit Vermögenswerten in beiden Ländern.","news1.date":"September 2024","news2.tag":"Luftfahrtrecht","news2.title":"Resolution 516/ANAC/2024: neues Höchstalter für Piloten","news2.excerpt":"Die ANAC hat Art. 61.3(h) der RAAC geändert und die zulässige Altersgrenze für Piloten im kommerziellen Betrieb angehoben.","news2.date":"November 2024",
-    "contact.label":"Kontakt","contact.title":"Sprechen wir über","contact.titleAccent":"Ihren Fall","contact.desc":"Wir bieten eine kostenlose Erstberatung zur Beurteilung Ihrer Situation. Unser Team antwortet innerhalb von 24 Geschäftsstunden.","contact.addr":"Adresse","contact.email":"E-Mail","contact.hours":"Öffnungszeiten","contact.hoursVal":"Montag–Freitag, 9:00 – 18:00 Uhr","contact.offices":"Büros",
-    "form.name":"Name","form.namePh":"Vollständiger Name","form.company":"Unternehmen","form.companyPh":"Unternehmen oder Organisation","form.phone":"Telefon","form.area":"Beratungsbereich","form.areaSelect":"Bereich auswählen","form.other":"Sonstiges","form.message":"Nachricht","form.messagePh":"Beschreiben Sie kurz Ihre Anfrage…","form.submit":"Anfrage senden",
-    "footer.tagline":"Pantarotto Lértora Bardagí & Partner — Rechtsanwälte & Wirtschaftsprüfer. Buenos Aires, Argentinien.","footer.col1":"Die Kanzlei","footer.about":"Über uns","footer.correspondents":"Korrespondenten","footer.col2":"Praxis","footer.col3":"Rechtliches","footer.privacy":"Datenschutzrichtlinie","footer.terms":"Nutzungsbedingungen","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Alle Rechte vorbehalten."
-  }
-};
-
-let currentLang = 'es';
-
-// Define toggleLang immediately so onclick can find it
-function toggleLang(e) {
-  e.stopPropagation();
-  document.getElementById('langMenu').classList.toggle('open');
-}
-
-function setLang(lang) {
-  currentLang = lang;
-  const t = i18n[lang];
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (t[key] !== undefined) el.innerHTML = t[key];
-  });
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-    const key = el.getAttribute('data-i18n-placeholder');
-    if (t[key] !== undefined) el.placeholder = t[key];
-  });
-  document.querySelectorAll('.lang-menu a').forEach((a, i) => {
-    a.classList.toggle('active', ['es','en','pt','fr','it','de'][i] === lang);
-  });
-  document.getElementById('langMenu').classList.remove('open');
-  document.documentElement.lang = lang;
-  // Update cross-page links to carry language
-  document.querySelectorAll('a[href*="contable.html"]').forEach(a => {
-    a.href = 'contable.html?lang=' + lang;
-  });
-  // Update URL without reload
-  const url = new URL(window.location);
-  url.searchParams.set('lang', lang);
-  window.history.replaceState({}, '', url);
-}
-
-// Read language from URL on load
-(function() {
-  const params = new URLSearchParams(window.location.search);
-  const lang = params.get('lang');
-  if (lang && i18n[lang]) setLang(lang);
-  else {
-    // Also update cross-page links with default lang
-    document.querySelectorAll('a[href*="contable.html"]').forEach(a => {
-      if (!a.href.includes('?lang=')) a.href = 'contable.html?lang=es';
-    });
-  }
-})();
-
-document.addEventListener('click', () => document.getElementById('langMenu').classList.remove('open'));
-function openMob() { document.getElementById('mob').classList.add('open'); document.body.style.overflow='hidden'; }
-function closeMob() { document.getElementById('mob').classList.remove('open'); document.body.style.overflow=''; }
-function handleForm(e) {
-  e.preventDefault();
-  const b = e.target.querySelector('.btn-submit');
-  const msgs = {es:'Consulta enviada ✓',en:'Inquiry sent ✓',pt:'Consulta enviada ✓',fr:'Demande envoyée ✓',it:'Richiesta inviata ✓',de:'Anfrage gesendet ✓'};
-  b.textContent =
+var i18n={es:{"nav.about":"Nosotros","nav.areas":"Áreas","nav.team":"Equipo","nav.news":"Novedades","nav.accounting":"Área Contable","nav.contact":"Contacto","hero.tag":"Abogados · Buenos Aires","hero.title":"Derecho empresarial con <span class=\"accent\">20 años</span> de trayectoria","hero.sub":"Estudio integral con sede en Buenos Aires y corresponsales en Estados Unidos y Uruguay. Especializados en derecho tributario, aduanero, societario, laboral y aerocomercial.","hero.cta1":"Consultar ahora","hero.cta2":"Ver áreas de práctica","hero.stat1":"Años de experiencia","hero.stat2":"Áreas de práctica","hero.stat3":"Países de operación","about.label":"El estudio","about.title":"Soluciones jurídicas integrales para el mundo de los negocios","about.p1":"Pantarotto Lértora Bardagí & Asocs. es un estudio integral de abogados y contadores públicos con sede en la Ciudad de Buenos Aires, con más de 20 años de trayectoria en el asesoramiento a empresas nacionales e internacionales.","about.p2":"Nuestra práctica se centra en derecho económico empresarial, penal aduanero y tributario, societario, laboral, inversiones e impuestos, con especial desarrollo en las industrias de aviación aerocomercial, seguros, fintech e inmobiliaria.","about.p3":"Contamos con corresponsales en Estados Unidos y Uruguay, lo que nos permite acompañar a nuestros clientes en operaciones transfronterizas con la misma profundidad de análisis que en el mercado local.","about.hl1t":"Años de trayectoria","about.hl1p":"Más de dos décadas acompañando a empresas en sus decisiones jurídicas más relevantes.","about.hl2t":"Países de operación","about.hl2p":"Argentina, Estados Unidos y Uruguay, con red de corresponsales activos en cada jurisdicción.","about.hl3t":"Áreas especializadas","about.hl3p":"Práctica profunda en tributario, aduanero, laboral, societario y aerocomercial.","areas.label":"Práctica profesional","areas.title":"Áreas de práctica","areas.sub":"Asesoramiento especializado en las principales ramas del derecho corporativo y contencioso.","area1.name":"Tributario","area1.desc":"Planificación fiscal, litigios ante el fisco, precios de transferencia, tributario internacional y reestructuraciones impositivas.","area2.name":"Aduanero","area2.desc":"Penal aduanero, comercio exterior, importación y exportación, infracciones y representación ante la AFIP-DGA.","area3.name":"Laboral","area3.desc":"Relaciones individuales y colectivas de trabajo, negociación sindical, conflictos laborales y reestructuraciones de personal.","area4.name":"Societario","area4.desc":"Constitución y gobierno corporativo, fusiones y adquisiciones, due diligence, acuerdos de accionistas y transformaciones societarias.","area5.name":"Aerocomercial","area5.desc":"Derecho aeronáutico, contratos de aviación, regulación de aerolíneas, seguros aéreos y representación ante la ANAC.","area6.name":"Penal Económico","area6.desc":"Defensa penal en delitos económicos, lavado de activos, fraudes, corrupción corporativa y compliance penal preventivo.","team.label":"Equipo","team.title":"Nuestro equipo","team.sub":"Un equipo multidisciplinario de abogados y contadores públicos con formación de excelencia y amplia trayectoria en sus respectivas especialidades.","team.partner":"Socio","team.spec1":"Área Tributaria · Penal Económico · Aduanero","team.spec2":"Área Aerocomercial · Administrativo Regulatorio","team.cta":"Equipo completo de asociados y contadores públicos especializados","team.ctaLink":"Ver todos →","news.label":"Publicaciones","news.title":"Novedades","news.all":"Ver todos →","news1.tag":"Impuestos · Penal Económico","news1.title":"Acuerdo FATCA: intercambio automático de información financiera entre Argentina y Estados Unidos","news1.excerpt":"El acuerdo firmado en diciembre de 2022 establece el intercambio anual automático de datos entre la AFIP y el IRS, con consecuencias directas para contribuyentes con activos en ambas jurisdicciones.","news1.date":"Septiembre 2024","news2.tag":"Derecho Aerocomercial","news2.title":"Resolución 516/ANAC/2024: nuevo límite de edad para pilotos","news2.excerpt":"La ANAC modificó el Art. 61.3(h) de las RAAC, elevando la edad máxima permitida para pilotos en actividad comercial.","news2.date":"Noviembre 2024","contact.label":"Contacto","contact.title":"Hablemos de","contact.titleAccent":"su caso","contact.desc":"Le ofrecemos una consulta inicial para evaluar su situación. Nuestro equipo le responderá dentro de las 24 horas hábiles.","contact.addr":"Dirección","contact.email":"Email","contact.hours":"Horario","contact.hoursVal":"Lunes a viernes, 9:00 – 18:00 hs.","contact.offices":"Sedes","form.name":"Nombre","form.namePh":"Nombre completo","form.company":"Empresa","form.companyPh":"Empresa u organización","form.phone":"Teléfono","form.area":"Área de consulta","form.areaSelect":"Seleccione un área","form.other":"Otro","form.message":"Mensaje","form.messagePh":"Describa brevemente su consulta…","form.submit":"Enviar consulta","footer.tagline":"Pantarotto Lértora Bardagí & Asociados — Abogados & Contadores Públicos. Buenos Aires, Argentina.","footer.col1":"El estudio","footer.about":"Quiénes somos","footer.correspondents":"Corresponsales","footer.col2":"Práctica","footer.col3":"Legal","footer.privacy":"Política de privacidad","footer.terms":"Términos de uso","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Todos los derechos reservados."},en:{"nav.about":"About","nav.areas":"Practice Areas","nav.team":"Team","nav.news":"News","nav.accounting":"Accounting Division","nav.contact":"Contact","hero.tag":"Lawyers · Buenos Aires","hero.title":"Business law with <span class=\"accent\">20 years</span> of experience","hero.sub":"Full-service firm based in Buenos Aires with correspondents in the United States and Uruguay. Specialized in tax, customs, corporate, labor and aviation law.","hero.cta1":"Get in touch","hero.cta2":"Explore practice areas","hero.stat1":"Years of experience","hero.stat2":"Practice areas","hero.stat3":"Countries of operation","about.label":"The firm","about.title":"Comprehensive legal solutions for the business world","about.p1":"Pantarotto Lértora Bardagí & Asocs. is a full-service law and accounting firm based in Buenos Aires, with over 20 years of experience advising domestic and international companies.","about.p2":"Our practice focuses on business economic law, criminal customs and tax law, corporate law, labor law, investments and taxes, with particular expertise in commercial aviation, insurance, fintech and real estate.","about.p3":"We have correspondents in the United States and Uruguay, allowing us to support clients in cross-border transactions with the same depth of analysis as in the local market.","about.hl1t":"Years of experience","about.hl1p":"Over two decades advising companies on their most significant legal decisions.","about.hl2t":"Countries of operation","about.hl2p":"Argentina, United States and Uruguay, with an active network of correspondents in each jurisdiction.","about.hl3t":"Specialized practice areas","about.hl3p":"Deep expertise in tax, customs, labor, corporate and aviation law.","areas.label":"Professional practice","areas.title":"Practice areas","areas.sub":"Specialized advice across the main areas of corporate and litigation law.","area1.name":"Tax Law","area1.desc":"Tax planning, tax litigation, transfer pricing, international taxation and corporate restructuring.","area2.name":"Customs Law","area2.desc":"Criminal customs law, foreign trade, import and export operations, violations and representation before customs authorities.","area3.name":"Labor Law","area3.desc":"Individual and collective labor relations, union negotiations, labor disputes and workforce restructuring.","area4.name":"Corporate Law","area4.desc":"Corporate governance, mergers and acquisitions, due diligence, shareholder agreements and corporate transformations.","area5.name":"Aviation Law","area5.desc":"Aeronautical law, aviation contracts, airline regulation, aviation insurance and representation before the ANAC.","area6.name":"White-Collar Crime","area6.desc":"Criminal defense in economic crimes, money laundering, fraud, corporate corruption and preventive criminal compliance.","team.label":"Team","team.title":"Our team","team.sub":"A multidisciplinary team of lawyers and certified public accountants with outstanding training and extensive experience in their respective fields.","team.partner":"Partner","team.spec1":"Tax Law · White-Collar Crime · Customs","team.spec2":"Aviation Law · Administrative & Regulatory","team.cta":"Full team of associates and specialized certified public accountants","team.ctaLink":"View all →","news.label":"Publications","news.title":"News","news.all":"View all →","news1.tag":"Taxes · White-Collar Crime","news1.title":"FATCA Agreement: automatic exchange of financial information between Argentina and the United States","news1.excerpt":"The agreement signed in December 2022 establishes the annual automatic exchange of data between AFIP and the IRS, with direct consequences for taxpayers with assets in both jurisdictions.","news1.date":"September 2024","news2.tag":"Aviation Law","news2.title":"Resolution 516/ANAC/2024: new age limit for pilots","news2.excerpt":"The ANAC amended Art. 61.3(h) of the RAAC, raising the maximum permitted age for pilots in commercial operations.","news2.date":"November 2024","contact.label":"Contact","contact.title":"Let's talk about","contact.titleAccent":"your case","contact.desc":"We offer a free initial consultation to assess your situation. Our team will respond within 24 business hours.","contact.addr":"Address","contact.email":"Email","contact.hours":"Hours","contact.hoursVal":"Monday to Friday, 9:00 AM – 6:00 PM","contact.offices":"Offices","form.name":"Name","form.namePh":"Full name","form.company":"Company","form.companyPh":"Company or organization","form.phone":"Phone","form.area":"Practice area","form.areaSelect":"Select an area","form.other":"Other","form.message":"Message","form.messagePh":"Briefly describe your inquiry…","form.submit":"Send inquiry","footer.tagline":"Pantarotto Lértora Bardagí & Associates — Lawyers & Certified Public Accountants. Buenos Aires, Argentina.","footer.col1":"The firm","footer.about":"About us","footer.correspondents":"Correspondents","footer.col2":"Practice","footer.col3":"Legal","footer.privacy":"Privacy policy","footer.terms":"Terms of use","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. All rights reserved."},pt:{"nav.about":"Sobre nós","nav.areas":"Áreas","nav.team":"Equipe","nav.news":"Notícias","nav.accounting":"Área Contábil","nav.contact":"Contato","hero.tag":"Advogados · Buenos Aires","hero.title":"Direito empresarial com <span class=\"accent\">20 anos</span> de trajetória","hero.sub":"Escritório integral com sede em Buenos Aires e correspondentes nos Estados Unidos e Uruguai. Especializados em direito tributário, aduaneiro, societário, trabalhista e aeronáutico.","hero.cta1":"Consultar agora","hero.cta2":"Ver áreas de atuação","hero.stat1":"Anos de experiência","hero.stat2":"Áreas de atuação","hero.stat3":"Países de operação","about.label":"O escritório","about.title":"Soluções jurídicas integrais para o mundo dos negócios","about.p1":"Pantarotto Lértora Bardagí & Asocs. é um escritório integral de advogados e contadores com sede em Buenos Aires, com mais de 20 anos de trajetória.","about.p2":"Nossa prática centra-se no direito econômico empresarial, societário, trabalhista, investimentos e impostos.","about.p3":"Contamos com correspondentes nos Estados Unidos e Uruguai para operações transfronteiriças.","about.hl1t":"Anos de trajetória","about.hl1p":"Mais de duas décadas acompanhando empresas em suas decisões jurídicas.","about.hl2t":"Países de operação","about.hl2p":"Argentina, Estados Unidos e Uruguai, com correspondentes ativos.","about.hl3t":"Áreas especializadas","about.hl3p":"Prática profunda em tributário, aduaneiro, trabalhista, societário e aeronáutico.","areas.label":"Prática profissional","areas.title":"Áreas de atuação","areas.sub":"Assessoramento especializado nas principais ramas do direito corporativo.","area1.name":"Direito Tributário","area1.desc":"Planejamento fiscal, litígios fiscais, preços de transferência e tributário internacional.","area2.name":"Direito Aduaneiro","area2.desc":"Penal aduaneiro, comércio exterior, importação e exportação.","area3.name":"Direito Trabalhista","area3.desc":"Relações de trabalho, negociação sindical e conflitos trabalhistas.","area4.name":"Direito Societário","area4.desc":"Governança corporativa, fusões e aquisições, due diligence.","area5.name":"Direito Aeronáutico","area5.desc":"Direito aeronáutico, contratos de aviação e regulação de companhias aéreas.","area6.name":"Direito Penal Econômico","area6.desc":"Defesa penal em crimes econômicos, lavagem de dinheiro e fraudes.","team.label":"Equipe","team.title":"Nossa equipe","team.sub":"Uma equipe multidisciplinar de advogados e contadores com formação de excelência.","team.partner":"Sócio","team.spec1":"Área Tributária · Penal Econômico · Aduaneiro","team.spec2":"Área Aeronáutica · Administrativo Regulatório","team.cta":"Equipe completa de associados especializados","team.ctaLink":"Ver todos →","news.label":"Publicações","news.title":"Notícias","news.all":"Ver todos →","news1.tag":"Impostos · Penal Econômico","news1.title":"Acordo FATCA: intercâmbio automático de informações financeiras entre Argentina e EUA","news1.excerpt":"O acordo estabelece o intercâmbio automático de dados entre a AFIP e o IRS.","news1.date":"Setembro 2024","news2.tag":"Direito Aeronáutico","news2.title":"Resolução 516/ANAC/2024: novo limite de idade para pilotos","news2.excerpt":"A ANAC modificou o Art. 61.3(h) das RAAC, elevando a idade máxima para pilotos.","news2.date":"Novembro 2024","contact.label":"Contato","contact.title":"Vamos falar sobre","contact.titleAccent":"o seu caso","contact.desc":"Oferecemos uma consulta inicial para avaliar sua situação.","contact.addr":"Endereço","contact.email":"E-mail","contact.hours":"Horário","contact.hoursVal":"Segunda a sexta, 9h – 18h","contact.offices":"Escritórios","form.name":"Nome","form.namePh":"Nome completo","form.company":"Empresa","form.companyPh":"Empresa ou organização","form.phone":"Telefone","form.area":"Área de consulta","form.areaSelect":"Selecione uma área","form.other":"Outro","form.message":"Mensagem","form.messagePh":"Descreva brevemente sua consulta…","form.submit":"Enviar consulta","footer.tagline":"Pantarotto Lértora Bardagí & Associados — Advogados & Contadores. Buenos Aires, Argentina.","footer.col1":"O escritório","footer.about":"Quem somos","footer.correspondents":"Correspondentes","footer.col2":"Prática","footer.col3":"Legal","footer.privacy":"Política de privacidade","footer.terms":"Termos de uso","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Todos os direitos reservados."},fr:{"nav.about":"À propos","nav.areas":"Domaines","nav.team":"Équipe","nav.news":"Actualités","nav.accounting":"Division Comptable","nav.contact":"Contact","hero.tag":"Avocats · Buenos Aires","hero.title":"Droit des affaires avec <span class=\"accent\">20 ans</span> d'expérience","hero.sub":"Cabinet intégré basé à Buenos Aires avec des correspondants aux États-Unis et en Uruguay.","hero.cta1":"Nous contacter","hero.cta2":"Voir nos domaines","hero.stat1":"Années d'expérience","hero.stat2":"Domaines","hero.stat3":"Pays","about.label":"Le cabinet","about.title":"Solutions juridiques complètes pour le monde des affaires","about.p1":"Pantarotto Lértora Bardagí & Asocs. est un cabinet intégré d'avocats basé à Buenos Aires, avec plus de 20 ans d'expérience.","about.p2":"Notre pratique couvre le droit fiscal, douanier, des sociétés et du travail.","about.p3":"Nous avons des correspondants aux États-Unis et en Uruguay.","about.hl1t":"Années d'expérience","about.hl1p":"Plus de deux décennies d'expertise juridique.","about.hl2t":"Pays","about.hl2p":"Argentine, États-Unis et Uruguay.","about.hl3t":"Domaines spécialisés","about.hl3p":"Expertise en droit fiscal, douanier, du travail et des sociétés.","areas.label":"Pratique","areas.title":"Domaines de pratique","areas.sub":"Conseil spécialisé dans les principales branches du droit des affaires.","area1.name":"Droit Fiscal","area1.desc":"Planification fiscale, litiges fiscaux et fiscalité internationale.","area2.name":"Droit Douanier","area2.desc":"Droit pénal douanier, commerce extérieur et import-export.","area3.name":"Droit du Travail","area3.desc":"Relations de travail et négociation syndicale.","area4.name":"Droit des Sociétés","area4.desc":"Gouvernance, fusions-acquisitions et due diligence.","area5.name":"Droit Aérien","area5.desc":"Droit aéronautique et contrats d'aviation.","area6.name":"Droit Pénal des Affaires","area6.desc":"Défense en criminalité économique et compliance.","team.label":"Équipe","team.title":"Notre équipe","team.sub":"Avocats et experts-comptables avec une large expérience.","team.partner":"Associé","team.spec1":"Droit Fiscal · Pénal · Douanier","team.spec2":"Droit Aérien · Administratif","team.cta":"Équipe complète de spécialistes","team.ctaLink":"Voir tous →","news.label":"Publications","news.title":"Actualités","news.all":"Voir tout →","news1.tag":"Fiscalité","news1.title":"Accord FATCA: échange automatique d'informations entre l'Argentine et les États-Unis","news1.excerpt":"L'accord établit l'échange automatique de données entre l'AFIP et l'IRS.","news1.date":"Septembre 2024","news2.tag":"Droit Aérien","news2.title":"Résolution 516/ANAC/2024: nouvelle limite d'âge pour les pilotes","news2.excerpt":"L'ANAC a modifié la limite d'âge maximale pour les pilotes commerciaux.","news2.date":"Novembre 2024","contact.label":"Contact","contact.title":"Parlons de","contact.titleAccent":"votre dossier","contact.desc":"Consultation initiale gratuite. Notre équipe vous répond sous 24h.","contact.addr":"Adresse","contact.email":"E-mail","contact.hours":"Horaires","contact.hoursVal":"Lundi–vendredi, 9h–18h","contact.offices":"Bureaux","form.name":"Nom","form.namePh":"Nom complet","form.company":"Entreprise","form.companyPh":"Entreprise ou organisation","form.phone":"Téléphone","form.area":"Domaine","form.areaSelect":"Sélectionnez","form.other":"Autre","form.message":"Message","form.messagePh":"Votre demande…","form.submit":"Envoyer","footer.tagline":"Pantarotto Lértora Bardagí & Associés. Buenos Aires, Argentine.","footer.col1":"Le cabinet","footer.about":"Qui sommes-nous","footer.correspondents":"Correspondants","footer.col2":"Pratique","footer.col3":"Juridique","footer.privacy":"Confidentialité","footer.terms":"Conditions","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Tous droits réservés."},it:{"nav.about":"Chi siamo","nav.areas":"Aree","nav.team":"Team","nav.news":"Novità","nav.accounting":"Area Contabile","nav.contact":"Contatto","hero.tag":"Avvocati · Buenos Aires","hero.title":"Diritto d'impresa con <span class=\"accent\">20 anni</span> di esperienza","hero.sub":"Studio integrato con sede a Buenos Aires e corrispondenti negli Stati Uniti e Uruguay.","hero.cta1":"Contattaci","hero.cta2":"Scopri le aree","hero.stat1":"Anni di esperienza","hero.stat2":"Aree","hero.stat3":"Paesi","about.label":"Lo studio","about.title":"Soluzioni legali per il mondo degli affari","about.p1":"Pantarotto Lértora Bardagí & Asocs. è uno studio integrato con sede a Buenos Aires, con oltre 20 anni di esperienza.","about.p2":"La nostra pratica copre diritto tributario, doganale, societario e del lavoro.","about.p3":"Corrispondenti negli Stati Uniti e Uruguay per operazioni transfrontaliere.","about.hl1t":"Anni di esperienza","about.hl1p":"Oltre due decenni di consulenza legale.","about.hl2t":"Paesi","about.hl2p":"Argentina, Stati Uniti e Uruguay.","about.hl3t":"Aree specializzate","about.hl3p":"Expertise in tributario, doganale, societario e aeronautico.","areas.label":"Pratica","areas.title":"Aree di pratica","areas.sub":"Consulenza nelle principali branche del diritto.","area1.name":"Diritto Tributario","area1.desc":"Pianificazione fiscale e fiscalità internazionale.","area2.name":"Diritto Doganale","area2.desc":"Diritto penale doganale e commercio estero.","area3.name":"Diritto del Lavoro","area3.desc":"Rapporti di lavoro e contrattazione sindacale.","area4.name":"Diritto Societario","area4.desc":"Corporate governance e fusioni e acquisizioni.","area5.name":"Diritto Aeronautico","area5.desc":"Diritto aeronautico e contratti di aviazione.","area6.name":"Diritto Penale d'Impresa","area6.desc":"Difesa penale in crimini economici e compliance.","team.label":"Team","team.title":"Il nostro team","team.sub":"Avvocati e commercialisti con ampia esperienza.","team.partner":"Socio","team.spec1":"Tributario · Penale · Doganale","team.spec2":"Aeronautico · Amministrativo","team.cta":"Team completo di specialisti","team.ctaLink":"Vedi tutti →","news.label":"Pubblicazioni","news.title":"Novità","news.all":"Vedi tutto →","news1.tag":"Fisco · Penale","news1.title":"Accordo FATCA: scambio automatico tra Argentina e USA","news1.excerpt":"L'accordo stabilisce lo scambio automatico tra AFIP e IRS.","news1.date":"Settembre 2024","news2.tag":"Aeronautico","news2.title":"Risoluzione 516/ANAC/2024: nuovo limite età piloti","news2.excerpt":"L'ANAC ha modificato il limite di età per i piloti commerciali.","news2.date":"Novembre 2024","contact.label":"Contatto","contact.title":"Parliamo del","contact.titleAccent":"vostro caso","contact.desc":"Consulenza iniziale gratuita. Risposta entro 24 ore.","contact.addr":"Indirizzo","contact.email":"E-mail","contact.hours":"Orario","contact.hoursVal":"Lunedì–venerdì, 9–18","contact.offices":"Uffici","form.name":"Nome","form.namePh":"Nome completo","form.company":"Azienda","form.companyPh":"Azienda o organizzazione","form.phone":"Telefono","form.area":"Area","form.areaSelect":"Seleziona","form.other":"Altro","form.message":"Messaggio","form.messagePh":"La tua richiesta…","form.submit":"Invia","footer.tagline":"Pantarotto Lértora Bardagí & Associati. Buenos Aires, Argentina.","footer.col1":"Lo studio","footer.about":"Chi siamo","footer.correspondents":"Corrispondenti","footer.col2":"Pratica","footer.col3":"Legale","footer.privacy":"Privacy","footer.terms":"Termini","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Tutti i diritti riservati."},de:{"nav.about":"Über uns","nav.areas":"Fachgebiete","nav.team":"Team","nav.news":"Neuigkeiten","nav.accounting":"Buchhaltung","nav.contact":"Kontakt","hero.tag":"Rechtsanwälte · Buenos Aires","hero.title":"Wirtschaftsrecht mit <span class=\"accent\">20 Jahren</span> Erfahrung","hero.sub":"Vollservice-Kanzlei mit Sitz in Buenos Aires und Korrespondenten in den USA und Uruguay.","hero.cta1":"Jetzt anfragen","hero.cta2":"Fachgebiete entdecken","hero.stat1":"Jahre Erfahrung","hero.stat2":"Fachgebiete","hero.stat3":"Länder","about.label":"Die Kanzlei","about.title":"Umfassende Rechtslösungen für die Geschäftswelt","about.p1":"Pantarotto Lértora Bardagí & Asocs. ist eine Kanzlei mit Sitz in Buenos Aires und über 20 Jahren Erfahrung.","about.p2":"Unsere Praxis umfasst Steuer-, Zoll-, Gesellschafts- und Arbeitsrecht.","about.p3":"Korrespondenten in den USA und Uruguay für grenzüberschreitende Mandate.","about.hl1t":"Jahre Erfahrung","about.hl1p":"Über zwei Jahrzehnte rechtliche Beratung.","about.hl2t":"Länder","about.hl2p":"Argentinien, USA und Uruguay.","about.hl3t":"Fachgebiete","about.hl3p":"Expertise in Steuer-, Zoll-, Arbeits- und Gesellschaftsrecht.","areas.label":"Fachgebiete","areas.title":"Rechtsbereiche","areas.sub":"Spezialisierte Beratung in den wichtigsten Rechtsbereichen.","area1.name":"Steuerrecht","area1.desc":"Steuerplanung, Steuerstreitigkeiten und internationales Steuerrecht.","area2.name":"Zollrecht","area2.desc":"Zollstrafrecht und Außenhandel.","area3.name":"Arbeitsrecht","area3.desc":"Arbeitsverhältnisse und Tarifverhandlungen.","area4.name":"Gesellschaftsrecht","area4.desc":"Corporate Governance, M&A und Due Diligence.","area5.name":"Luftfahrtrecht","area5.desc":"Luftfahrtrecht und Luftfahrtverträge.","area6.name":"Wirtschaftsstrafrecht","area6.desc":"Verteidigung bei Wirtschaftsdelikten und Compliance.","team.label":"Team","team.title":"Unser Team","team.sub":"Rechtsanwälte und Wirtschaftsprüfer mit umfangreicher Erfahrung.","team.partner":"Partner","team.spec1":"Steuerrecht · Strafrecht · Zoll","team.spec2":"Luftfahrtrecht · Verwaltungsrecht","team.cta":"Vollständiges Team aus Spezialisten","team.ctaLink":"Alle anzeigen →","news.label":"Publikationen","news.title":"Neuigkeiten","news.all":"Alle anzeigen →","news1.tag":"Steuern · Strafrecht","news1.title":"FATCA-Abkommen: Informationsaustausch zwischen Argentinien und den USA","news1.excerpt":"Das Abkommen legt den automatischen Datenaustausch zwischen AFIP und IRS fest.","news1.date":"September 2024","news2.tag":"Luftfahrtrecht","news2.title":"Resolution 516/ANAC/2024: neues Höchstalter für Piloten","news2.excerpt":"Die ANAC hat die Altersgrenze für Piloten im kommerziellen Betrieb angehoben.","news2.date":"November 2024","contact.label":"Kontakt","contact.title":"Sprechen wir über","contact.titleAccent":"Ihren Fall","contact.desc":"Kostenlose Erstberatung. Antwort innerhalb von 24 Stunden.","contact.addr":"Adresse","contact.email":"E-Mail","contact.hours":"Öffnungszeiten","contact.hoursVal":"Mo–Fr, 9:00–18:00","contact.offices":"Büros","form.name":"Name","form.namePh":"Vollständiger Name","form.company":"Unternehmen","form.companyPh":"Unternehmen oder Organisation","form.phone":"Telefon","form.area":"Bereich","form.areaSelect":"Auswählen","form.other":"Sonstiges","form.message":"Nachricht","form.messagePh":"Ihre Anfrage…","form.submit":"Senden","footer.tagline":"Pantarotto Lértora Bardagí & Partner. Buenos Aires, Argentinien.","footer.col1":"Die Kanzlei","footer.about":"Über uns","footer.correspondents":"Korrespondenten","footer.col2":"Praxis","footer.col3":"Rechtliches","footer.privacy":"Datenschutz","footer.terms":"Nutzungsbedingungen","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Alle Rechte vorbehalten."}};
+var currentLang='es';
+function toggleLang(e){e.stopPropagation();var m=document.getElementById('langMenu');if(m)m.classList.toggle('open')}
+function setLang(lang){if(!i18n[lang])return;currentLang=lang;var t=i18n[lang];var els=document.querySelectorAll('[data-i18n]');for(var i=0;i<els.length;i++){var key=els[i].getAttribute('data-i18n');if(t[key]!==undefined)els[i].innerHTML=t[key]}var phs=document.querySelectorAll('[data-i18n-placeholder]');for(var j=0;j<phs.length;j++){var k=phs[j].getAttribute('data-i18n-placeholder');if(t[k]!==undefined)phs[j].placeholder=t[k]}var items=document.querySelectorAll('.lang-menu a');var langs=['es','en','pt','fr','it','de'];for(var m=0;m<items.length;m++){items[m].className=langs[m]===lang?'active':''}var menu=document.getElementById('langMenu');if(menu)menu.classList.remove('open');document.documentElement.lang=lang;var links=document.querySelectorAll('a[href*="contable.html"]');for(var n=0;n<links.length;n++){links[n].href='contable.html?lang='+lang}try{var url=new URL(window.location.href);url.searchParams.set('lang',lang);window.history.replaceState({},'',url.toString())}catch(err){}}
+document.addEventListener('click',function(){var m=document.getElementById('langMenu');if(m)m.classList.remove('open')});
+function openMob(){var m=document.getElementById('mob');if(m){m.classList.add('open');document.body.style.overflow='hidden'}}
+function closeMob(){var m=document.getElementById('mob');if(m){m.classList.remove('open');document.body.style.overflow=''}}
+function handleForm(e){e.preventDefault();var b=e.target.querySelector('.btn-submit');var msgs={es:'Consulta enviada ✓',en:'Inquiry sent ✓',pt:'Consulta enviada ✓',fr:'Demande envoyée ✓',it:'Richiesta inviata ✓',de:'Anfrage gesendet ✓'};b.textContent=msgs[currentLang]||msgs.es;b.style.background='#2a6b2a';b.disabled=true}
+window.addEventListener('scroll',function(){var nav=document.getElementById('mainNav');if(nav)nav.classList.toggle('scrolled',window.scrollY>60)});
+window.addEventListener('DOMContentLoaded',function(){try{var params=new URLSearchParams(window.location.search);var lang=params.get('lang');if(lang&&i18n[lang])setLang(lang)}catch(err){}});
+</script>
+</body>
+</html>
