@@ -346,6 +346,23 @@ body { padding-left: 3.5rem !important; padding-right: 3.5rem !important; }
 }
 .contacto-map iframe { opacity: 0; transition: opacity 0.8s ease; }
 .contacto-map iframe.loaded { opacity: 1; }
+
+/* CAROUSEL */
+.carousel-wrap { position: relative; display: flex; align-items: center; gap: 0; }
+.carousel-btn { background: none; border: 1px solid var(--gray-line); width: 44px; height: 44px; font-size: 1.2rem; cursor: pointer; color: var(--dark2); flex-shrink: 0; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
+.carousel-btn:hover { background: var(--p); color: #fff; border-color: var(--p); }
+.carousel-track { display: flex; gap: 1px; overflow: hidden; flex: 1; background: var(--gray-line); border: 1px solid var(--gray-line); transition: opacity 0.4s ease, transform 0.4s ease; }
+.carousel-card { background: var(--white); padding: 2rem 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; flex: 0 0 calc(33.333% - 1px); min-width: 0; transition: background 0.2s; cursor: pointer; text-decoration: none; color: inherit; }
+.carousel-card:hover { background: var(--off-white); }
+.carousel-card .insight-tag { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--p); }
+.carousel-card .insight-title { font-size: 0.95rem; font-weight: 700; color: var(--black); line-height: 1.4; }
+.carousel-card .insight-excerpt { font-size: 0.82rem; color: var(--gray); line-height: 1.7; flex: 1; }
+.carousel-card .insight-date { font-size: 0.68rem; color: var(--gray-light); }
+.carousel-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.5rem; }
+.carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gray-line); border: none; cursor: pointer; transition: background 0.2s; padding: 0; }
+.carousel-dot.active { background: var(--p); }
+@media (max-width: 768px) { .carousel-card { flex: 0 0 100%; } }
+@media (min-width: 769px) and (max-width: 1100px) { .carousel-card { flex: 0 0 calc(50% - 1px); } }
 </style>
 </head>
 <body>
@@ -463,12 +480,14 @@ body { padding-left: 3.5rem !important; padding-right: 3.5rem !important; }
 <section class="insights" id="insights">
   <div class="insights-header">
     <div><div class="label" data-i18n="news.label">Novedades contables</div><h2 class="section-title" data-i18n="news.title">Actualidad impositiva</h2></div>
-    <a href="https://pl-abogados.com/home/insights-2/" target="_blank" class="link-arr" data-i18n="news.all">Ver todos →</a>
+    <a href="novedades-contable.html" class="link-arr" data-i18n="news.all">Ver todos →</a>
   </div>
-  <div class="grid-insights">
-    <div class="insight featured"><div class="insight-tag" data-i18n="news1.tag">Impuestos · AFIP</div><div class="insight-title" data-i18n="news1.title">Acuerdo FATCA: impacto contable e impositivo para contribuyentes argentinos con activos en Estados Unidos</div><p class="insight-excerpt" data-i18n="news1.excerpt">El intercambio automático de información financiera entre la AFIP y el IRS implica nuevas obligaciones de declaración y exposición patrimonial para personas físicas y jurídicas con cuentas o activos en el exterior.</p><div class="insight-date" data-i18n="news1.date">Septiembre 2024</div></div>
-    <div class="insight"><div class="insight-tag" data-i18n="news2.tag">Normativa Contable</div><div class="insight-title" data-i18n="news2.title">Actualizaciones en normas contables profesionales: impacto en la preparación de estados financieros</div><p class="insight-excerpt" data-i18n="news2.excerpt">Las modificaciones recientes en las RT de la FACPCE introducen nuevos criterios de medición y exposición que afectan a empresas de todos los sectores.</p><div class="insight-date" data-i18n="news2.date">Octubre 2024</div></div>
+  <div class="carousel-wrap">
+    <button class="carousel-btn carousel-prev" onclick="carouselMove(-1)">&#8592;</button>
+    <div class="carousel-track" id="carouselTrack"></div>
+    <button class="carousel-btn carousel-next" onclick="carouselMove(1)">&#8594;</button>
   </div>
+  <div class="carousel-dots" id="carouselDots"></div>
 </section>
 
 <section class="contacto" id="contacto">
@@ -819,6 +838,85 @@ window.addEventListener('DOMContentLoaded', function() {
     startLoader();
   }
 })();
+
+
+const insights = [
+  { date: "Sep 2024", cat: "Impuestos · Penal Económico", title: "Acuerdo FATCA – Impacto Contable e Impositivo", excerpt: "El acuerdo FATCA firmado entre Argentina y EEUU establece el intercambio anual automático de información financiera entre la AFIP y el IRS, con nuevas obligaciones de declaración patrimonial.", url: "https://pl-abogados.com/acuerdo-fatca/" },
+  { date: "Ago 2024", cat: "Aduanero · Impuestos · Penal Económico", title: "Ley 27.743 – Medidas Fiscales Paliativas y Relevantes", excerpt: "La ley establece un Régimen de Regularización Excepcional de Obligaciones Tributarias, Aduaneras y de la Seguridad Social.", url: "https://pl-abogados.com/ley-27-743-medidas-fiscales-paliativas-y-relevantes/" },
+  { date: "Ago 2024", cat: "Aduanero · Impuestos · Penal Económico", title: "Resol Gral AFIP 5528/24 – Procedimiento Regulación de Activos Ley 27.743", excerpt: "La AFIP reglamentó el Régimen de Regularización de Activos establecido por el Título II de la Ley 27.743.", url: "https://pl-abogados.com/resol-gral-afip-5528-24-procedimiento-regulacion-de-activos-ley-27-743/" },
+  { date: "Ago 2024", cat: "Aduanero · Impuestos · Penal Económico", title: "Decreto 608/2024 – Reglamentación Ley 27.743", excerpt: "El PEN reglamentó la Ley 27.743 Medidas Fiscales Paliativas y Relevantes, con modificaciones del Dec. PEN 773/2024.", url: "https://pl-abogados.com/dec-608-2024-reglamentacion-ley-27-743-medidas-fiscales-paliativas-y-relevantes/" },
+  { date: "Jul 2022", cat: "Aduanero · Impuestos · Penal Económico", title: "Ley 27.541 – Solidaridad Social y Reactivación Productiva", excerpt: "La Ley establece en su Título IV las obligaciones tributarias y el régimen de regularización de obligaciones tributarias y aduaneras.", url: "https://pl-abogados.com/ley-27-541/" },
+];
+
+var carouselIdx = 0;
+var carouselAuto;
+
+function getVisible() {
+  return window.innerWidth < 769 ? 1 : window.innerWidth < 1100 ? 2 : 3;
+}
+
+function renderCarousel(animate) {
+  var track = document.getElementById('carouselTrack');
+  var dots = document.getElementById('carouselDots');
+  if (!track || !dots) return;
+  var vis = getVisible();
+  var maxIdx = insights.length - vis;
+  if (carouselIdx > maxIdx) carouselIdx = maxIdx;
+  if (carouselIdx < 0) carouselIdx = 0;
+
+  if (animate) {
+    track.style.opacity = '0';
+    track.style.transform = 'translateY(8px)';
+  }
+
+  setTimeout(function() {
+    track.innerHTML = '';
+    for (var i = carouselIdx; i < carouselIdx + vis; i++) {
+      var ins = insights[i];
+      var card = document.createElement('a');
+      card.className = 'carousel-card';
+      card.href = ins.url;
+      card.target = '_blank';
+      card.innerHTML = '<div class="insight-tag">' + ins.cat + '</div>' +
+        '<div class="insight-title">' + ins.title + '</div>' +
+        '<p class="insight-excerpt">' + ins.excerpt + '</p>' +
+        '<div class="insight-date">' + ins.date + '</div>';
+      track.appendChild(card);
+    }
+
+    dots.innerHTML = '';
+    var pages = Math.ceil(insights.length / vis);
+    var currentPage = Math.floor(carouselIdx / vis);
+    for (var p = 0; p < pages; p++) {
+      var dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (p === currentPage ? ' active' : '');
+      (function(page) { dot.onclick = function() { carouselIdx = page * getVisible(); renderCarousel(true); }; })(p);
+      dots.appendChild(dot);
+    }
+
+    if (animate) {
+      setTimeout(function() {
+        track.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        track.style.opacity = '1';
+        track.style.transform = 'translateY(0)';
+      }, 20);
+    }
+  }, animate ? 200 : 0);
+}
+
+function carouselMove(dir) {
+  var vis = getVisible();
+  carouselIdx += dir * vis;
+  if (carouselIdx < 0) carouselIdx = Math.max(0, insights.length - vis);
+  if (carouselIdx > insights.length - vis) carouselIdx = 0;
+  renderCarousel(true);
+  clearInterval(carouselAuto);
+  carouselAuto = setInterval(function() { carouselMove(1); }, 5000);
+}
+
+window.addEventListener('resize', function() { carouselIdx = 0; renderCarousel(false); });
+renderCarousel(false);
+carouselAuto = setInterval(function() { carouselMove(1); }, 5000);
 
 </script>
 </body>
