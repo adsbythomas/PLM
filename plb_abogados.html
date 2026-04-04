@@ -499,7 +499,7 @@ function getVisible() {
   return window.innerWidth < 769 ? 1 : window.innerWidth < 1100 ? 2 : 3;
 }
 
-function renderCarousel() {
+function renderCarousel(animate) {
   var track = document.getElementById('carouselTrack');
   var dots = document.getElementById('carouselDots');
   if (!track || !dots) return;
@@ -508,7 +508,13 @@ function renderCarousel() {
   if (carouselIdx > maxIdx) carouselIdx = maxIdx;
   if (carouselIdx < 0) carouselIdx = 0;
 
-  track.innerHTML = '';
+  if (animate) {
+    track.style.opacity = '0';
+    track.style.transform = 'translateY(8px)';
+  }
+
+  setTimeout(function() {
+    track.innerHTML = '';
   for (var i = carouselIdx; i < carouselIdx + vis; i++) {
     var ins = insights[i];
     var card = document.createElement('a');
@@ -528,9 +534,18 @@ function renderCarousel() {
   for (var p = 0; p < pages; p++) {
     var dot = document.createElement('button');
     dot.className = 'carousel-dot' + (p === currentPage ? ' active' : '');
-    (function(page) { dot.onclick = function() { carouselIdx = page * getVisible(); renderCarousel(); }; })(p);
+    (function(page) { dot.onclick = function() { carouselIdx = page * getVisible(); renderCarousel(true); }; })(p);
     dots.appendChild(dot);
   }
+
+  if (animate) {
+    setTimeout(function() {
+      track.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      track.style.opacity = '1';
+      track.style.transform = 'translateY(0)';
+    }, 20);
+  }
+  }, animate ? 200 : 0);
 }
 
 function carouselMove(dir) {
@@ -538,14 +553,14 @@ function carouselMove(dir) {
   carouselIdx += dir * vis;
   if (carouselIdx < 0) carouselIdx = Math.max(0, insights.length - vis);
   if (carouselIdx > insights.length - vis) carouselIdx = 0;
-  renderCarousel();
+  renderCarousel(true);
   clearInterval(carouselAuto);
   carouselAuto = setInterval(function() { carouselMove(1); }, 5000);
 }
 
-window.addEventListener('resize', function() { carouselIdx = 0; renderCarousel(); });
+window.addEventListener('resize', function() { carouselIdx = 0; renderCarousel(false); });
 
-renderCarousel();
+renderCarousel(false);
 carouselAuto = setInterval(function() { carouselMove(1); }, 5000);
 </script>
 </body>
