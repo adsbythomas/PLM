@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLB | Novedades</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black: #111111; --dark2: #2c2c2c; --gray: #5a5a5a; --gray-light: #9a9a9a;
+  --gray-line: #cccccc; --white: #ffffff; --off-white: #f0f0f0; --bg: #e8e8e8;
+  --p: #1a4fa3; --p-dark: #133a7a; --p-light: #2d6bc4;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #e8e8e8;
+  background-image: linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+  color: var(--black);
+  line-height: 1.6;
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
+}
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3.5rem; background: #e8e8e8; border-bottom: 1px solid var(--gray-line);
+}
+.logo { display: flex; align-items: baseline; gap: 0.6rem; text-decoration: none; }
+.logo-abbr { font-size: 1.6rem; font-weight: 700; color: var(--black); }
+.logo-abbr span { color: var(--p); }
+.logo-sep { width: 1px; height: 20px; background: var(--gray-line); margin: 0 0.3rem; }
+.logo-name { font-size: 0.82rem; color: var(--gray); max-width: 220px; line-height: 1.3; }
+.back-btn {
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--p); text-decoration: none; border: 1px solid var(--gray-line);
+  padding: 0.4rem 1rem; transition: all 0.2s;
+}
+.back-btn:hover { background: var(--p); color: #fff; border-color: var(--p); }
+
+main { padding-top: 6rem; padding-bottom: 6rem; }
+
+.page-header { margin-bottom: 4rem; }
+.page-label { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--p); margin-bottom: 0.5rem; }
+.page-title { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; color: var(--black); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.75rem; }
+.page-sub { font-size: 0.95rem; color: var(--gray); }
+
+.filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.filter-btn { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem; border: 1px solid var(--gray-line); background: transparent; cursor: pointer; color: var(--gray); transition: all 0.2s; }
+.filter-btn:hover, .filter-btn.active { background: var(--p); color: #fff; border-color: var(--p); }
+
+.insights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--gray-line); border: 1px solid var(--gray-line); }
+.insight-card { background: #fff; padding: 2rem 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; transition: background 0.2s, transform 0.2s; text-decoration: none; color: inherit; }
+.insight-card:hover { background: var(--off-white); transform: translateY(-3px); }
+.insight-tag { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--p); }
+.insight-title { font-size: 1rem; font-weight: 700; color: var(--black); line-height: 1.4; }
+.insight-excerpt { font-size: 0.83rem; color: var(--gray); line-height: 1.7; flex: 1; }
+.insight-date { font-size: 0.68rem; color: var(--gray-light); }
+.insight-link { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--p); margin-top: 0.5rem; }
+
+.no-results { text-align: center; padding: 4rem; color: var(--gray); font-size: 0.95rem; background: #fff; border: 1px solid var(--gray-line); }
+
+footer { border-top: 1px solid var(--gray-line); padding: 2rem 0; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--gray); }
+footer a { color: var(--p); text-decoration: none; }
+
+@media (max-width: 1100px) { .insights-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) {
+  body { padding-left: 1.5rem; padding-right: 1.5rem; }
+  nav { padding: 0 1.5rem; }
+  .insights-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="plb_abogados.html" class="logo">
+    <span class="logo-abbr">PL<span>B</span></span>
+    <div class="logo-sep"></div>
+    <span class="logo-name">Pantarotto Lértora Bardagí & Asocs.</span>
+  </a>
+  <a href="plb_abogados.html#insights" class="back-btn">← Volver</a>
+</nav>
+
+<main>
+  <div class="page-header">
+    <div class="page-label">Publicaciones</div>
+    <h1 class="page-title">Novedades & Insights</h1>
+    <p class="page-sub">Todas las publicaciones del estudio, ordenadas por fecha.</p>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterInsights('all')">Todos</button>
+    <button class="filter-btn" onclick="filterInsights('Derecho Aerocomercial')">Aerocomercial</button>
+    <button class="filter-btn" onclick="filterInsights('Impuestos')">Impuestos</button>
+    <button class="filter-btn" onclick="filterInsights('Aduanero')">Aduanero</button>
+    <button class="filter-btn" onclick="filterInsights('Penal Económico')">Penal Económico</button>
+  </div>
+
+  <div class="insights-grid" id="insightsGrid"></div>
+</main>
+
+<footer>
+  <span>© 2025 Pantarotto Lértora Bardagí & Asocs. Todos los derechos reservados.</span>
+  <a href="plb_abogados.html">Volver al sitio</a>
+</footer>
+
+<script>
+const insights = [
+  { date: "Nov 2024", cat: "Derecho Aerocomercial", title: "Resolucion 516/ANAC/2024 – Aumento edad límite para pilotos", excerpt: "La ANAC modificó el límite de edad para pilotos mediante la Resolución 516/ANAC/2024 (BORA 25/11/2024), modificando el Art. 61.3(h) de las RAAC.", url: "https://pl-abogados.com/resolucion-516-anac-2024-aumento-edad-limite-para-pilotos/" },
+  { date: "Sep 2024", cat: "Derecho Aerocomercial", title: "Nuevos Reglamentos del Contrato de Transporte Aéreo de Pasajeros y de Carga", excerpt: "El Decreto 809/2024 deroga la Resolución N° 1532 y establece nuevos reglamentos del contrato aéreo de pasajeros, equipaje y carga.", url: "https://pl-abogados.com/nuevos-reglamentos-del-contrato-de-transporte-aereo-de-pasajeros-y-de-carga/" },
+  { date: "Sep 2024", cat: "Derecho Aerocomercial", title: "Aircraft securities – Cape Town Convention", excerpt: "Argentina aprobó el Convenio de Garantías Internacionales sobre Equipos Móviles de Ciudad del Cabo de 2001 y el Protocolo sobre cuestiones aeronáuticas.", url: "https://pl-abogados.com/aircraft-securities-cape-town-convention/" },
+  { date: "Sep 2024", cat: "Derecho Aerocomercial", title: "Nuevo Reglamento de Infracciones Aeronáuticas", excerpt: "El Decreto 816/2024 aprueba el nuevo Reglamento de Infracciones Aeronáuticas en el marco del Convenio de Chicago de 1944.", url: "https://pl-abogados.com/nuevo-reglamento-de-infracciones-aeronauticas/" },
+  { date: "Sep 2024", cat: "Impuestos · Penal Económico", title: "Acuerdo FATCA", excerpt: "El acuerdo FATCA firmado entre Argentina y EEUU en diciembre de 2022 establece el intercambio anual automático de información financiera entre la AFIP y el IRS.", url: "https://pl-abogados.com/acuerdo-fatca/" },
+  { date: "Ago 2024", cat: "Aduanero · Impuestos · Penal Económico", title: "Ley 27.743 – Medidas Fiscales Paliativas y Relevantes", excerpt: "La ley establece un Régimen de Regularización Excepcional de Obligaciones Tributarias, Aduaneras y de la Seguridad Social.", url: "https://pl-abogados.com/ley-27-743-medidas-fiscales-paliativas-y-relevantes/" },
+  { date: "Ago 2024", cat: "Aduanero · Impuestos · Penal Económico", title: "Resol Gral AFIP 5528/24 – Procedimiento Regulación de Activos Ley 27.743", excerpt: "La AFIP reglamentó el Régimen de Regularización de Activos establecido por el Título II de la Ley 27.743.", url: "https://pl-abogados.com/resol-gral-afip-5528-24-procedimiento-regulacion-de-activos-ley-27-743/" },
+  { date: "Ago 2024", cat: "Aduanero · Impuestos · Penal Económico", title: "Decreto 608/2024 – Reglamentación Ley 27.743", excerpt: "El PEN reglamentó la Ley 27.743 'Medidas Fiscales Paliativas y Relevantes', modificado luego por el Dec. PEN 773/2024.", url: "https://pl-abogados.com/dec-608-2024-reglamentacion-ley-27-743-medidas-fiscales-paliativas-y-relevantes/" },
+  { date: "Ago 2024", cat: "Derecho Aerocomercial", title: "Resolución 268-ANAC-2024 – AMEs Nuevo Procedimiento", excerpt: "Esta resolución modifica las RAAC Parte 67 y establece que el DEM de la DNSO calificará en primera instancia las evaluaciones médicas aeronáuticas.", url: "https://pl-abogados.com/235443-2/" },
+  { date: "Ago 2024", cat: "Derecho Aerocomercial", title: "Dec. 752/24 – Instruye reglamentar Art. 76 Cód. Aeronáutico", excerpt: "El PEN derogó los Decretos Nº 1954/1977 y N° 1900/1983 e instruyó a la ANAC a reglamentar el artículo 76 de la Ley N° 17.285.", url: "https://pl-abogados.com/dec-752-24-instruye-reglamentar-art-76-cod-aeronautico/" },
+  { date: "Ago 2024", cat: "Derecho Aerocomercial", title: "Decreto 599/2024 – Desregulación del Mercado Aerocomercial", excerpt: "El Decreto 599/2024 desregula el acceso a los mercados aerocomerciales mediante el Reglamento de Acceso a los Mercados Aerocomerciales.", url: "https://pl-abogados.com/decreto-599-2024-desregulacion-del-mercado-aerocomercial/" },
+  { date: "Ago 2024", cat: "Derecho Aerocomercial", title: "Código Aeronáutico de la República Argentina – Ley 17.285", excerpt: "El Decreto 70/2023 efectuó modificaciones sustanciales al Código Aeronáutico en materia de aviación civil.", url: "https://pl-abogados.com/codigo-aeronautico-de-la-republica-argentina-ley-17-285/" },
+  { date: "Ago 2024", cat: "Derecho Aerocomercial", title: "Nueva reglamentación del Registro Nacional de Aeronaves – Decreto PEN 639/2024", excerpt: "El Decreto 639/2024 derogó el Decreto PEN 4907/73 y aprueba la nueva reglamentación del Registro Nacional de Aeronaves.", url: "https://pl-abogados.com/nueva-reglamentacion-del-registro-nacional-de-aeronaves-decreto-pen-639-2024/" },
+  { date: "Ago 2024", cat: "Derecho Aerocomercial", title: "Remoción de Aeronaves", excerpt: "El PEN reglamentó el régimen de remoción de aeronaves estableciendo el procedimiento aplicable en territorio argentino.", url: "https://pl-abogados.com/remocion-de-aeronaves/" },
+  { date: "Ago 2024", cat: "Derecho Aerocomercial", title: "Vehículos Aéreos No Tripulados", excerpt: "El Decreto 663/2024 suspendió la reglamentación de los VANT por un plazo de 180 días de adecuación.", url: "https://pl-abogados.com/vehiculos-aereos-no-tripulados/" },
+  { date: "Jul 2022", cat: "Aduanero · Impuestos · Penal Económico", title: "Ley 27.541 – Solidaridad Social y Reactivación Productiva", excerpt: "La Ley establece en su Título IV las obligaciones tributarias y el régimen de regularización de obligaciones tributarias y aduaneras.", url: "https://pl-abogados.com/ley-27-541/" }
+];
+
+var activeFilter = 'all';
+
+function filterInsights(cat) {
+  activeFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(function(b) {
+    b.classList.toggle('active', b.textContent.trim() === (cat === 'all' ? 'Todos' : cat) || (cat === 'all' && b.textContent.trim() === 'Todos'));
+  });
+  renderGrid();
+}
+
+function renderGrid() {
+  var grid = document.getElementById('insightsGrid');
+  var filtered = activeFilter === 'all' ? insights : insights.filter(function(i) { return i.cat.indexOf(activeFilter) > -1; });
+  
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="no-results" style="grid-column:1/-1">No hay publicaciones en esta categoría.</div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(function(ins) {
+    return '<a class="insight-card" href="' + ins.url + '" target="_blank">' +
+      '<div class="insight-tag">' + ins.cat + '</div>' +
+      '<div class="insight-title">' + ins.title + '</div>' +
+      '<p class="insight-excerpt">' + ins.excerpt + '</p>' +
+      '<div class="insight-date">' + ins.date + '</div>' +
+      '<div class="insight-link">Leer más →</div>' +
+      '</a>';
+  }).join('');
+}
+
+renderGrid();
+</script>
+</body>
+</html>
