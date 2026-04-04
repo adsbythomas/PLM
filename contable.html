@@ -496,7 +496,7 @@ body { padding-left: 3.5rem !important; padding-right: 3.5rem !important; }
         <div class="loader-person" id="loaderPerson">🚶</div>
       </div>
     </div>
-      <iframe class="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.9973518279826!2d-58.390031323855155!3d-34.60422847295404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccac1942fc08d%3A0x90e50a4d7964f611!2sPantarotto%20L%C3%A9rtora%20%26%20Asocs!5e0!3m2!1ses-419!2sar!4v1775170188725!5m2!1ses-419!2sar" width="100%" height="100%" style="border:0;min-height:480px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe class="map-iframe" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.9973518279826!2d-58.390031323855155!3d-34.60422847295404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccac1942fc08d%3A0x90e50a4d7964f611!2sPantarotto%20L%C3%A9rtora%20%26%20Asocs!5e0!3m2!1ses-419!2sar!4v1775170188725!5m2!1ses-419!2sar" src="" width="100%" height="100%" style="border:0;min-height:480px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <form class="contacto-form-new" onsubmit="handleForm(event)">
       <div class="form-row">
@@ -760,6 +760,64 @@ window.addEventListener('DOMContentLoaded', function() {
       iframe.classList.add('loaded');
     }, 400);
   });
+})();
+
+
+// Map loader - trigger when map enters viewport
+(function() {
+  var section = document.querySelector('.contacto-map');
+  var bar = document.getElementById('loaderBar');
+  var person = document.getElementById('loaderPerson');
+  var loader = document.getElementById('mapLoader');
+  var iframe = document.querySelector('.map-iframe');
+  if (!section || !bar || !loader || !iframe) return;
+
+  var started = false;
+
+  function startLoader() {
+    if (started) return;
+    started = true;
+
+    // Start filling the bar
+    var progress = 0;
+    var interval = setInterval(function() {
+      if (progress < 85) {
+        progress += Math.random() * 6 + 2;
+        if (progress > 85) progress = 85;
+        bar.style.width = progress + '%';
+        person.style.left = progress + '%';
+      }
+    }, 150);
+
+    // Load the map by setting src
+    var src = iframe.getAttribute('data-src');
+    if (src) iframe.src = src;
+
+    iframe.addEventListener('load', function() {
+      clearInterval(interval);
+      progress = 100;
+      bar.style.width = '100%';
+      person.style.left = '100%';
+      person.textContent = '🏃';
+      setTimeout(function() {
+        loader.classList.add('hidden');
+        iframe.classList.add('loaded');
+      }, 500);
+    });
+  }
+
+  // Use IntersectionObserver to trigger when map is visible
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) {
+        startLoader();
+        obs.disconnect();
+      }
+    }, { threshold: 0.1 });
+    obs.observe(section);
+  } else {
+    startLoader();
+  }
 })();
 
 </script>
