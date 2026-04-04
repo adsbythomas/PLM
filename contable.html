@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PLB | Área Contable</title>
 <style>
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  body { padding-left: 3.5rem !important; padding-right: 3.5rem !important; }
 :root {
   --black: #0d0d0d; --dark2: #2c2c2c; --gray: #5a5a5a; --gray-light: #9a9a9a;
   --gray-line: #d8d8d8; --white: #ffffff; --off-white: #f0f0f0; --bg: #ffffff;
@@ -116,15 +116,15 @@ section{padding:6rem 3.5rem}
 .insight-excerpt{font-size:0.83rem;color:var(--gray);line-height:1.7}
 .insight-date{font-size:0.68rem;color:var(--gray-light)}
 .contacto{padding:0;background:transparent}
-.contacto-top{background:var(--black);padding:4rem 3.5rem}
+.contacto-top{background:transparent;padding:4rem 3.5rem}
 .contacto-top-inner{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start}
 .contacto-data{display:flex;flex-direction:column;gap:1.5rem}
 .cdata-item{display:flex;align-items:flex-start;gap:1rem;transition:transform 0.2s}
 .cdata-item:hover{transform:translateX(5px)}
-.cdata-icon{width:36px;height:36px;min-width:36px;background:#3a3a3a;border:1px solid #555;display:flex;align-items:center;justify-content:center;color:#aaa}
+.cdata-icon{width:36px;height:36px;min-width:36px;background:rgba(0,0,0,0.06);border:1px solid var(--gray-line);display:flex;align-items:center;justify-content:center;color:var(--gray)}
 .cdata-icon svg{width:16px;height:16px}
-.cdata-label{font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--p-light);margin-bottom:0.25rem}
-.cdata-val{font-size:0.85rem;color:rgba(255,255,255,0.92);line-height:1.6}
+.cdata-label{font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--p);margin-bottom:0.25rem}
+.cdata-val{font-size:0.85rem;color:var(--gray);line-height:1.6}
 .contacto-bottom{display:grid;grid-template-columns:1fr 1fr;min-height:480px}
 .contacto-map{position:relative;min-height:480px}
 .contacto-map iframe{position:absolute;inset:0;width:100%;height:100%}
@@ -293,6 +293,11 @@ nav > div:last-of-type {
   background: #133a7a !important;
   color: #ffffff !important;
 }
+
+footer, footer * { color: var(--black) !important; }
+footer .footer-logo span { color: var(--p) !important; }
+footer .footer-social a { color: var(--gray) !important; border-color: var(--gray-line) !important; }
+body { padding-left: 3.5rem !important; padding-right: 3.5rem !important; }
 </style>
 </head>
 <body>
@@ -422,9 +427,9 @@ nav > div:last-of-type {
   <div class="contacto-top">
     <div class="contacto-top-inner">
       <div>
-        <div class="label" style="color:rgba(255,255,255,0.5)" data-i18n="contact.label">Contacto</div>
-        <h2 class="section-title" style="color:var(--white)"><span data-i18n="contact.title">Hablemos de</span> <span style="color:var(--p-light)" data-i18n="contact.titleAccent">su situación</span></h2>
-        <p style="color:rgba(255,255,255,0.9);font-size:0.95rem;margin-top:0.5rem;max-width:420px;line-height:1.75" data-i18n="contact.desc">Nuestro equipo contable le brinda una consulta inicial para evaluar sus necesidades y proponer el servicio más adecuado. Le responderemos dentro de las 24 horas hábiles.</p>
+        <div class="label" style="color:var(--p)" data-i18n="contact.label">Contacto</div>
+        <h2 class="section-title" style="color:var(--black)"><span data-i18n="contact.title">Hablemos de</span> <span style="color:var(--p-light)" data-i18n="contact.titleAccent">su situación</span></h2>
+        <p style="color:var(--gray);font-size:0.95rem;margin-top:0.5rem;max-width:420px;line-height:1.75" data-i18n="contact.desc">Nuestro equipo contable le brinda una consulta inicial para evaluar sus necesidades y proponer el servicio más adecuado. Le responderemos dentro de las 24 horas hábiles.</p>
       </div>
       <div class="contacto-data">
         <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 2a6 6 0 016 6c0 4-6 10-6 10S4 12 4 8a6 6 0 016-6z"/><circle cx="10" cy="8" r="2"/></svg></div><div><div class="cdata-label" data-i18n="contact.addr">Dirección</div><div class="cdata-val">Av. Corrientes 1464, Piso 16 Of. 1605<br>C1042 · Ciudad Autónoma de Buenos Aires</div></div></div>
