@@ -363,6 +363,27 @@ body { padding-left: 3.5rem !important; padding-right: 3.5rem !important; }
 .carousel-dot.active { background: var(--p); }
 @media (max-width: 768px) { .carousel-card { flex: 0 0 100%; } }
 @media (min-width: 769px) and (max-width: 1100px) { .carousel-card { flex: 0 0 calc(50% - 1px); } }
+
+/* Remove all section backgrounds */
+.nosotros, .areas, .equipo, .insights, .contacto,
+.highlights, .grid-3, .card, .member, .member-cta,
+.contacto-form-new, .contacto-bottom, .contacto-top,
+.grid-team, .grid-insights, .insight {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+/* Keep form inputs visible */
+.form-group input, .form-group select, .form-group textarea {
+  background: rgba(255,255,255,0.9) !important;
+  border: 1px solid var(--gray-line) !important;
+}
+/* Keep carousel cards visible */
+.carousel-card {
+  background: rgba(255,255,255,0.85) !important;
+  border: 1px solid var(--gray-line) !important;
+}
+.avatar { background: var(--p) !important; }
 </style>
 </head>
 <body>
