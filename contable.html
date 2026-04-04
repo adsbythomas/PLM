@@ -298,6 +298,54 @@ footer, footer * { color: var(--black) !important; }
 footer .footer-logo span { color: var(--p) !important; }
 footer .footer-social a { color: var(--gray) !important; border-color: var(--gray-line) !important; }
 body { padding-left: 3.5rem !important; padding-right: 3.5rem !important; }
+
+/* MAP LOADER */
+.map-loader {
+  position: absolute;
+  inset: 0;
+  background: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  z-index: 2;
+  transition: opacity 0.6s ease;
+}
+.map-loader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.loader-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9b4a1e;
+}
+.loader-track {
+  width: 220px;
+  height: 3px;
+  background: #ddd;
+  position: relative;
+  overflow: visible;
+}
+.loader-bar {
+  height: 100%;
+  background: #9b4a1e;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+.loader-person {
+  position: absolute;
+  top: -10px;
+  font-size: 1.1rem;
+  transform: translateX(-50%);
+  transition: left 0.1s linear;
+  left: 0%;
+}
+.contacto-map iframe { opacity: 0; transition: opacity 0.8s ease; }
+.contacto-map iframe.loaded { opacity: 1; }
 </style>
 </head>
 <body>
@@ -441,7 +489,14 @@ body { padding-left: 3.5rem !important; padding-right: 3.5rem !important; }
   </div>
   <div class="contacto-bottom">
     <div class="contacto-map">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.9973518279826!2d-58.390031323855155!3d-34.60422847295404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccac1942fc08d%3A0x90e50a4d7964f611!2sPantarotto%20L%C3%A9rtora%20%26%20Asocs!5e0!3m2!1ses-419!2sar!4v1775170188725!5m2!1ses-419!2sar" width="100%" height="100%" style="border:0;min-height:480px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="map-loader" id="mapLoader">
+      <div class="loader-label">Cargando mapa</div>
+      <div class="loader-track">
+        <div class="loader-bar" id="loaderBar"></div>
+        <div class="loader-person" id="loaderPerson">🚶</div>
+      </div>
+    </div>
+      <iframe class="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.9973518279826!2d-58.390031323855155!3d-34.60422847295404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccac1942fc08d%3A0x90e50a4d7964f611!2sPantarotto%20L%C3%A9rtora%20%26%20Asocs!5e0!3m2!1ses-419!2sar!4v1775170188725!5m2!1ses-419!2sar" width="100%" height="100%" style="border:0;min-height:480px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <form class="contacto-form-new" onsubmit="handleForm(event)">
       <div class="form-row">
@@ -676,6 +731,40 @@ window.addEventListener('DOMContentLoaded', function() {
     if (lang && i18n[lang]) setLang(lang);
   } catch(e) {}
 });
+
+
+
+// Map loader animation
+(function() {
+  var bar = document.getElementById('loaderBar');
+  var person = document.getElementById('loaderPerson');
+  var loader = document.getElementById('mapLoader');
+  var iframe = document.querySelector('.map-iframe');
+  if (!bar || !loader || !iframe) return;
+
+  var progress = 0;
+  var interval = setInterval(function() {
+    if (progress < 85) {
+      progress += Math.random() * 8 + 2;
+      if (progress > 85) progress = 85;
+      bar.style.width = progress + '%';
+      person.style.left = progress + '%';
+    }
+  }, 180);
+
+  iframe.addEventListener('load', function() {
+    clearInterval(interval);
+    progress = 100;
+    bar.style.width = '100%';
+    person.style.left = '100%';
+    person.textContent = '🏃';
+    setTimeout(function() {
+      loader.classList.add('hidden');
+      iframe.classList.add('loaded');
+    }, 400);
+  });
+})();
+
 </script>
 </body>
 </html>
