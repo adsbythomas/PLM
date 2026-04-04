@@ -4,11 +4,16 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PLB | Pantarotto Lértora Bardagí & Asocs.</title>
+<title>PLB | Área Contable</title>
 <style>
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{padding-left:3.5rem !important;padding-right:3.5rem !important}
-:root{--black:#111111;--dark2:#2c2c2c;--gray:#5a5a5a;--gray-light:#9a9a9a;--gray-line:#cccccc;--white:#ffffff;--off-white:#f0f0f0;--bg:#e8e8e8;--p:#1a4fa3;--p-dark:#133a7a;--p-light:#2d6bc4}
+:root {
+  --black: #0d0d0d; --dark2: #2c2c2c; --gray: #5a5a5a; --gray-light: #9a9a9a;
+  --gray-line: #d8d8d8; --white: #ffffff; --off-white: #f0f0f0; --bg: #ffffff;
+  --p: #6b2d0e; --p-dark: #4a1e08; --p-light: #9b4a1e;
+  --blue: #0f2d5e; --blue-dark: #081d3d;
+}
 html{scroll-behavior:smooth}
 body{font-family:Arial,Helvetica,sans-serif;background:#e8e8e8;color:#111111;line-height:1.6;overflow-x:hidden}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 3.5rem;background:#e8e8e8;border-bottom:1px solid #e0e0e0;transition:box-shadow 0.3s}
@@ -89,7 +94,7 @@ section{padding:6rem 3.5rem}
 .card-desc{font-size:0.83rem;color:var(--gray);line-height:1.7}
 .equipo{background:transparent}
 .equipo-header{margin-bottom:3.5rem}
-.grid-team{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--gray-line);border:1px solid var(--gray-line)}
+.grid-team{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--gray-line);border:1px solid var(--gray-line)}
 .member{background:#dddddd;padding:2rem 1.5rem;transition:background 0.2s,transform 0.25s}
 .member:hover{background:transparent;transform:translateY(-3px)}
 .avatar{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;color:var(--white);margin-bottom:1.25rem}
@@ -120,7 +125,7 @@ section{padding:6rem 3.5rem}
 .cdata-icon svg{width:16px;height:16px}
 .cdata-label{font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--p);margin-bottom:0.25rem}
 .cdata-val{font-size:0.85rem;color:var(--gray);line-height:1.6}
-.contacto-bottom{display:grid;grid-template-columns:1fr 1fr;min-height:480px;background:transparent}
+.contacto-bottom{display:grid;grid-template-columns:1fr 1fr;min-height:480px}
 .contacto-map{position:relative;min-height:480px}
 .contacto-map iframe{position:absolute;inset:0;width:100%;height:100%}
 .contacto-form-new{display:flex;flex-direction:column;gap:1rem;padding:3rem;background:rgba(255,255,255,0.85);border-left:1px solid var(--gray-line)}
@@ -130,7 +135,7 @@ section{padding:6rem 3.5rem}
 .form-group input,.form-group select,.form-group textarea{background:rgba(255,255,255,0.85);border:1px solid var(--gray-line);color:var(--black);font-family:Arial;font-size:0.88rem;padding:0.75rem 1rem;outline:none;transition:border-color 0.2s;width:100%}
 .form-group input::placeholder,.form-group textarea::placeholder{color:var(--gray-light)}
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--p)}
-.form-group select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%231a4fa3' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+.form-group select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239b4a1e' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
 .form-group textarea{resize:vertical;min-height:120px}
 .btn-submit{background:var(--p);color:var(--white);font-family:Arial;font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;border:none;padding:0.9rem 2rem;cursor:pointer;align-self:flex-start;transition:background 0.2s}
 .btn-submit:hover{background:var(--p-dark)}
@@ -139,13 +144,13 @@ footer{background:transparent;padding:3.5rem 3.5rem 2rem}
 .footer-logo{font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:0.75rem}
 .footer-logo span{color:var(--p-light)}
 .footer-tagline{font-size:0.8rem;color:rgba(255,255,255,0.35);line-height:1.7;max-width:240px}
-.footer-col h4{font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-bottom:1.1rem}
+.footer-col h4{font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1.1rem}
 .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:0.65rem}
-.footer-col ul a{font-size:0.82rem;color:var(--dark2);text-decoration:none;transition:color 0.2s}
+.footer-col ul a{font-size:0.82rem;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.2s}
 .footer-col ul a:hover{color:var(--white)}
-.footer-bottom{display:flex;justify-content:space-between;align-items:center;font-size:0.72rem;color:var(--gray)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;font-size:0.72rem;color:rgba(255,255,255,0.25)}
 .footer-social{display:flex;gap:1rem}
-.footer-social a{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid var(--gray-line);color:var(--gray);text-decoration:none;font-size:0.75rem;font-weight:700;transition:all 0.2s}
+.footer-social a{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.75rem;font-weight:700;transition:all 0.2s}
 .footer-social a:hover{border-color:var(--p-light);color:var(--p-light)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -272,33 +277,53 @@ nav > div:last-of-type {
   gap: 0.4rem;
 }
 
+
+.btn-nav-juridico {
+  background: #1a4fa3 !important;
+  color: #ffffff !important;
+  padding: 0.5rem 1.5rem !important;
+  font-weight: 700 !important;
+  font-size: 0.82rem !important;
+  letter-spacing: 0.08em !important;
+  border: none !important;
+  display: inline-block !important;
+  text-decoration: none !important;
+}
+.btn-nav-juridico:hover {
+  background: #133a7a !important;
+  color: #ffffff !important;
+}
+
 footer, footer * { color: var(--black) !important; }
 footer .footer-logo span { color: var(--p) !important; }
 footer .footer-social a { color: var(--gray) !important; border-color: var(--gray-line) !important; }
+body { padding-left: 3.5rem !important; padding-right: 3.5rem !important; }
 </style>
 </head>
 <body>
+
 <div class="mob" id="mob">
   <button class="mob-close" onclick="closeMob()">✕</button>
   <a href="#nosotros" onclick="closeMob()" data-i18n="nav.about">Nosotros</a>
-  <a href="#areas" onclick="closeMob()" data-i18n="nav.areas">Áreas</a>
+  <a href="#areas" onclick="closeMob()" data-i18n="nav.areas">Servicios</a>
   <a href="#equipo" onclick="closeMob()" data-i18n="nav.team">Equipo</a>
   <a href="#insights" onclick="closeMob()" data-i18n="nav.news">Novedades</a>
-  <a href="contable.html" style="color:var(--p);font-weight:700" data-i18n="nav.accounting">Área Contable</a>
+  <a href="plb_abogados.html" style="color:var(--blue);font-weight:700" data-i18n="nav.legal">Estudio Jurídico</a>
   <a href="#contacto" onclick="closeMob()" data-i18n="nav.contact">Contacto</a>
 </div>
+
 <nav id="mainNav">
   <a href="#inicio" class="logo">
     <span class="logo-abbr">PL<span>B</span></span>
     <div class="logo-sep"></div>
-    <span class="logo-name">Pantarotto Lértora Bardagí & Asocs.</span>
+    <span class="logo-name" data-i18n="nav.division">Área Contable</span>
   </a>
   <ul class="nav-links">
     <li><a href="#nosotros" data-i18n="nav.about">Nosotros</a></li>
-    <li><a href="#areas" data-i18n="nav.areas">Áreas</a></li>
+    <li><a href="#areas" data-i18n="nav.areas">Servicios</a></li>
     <li><a href="#equipo" data-i18n="nav.team">Equipo</a></li>
     <li><a href="#insights" data-i18n="nav.news">Novedades</a></li>
-    <li><a href="contable.html" class="btn-nav-contable" data-i18n="nav.accounting">Área Contable</a></li>
+    <li><a href="plb_abogados.html" class="btn-nav-juridico" data-i18n="nav.legal">Estudio Jurídico</a></li>
     
   </ul>
   <div style="display:flex;align-items:center;gap:0.4rem;">
@@ -319,83 +344,96 @@ footer .footer-social a { color: var(--gray) !important; border-color: var(--gra
   </div>
   <button class="hamburger" onclick="openMob()"><span></span><span></span><span></span></button>
 </nav>
+
 <section class="hero" id="inicio">
+  <div class="hero-grid"></div>
   <div class="hero-content">
     <div class="hero-firm">PL<span style="color:var(--p)">B</span></div>
-    <div class="hero-tag" data-i18n="hero.tag">Abogados · Buenos Aires</div>
-    <h1 class="hero-title" data-i18n="hero.title">Derecho empresarial con<br><span class="accent">20 años</span> de trayectoria</h1>
-    <p class="hero-sub" data-i18n="hero.sub">Estudio integral con sede en Buenos Aires y corresponsales en Estados Unidos y Uruguay. Especializados en derecho tributario, aduanero, societario, laboral y aerocomercial.</p>
+    <div class="hero-tag" data-i18n="hero.tag">Contadores Públicos · Buenos Aires</div>
+    <h1 class="hero-title" data-i18n="hero.title">Contabilidad e impuestos con<br><span class="accent">20 años</span> de trayectoria</h1>
+    <p class="hero-sub" data-i18n="hero.sub">Área contable integral con sede en Buenos Aires y corresponsales en Estados Unidos y Uruguay. Especializados en liquidación de impuestos, auditoría, estados contables y planificación fiscal.</p>
     <div class="hero-actions">
       <a href="#contacto" class="btn-solid" data-i18n="hero.cta1">Consultar ahora</a>
-      <a href="#areas" class="btn-ghost" data-i18n="hero.cta2">Ver áreas de práctica</a>
+      <a href="#areas" class="btn-ghost" data-i18n="hero.cta2">Ver servicios</a>
     </div>
   </div>
+
+  <div class="hero-bar-col"></div>
+    <div class="hero-bar-col"></div>
+    <div class="hero-bar-col"></div>
+    <div class="hero-bar-col"></div>
+    <div class="hero-bar-col"></div>
+  </div>
   </section>
+
 <section class="nosotros" id="nosotros">
   <div class="nosotros-text">
-    <div class="label" data-i18n="about.label">El estudio</div>
-    <h2 class="section-title" data-i18n="about.title">Soluciones jurídicas integrales para el mundo de los negocios</h2>
-    <p data-i18n="about.p1">Pantarotto Lértora Bardagí & Asocs. es un estudio integral de abogados y contadores públicos con sede en la Ciudad de Buenos Aires, con más de 20 años de trayectoria en el asesoramiento a empresas nacionales e internacionales.</p>
-    <p data-i18n="about.p2">Nuestra práctica se centra en derecho económico empresarial, penal aduanero y tributario, societario, laboral, inversiones e impuestos, con especial desarrollo en las industrias de aviación aerocomercial, seguros, fintech e inmobiliaria.</p>
-    <p data-i18n="about.p3">Contamos con corresponsales en Estados Unidos y Uruguay, lo que nos permite acompañar a nuestros clientes en operaciones transfronterizas con la misma profundidad de análisis que en el mercado local.</p>
+    <div class="label" data-i18n="about.label">El área contable</div>
+    <h2 class="section-title" data-i18n="about.title">Contabilidad y asesoramiento impositivo de excelencia</h2>
+    <p data-i18n="about.p1">El área contable de Pantarotto Lértora Bardagí & Asocs. brinda servicios integrales de contabilidad, auditoría e impuestos para empresas de todos los tamaños y sectores, tanto en el mercado local como en operaciones internacionales.</p>
+    <p data-i18n="about.p2">Trabajamos en estrecha coordinación con el área legal del estudio, lo que nos permite ofrecer soluciones unificadas ante situaciones que requieren abordaje jurídico y contable simultáneo: reestructuraciones, due diligence, conflictos fiscales o expansión internacional.</p>
+    <p data-i18n="about.p3">Nuestro equipo de contadores públicos matriculados actualiza permanentemente su formación en materia impositiva, normativa contable y regulatoria para garantizar el más alto estándar de calidad en cada servicio prestado.</p>
   </div>
   <div class="highlights">
-    <div class="hl"><div class="hl-num">20<span>+</span></div><div class="hl-text"><strong data-i18n="about.hl1t">Años de trayectoria</strong><p data-i18n="about.hl1p">Más de dos décadas acompañando a empresas en sus decisiones jurídicas más relevantes.</p></div></div>
-    <div class="hl"><div class="hl-num">3</div><div class="hl-text"><strong data-i18n="about.hl2t">Países de operación</strong><p data-i18n="about.hl2p">Argentina, Estados Unidos y Uruguay, con red de corresponsales activos en cada jurisdicción.</p></div></div>
-    <div class="hl"><div class="hl-num">5</div><div class="hl-text"><strong data-i18n="about.hl3t">Áreas especializadas</strong><p data-i18n="about.hl3p">Práctica profunda en tributario, aduanero, laboral, societario y aerocomercial.</p></div></div>
+    <div class="hl"><div class="hl-num">20<span>+</span></div><div class="hl-text"><strong data-i18n="about.hl1t">Años de trayectoria</strong><p data-i18n="about.hl1p">Experiencia consolidada en contabilidad empresarial y asesoramiento impositivo en Argentina y el exterior.</p></div></div>
+    <div class="hl"><div class="hl-num">3</div><div class="hl-text"><strong data-i18n="about.hl2t">Jurisdicciones activas</strong><p data-i18n="about.hl2p">Argentina, Estados Unidos y Uruguay, con corresponsales activos para atender operaciones transfronterizas.</p></div></div>
+    <div class="hl"><div class="hl-num">100<span>%</span></div><div class="hl-text"><strong data-i18n="about.hl3t">Integración con el área legal</strong><p data-i18n="about.hl3p">Coordinación permanente entre contadores y abogados para soluciones jurídico-contables unificadas.</p></div></div>
   </div>
 </section>
+
 <section class="areas" id="areas">
   <div class="areas-header">
     <div>
-      <div class="label" data-i18n="areas.label">Práctica profesional</div>
-      <h2 class="section-title" data-i18n="areas.title">Áreas de práctica</h2>
-      <p class="areas-sub" data-i18n="areas.sub">Asesoramiento especializado en las principales ramas del derecho corporativo y contencioso.</p>
+      <div class="label" data-i18n="areas.label">Servicios contables</div>
+      <h2 class="section-title" data-i18n="areas.title">Áreas de servicio</h2>
+      <p class="areas-sub" data-i18n="areas.sub">Cobertura completa de las necesidades contables e impositivas de su empresa.</p>
     </div>
   </div>
   <div class="grid-3">
-    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#1a4fa3" stroke-width="1.5"><rect x="3" y="3" width="22" height="22" rx="2"/><path d="M8 10h12M8 14h8M8 18h10"/></svg><div class="card-name" data-i18n="area1.name">Tributario</div><p class="card-desc" data-i18n="area1.desc">Planificación fiscal, litigios ante el fisco, precios de transferencia, tributario internacional y reestructuraciones impositivas.</p></div>
-    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#1a4fa3" stroke-width="1.5"><path d="M14 3L3 9v10l11 6 11-6V9z"/><path d="M14 3v22M3 9l11 6 11-6"/></svg><div class="card-name" data-i18n="area2.name">Aduanero</div><p class="card-desc" data-i18n="area2.desc">Penal aduanero, comercio exterior, importación y exportación, infracciones y representación ante la AFIP-DGA.</p></div>
-    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#1a4fa3" stroke-width="1.5"><circle cx="14" cy="10" r="5"/><path d="M5 24c0-5 4-8 9-8s9 3 9 8"/></svg><div class="card-name" data-i18n="area3.name">Laboral</div><p class="card-desc" data-i18n="area3.desc">Relaciones individuales y colectivas de trabajo, negociación sindical, conflictos laborales y reestructuraciones de personal.</p></div>
-    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#1a4fa3" stroke-width="1.5"><path d="M5 6h18v16H5z"/><path d="M10 6V4h8v2M9 13h10M9 17h6"/></svg><div class="card-name" data-i18n="area4.name">Societario</div><p class="card-desc" data-i18n="area4.desc">Constitución y gobierno corporativo, fusiones y adquisiciones, due diligence, acuerdos de accionistas y transformaciones societarias.</p></div>
-    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#1a4fa3" stroke-width="1.5"><path d="M4 20 Q10 8 14 12 Q18 16 24 4"/><circle cx="14" cy="12" r="2" fill="#1a4fa3"/><path d="M6 23h16"/></svg><div class="card-name" data-i18n="area5.name">Aerocomercial</div><p class="card-desc" data-i18n="area5.desc">Derecho aeronáutico, contratos de aviación, regulación de aerolíneas, seguros aéreos y representación ante la ANAC.</p></div>
-    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#1a4fa3" stroke-width="1.5"><rect x="4" y="8" width="20" height="14" rx="2"/><path d="M10 8V6a4 4 0 018 0v2"/><circle cx="14" cy="15" r="2"/></svg><div class="card-name" data-i18n="area6.name">Penal Económico</div><p class="card-desc" data-i18n="area6.desc">Defensa penal en delitos económicos, lavado de activos, fraudes, corrupción corporativa y compliance penal preventivo.</p></div>
+    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#9b4a1e" stroke-width="1.5"><rect x="3" y="3" width="22" height="22" rx="2"/><path d="M8 10h12M8 14h8M8 18h10"/></svg><div class="card-name" data-i18n="area1.name">Liquidación de Impuestos</div><p class="card-desc" data-i18n="area1.desc">Liquidación mensual y anual de IVA, Ganancias, Ingresos Brutos, Bienes Personales, retenciones y percepciones. Presentación ante AFIP y organismos provinciales.</p></div>
+    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#9b4a1e" stroke-width="1.5"><path d="M5 22V8l9-5 9 5v14"/><rect x="10" y="14" width="8" height="8"/><path d="M14 14v8"/></svg><div class="card-name" data-i18n="area2.name">Estados Contables</div><p class="card-desc" data-i18n="area2.desc">Preparación de estados contables anuales e intermedios bajo normas NIIF y normas contables profesionales argentinas. Memoria y anexos complementarios.</p></div>
+    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#9b4a1e" stroke-width="1.5"><circle cx="14" cy="14" r="10"/><path d="M14 8v6l4 2"/></svg><div class="card-name" data-i18n="area3.name">Auditoría Contable</div><p class="card-desc" data-i18n="area3.desc">Auditoría de estados financieros, revisiones limitadas, procedimientos acordados y due diligence contable para operaciones de compraventa de empresas.</p></div>
+    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#9b4a1e" stroke-width="1.5"><path d="M4 20 Q10 6 14 14 Q18 22 24 8"/><path d="M4 24h20"/></svg><div class="card-name" data-i18n="area4.name">Planificación Impositiva</div><p class="card-desc" data-i18n="area4.desc">Estructuración fiscal de operaciones, análisis de carga tributaria, reorganizaciones empresariales y planificación de precios de transferencia para grupos multinacionales.</p></div>
+    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#9b4a1e" stroke-width="1.5"><rect x="4" y="6" width="20" height="16" rx="2"/><path d="M4 11h20M9 6V4M19 6V4"/></svg><div class="card-name" data-i18n="area5.name">Liquidación de Sueldos</div><p class="card-desc" data-i18n="area5.desc">Liquidación de haberes, cargas sociales, aportes y contribuciones. Presentación de declaraciones juradas ante AFIP y organismos sindicales. Certificados laborales.</p></div>
+    <div class="card"><svg class="card-icon" viewBox="0 0 28 28" fill="none" stroke="#9b4a1e" stroke-width="1.5"><path d="M14 3L3 9v10l11 6 11-6V9z"/><path d="M14 3v22M3 9l11 6 11-6"/></svg><div class="card-name" data-i18n="area6.name">Contabilidad Internacional</div><p class="card-desc" data-i18n="area6.desc">Asesoramiento contable para empresas con operaciones en el exterior. Consolidación de estados financieros, conversión de moneda y cumplimiento de normas NIIF.</p></div>
   </div>
 </section>
+
 <section class="equipo" id="equipo">
   <div class="equipo-header">
-    <div class="label" data-i18n="team.label">Equipo</div>
-    <h2 class="section-title" data-i18n="team.title">Nuestro equipo</h2>
-    <p style="color:var(--gray);font-size:0.95rem;margin-top:0.5rem;max-width:520px" data-i18n="team.sub">Un equipo multidisciplinario de abogados y contadores públicos con formación de excelencia y amplia trayectoria en sus respectivas especialidades.</p>
+    <div class="label" data-i18n="team.label">Nuestros contadores</div>
+    <h2 class="section-title" data-i18n="team.title">El equipo</h2>
+    <p style="color:var(--gray);font-size:0.95rem;margin-top:0.5rem;max-width:520px;" data-i18n="team.sub">Contadores públicos matriculados con especialización en impuestos, auditoría y contabilidad internacional, en permanente coordinación con el equipo legal del estudio.</p>
   </div>
   <div class="grid-team">
-    <div class="member"><div class="avatar" style="background:var(--p)">P</div><div class="member-name">Pantarotto</div><div class="member-role" data-i18n="team.partner">Socio</div><div class="member-spec" data-i18n="team.spec1">Área Tributaria · Penal Económico · Aduanero</div></div>
-    <div class="member"><div class="avatar" style="background:#2a5298">L</div><div class="member-name">Lértora</div><div class="member-role" data-i18n="team.partner">Socio</div><div class="member-spec" data-i18n="team.spec1">Área Tributaria · Penal Económico · Aduanero</div></div>
-    <div class="member"><div class="avatar" style="background:var(--dark2)">B</div><div class="member-name">Bardagí</div><div class="member-role" data-i18n="team.partner">Socio</div><div class="member-spec" data-i18n="team.spec2">Área Aerocomercial · Administrativo Regulatorio</div></div>
-    <div class="member-cta"><div style="font-size:2rem;color:var(--gray-line);margin-bottom:1rem">+</div><p data-i18n="team.cta">Equipo completo de asociados y contadores públicos especializados</p><a href="https://pl-abogados.com/integrantes/" target="_blank" class="link-arr" data-i18n="team.ctaLink">Ver todos →</a></div>
+    <div class="member"><div class="avatar" style="background:var(--p)">CP</div><div class="member-name" data-i18n="team.role1name">Contador Público</div><div class="member-role" data-i18n="team.role1">Responsable del Área</div><div class="member-spec" data-i18n="team.spec1">Impuestos · Auditoría · Estados Contables</div></div>
+    <div class="member"><div class="avatar" style="background:var(--dark2)">CP</div><div class="member-name" data-i18n="team.role2name">Contador Público</div><div class="member-role" data-i18n="team.role2">Especialista Impositivo</div><div class="member-spec" data-i18n="team.spec2">Planificación Fiscal · Precios de Transferencia</div></div>
+    <div class="member-cta"><div style="font-size:2rem;color:var(--gray-line);margin-bottom:1rem">+</div><p data-i18n="team.cta">Equipo completo de contadores y auxiliares especializados por sector</p><a href="https://pl-abogados.com/integrantes/" target="_blank" class="link-arr" data-i18n="team.ctaLink">Ver todos →</a></div>
   </div>
 </section>
+
 <section class="insights" id="insights">
   <div class="insights-header">
-    <div><div class="label" data-i18n="news.label">Publicaciones</div><h2 class="section-title" data-i18n="news.title">Novedades</h2></div>
+    <div><div class="label" data-i18n="news.label">Novedades contables</div><h2 class="section-title" data-i18n="news.title">Actualidad impositiva</h2></div>
     <a href="https://pl-abogados.com/home/insights-2/" target="_blank" class="link-arr" data-i18n="news.all">Ver todos →</a>
   </div>
   <div class="grid-insights">
-    <div class="insight featured"><div class="insight-tag" data-i18n="news1.tag">Impuestos · Penal Económico</div><div class="insight-title" data-i18n="news1.title">Acuerdo FATCA: intercambio automático de información financiera entre Argentina y Estados Unidos</div><p class="insight-excerpt" data-i18n="news1.excerpt">El acuerdo firmado en diciembre de 2022 establece el intercambio anual automático de datos entre la AFIP y el IRS, con consecuencias directas para contribuyentes con activos en ambas jurisdicciones.</p><div class="insight-date" data-i18n="news1.date">Septiembre 2024</div></div>
-    <div class="insight"><div class="insight-tag" data-i18n="news2.tag">Derecho Aerocomercial</div><div class="insight-title" data-i18n="news2.title">Resolución 516/ANAC/2024: nuevo límite de edad para pilotos</div><p class="insight-excerpt" data-i18n="news2.excerpt">La ANAC modificó el Art. 61.3(h) de las RAAC, elevando la edad máxima permitida para pilotos en actividad comercial.</p><div class="insight-date" data-i18n="news2.date">Noviembre 2024</div></div>
+    <div class="insight featured"><div class="insight-tag" data-i18n="news1.tag">Impuestos · AFIP</div><div class="insight-title" data-i18n="news1.title">Acuerdo FATCA: impacto contable e impositivo para contribuyentes argentinos con activos en Estados Unidos</div><p class="insight-excerpt" data-i18n="news1.excerpt">El intercambio automático de información financiera entre la AFIP y el IRS implica nuevas obligaciones de declaración y exposición patrimonial para personas físicas y jurídicas con cuentas o activos en el exterior.</p><div class="insight-date" data-i18n="news1.date">Septiembre 2024</div></div>
+    <div class="insight"><div class="insight-tag" data-i18n="news2.tag">Normativa Contable</div><div class="insight-title" data-i18n="news2.title">Actualizaciones en normas contables profesionales: impacto en la preparación de estados financieros</div><p class="insight-excerpt" data-i18n="news2.excerpt">Las modificaciones recientes en las RT de la FACPCE introducen nuevos criterios de medición y exposición que afectan a empresas de todos los sectores.</p><div class="insight-date" data-i18n="news2.date">Octubre 2024</div></div>
   </div>
 </section>
+
 <section class="contacto" id="contacto">
   <div class="contacto-top">
     <div class="contacto-top-inner">
       <div>
         <div class="label" style="color:var(--p)" data-i18n="contact.label">Contacto</div>
-        <h2 class="section-title" style="color:var(--black)"><span data-i18n="contact.title">Hablemos de</span> <span style="color:var(--p-light)" data-i18n="contact.titleAccent">su caso</span></h2>
-        <p style="color:var(--gray);font-size:0.95rem;margin-top:0.5rem;max-width:420px;line-height:1.75" data-i18n="contact.desc">Le ofrecemos una consulta inicial para evaluar su situación. Nuestro equipo le responderá dentro de las 24 horas hábiles.</p>
+        <h2 class="section-title" style="color:var(--black)"><span data-i18n="contact.title">Hablemos de</span> <span style="color:var(--p-light)" data-i18n="contact.titleAccent">su situación</span></h2>
+        <p style="color:var(--gray);font-size:0.95rem;margin-top:0.5rem;max-width:420px;line-height:1.75" data-i18n="contact.desc">Nuestro equipo contable le brinda una consulta inicial para evaluar sus necesidades y proponer el servicio más adecuado. Le responderemos dentro de las 24 horas hábiles.</p>
       </div>
       <div class="contacto-data">
         <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 2a6 6 0 016 6c0 4-6 10-6 10S4 12 4 8a6 6 0 016-6z"/><circle cx="10" cy="8" r="2"/></svg></div><div><div class="cdata-label" data-i18n="contact.addr">Dirección</div><div class="cdata-val">Av. Corrientes 1464, Piso 16 Of. 1605<br>C1042 · Ciudad Autónoma de Buenos Aires</div></div></div>
-        <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="16" height="12" rx="2"/><path d="M2 7l8 5 8-5"/></svg></div><div><div class="cdata-label" data-i18n="contact.email">Email</div><div class="cdata-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6a0905041e0b091e052a1a06470b08050d0b0e051944090507">[email&#160;protected]</a></div></div></div>
+        <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="16" height="12" rx="2"/><path d="M2 7l8 5 8-5"/></svg></div><div><div class="cdata-label" data-i18n="contact.email">Email</div><div class="cdata-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="afccc0c1dbcecdc3caefdfc382cecdc0c8cecbc0dc81ccc0c2">[email&#160;protected]</a></div></div></div>
         <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 2"/></svg></div><div><div class="cdata-label" data-i18n="contact.hours">Horario</div><div class="cdata-val" data-i18n="contact.hoursVal">Lunes a viernes, 9:00 – 18:00 hs.</div></div></div>
         <div class="cdata-item"><div class="cdata-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M2 10h16M10 2a14 14 0 010 16M10 2a14 14 0 000 16"/></svg></div><div><div class="cdata-label" data-i18n="contact.offices">Sedes</div><div class="cdata-val">Buenos Aires · EEUU · Uruguay</div></div></div>
       </div>
@@ -403,7 +441,7 @@ footer .footer-social a { color: var(--gray) !important; border-color: var(--gra
   </div>
   <div class="contacto-bottom">
     <div class="contacto-map">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.9973518279826!2d-58.390031323855155!3d-34.60422847295404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccac1942fc08d%3A0x90e50a4d7964f611!2sPantarotto%20L%C3%A9rtora%20%26%20Asocs!5e0!3m2!1ses-419!2sar!4v1775170188725!5m2!1ses-419!2sar" width="100%" height="100%" style="border:0;min-height:480px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.9973518279826!2d-58.390031323855155!3d-34.60422847295404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccac1942fc08d%3A0x90e50a4d7964f611!2sPantarotto%20L%C3%A9rtora%20%26%20Asocs!5e0!3m2!1ses-419!2sar!4v1775170188725!5m2!1ses-419!2sar" width="100%" height="100%" style="border:0;min-height:480px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <form class="contacto-form-new" onsubmit="handleForm(event)">
       <div class="form-row">
@@ -414,19 +452,29 @@ footer .footer-social a { color: var(--gray) !important; border-color: var(--gra
         <div class="form-group"><label>Email</label><input type="email" placeholder="su@email.com"></div>
         <div class="form-group"><label data-i18n="form.phone">Teléfono</label><input type="tel" placeholder="+54 11 0000-0000"></div>
       </div>
-      <div class="form-group"><label data-i18n="form.area">Área de consulta</label>
-        <select><option value="" disabled selected data-i18n="form.areaSelect">Seleccione un área</option><option data-i18n="area1.name">Tributario</option><option data-i18n="area2.name">Aduanero</option><option data-i18n="area3.name">Laboral</option><option data-i18n="area4.name">Societario</option><option data-i18n="area5.name">Aerocomercial</option><option data-i18n="area6.name">Penal Económico</option><option data-i18n="form.other">Otro</option></select>
+      <div class="form-group"><label data-i18n="form.area">Servicio requerido</label>
+        <select>
+          <option value="" disabled selected data-i18n="form.areaSelect">Seleccione un servicio</option>
+          <option data-i18n="area1.name">Liquidación de Impuestos</option>
+          <option data-i18n="area2.name">Estados Contables</option>
+          <option data-i18n="area3.name">Auditoría Contable</option>
+          <option data-i18n="area4.name">Planificación Impositiva</option>
+          <option data-i18n="area5.name">Liquidación de Sueldos</option>
+          <option data-i18n="area6.name">Contabilidad Internacional</option>
+          <option data-i18n="form.other">Otro</option>
+        </select>
       </div>
-      <div class="form-group"><label data-i18n="form.message">Mensaje</label><textarea data-i18n-placeholder="form.messagePh" placeholder="Describa brevemente su consulta…"></textarea></div>
+      <div class="form-group"><label data-i18n="form.message">Mensaje</label><textarea data-i18n-placeholder="form.messagePh" placeholder="Describa brevemente su consulta o necesidad…"></textarea></div>
       <button type="submit" class="btn-submit" data-i18n="form.submit">Enviar consulta</button>
     </form>
   </div>
 </section>
+
 <footer>
   <div class="footer-top">
-    <div><div class="footer-logo">PL<span>B</span> & Asocs.</div><p class="footer-tagline" data-i18n="footer.tagline">Pantarotto Lértora Bardagí & Asociados — Abogados & Contadores Públicos. Buenos Aires, Argentina.</p></div>
-    <div class="footer-col"><h4 data-i18n="footer.col1">El estudio</h4><ul><li><a href="#nosotros" data-i18n="footer.about">Quiénes somos</a></li><li><a href="#equipo" data-i18n="nav.team">Equipo</a></li><li><a href="contable.html" data-i18n="nav.accounting">Área Contable</a></li><li><a href="https://pl-abogados.com/integrantes/" target="_blank" data-i18n="footer.correspondents">Corresponsales</a></li></ul></div>
-    <div class="footer-col"><h4 data-i18n="footer.col2">Práctica</h4><ul><li><a href="#areas" data-i18n="area1.name">Tributario</a></li><li><a href="#areas" data-i18n="area2.name">Aduanero</a></li><li><a href="#areas" data-i18n="area3.name">Laboral</a></li><li><a href="#areas" data-i18n="area4.name">Societario</a></li><li><a href="#areas" data-i18n="area5.name">Aerocomercial</a></li></ul></div>
+    <div><div class="footer-logo">PL<span>B</span> & Asocs.</div><p class="footer-tagline" data-i18n="footer.tagline">Pantarotto Lértora Bardagí & Asociados — Área Contable. Buenos Aires, Argentina.</p></div>
+    <div class="footer-col"><h4 data-i18n="footer.col1">El área</h4><ul><li><a href="#nosotros" data-i18n="footer.about">Quiénes somos</a></li><li><a href="#equipo" data-i18n="nav.team">Equipo</a></li><li><a href="plb_abogados.html" data-i18n="nav.legal">Estudio Jurídico</a></li><li><a href="https://pl-abogados.com/integrantes/" target="_blank" data-i18n="footer.correspondents">Corresponsales</a></li></ul></div>
+    <div class="footer-col"><h4 data-i18n="footer.col2">Servicios</h4><ul><li><a href="#areas" data-i18n="area1.name">Liquidación de Impuestos</a></li><li><a href="#areas" data-i18n="area2.name">Estados Contables</a></li><li><a href="#areas" data-i18n="area3.name">Auditoría</a></li><li><a href="#areas" data-i18n="area4.name">Planificación</a></li><li><a href="#areas" data-i18n="area5.name">Sueldos</a></li></ul></div>
     <div class="footer-col"><h4 data-i18n="footer.col3">Legal</h4><ul><li><a href="#" data-i18n="footer.privacy">Política de privacidad</a></li><li><a href="#" data-i18n="footer.terms">Términos de uso</a></li><li><a href="#">Disclaimer</a></li><li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li></ul></div>
   </div>
   <div class="footer-bottom">
@@ -434,18 +482,200 @@ footer .footer-social a { color: var(--gray) !important; border-color: var(--gra
     <div class="footer-social"><a href="https://www.linkedin.com/company/pl-abogados/" target="_blank">in</a><a href="#">𝕏</a></div>
   </div>
 </footer>
+
 <script>
-var i18n={es:{"nav.about":"Nosotros","nav.areas":"Áreas","nav.team":"Equipo","nav.news":"Novedades","nav.accounting":"Área Contable","nav.contact":"Contacto","hero.tag":"Abogados · Buenos Aires","hero.title":"Derecho empresarial con 20 años de trayectoria","hero.sub":"Estudio integral con sede en Buenos Aires y corresponsales en Estados Unidos y Uruguay. Especializados en derecho tributario, aduanero, societario, laboral y aerocomercial.","hero.cta1":"Consultar ahora","hero.cta2":"Ver áreas de práctica","hero.stat1":"Años de experiencia","hero.stat2":"Áreas de práctica","hero.stat3":"Países de operación","about.label":"El estudio","about.title":"Soluciones jurídicas integrales para el mundo de los negocios","about.p1":"Pantarotto Lértora Bardagí & Asocs. es un estudio integral de abogados y contadores públicos con sede en la Ciudad de Buenos Aires, con más de 20 años de trayectoria en el asesoramiento a empresas nacionales e internacionales.","about.p2":"Nuestra práctica se centra en derecho económico empresarial, penal aduanero y tributario, societario, laboral, inversiones e impuestos, con especial desarrollo en las industrias de aviación aerocomercial, seguros, fintech e inmobiliaria.","about.p3":"Contamos con corresponsales en Estados Unidos y Uruguay, lo que nos permite acompañar a nuestros clientes en operaciones transfronterizas con la misma profundidad de análisis que en el mercado local.","about.hl1t":"Años de trayectoria","about.hl1p":"Más de dos décadas acompañando a empresas en sus decisiones jurídicas más relevantes.","about.hl2t":"Países de operación","about.hl2p":"Argentina, Estados Unidos y Uruguay, con red de corresponsales activos en cada jurisdicción.","about.hl3t":"Áreas especializadas","about.hl3p":"Práctica profunda en tributario, aduanero, laboral, societario y aerocomercial.","areas.label":"Práctica profesional","areas.title":"Áreas de práctica","areas.sub":"Asesoramiento especializado en las principales ramas del derecho corporativo y contencioso.","area1.name":"Tributario","area1.desc":"Planificación fiscal, litigios ante el fisco, precios de transferencia, tributario internacional y reestructuraciones impositivas.","area2.name":"Aduanero","area2.desc":"Penal aduanero, comercio exterior, importación y exportación, infracciones y representación ante la AFIP-DGA.","area3.name":"Laboral","area3.desc":"Relaciones individuales y colectivas de trabajo, negociación sindical, conflictos laborales y reestructuraciones de personal.","area4.name":"Societario","area4.desc":"Constitución y gobierno corporativo, fusiones y adquisiciones, due diligence, acuerdos de accionistas y transformaciones societarias.","area5.name":"Aerocomercial","area5.desc":"Derecho aeronáutico, contratos de aviación, regulación de aerolíneas, seguros aéreos y representación ante la ANAC.","area6.name":"Penal Económico","area6.desc":"Defensa penal en delitos económicos, lavado de activos, fraudes, corrupción corporativa y compliance penal preventivo.","team.label":"Equipo","team.title":"Nuestro equipo","team.sub":"Un equipo multidisciplinario de abogados y contadores públicos con formación de excelencia y amplia trayectoria en sus respectivas especialidades.","team.partner":"Socio","team.spec1":"Área Tributaria · Penal Económico · Aduanero","team.spec2":"Área Aerocomercial · Administrativo Regulatorio","team.cta":"Equipo completo de asociados y contadores públicos especializados","team.ctaLink":"Ver todos →","news.label":"Publicaciones","news.title":"Novedades","news.all":"Ver todos →","news1.tag":"Impuestos · Penal Económico","news1.title":"Acuerdo FATCA: intercambio automático de información financiera entre Argentina y Estados Unidos","news1.excerpt":"El acuerdo firmado en diciembre de 2022 establece el intercambio anual automático de datos entre la AFIP y el IRS, con consecuencias directas para contribuyentes con activos en ambas jurisdicciones.","news1.date":"Septiembre 2024","news2.tag":"Derecho Aerocomercial","news2.title":"Resolución 516/ANAC/2024: nuevo límite de edad para pilotos","news2.excerpt":"La ANAC modificó el Art. 61.3(h) de las RAAC, elevando la edad máxima permitida para pilotos en actividad comercial.","news2.date":"Noviembre 2024","contact.label":"Contacto","contact.title":"Hablemos de","contact.titleAccent":"su caso","contact.desc":"Le ofrecemos una consulta inicial para evaluar su situación. Nuestro equipo le responderá dentro de las 24 horas hábiles.","contact.addr":"Dirección","contact.email":"Email","contact.hours":"Horario","contact.hoursVal":"Lunes a viernes, 9:00 – 18:00 hs.","contact.offices":"Sedes","form.name":"Nombre","form.namePh":"Nombre completo","form.company":"Empresa","form.companyPh":"Empresa u organización","form.phone":"Teléfono","form.area":"Área de consulta","form.areaSelect":"Seleccione un área","form.other":"Otro","form.message":"Mensaje","form.messagePh":"Describa brevemente su consulta...","form.submit":"Enviar consulta","footer.tagline":"Pantarotto Lértora Bardagí & Asociados — Abogados & Contadores Públicos. Buenos Aires, Argentina.","footer.col1":"El estudio","footer.about":"Quiénes somos","footer.correspondents":"Corresponsales","footer.col2":"Práctica","footer.col3":"Legal","footer.privacy":"Política de privacidad","footer.terms":"Términos de uso","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Todos los derechos reservados."},en:{"nav.about":"About","nav.areas":"Practice Areas","nav.team":"Team","nav.news":"News","nav.accounting":"Accounting Division","nav.contact":"Contact","hero.tag":"Lawyers · Buenos Aires","hero.title":"Business law with 20 years of experience","hero.sub":"Full-service firm based in Buenos Aires with correspondents in the United States and Uruguay. Specialized in tax, customs, corporate, labor and aviation law.","hero.cta1":"Get in touch","hero.cta2":"Explore practice areas","hero.stat1":"Years of experience","hero.stat2":"Practice areas","hero.stat3":"Countries of operation","about.label":"The firm","about.title":"Comprehensive legal solutions for the business world","about.p1":"Pantarotto Lértora Bardagí & Asocs. is a full-service law and accounting firm based in Buenos Aires, with over 20 years of experience advising domestic and international companies.","about.p2":"Our practice focuses on business economic law, criminal customs and tax law, corporate law, labor law, investments and taxes, with particular expertise in commercial aviation, insurance, fintech and real estate.","about.p3":"We have correspondents in the United States and Uruguay, allowing us to support clients in cross-border transactions with the same depth of analysis as in the local market.","about.hl1t":"Years of experience","about.hl1p":"Over two decades advising companies on their most significant legal decisions.","about.hl2t":"Countries of operation","about.hl2p":"Argentina, United States and Uruguay, with an active network of correspondents in each jurisdiction.","about.hl3t":"Specialized practice areas","about.hl3p":"Deep expertise in tax, customs, labor, corporate and aviation law.","areas.label":"Professional practice","areas.title":"Practice areas","areas.sub":"Specialized advice across the main areas of corporate and litigation law.","area1.name":"Tax Law","area1.desc":"Tax planning, tax litigation, transfer pricing, international taxation and corporate restructuring.","area2.name":"Customs Law","area2.desc":"Criminal customs law, foreign trade, import and export operations, violations and representation before customs authorities.","area3.name":"Labor Law","area3.desc":"Individual and collective labor relations, union negotiations, labor disputes and workforce restructuring.","area4.name":"Corporate Law","area4.desc":"Corporate governance, mergers and acquisitions, due diligence, shareholder agreements and corporate transformations.","area5.name":"Aviation Law","area5.desc":"Aeronautical law, aviation contracts, airline regulation, aviation insurance and representation before the ANAC.","area6.name":"White-Collar Crime","area6.desc":"Criminal defense in economic crimes, money laundering, fraud, corporate corruption and preventive criminal compliance.","team.label":"Team","team.title":"Our team","team.sub":"A multidisciplinary team of lawyers and certified public accountants with outstanding training and extensive experience in their respective fields.","team.partner":"Partner","team.spec1":"Tax Law · White-Collar Crime · Customs","team.spec2":"Aviation Law · Administrative & Regulatory","team.cta":"Full team of associates and specialized certified public accountants","team.ctaLink":"View all →","news.label":"Publications","news.title":"News","news.all":"View all →","news1.tag":"Taxes · White-Collar Crime","news1.title":"FATCA Agreement: automatic exchange of financial information between Argentina and the United States","news1.excerpt":"The agreement signed in December 2022 establishes the annual automatic exchange of data between AFIP and the IRS, with direct consequences for taxpayers with assets in both jurisdictions.","news1.date":"September 2024","news2.tag":"Aviation Law","news2.title":"Resolution 516/ANAC/2024: new age limit for pilots","news2.excerpt":"The ANAC amended Art. 61.3(h) of the RAAC, raising the maximum permitted age for pilots in commercial operations.","news2.date":"November 2024","contact.label":"Contact","contact.title":"Let's talk about","contact.titleAccent":"your case","contact.desc":"We offer a free initial consultation to assess your situation. Our team will respond within 24 business hours.","contact.addr":"Address","contact.email":"Email","contact.hours":"Hours","contact.hoursVal":"Monday to Friday, 9:00 AM – 6:00 PM","contact.offices":"Offices","form.name":"Name","form.namePh":"Full name","form.company":"Company","form.companyPh":"Company or organization","form.phone":"Phone","form.area":"Practice area","form.areaSelect":"Select an area","form.other":"Other","form.message":"Message","form.messagePh":"Briefly describe your inquiry...","form.submit":"Send inquiry","footer.tagline":"Pantarotto Lértora Bardagí & Associates — Lawyers & Certified Public Accountants. Buenos Aires, Argentina.","footer.col1":"The firm","footer.about":"About us","footer.correspondents":"Correspondents","footer.col2":"Practice","footer.col3":"Legal","footer.privacy":"Privacy policy","footer.terms":"Terms of use","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. All rights reserved."},pt:{"nav.about":"Sobre nós","nav.areas":"Áreas","nav.team":"Equipe","nav.news":"Notícias","nav.accounting":"Área Contábil","nav.contact":"Contato","hero.tag":"Advogados · Buenos Aires","hero.title":"Direito empresarial com 20 anos de trajetória","hero.sub":"Escritório integral com sede em Buenos Aires e correspondentes nos Estados Unidos e Uruguai. Especializados em direito tributário, aduaneiro, societário, trabalhista e aeronáutico.","hero.cta1":"Consultar agora","hero.cta2":"Ver áreas de atuação","hero.stat1":"Anos de experiência","hero.stat2":"Áreas de atuação","hero.stat3":"Países de operação","about.label":"O escritório","about.title":"Soluções jurídicas integrais para o mundo dos negócios","about.p1":"Pantarotto Lértora Bardagí & Asocs. é um escritório integral de advogados e contadores com sede em Buenos Aires, com mais de 20 anos de trajetória.","about.p2":"Nossa prática centra-se no direito econômico empresarial, societário, trabalhista, investimentos e impostos.","about.p3":"Contamos com correspondentes nos Estados Unidos e Uruguai para operações transfronteiriças.","about.hl1t":"Anos de trajetória","about.hl1p":"Mais de duas décadas acompanhando empresas em suas decisões jurídicas.","about.hl2t":"Países de operação","about.hl2p":"Argentina, Estados Unidos e Uruguai, com correspondentes ativos.","about.hl3t":"Áreas especializadas","about.hl3p":"Prática profunda em tributário, aduaneiro, trabalhista, societário e aeronáutico.","areas.label":"Prática profissional","areas.title":"Áreas de atuação","areas.sub":"Assessoramento especializado nas principais ramas do direito corporativo.","area1.name":"Direito Tributário","area1.desc":"Planejamento fiscal, litígios fiscais, preços de transferência e tributário internacional.","area2.name":"Direito Aduaneiro","area2.desc":"Penal aduaneiro, comércio exterior, importação e exportação.","area3.name":"Direito Trabalhista","area3.desc":"Relações de trabalho, negociação sindical e conflitos trabalhistas.","area4.name":"Direito Societário","area4.desc":"Governança corporativa, fusões e aquisições, due diligence.","area5.name":"Direito Aeronáutico","area5.desc":"Direito aeronáutico, contratos de aviação e regulação de companhias aéreas.","area6.name":"Direito Penal Econômico","area6.desc":"Defesa penal em crimes econômicos, lavagem de dinheiro e fraudes.","team.label":"Equipe","team.title":"Nossa equipe","team.sub":"Uma equipe multidisciplinar de advogados e contadores com formação de excelência.","team.partner":"Sócio","team.spec1":"Área Tributária · Penal Econômico · Aduaneiro","team.spec2":"Área Aeronáutica · Administrativo Regulatório","team.cta":"Equipe completa de associados especializados","team.ctaLink":"Ver todos →","news.label":"Publicações","news.title":"Notícias","news.all":"Ver todos →","news1.tag":"Impostos · Penal Econômico","news1.title":"Acordo FATCA: intercâmbio automático de informações financeiras entre Argentina e EUA","news1.excerpt":"O acordo estabelece o intercâmbio automático de dados entre a AFIP e o IRS.","news1.date":"Setembro 2024","news2.tag":"Direito Aeronáutico","news2.title":"Resolução 516/ANAC/2024: novo limite de idade para pilotos","news2.excerpt":"A ANAC modificou o Art. 61.3(h) das RAAC, elevando a idade máxima para pilotos.","news2.date":"Novembro 2024","contact.label":"Contato","contact.title":"Vamos falar sobre","contact.titleAccent":"o seu caso","contact.desc":"Oferecemos uma consulta inicial para avaliar sua situação.","contact.addr":"Endereço","contact.email":"E-mail","contact.hours":"Horário","contact.hoursVal":"Segunda a sexta, 9h – 18h","contact.offices":"Escritórios","form.name":"Nome","form.namePh":"Nome completo","form.company":"Empresa","form.companyPh":"Empresa ou organização","form.phone":"Telefone","form.area":"Área de consulta","form.areaSelect":"Selecione uma área","form.other":"Outro","form.message":"Mensagem","form.messagePh":"Descreva brevemente sua consulta...","form.submit":"Enviar consulta","footer.tagline":"Pantarotto Lértora Bardagí & Associados — Advogados & Contadores. Buenos Aires, Argentina.","footer.col1":"O escritório","footer.about":"Quem somos","footer.correspondents":"Correspondentes","footer.col2":"Prática","footer.col3":"Legal","footer.privacy":"Política de privacidade","footer.terms":"Termos de uso","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Todos os direitos reservados."},fr:{"nav.about":"À propos","nav.areas":"Domaines","nav.team":"Équipe","nav.news":"Actualités","nav.accounting":"Division Comptable","nav.contact":"Contact","hero.tag":"Avocats · Buenos Aires","hero.title":"Droit des affaires avec 20 ans d'expérience","hero.sub":"Cabinet intégré basé à Buenos Aires avec des correspondants aux États-Unis et en Uruguay.","hero.cta1":"Nous contacter","hero.cta2":"Voir nos domaines","hero.stat1":"Années d'expérience","hero.stat2":"Domaines","hero.stat3":"Pays","about.label":"Le cabinet","about.title":"Solutions juridiques complètes pour le monde des affaires","about.p1":"Pantarotto Lértora Bardagí & Asocs. est un cabinet intégré d'avocats basé à Buenos Aires, avec plus de 20 ans d'expérience.","about.p2":"Notre pratique couvre le droit fiscal, douanier, des sociétés et du travail.","about.p3":"Nous avons des correspondants aux États-Unis et en Uruguay.","about.hl1t":"Années d'expérience","about.hl1p":"Plus de deux décennies d'expertise juridique.","about.hl2t":"Pays","about.hl2p":"Argentine, États-Unis et Uruguay.","about.hl3t":"Domaines spécialisés","about.hl3p":"Expertise en droit fiscal, douanier, du travail et des sociétés.","areas.label":"Pratique","areas.title":"Domaines de pratique","areas.sub":"Conseil spécialisé dans les principales branches du droit des affaires.","area1.name":"Droit Fiscal","area1.desc":"Planification fiscale, litiges fiscaux et fiscalité internationale.","area2.name":"Droit Douanier","area2.desc":"Droit pénal douanier, commerce extérieur et import-export.","area3.name":"Droit du Travail","area3.desc":"Relations de travail et négociation syndicale.","area4.name":"Droit des Sociétés","area4.desc":"Gouvernance, fusions-acquisitions et due diligence.","area5.name":"Droit Aérien","area5.desc":"Droit aéronautique et contrats d'aviation.","area6.name":"Droit Pénal des Affaires","area6.desc":"Défense en criminalité économique et compliance.","team.label":"Équipe","team.title":"Notre équipe","team.sub":"Avocats et experts-comptables avec une large expérience.","team.partner":"Associé","team.spec1":"Droit Fiscal · Pénal · Douanier","team.spec2":"Droit Aérien · Administratif","team.cta":"Équipe complète de spécialistes","team.ctaLink":"Voir tous →","news.label":"Publications","news.title":"Actualités","news.all":"Voir tout →","news1.tag":"Fiscalité","news1.title":"Accord FATCA: échange automatique d'informations entre l'Argentine et les États-Unis","news1.excerpt":"L'accord établit l'échange automatique de données entre l'AFIP et l'IRS.","news1.date":"Septembre 2024","news2.tag":"Droit Aérien","news2.title":"Résolution 516/ANAC/2024: nouvelle limite d'âge pour les pilotes","news2.excerpt":"L'ANAC a modifié la limite d'âge maximale pour les pilotes commerciaux.","news2.date":"Novembre 2024","contact.label":"Contact","contact.title":"Parlons de","contact.titleAccent":"votre dossier","contact.desc":"Consultation initiale gratuite. Notre équipe vous répond sous 24h.","contact.addr":"Adresse","contact.email":"E-mail","contact.hours":"Horaires","contact.hoursVal":"Lundi–vendredi, 9h–18h","contact.offices":"Bureaux","form.name":"Nom","form.namePh":"Nom complet","form.company":"Entreprise","form.companyPh":"Entreprise ou organisation","form.phone":"Téléphone","form.area":"Domaine","form.areaSelect":"Sélectionnez","form.other":"Autre","form.message":"Message","form.messagePh":"Votre demande...","form.submit":"Envoyer","footer.tagline":"Pantarotto Lértora Bardagí & Associés. Buenos Aires, Argentine.","footer.col1":"Le cabinet","footer.about":"Qui sommes-nous","footer.correspondents":"Correspondants","footer.col2":"Pratique","footer.col3":"Juridique","footer.privacy":"Confidentialité","footer.terms":"Conditions","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Tous droits réservés."},it:{"nav.about":"Chi siamo","nav.areas":"Aree","nav.team":"Team","nav.news":"Novità","nav.accounting":"Area Contabile","nav.contact":"Contatto","hero.tag":"Avvocati · Buenos Aires","hero.title":"Diritto d'impresa con 20 anni di esperienza","hero.sub":"Studio integrato con sede a Buenos Aires e corrispondenti negli Stati Uniti e Uruguay.","hero.cta1":"Contattaci","hero.cta2":"Scopri le aree","hero.stat1":"Anni di esperienza","hero.stat2":"Aree","hero.stat3":"Paesi","about.label":"Lo studio","about.title":"Soluzioni legali per il mondo degli affari","about.p1":"Pantarotto Lértora Bardagí & Asocs. è uno studio integrato con sede a Buenos Aires, con oltre 20 anni di esperienza.","about.p2":"La nostra pratica copre diritto tributario, doganale, societario e del lavoro.","about.p3":"Corrispondenti negli Stati Uniti e Uruguay per operazioni transfrontaliere.","about.hl1t":"Anni di esperienza","about.hl1p":"Oltre due decenni di consulenza legale.","about.hl2t":"Paesi","about.hl2p":"Argentina, Stati Uniti e Uruguay.","about.hl3t":"Aree specializzate","about.hl3p":"Expertise in tributario, doganale, societario e aeronautico.","areas.label":"Pratica","areas.title":"Aree di pratica","areas.sub":"Consulenza nelle principali branche del diritto.","area1.name":"Diritto Tributario","area1.desc":"Pianificazione fiscale e fiscalità internazionale.","area2.name":"Diritto Doganale","area2.desc":"Diritto penale doganale e commercio estero.","area3.name":"Diritto del Lavoro","area3.desc":"Rapporti di lavoro e contrattazione sindacale.","area4.name":"Diritto Societario","area4.desc":"Corporate governance e fusioni e acquisizioni.","area5.name":"Diritto Aeronautico","area5.desc":"Diritto aeronautico e contratti di aviazione.","area6.name":"Diritto Penale d'Impresa","area6.desc":"Difesa penale in crimini economici e compliance.","team.label":"Team","team.title":"Il nostro team","team.sub":"Avvocati e commercialisti con ampia esperienza.","team.partner":"Socio","team.spec1":"Tributario · Penale · Doganale","team.spec2":"Aeronautico · Amministrativo","team.cta":"Team completo di specialisti","team.ctaLink":"Vedi tutti →","news.label":"Pubblicazioni","news.title":"Novità","news.all":"Vedi tutto →","news1.tag":"Fisco · Penale","news1.title":"Accordo FATCA: scambio automatico tra Argentina e USA","news1.excerpt":"L'accordo stabilisce lo scambio automatico tra AFIP e IRS.","news1.date":"Settembre 2024","news2.tag":"Aeronautico","news2.title":"Risoluzione 516/ANAC/2024: nuovo limite età piloti","news2.excerpt":"L'ANAC ha modificato il limite di età per i piloti commerciali.","news2.date":"Novembre 2024","contact.label":"Contatto","contact.title":"Parliamo del","contact.titleAccent":"vostro caso","contact.desc":"Consulenza iniziale gratuita. Risposta entro 24 ore.","contact.addr":"Indirizzo","contact.email":"E-mail","contact.hours":"Orario","contact.hoursVal":"Lunedì–venerdì, 9–18","contact.offices":"Uffici","form.name":"Nome","form.namePh":"Nome completo","form.company":"Azienda","form.companyPh":"Azienda o organizzazione","form.phone":"Telefono","form.area":"Area","form.areaSelect":"Seleziona","form.other":"Altro","form.message":"Messaggio","form.messagePh":"La tua richiesta...","form.submit":"Invia","footer.tagline":"Pantarotto Lértora Bardagí & Associati. Buenos Aires, Argentina.","footer.col1":"Lo studio","footer.about":"Chi siamo","footer.correspondents":"Corrispondenti","footer.col2":"Pratica","footer.col3":"Legale","footer.privacy":"Privacy","footer.terms":"Termini","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Tutti i diritti riservati."},de:{"nav.about":"Über uns","nav.areas":"Fachgebiete","nav.team":"Team","nav.news":"Neuigkeiten","nav.accounting":"Buchhaltung","nav.contact":"Kontakt","hero.tag":"Rechtsanwälte · Buenos Aires","hero.title":"Wirtschaftsrecht mit 20 Jahren Erfahrung","hero.sub":"Vollservice-Kanzlei mit Sitz in Buenos Aires und Korrespondenten in den USA und Uruguay.","hero.cta1":"Jetzt anfragen","hero.cta2":"Fachgebiete entdecken","hero.stat1":"Jahre Erfahrung","hero.stat2":"Fachgebiete","hero.stat3":"Länder","about.label":"Die Kanzlei","about.title":"Umfassende Rechtslösungen für die Geschäftswelt","about.p1":"Pantarotto Lértora Bardagí & Asocs. ist eine Kanzlei mit Sitz in Buenos Aires und über 20 Jahren Erfahrung.","about.p2":"Unsere Praxis umfasst Steuer-, Zoll-, Gesellschafts- und Arbeitsrecht.","about.p3":"Korrespondenten in den USA und Uruguay für grenzüberschreitende Mandate.","about.hl1t":"Jahre Erfahrung","about.hl1p":"Über zwei Jahrzehnte rechtliche Beratung.","about.hl2t":"Länder","about.hl2p":"Argentinien, USA und Uruguay.","about.hl3t":"Fachgebiete","about.hl3p":"Expertise in Steuer-, Zoll-, Arbeits- und Gesellschaftsrecht.","areas.label":"Fachgebiete","areas.title":"Rechtsbereiche","areas.sub":"Spezialisierte Beratung in den wichtigsten Rechtsbereichen.","area1.name":"Steuerrecht","area1.desc":"Steuerplanung, Steuerstreitigkeiten und internationales Steuerrecht.","area2.name":"Zollrecht","area2.desc":"Zollstrafrecht und Außenhandel.","area3.name":"Arbeitsrecht","area3.desc":"Arbeitsverhältnisse und Tarifverhandlungen.","area4.name":"Gesellschaftsrecht","area4.desc":"Corporate Governance, M&A und Due Diligence.","area5.name":"Luftfahrtrecht","area5.desc":"Luftfahrtrecht und Luftfahrtverträge.","area6.name":"Wirtschaftsstrafrecht","area6.desc":"Verteidigung bei Wirtschaftsdelikten und Compliance.","team.label":"Team","team.title":"Unser Team","team.sub":"Rechtsanwälte und Wirtschaftsprüfer mit umfangreicher Erfahrung.","team.partner":"Partner","team.spec1":"Steuerrecht · Strafrecht · Zoll","team.spec2":"Luftfahrtrecht · Verwaltungsrecht","team.cta":"Vollständiges Team aus Spezialisten","team.ctaLink":"Alle anzeigen →","news.label":"Publikationen","news.title":"Neuigkeiten","news.all":"Alle anzeigen →","news1.tag":"Steuern · Strafrecht","news1.title":"FATCA-Abkommen: Informationsaustausch zwischen Argentinien und den USA","news1.excerpt":"Das Abkommen legt den automatischen Datenaustausch zwischen AFIP und IRS fest.","news1.date":"September 2024","news2.tag":"Luftfahrtrecht","news2.title":"Resolution 516/ANAC/2024: neues Höchstalter für Piloten","news2.excerpt":"Die ANAC hat die Altersgrenze für Piloten im kommerziellen Betrieb angehoben.","news2.date":"November 2024","contact.label":"Kontakt","contact.title":"Sprechen wir über","contact.titleAccent":"Ihren Fall","contact.desc":"Kostenlose Erstberatung. Antwort innerhalb von 24 Stunden.","contact.addr":"Adresse","contact.email":"E-Mail","contact.hours":"Öffnungszeiten","contact.hoursVal":"Mo–Fr, 9:00–18:00","contact.offices":"Büros","form.name":"Name","form.namePh":"Vollständiger Name","form.company":"Unternehmen","form.companyPh":"Unternehmen oder Organisation","form.phone":"Telefon","form.area":"Bereich","form.areaSelect":"Auswählen","form.other":"Sonstiges","form.message":"Nachricht","form.messagePh":"Ihre Anfrage...","form.submit":"Senden","footer.tagline":"Pantarotto Lértora Bardagí & Partner. Buenos Aires, Argentinien.","footer.col1":"Die Kanzlei","footer.about":"Über uns","footer.correspondents":"Korrespondenten","footer.col2":"Praxis","footer.col3":"Rechtliches","footer.privacy":"Datenschutz","footer.terms":"Nutzungsbedingungen","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Alle Rechte vorbehalten."}};
-var currentLang='es';
-function toggleLang(e){e.stopPropagation();var m=document.getElementById('langMenu');if(m)m.classList.toggle('open')}
-function setLang(lang){if(!i18n[lang])return;currentLang=lang;var t=i18n[lang];var els=document.querySelectorAll('[data-i18n]');for(var i=0;i<els.length;i++){var key=els[i].getAttribute('data-i18n');if(t[key]!==undefined)els[i].innerHTML=t[key]}var phs=document.querySelectorAll('[data-i18n-placeholder]');for(var j=0;j<phs.length;j++){var k=phs[j].getAttribute('data-i18n-placeholder');if(t[k]!==undefined)phs[j].placeholder=t[k]}var items=document.querySelectorAll('.lang-menu a');var langs=['es','en','pt','fr','it','de'];for(var m=0;m<items.length;m++){items[m].className=langs[m]===lang?'active':''}var menu=document.getElementById('langMenu');if(menu)menu.classList.remove('open');document.documentElement.lang=lang;var links=document.querySelectorAll('a[href*="contable.html"]');for(var n=0;n<links.length;n++){links[n].href='contable.html?lang='+lang}try{var url=new URL(window.location.href);url.searchParams.set('lang',lang);window.history.replaceState({},'',url.toString())}catch(err){}}
-document.addEventListener('click',function(){var m=document.getElementById('langMenu');if(m)m.classList.remove('open')});
-function openMob(){var m=document.getElementById('mob');if(m){m.classList.add('open');document.body.style.overflow='hidden'}}
-function closeMob(){var m=document.getElementById('mob');if(m){m.classList.remove('open');document.body.style.overflow=''}}
-function handleForm(e){e.preventDefault();var b=e.target.querySelector('.btn-submit');var msgs={es:'Consulta enviada OK',en:'Inquiry sent OK',pt:'Consulta enviada OK',fr:'Demande envoyée OK',it:'Richiesta inviata OK',de:'Anfrage gesendet OK'};b.textContent=msgs[currentLang]||msgs.es;b.style.background='#2a6b2a';b.disabled=true}
-window.addEventListener('scroll',function(){var nav=document.getElementById('mainNav');if(nav)nav.classList.toggle('scrolled',window.scrollY>60);});
-window.addEventListener('DOMContentLoaded',function(){try{var p=new URLSearchParams(window.location.search);var l=p.get('lang');if(l&&i18n[l])setLang(l);}catch(e){}});
-window.addEventListener('DOMContentLoaded',function(){try{var p=new URLSearchParams(window.location.search);var l=p.get('lang');if(l&&i18n[l])setLang(l);}catch(e){}});
+var i18n = {
+  es: {
+    "nav.about":"Nosotros","nav.areas":"Servicios","nav.team":"Equipo","nav.news":"Novedades","nav.legal":"Estudio Jurídico","nav.contact":"Contacto","nav.division":"Área Contable",
+    "hero.tag":"Contadores Públicos · Buenos Aires","hero.title":"Contabilidad e impuestos con 20 años de trayectoria","hero.sub":"Área contable integral con sede en Buenos Aires y corresponsales en Estados Unidos y Uruguay. Especializados en liquidación de impuestos, auditoría, estados contables y planificación fiscal.","hero.cta1":"Consultar ahora","hero.cta2":"Ver servicios","hero.stat1":"Años de experiencia","hero.stat2":"Servicios contables","hero.stat3":"Países de operación",
+    "about.label":"El área contable","about.title":"Contabilidad y asesoramiento impositivo de excelencia","about.p1":"El área contable de Pantarotto Lértora Bardagí & Asocs. brinda servicios integrales de contabilidad, auditoría e impuestos para empresas de todos los tamaños y sectores, tanto en el mercado local como en operaciones internacionales.","about.p2":"Trabajamos en estrecha coordinación con el área legal del estudio, lo que nos permite ofrecer soluciones unificadas ante situaciones que requieren abordaje jurídico y contable simultáneo.","about.p3":"Nuestro equipo de contadores públicos matriculados actualiza permanentemente su formación en materia impositiva y regulatoria para garantizar el más alto estándar de calidad.",
+    "about.hl1t":"Años de trayectoria","about.hl1p":"Experiencia consolidada en contabilidad empresarial y asesoramiento impositivo en Argentina y el exterior.","about.hl2t":"Jurisdicciones activas","about.hl2p":"Argentina, Estados Unidos y Uruguay, con corresponsales activos para atender operaciones transfronterizas.","about.hl3t":"Integración con el área legal","about.hl3p":"Coordinación permanente entre contadores y abogados para soluciones jurídico-contables unificadas.",
+    "areas.label":"Servicios contables","areas.title":"Áreas de servicio","areas.sub":"Cobertura completa de las necesidades contables e impositivas de su empresa.",
+    "area1.name":"Liquidación de Impuestos","area1.desc":"Liquidación mensual y anual de IVA, Ganancias, Ingresos Brutos, Bienes Personales, retenciones y percepciones. Presentación ante AFIP y organismos provinciales.",
+    "area2.name":"Estados Contables","area2.desc":"Preparación de estados contables anuales e intermedios bajo normas NIIF y normas contables profesionales argentinas. Memoria y anexos complementarios.",
+    "area3.name":"Auditoría Contable","area3.desc":"Auditoría de estados financieros, revisiones limitadas, procedimientos acordados y due diligence contable para operaciones de compraventa de empresas.",
+    "area4.name":"Planificación Impositiva","area4.desc":"Estructuración fiscal de operaciones, análisis de carga tributaria, reorganizaciones empresariales y planificación de precios de transferencia para grupos multinacionales.",
+    "area5.name":"Liquidación de Sueldos","area5.desc":"Liquidación de haberes, cargas sociales, aportes y contribuciones. Presentación de declaraciones juradas ante AFIP y organismos sindicales. Certificados laborales.",
+    "area6.name":"Contabilidad Internacional","area6.desc":"Asesoramiento contable para empresas con operaciones en el exterior. Consolidación de estados financieros, conversión de moneda y cumplimiento de normas NIIF.",
+    "team.label":"Nuestros contadores","team.title":"El equipo","team.sub":"Contadores públicos matriculados con especialización en impuestos, auditoría y contabilidad internacional, en permanente coordinación con el equipo legal del estudio.",
+    "team.role1name":"Contador Público","team.role1":"Responsable del Área","team.spec1":"Impuestos · Auditoría · Estados Contables","team.role2name":"Contador Público","team.role2":"Especialista Impositivo","team.spec2":"Planificación Fiscal · Precios de Transferencia",
+    "team.cta":"Equipo completo de contadores y auxiliares especializados por sector","team.ctaLink":"Ver todos →",
+    "news.label":"Novedades contables","news.title":"Actualidad impositiva","news.all":"Ver todos →",
+    "news1.tag":"Impuestos · AFIP","news1.title":"Acuerdo FATCA: impacto contable e impositivo para contribuyentes argentinos con activos en Estados Unidos","news1.excerpt":"El intercambio automático de información financiera entre la AFIP y el IRS implica nuevas obligaciones de declaración y exposición patrimonial para personas físicas y jurídicas con cuentas o activos en el exterior.","news1.date":"Septiembre 2024",
+    "news2.tag":"Normativa Contable","news2.title":"Actualizaciones en normas contables profesionales: impacto en la preparación de estados financieros","news2.excerpt":"Las modificaciones recientes en las RT de la FACPCE introducen nuevos criterios de medición y exposición que afectan a empresas de todos los sectores.","news2.date":"Octubre 2024",
+    "contact.label":"Contacto","contact.title":"Hablemos de","contact.titleAccent":"su situación","contact.desc":"Nuestro equipo contable le brinda una consulta inicial para evaluar sus necesidades y proponer el servicio más adecuado. Le responderemos dentro de las 24 horas hábiles.",
+    "contact.addr":"Dirección","contact.email":"Email","contact.hours":"Horario","contact.hoursVal":"Lunes a viernes, 9:00 – 18:00 hs.","contact.offices":"Sedes",
+    "form.name":"Nombre","form.namePh":"Nombre completo","form.company":"Empresa","form.companyPh":"Empresa u organización","form.phone":"Teléfono","form.area":"Servicio requerido","form.areaSelect":"Seleccione un servicio","form.other":"Otro","form.message":"Mensaje","form.messagePh":"Describa brevemente su consulta o necesidad...","form.submit":"Enviar consulta",
+    "footer.tagline":"Pantarotto Lértora Bardagí & Asociados — Área Contable. Buenos Aires, Argentina.","footer.col1":"El área","footer.about":"Quiénes somos","footer.correspondents":"Corresponsales","footer.col2":"Servicios","footer.col3":"Legal","footer.privacy":"Política de privacidad","footer.terms":"Términos de uso","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Todos los derechos reservados."
+  },
+  en: {
+    "nav.about":"About","nav.areas":"Services","nav.team":"Team","nav.news":"News","nav.legal":"Law Firm","nav.contact":"Contact","nav.division":"Accounting Division",
+    "hero.tag":"Certified Public Accountants · Buenos Aires","hero.title":"Accounting & tax services with 20 years of experience","hero.sub":"Full-service accounting division based in Buenos Aires with correspondents in the United States and Uruguay. Specialized in tax compliance, audit, financial statements and tax planning.","hero.cta1":"Get in touch","hero.cta2":"View services","hero.stat1":"Years of experience","hero.stat2":"Accounting services","hero.stat3":"Countries of operation",
+    "about.label":"The accounting division","about.title":"Accounting and tax advisory of excellence","about.p1":"The accounting division of Pantarotto Lértora Bardagí & Asocs. provides comprehensive accounting, audit and tax services for companies of all sizes and industries, both locally and internationally.","about.p2":"We work in close coordination with the firm's legal department, allowing us to offer unified solutions when situations require simultaneous legal and accounting advice.","about.p3":"Our team of certified public accountants continuously updates their expertise in tax law and regulatory matters to ensure the highest quality in every service.",
+    "about.hl1t":"Years of experience","about.hl1p":"Consolidated expertise in business accounting and tax advisory in Argentina and abroad.","about.hl2t":"Active jurisdictions","about.hl2p":"Argentina, United States and Uruguay, with active correspondents for cross-border operations.","about.hl3t":"Integration with the legal team","about.hl3p":"Permanent coordination between accountants and lawyers for unified legal-accounting solutions.",
+    "areas.label":"Accounting services","areas.title":"Service areas","areas.sub":"Complete coverage of your company's accounting and tax needs.",
+    "area1.name":"Tax Compliance","area1.desc":"Monthly and annual filing of VAT, income tax, gross receipts, personal assets, withholdings and collections. Submissions to AFIP and provincial agencies.",
+    "area2.name":"Financial Statements","area2.desc":"Preparation of annual and interim financial statements under IFRS and Argentine professional accounting standards. Management report and supplementary schedules.",
+    "area3.name":"Accounting Audit","area3.desc":"Financial statement audits, limited reviews, agreed-upon procedures and accounting due diligence for business acquisitions.",
+    "area4.name":"Tax Planning","area4.desc":"Fiscal structuring of transactions, tax burden analysis, corporate reorganizations and transfer pricing planning for multinational groups.",
+    "area5.name":"Payroll Processing","area5.desc":"Payroll calculation, social security contributions, employer contributions. Filing of tax returns with AFIP and labor unions. Employment certificates.",
+    "area6.name":"International Accounting","area6.desc":"Accounting advisory for companies with foreign operations. Consolidation of financial statements, currency conversion and IFRS compliance.",
+    "team.label":"Our accountants","team.title":"The team","team.sub":"Certified public accountants specialized in taxation, audit and international accounting, in permanent coordination with the firm's legal team.",
+    "team.role1name":"Certified Public Accountant","team.role1":"Division Head","team.spec1":"Taxation · Audit · Financial Statements","team.role2name":"Certified Public Accountant","team.role2":"Tax Specialist","team.spec2":"Tax Planning · Transfer Pricing",
+    "team.cta":"Full team of accountants and specialists by sector","team.ctaLink":"View all →",
+    "news.label":"Accounting news","news.title":"Tax updates","news.all":"View all →",
+    "news1.tag":"Taxes · AFIP","news1.title":"FATCA Agreement: accounting and tax impact for Argentine taxpayers with assets in the United States","news1.excerpt":"The automatic exchange of financial information between AFIP and the IRS creates new reporting and disclosure obligations for individuals and entities with accounts or assets abroad.","news1.date":"September 2024",
+    "news2.tag":"Accounting Standards","news2.title":"Updates to professional accounting standards: impact on financial statement preparation","news2.excerpt":"Recent amendments to the FACPCE's technical standards introduce new measurement and disclosure criteria affecting companies across all sectors.","news2.date":"October 2024",
+    "contact.label":"Contact","contact.title":"Let's talk about","contact.titleAccent":"your situation","contact.desc":"Our accounting team offers a free initial consultation to assess your needs. We will respond within 24 business hours.",
+    "contact.addr":"Address","contact.email":"Email","contact.hours":"Hours","contact.hoursVal":"Monday to Friday, 9:00 AM – 6:00 PM","contact.offices":"Offices",
+    "form.name":"Name","form.namePh":"Full name","form.company":"Company","form.companyPh":"Company or organization","form.phone":"Phone","form.area":"Service required","form.areaSelect":"Select a service","form.other":"Other","form.message":"Message","form.messagePh":"Briefly describe your inquiry...","form.submit":"Send inquiry",
+    "footer.tagline":"Pantarotto Lértora Bardagí & Associates — Accounting Division. Buenos Aires, Argentina.","footer.col1":"The division","footer.about":"About us","footer.correspondents":"Correspondents","footer.col2":"Services","footer.col3":"Legal","footer.privacy":"Privacy policy","footer.terms":"Terms of use","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. All rights reserved."
+  },
+  pt: {
+    "nav.about":"Sobre nós","nav.areas":"Serviços","nav.team":"Equipe","nav.news":"Notícias","nav.legal":"Escritório Jurídico","nav.contact":"Contato","nav.division":"Área Contábil",
+    "hero.tag":"Contadores Públicos · Buenos Aires","hero.title":"Contabilidade e impostos com 20 anos de trajetória","hero.sub":"Área contábil integral com sede em Buenos Aires e correspondentes nos Estados Unidos e Uruguai.","hero.cta1":"Consultar agora","hero.cta2":"Ver serviços","hero.stat1":"Anos de experiência","hero.stat2":"Serviços contábeis","hero.stat3":"Países de operação",
+    "about.label":"A área contábil","about.title":"Contabilidade e assessoria fiscal de excelência","about.p1":"A área contábil da Pantarotto Lértora Bardagí & Asocs. presta serviços integrais de contabilidade, auditoria e impostos para empresas de todos os tamanhos e setores.","about.p2":"Trabalhamos em estreita coordenação com a área jurídica do escritório para oferecer soluções unificadas.","about.p3":"Nossa equipe de contadores atualiza permanentemente sua formação para garantir o mais alto padrão de qualidade.",
+    "about.hl1t":"Anos de trajetória","about.hl1p":"Experiência consolidada em contabilidade empresarial e assessoria fiscal na Argentina e no exterior.","about.hl2t":"Jurisdições ativas","about.hl2p":"Argentina, Estados Unidos e Uruguai, com correspondentes ativos para operações transfronteiriças.","about.hl3t":"Integração com a área jurídica","about.hl3p":"Coordenação permanente entre contadores e advogados para soluções jurídico-contábeis unificadas.",
+    "areas.label":"Serviços contábeis","areas.title":"Áreas de serviço","areas.sub":"Cobertura completa das necessidades contábeis e fiscais da sua empresa.",
+    "area1.name":"Apuração de Impostos","area1.desc":"Apuração mensal e anual de IVA, imposto de renda, receita bruta, retenções. Envio à AFIP e organismos provinciais.","area2.name":"Demonstrações Financeiras","area2.desc":"Elaboração de demonstrações financeiras anuais e intermediárias sob normas IFRS e normas contábeis argentinas.","area3.name":"Auditoria Contábil","area3.desc":"Auditoria de demonstrações financeiras, revisões limitadas e due diligence contábil para operações de aquisição.","area4.name":"Planejamento Tributário","area4.desc":"Estruturação fiscal de operações, análise de carga tributária e planejamento de preços de transferência.","area5.name":"Folha de Pagamento","area5.desc":"Cálculo de salários, encargos sociais e contribuições. Envio de declarações à AFIP e organismos sindicais.","area6.name":"Contabilidade Internacional","area6.desc":"Assessoria contábil para empresas com operações no exterior. Consolidação de demonstrações e conformidade IFRS.",
+    "team.label":"Nossos contadores","team.title":"A equipe","team.sub":"Contadores especializados em impostos, auditoria e contabilidade internacional, em coordenação com a equipe jurídica.","team.role1name":"Contador Público","team.role1":"Responsável pela Área","team.spec1":"Impostos · Auditoria · Demonstrações","team.role2name":"Contador Público","team.role2":"Especialista Fiscal","team.spec2":"Planejamento Fiscal · Preços de Transferência",
+    "team.cta":"Equipe completa de contadores especializados por setor","team.ctaLink":"Ver todos →",
+    "news.label":"Novidades contábeis","news.title":"Atualidade fiscal","news.all":"Ver todos →",
+    "news1.tag":"Impostos · AFIP","news1.title":"Acordo FATCA: impacto contábil e fiscal para contribuintes argentinos com ativos nos Estados Unidos","news1.excerpt":"O intercâmbio automático de informações financeiras entre a AFIP e o IRS implica novas obrigações de declaração.","news1.date":"Setembro 2024",
+    "news2.tag":"Normas Contábeis","news2.title":"Atualizações nas normas contábeis profissionais: impacto na elaboração de demonstrações financeiras","news2.excerpt":"As modificações nas RT da FACPCE introduzem novos critérios de mensuração e divulgação.","news2.date":"Outubro 2024",
+    "contact.label":"Contato","contact.title":"Vamos falar sobre","contact.titleAccent":"a sua situação","contact.desc":"Nossa equipe contábil oferece uma consulta inicial gratuita. Responderemos dentro de 24 horas úteis.",
+    "contact.addr":"Endereço","contact.email":"E-mail","contact.hours":"Horário","contact.hoursVal":"Segunda a sexta, 9h – 18h","contact.offices":"Escritórios",
+    "form.name":"Nome","form.namePh":"Nome completo","form.company":"Empresa","form.companyPh":"Empresa ou organização","form.phone":"Telefone","form.area":"Serviço requerido","form.areaSelect":"Selecione um serviço","form.other":"Outro","form.message":"Mensagem","form.messagePh":"Descreva brevemente sua consulta...","form.submit":"Enviar consulta",
+    "footer.tagline":"Pantarotto Lértora Bardagí & Associados — Área Contábil. Buenos Aires, Argentina.","footer.col1":"A área","footer.about":"Quem somos","footer.correspondents":"Correspondentes","footer.col2":"Serviços","footer.col3":"Legal","footer.privacy":"Política de privacidade","footer.terms":"Termos de uso","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Todos os direitos reservados."
+  },
+  fr: {
+    "nav.about":"À propos","nav.areas":"Services","nav.team":"Équipe","nav.news":"Actualités","nav.legal":"Cabinet Juridique","nav.contact":"Contact","nav.division":"Division Comptable",
+    "hero.tag":"Experts-Comptables · Buenos Aires","hero.title":"Comptabilité et fiscalité avec 20 ans d'expérience","hero.sub":"Division comptable intégrale basée à Buenos Aires avec des correspondants aux États-Unis et en Uruguay.","hero.cta1":"Nous contacter","hero.cta2":"Voir les services","hero.stat1":"Années d'expérience","hero.stat2":"Services comptables","hero.stat3":"Pays d'opération",
+    "about.label":"La division comptable","about.title":"Comptabilité et conseil fiscal d'excellence","about.p1":"La division comptable de Pantarotto Lértora Bardagí & Asocs. fournit des services complets de comptabilité, d'audit et de fiscalité pour des entreprises de toutes tailles.","about.p2":"Nous travaillons en étroite coordination avec le département juridique pour offrir des solutions unifiées.","about.p3":"Notre équipe d'experts-comptables met continuellement à jour ses connaissances pour garantir le plus haut niveau de qualité.",
+    "about.hl1t":"Années d'expérience","about.hl1p":"Expertise consolidée en comptabilité d'entreprise et conseil fiscal en Argentine et à l'étranger.","about.hl2t":"Juridictions actives","about.hl2p":"Argentine, États-Unis et Uruguay, avec des correspondants actifs pour les opérations transfrontalières.","about.hl3t":"Intégration avec l'équipe juridique","about.hl3p":"Coordination permanente entre comptables et avocats pour des solutions juridico-comptables unifiées.",
+    "areas.label":"Services comptables","areas.title":"Domaines de service","areas.sub":"Couverture complète des besoins comptables et fiscaux de votre entreprise.",
+    "area1.name":"Conformité Fiscale","area1.desc":"Déclarations mensuelles et annuelles de TVA, impôt sur le revenu, taxes locales. Dépôt auprès de l'AFIP et des organismes provinciaux.","area2.name":"États Financiers","area2.desc":"Préparation d'états financiers annuels et intermédiaires selon les normes IFRS et les normes comptables argentines.","area3.name":"Audit Comptable","area3.desc":"Audit des états financiers, examens limités et due diligence comptable pour les opérations d'acquisition.","area4.name":"Planification Fiscale","area4.desc":"Structuration fiscale des opérations, analyse de la charge fiscale et planification des prix de transfert.","area5.name":"Gestion de la Paie","area5.desc":"Calcul des salaires, charges sociales et cotisations. Dépôt des déclarations auprès de l'AFIP et des syndicats.","area6.name":"Comptabilité Internationale","area6.desc":"Conseil comptable pour les entreprises ayant des opérations à l'étranger. Consolidation et conformité IFRS.",
+    "team.label":"Nos comptables","team.title":"L'équipe","team.sub":"Experts-comptables spécialisés en fiscalité, audit et comptabilité internationale, en coordination avec l'équipe juridique.","team.role1name":"Expert-Comptable","team.role1":"Responsable de la Division","team.spec1":"Fiscalité · Audit · États Financiers","team.role2name":"Expert-Comptable","team.role2":"Spécialiste Fiscal","team.spec2":"Planification Fiscale · Prix de Transfert",
+    "team.cta":"Équipe complète de comptables spécialisés par secteur","team.ctaLink":"Voir tous →",
+    "news.label":"Actualités comptables","news.title":"Actualité fiscale","news.all":"Voir tout →",
+    "news1.tag":"Fiscalité · AFIP","news1.title":"Accord FATCA : impact comptable et fiscal pour les contribuables argentins avec des actifs aux États-Unis","news1.excerpt":"L'échange automatique d'informations financières entre l'AFIP et l'IRS implique de nouvelles obligations déclaratives.","news1.date":"Septembre 2024",
+    "news2.tag":"Normes Comptables","news2.title":"Mises à jour des normes comptables professionnelles : impact sur l'établissement des états financiers","news2.excerpt":"Les récentes modifications des normes techniques de la FACPCE introduisent de nouveaux critères d'évaluation.","news2.date":"Octobre 2024",
+    "contact.label":"Contact","contact.title":"Parlons de","contact.titleAccent":"votre situation","contact.desc":"Notre équipe comptable vous offre une consultation initiale gratuite. Nous vous répondrons dans les 24 heures ouvrables.",
+    "contact.addr":"Adresse","contact.email":"E-mail","contact.hours":"Horaires","contact.hoursVal":"Lundi au vendredi, 9h – 18h","contact.offices":"Bureaux",
+    "form.name":"Nom","form.namePh":"Nom complet","form.company":"Entreprise","form.companyPh":"Entreprise ou organisation","form.phone":"Téléphone","form.area":"Service requis","form.areaSelect":"Sélectionnez un service","form.other":"Autre","form.message":"Message","form.messagePh":"Décrivez brièvement votre demande...","form.submit":"Envoyer la demande",
+    "footer.tagline":"Pantarotto Lértora Bardagí & Associés — Division Comptable. Buenos Aires, Argentine.","footer.col1":"La division","footer.about":"Qui sommes-nous","footer.correspondents":"Correspondants","footer.col2":"Services","footer.col3":"Juridique","footer.privacy":"Politique de confidentialité","footer.terms":"Conditions d'utilisation","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Tous droits réservés."
+  },
+  it: {
+    "nav.about":"Chi siamo","nav.areas":"Servizi","nav.team":"Team","nav.news":"Novità","nav.legal":"Studio Legale","nav.contact":"Contatto","nav.division":"Area Contabile",
+    "hero.tag":"Commercialisti · Buenos Aires","hero.title":"Contabilità e fiscalità con 20 anni di esperienza","hero.sub":"Area contabile integrata con sede a Buenos Aires e corrispondenti negli Stati Uniti e in Uruguay.","hero.cta1":"Contattaci ora","hero.cta2":"Scopri i servizi","hero.stat1":"Anni di esperienza","hero.stat2":"Servizi contabili","hero.stat3":"Paesi di operazione",
+    "about.label":"L'area contabile","about.title":"Contabilità e consulenza fiscale di eccellenza","about.p1":"L'area contabile di Pantarotto Lértora Bardagí & Asocs. fornisce servizi integrali di contabilità, revisione e fiscalità per aziende di tutte le dimensioni.","about.p2":"Lavoriamo in stretta coordinazione con il dipartimento legale per offrire soluzioni unificate.","about.p3":"Il nostro team di commercialisti aggiorna costantemente la propria formazione per garantire il massimo standard di qualità.",
+    "about.hl1t":"Anni di esperienza","about.hl1p":"Esperienza consolidata in contabilità aziendale e consulenza fiscale in Argentina e all'estero.","about.hl2t":"Giurisdizioni attive","about.hl2p":"Argentina, Stati Uniti e Uruguay, con corrispondenti attivi per le operazioni transfrontaliere.","about.hl3t":"Integrazione con il team legale","about.hl3p":"Coordinazione permanente tra commercialisti e avvocati per soluzioni legali-contabili unificate.",
+    "areas.label":"Servizi contabili","areas.title":"Aree di servizio","areas.sub":"Copertura completa delle esigenze contabili e fiscali della vostra azienda.",
+    "area1.name":"Adempimenti Fiscali","area1.desc":"Dichiarazioni mensili e annuali di IVA, imposte sul reddito, ritenute. Presentazione all'AFIP e agli organismi provinciali.","area2.name":"Bilanci d'Esercizio","area2.desc":"Redazione di bilanci annuali e intermediari secondo gli IFRS e i principi contabili argentini.","area3.name":"Revisione Contabile","area3.desc":"Revisione dei bilanci, esami limitati e due diligence contabile per operazioni di acquisizione.","area4.name":"Pianificazione Fiscale","area4.desc":"Strutturazione fiscale delle operazioni, analisi del carico fiscale e pianificazione dei prezzi di trasferimento.","area5.name":"Elaborazione Buste Paga","area5.desc":"Calcolo delle retribuzioni, contributi previdenziali. Presentazione delle dichiarazioni all'AFIP e agli enti sindacali.","area6.name":"Contabilità Internazionale","area6.desc":"Consulenza contabile per aziende con operazioni all'estero. Consolidamento dei bilanci e conformità IFRS.",
+    "team.label":"I nostri commercialisti","team.title":"Il team","team.sub":"Commercialisti specializzati in fiscalità, revisione e contabilità internazionale, in coordinazione con il team legale.","team.role1name":"Commercialista","team.role1":"Responsabile dell'Area","team.spec1":"Fiscalità · Revisione · Bilanci","team.role2name":"Commercialista","team.role2":"Specialista Fiscale","team.spec2":"Pianificazione Fiscale · Prezzi di Trasferimento",
+    "team.cta":"Team completo di commercialisti e specialisti per settore","team.ctaLink":"Vedi tutti →",
+    "news.label":"Novità contabili","news.title":"Aggiornamenti fiscali","news.all":"Vedi tutto →",
+    "news1.tag":"Fiscalità · AFIP","news1.title":"Accordo FATCA: impatto contabile e fiscale per i contribuenti argentini con attività negli Stati Uniti","news1.excerpt":"Lo scambio automatico di informazioni finanziarie tra l'AFIP e l'IRS implica nuovi obblighi dichiarativi.","news1.date":"Settembre 2024",
+    "news2.tag":"Principi Contabili","news2.title":"Aggiornamenti ai principi contabili professionali: impatto sulla redazione dei bilanci","news2.excerpt":"Le recenti modifiche alle norme tecniche della FACPCE introducono nuovi criteri di valutazione e presentazione.","news2.date":"Ottobre 2024",
+    "contact.label":"Contatto","contact.title":"Parliamo della","contact.titleAccent":"vostra situazione","contact.desc":"Il nostro team contabile offre una consulenza iniziale gratuita. Risponderemo entro 24 ore lavorative.",
+    "contact.addr":"Indirizzo","contact.email":"E-mail","contact.hours":"Orario","contact.hoursVal":"Lunedì–venerdì, 9:00 – 18:00","contact.offices":"Uffici",
+    "form.name":"Nome","form.namePh":"Nome completo","form.company":"Azienda","form.companyPh":"Azienda o organizzazione","form.phone":"Telefono","form.area":"Servizio richiesto","form.areaSelect":"Seleziona un servizio","form.other":"Altro","form.message":"Messaggio","form.messagePh":"Descrivi brevemente la tua richiesta...","form.submit":"Invia richiesta",
+    "footer.tagline":"Pantarotto Lértora Bardagí & Associati — Area Contabile. Buenos Aires, Argentina.","footer.col1":"L'area","footer.about":"Chi siamo","footer.correspondents":"Corrispondenti","footer.col2":"Servizi","footer.col3":"Legale","footer.privacy":"Informativa sulla privacy","footer.terms":"Termini di utilizzo","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Tutti i diritti riservati."
+  },
+  de: {
+    "nav.about":"Über uns","nav.areas":"Leistungen","nav.team":"Team","nav.news":"Neuigkeiten","nav.legal":"Rechtskanzlei","nav.contact":"Kontakt","nav.division":"Buchhaltungsabteilung",
+    "hero.tag":"Wirtschaftsprüfer · Buenos Aires","hero.title":"Buchhaltung & Steuern mit 20 Jahren Erfahrung","hero.sub":"Vollservice-Buchhaltungsabteilung mit Sitz in Buenos Aires und Korrespondenten in den USA und Uruguay.","hero.cta1":"Jetzt anfragen","hero.cta2":"Leistungen entdecken","hero.stat1":"Jahre Erfahrung","hero.stat2":"Buchhaltungsleistungen","hero.stat3":"Länder",
+    "about.label":"Die Buchhaltungsabteilung","about.title":"Buchhaltung und Steuerberatung der Spitzenklasse","about.p1":"Die Buchhaltungsabteilung von Pantarotto Lértora Bardagí & Asocs. bietet umfassende Buchhaltungs-, Prüfungs- und Steuerdienstleistungen für Unternehmen aller Größen.","about.p2":"Wir arbeiten eng mit der Rechtsabteilung zusammen, um einheitliche Lösungen anzubieten.","about.p3":"Unser Team zertifizierter Wirtschaftsprüfer aktualisiert kontinuierlich seine Fachkenntnisse für höchste Qualität.",
+    "about.hl1t":"Jahre Erfahrung","about.hl1p":"Fundierte Expertise in Unternehmensbesteuerung und Steuerberatung in Argentinien und im Ausland.","about.hl2t":"Aktive Jurisdiktionen","about.hl2p":"Argentinien, USA und Uruguay mit aktiven Korrespondenten für grenzüberschreitende Operationen.","about.hl3t":"Integration mit dem Rechtsteam","about.hl3p":"Permanente Koordination zwischen Buchhaltern und Anwälten für einheitliche Lösungen.",
+    "areas.label":"Buchhaltungsleistungen","areas.title":"Leistungsbereiche","areas.sub":"Vollständige Abdeckung der buchhalterischen und steuerlichen Bedürfnisse Ihres Unternehmens.",
+    "area1.name":"Steuererfüllung","area1.desc":"Monatliche und jährliche Erklärungen für Umsatzsteuer, Einkommensteuer und Einbehaltungen. Einreichung bei AFIP und Provinzbehörden.","area2.name":"Jahresabschlüsse","area2.desc":"Erstellung von Jahres- und Zwischenabschlüssen nach IFRS und argentinischen Rechnungslegungsstandards.","area3.name":"Wirtschaftsprüfung","area3.desc":"Abschlussprüfung, eingeschränkte Prüfungen und buchhalterische Due Diligence für Unternehmenstransaktionen.","area4.name":"Steuerplanung","area4.desc":"Steuerliche Strukturierung von Transaktionen, Steuerbelastungsanalyse und Verrechnungspreisplanung.","area5.name":"Gehaltsabrechnung","area5.desc":"Gehaltsberechnung, Sozialversicherungsbeiträge. Einreichung von Erklärungen bei AFIP und Gewerkschaften.","area6.name":"Internationale Buchhaltung","area6.desc":"Buchhaltungsberatung für Unternehmen mit Auslandsoperationen. Konsolidierung und IFRS-Compliance.",
+    "team.label":"Unsere Wirtschaftsprüfer","team.title":"Das Team","team.sub":"Zertifizierte Wirtschaftsprüfer spezialisiert auf Steuern, Prüfung und internationale Buchhaltung.","team.role1name":"Wirtschaftsprüfer","team.role1":"Abteilungsleiter","team.spec1":"Steuern · Prüfung · Jahresabschlüsse","team.role2name":"Wirtschaftsprüfer","team.role2":"Steuerspezialist","team.spec2":"Steuerplanung · Verrechnungspreise",
+    "team.cta":"Vollständiges Team aus Buchhaltern und Spezialisten nach Branche","team.ctaLink":"Alle anzeigen →",
+    "news.label":"Buchhaltungsneuigkeiten","news.title":"Steuerliche Aktualisierungen","news.all":"Alle anzeigen →",
+    "news1.tag":"Steuern · AFIP","news1.title":"FATCA-Abkommen: buchhalterische und steuerliche Auswirkungen für argentinische Steuerzahler mit Vermögen in den USA","news1.excerpt":"Der automatische Austausch von Finanzinformationen zwischen AFIP und IRS schafft neue Meldepflichten.","news1.date":"September 2024",
+    "news2.tag":"Rechnungslegungsstandards","news2.title":"Aktualisierungen der professionellen Rechnungslegungsstandards: Auswirkungen auf die Erstellung von Jahresabschlüssen","news2.excerpt":"Die jüngsten Änderungen an den technischen Normen der FACPCE führen neue Bewertungskriterien ein.","news2.date":"Oktober 2024",
+    "contact.label":"Kontakt","contact.title":"Sprechen wir über","contact.titleAccent":"Ihre Situation","contact.desc":"Unser Buchhaltungsteam bietet eine kostenlose Erstberatung. Wir antworten innerhalb von 24 Geschäftsstunden.",
+    "contact.addr":"Adresse","contact.email":"E-Mail","contact.hours":"Öffnungszeiten","contact.hoursVal":"Montag–Freitag, 9:00 – 18:00 Uhr","contact.offices":"Büros",
+    "form.name":"Name","form.namePh":"Vollständiger Name","form.company":"Unternehmen","form.companyPh":"Unternehmen oder Organisation","form.phone":"Telefon","form.area":"Gewünschter Service","form.areaSelect":"Service auswählen","form.other":"Sonstiges","form.message":"Nachricht","form.messagePh":"Beschreiben Sie kurz Ihre Anfrage...","form.submit":"Anfrage senden",
+    "footer.tagline":"Pantarotto Lértora Bardagí & Partner — Buchhaltungsabteilung. Buenos Aires, Argentinien.","footer.col1":"Die Abteilung","footer.about":"Über uns","footer.correspondents":"Korrespondenten","footer.col2":"Leistungen","footer.col3":"Rechtliches","footer.privacy":"Datenschutzrichtlinie","footer.terms":"Nutzungsbedingungen","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Alle Rechte vorbehalten."
+  }
+};
+
+var currentLang = 'es';
+
+function toggleLang(e) {
+  e.stopPropagation();
+  var m = document.getElementById('langMenu');
+  if (m) m.classList.toggle('open');
+}
+
+function setLang(lang) {
+  if (!i18n[lang]) return;
+  currentLang = lang;
+  var t = i18n[lang];
+  var els = document.querySelectorAll('[data-i18n]');
+  for (var i = 0; i < els.length; i++) {
+    var key = els[i].getAttribute('data-i18n');
+    if (t[key] !== undefined) els[i].innerHTML = t[key];
+  }
+  var phs = document.querySelectorAll('[data-i18n-placeholder]');
+  for (var j = 0; j < phs.length; j++) {
+    var k = phs[j].getAttribute('data-i18n-placeholder');
+    if (t[k] !== undefined) phs[j].placeholder = t[k];
+  }
+  var items = document.querySelectorAll('.lang-menu a');
+  var langs = ['es','en','pt','fr','it','de'];
+  for (var n = 0; n < items.length; n++) {
+    items[n].className = langs[n] === lang ? 'active' : '';
+  }
+  var m = document.getElementById('langMenu');
+  if (m) m.classList.remove('open');
+  document.documentElement.lang = lang;
+  var links = document.querySelectorAll('a[href*="plb_abogados.html"]');
+  for (var l = 0; l < links.length; l++) {
+    links[l].href = 'plb_abogados.html?lang=' + lang;
+  }
+  try {
+    var url = new URL(window.location.href);
+    url.searchParams.set('lang', lang);
+    window.history.replaceState({}, '', url.toString());
+  } catch(e) {}
+}
+
+document.addEventListener('click', function() {
+  var m = document.getElementById('langMenu');
+  if (m) m.classList.remove('open');
+});
+
+function openMob() {
+  var m = document.getElementById('mob');
+  if (m) { m.classList.add('open'); document.body.style.overflow = 'hidden'; }
+}
+function closeMob() {
+  var m = document.getElementById('mob');
+  if (m) { m.classList.remove('open'); document.body.style.overflow = ''; }
+}
+function handleForm(e) {
+  e.preventDefault();
+  var b = e.target.querySelector('.btn-submit');
+  var msgs = {es:'Consulta enviada OK',en:'Inquiry sent OK',pt:'Consulta enviada OK',fr:'Demande envoyee OK',it:'Richiesta inviata OK',de:'Anfrage gesendet OK'};
+  b.textContent = msgs[currentLang] || msgs.es;
+  b.style.background = '#2a6b2a';
+  b.disabled = true;
+}
+
+window.addEventListener('scroll', function() {
+  var nav = document.getElementById('mainNav');
+  if (nav) nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+window.addEventListener('DOMContentLoaded', function() {
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var lang = params.get('lang');
+    if (lang && i18n[lang]) setLang(lang);
+  } catch(e) {}
+});
 </script>
 </body>
 </html>
