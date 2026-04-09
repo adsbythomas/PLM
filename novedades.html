@@ -122,9 +122,9 @@ section, main { border-top: 1px solid rgba(0,0,0,0.08); }
 
   <div class="filter-bar">
     <button class="filter-btn active" onclick="filterInsights('all')">Todos</button>
-    <button class="filter-btn" onclick="filterInsights('Derecho Aerocomercial')">Aerocomercial</button>
-    <button class="filter-btn" onclick="filterInsights('Derecho Aerocomercial')">Aerocomercial</button>
-    <button class="filter-btn" onclick="filterInsights('Penal Económico')">Penal Económico</button>
+    <button class="filter-btn" data-cat="Derecho Aerocomercial" onclick="filterInsights('Derecho Aerocomercial')">Aerocomercial</button>
+    <button class="filter-btn" data-cat="Derecho Aerocomercial" onclick="filterInsights('Derecho Aerocomercial')">Aerocomercial</button>
+    <button class="filter-btn" data-cat="Penal Económico" onclick="filterInsights('Penal Económico')">Penal Económico</button>
   </div>
 
   <div class="insights-grid" id="insightsGrid"></div>
@@ -153,8 +153,13 @@ var activeFilter = 'all';
 function filterInsights(cat) {
   activeFilter = cat;
   document.querySelectorAll('.filter-btn').forEach(function(b) {
-    b.classList.toggle('active', b.textContent.trim() === (cat === 'all' ? 'Todos' : cat) || (cat === 'all' && b.textContent.trim() === 'Todos'));
+    b.classList.remove('active');
   });
+  var btns = document.querySelectorAll('.filter-btn');
+  for (var i = 0; i < btns.length; i++) {
+    if (cat === 'all' && btns[i].textContent.trim() === 'Todos') { btns[i].classList.add('active'); break; }
+    if (cat !== 'all' && btns[i].getAttribute('data-cat') === cat) { btns[i].classList.add('active'); break; }
+  }
   renderGrid();
 }
 
