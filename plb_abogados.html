@@ -367,6 +367,80 @@ footer .footer-social a { color: var(--gray) !important; border-color: var(--gra
 }
 /* Keep member avatars */
 .avatar { background: var(--p) !important; }
+
+/* ── VUELTA DE GRACIA ── */
+
+/* 1. No serif font for derecho - Arial only */
+
+/* 2. Decorative line under hero-tag */
+.hero-tag {
+  position: relative;
+  padding-bottom: 1rem !important;
+}
+.hero-tag::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: var(--p);
+}
+
+/* 3. Section numbers */
+.label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+.label::before {
+  content: attr(data-num);
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: rgba(0,0,0,0.06);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+/* 4. Card hover - title turns blue */
+.card:hover .card-name {
+  color: var(--p) !important;
+  transition: color 0.2s;
+}
+.card-name {
+  transition: color 0.2s;
+}
+
+/* 5. Avatar - outline style */
+.avatar {
+  background: transparent !important;
+  border: 2px solid var(--p) !important;
+  color: var(--p) !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+}
+.member:nth-child(3) .avatar {
+  border-color: var(--dark2) !important;
+  color: var(--dark2) !important;
+}
+
+/* 6. Full-width section dividers */
+section {
+  border-top: 1px solid rgba(0,0,0,0.08) !important;
+}
+
+/* 7. Refined nav - slimmer */
+.nav-links a {
+  letter-spacing: 0.14em !important;
+  font-size: 0.68rem !important;
+}
+
+/* 8. Highlight numbers serif */
+.hl-num, .stat-num {
+  font-size: 3.5rem !important;
+  font-weight: 700 !important;
+}
 </style>
 </head>
 <body>
@@ -456,7 +530,7 @@ footer .footer-social a { color: var(--gray) !important; border-color: var(--gra
 </section>
 <section class="equipo" id="equipo">
   <div class="equipo-header">
-    <div class="label" data-i18n="team.label">Equipo</div>
+    <div class="label" data-i18n="team.label" data-num="03">Equipo</div>
     <h2 class="section-title" data-i18n="team.title">Nuestro equipo</h2>
     <p style="color:var(--gray);font-size:0.95rem;margin-top:0.5rem;max-width:520px" data-i18n="team.sub">Un equipo multidisciplinario de abogados y contadores públicos con formación de excelencia y amplia trayectoria en sus respectivas especialidades.</p>
   </div>
@@ -469,7 +543,7 @@ footer .footer-social a { color: var(--gray) !important; border-color: var(--gra
 </section>
 <section class="insights" id="insights">
   <div class="insights-header">
-    <div><div class="label" data-i18n="news.label">Publicaciones</div><h2 class="section-title" data-i18n="news.title">Novedades</h2></div>
+    <div><div class="label" data-i18n="news.label" data-num="04">Publicaciones</div><h2 class="section-title" data-i18n="news.title">Novedades</h2></div>
     <a href="novedades.html" class="link-arr" data-i18n="news.all">Ver todos →</a>
   </div>
 
