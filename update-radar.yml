@@ -1,0 +1,37 @@
+name: Actualizar Radar Normativo
+
+on:
+  schedule:
+    # Corre 2 veces por día: 9am y 6pm hora Argentina (UTC-3)
+    - cron: '0 12 * * *'  # 9:00 AR
+    - cron: '0 21 * * *'  # 18:00 AR
+  workflow_dispatch:  # permite correr manualmente desde GitHub
+
+jobs:
+  update-radar:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Scrape Boletín Oficial
+        run: python scripts/scrape_bora.py
+
+      - name: Commit y push si hay cambios
+        run: |
+          git config user.name "PLB Bot"
+          git config user.email "bot@plb.com"
+          git add radar.json radar-contable.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: actualizar radar normativo [auto]"
+            git push
+          else
+            echo "No hay cambios en el radar"
+          fi

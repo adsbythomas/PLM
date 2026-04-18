@@ -1,0 +1,25 @@
+{
+  "updated": "2026-04-18T15:06:43.927079",
+  "items": [
+    {
+      "date": "Reciente",
+      "title": "Novedades impositivas ARCA/AFIP",
+      "desc": "Resoluciones generales y modificaciones al régimen tributario.",
+      "source": "ARCA · Boletín Oficial",
+      "url": "https://www.afip.gob.ar",
+      "categories": [
+        "tributario"
+      ]
+    },
+    {
+      "date": "Reciente",
+      "title": "Regulaciones aduaneras",
+      "desc": "Actualizaciones en materia de comercio exterior e importación.",
+      "source": "ARCA · Dirección General de Aduanas",
+      "url": "https://www.afip.gob.ar",
+      "categories": [
+        "aduanero"
+      ]
+    }
+  ]
+}

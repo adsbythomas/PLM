@@ -1,0 +1,45 @@
+{
+  "updated": "2026-04-18T15:06:43.925689",
+  "items": [
+    {
+      "date": "Reciente",
+      "title": "Actualizaciones regulatorias ANAC",
+      "desc": "Seguimiento de resoluciones y disposiciones en materia aerocomercial.",
+      "source": "ANAC · Boletín Oficial",
+      "url": "https://www.argentina.gob.ar/anac",
+      "categories": [
+        "aerocomercial"
+      ]
+    },
+    {
+      "date": "Reciente",
+      "title": "Modificaciones al régimen laboral",
+      "desc": "Últimas novedades en legislación del trabajo y convenios colectivos.",
+      "source": "Ministerio de Trabajo",
+      "url": "https://www.argentina.gob.ar/trabajo",
+      "categories": [
+        "laboral"
+      ]
+    },
+    {
+      "date": "Reciente",
+      "title": "Novedades societarias IGJ",
+      "desc": "Resoluciones y disposiciones de la Inspección General de Justicia.",
+      "source": "IGJ · Boletín Oficial",
+      "url": "https://www.argentina.gob.ar/justicia/igj",
+      "categories": [
+        "societario"
+      ]
+    },
+    {
+      "date": "Reciente",
+      "title": "Régimen penal económico",
+      "desc": "Actualizaciones en materia penal tributaria y económica.",
+      "source": "Boletín Oficial",
+      "url": "https://www.boletinoficial.gob.ar",
+      "categories": [
+        "penal_economico"
+      ]
+    }
+  ]
+}
