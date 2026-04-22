@@ -534,51 +534,7 @@ section {
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* ── DARK MODE TOGGLE ── */
-.theme-toggle {
-  background: transparent;
-  border: 1px solid var(--gray-line);
-  width: 36px;
-  height: 36px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s;
-  color: var(--dark2);
-}
-.theme-toggle:hover { border-color: var(--p); color: var(--p); }
 
-body.dark {
-  background: #1c1a18 !important;
-  color: #e8e8e8;
-}
-body.dark::before {
-  background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px) !important;
-}
-body.dark nav { background: #1c1a18 !important; border-bottom-color: #2a2620 !important; }
-body.dark .logo-abbr { color: #e8e8e8; }
-body.dark .logo-name { color: #888; }
-body.dark .logo-sep { background: #333; }
-body.dark .nav-links a { color: #aaa; }
-body.dark .hero-title, body.dark .section-title, body.dark .hero-firm,
-body.dark .card-name, body.dark .member-name, body.dark .hl-num,
-body.dark .hl-text strong, body.dark .page-title { color: #e8e8e8 !important; }
-body.dark .hero-sub, body.dark .nosotros-text p, body.dark .card-desc,
-body.dark .hl-text p, body.dark .member-spec, body.dark .member-cta p,
-body.dark .areas-sub, body.dark .cdata-val { color: #999 !important; }
-body.dark .form-group input, body.dark .form-group select, body.dark .form-group textarea {
-  background: rgba(255,255,255,0.05) !important;
-  border-color: #333 !important;
-  color: #e8e8e8 !important;
-}
-body.dark .carousel-card {
-  background: rgba(255,255,255,0.05) !important;
-  border-color: #2a2a2a !important;
-}
-body.dark .btn-ghost { border-color: #333; color: #e8e8e8; }
-body.dark .filter-btn { border-color: #333; color: #999; }
-body.dark footer, body.dark footer * { color: #e8e8e8 !important; }
 
 /* ── RADAR NORMATIVO ── */
 .radar-section { padding: 5rem 0; }
@@ -617,9 +573,6 @@ body.dark footer, body.dark footer * { color: #e8e8e8 !important; }
   color: var(--gray-light);
   margin-top: 0.4rem;
 }
-body.dark .radar-title { color: #e8e8e8; }
-body.dark .radar-desc { color: #999; }
-body.dark .radar-item { border-bottom-color: #2a2a2a; }
 
 /* ── TIMELINE ── */
 .timeline-section { padding: 5rem 0; }
@@ -668,8 +621,6 @@ body.dark .radar-item { border-bottom-color: #2a2a2a; }
 }
 .timeline-event-title { font-size: 1rem; font-weight: 700; color: var(--black); margin-bottom: 0.4rem; }
 .timeline-event-desc { font-size: 0.82rem; color: var(--gray); line-height: 1.6; }
-body.dark .timeline-event-title { color: #e8e8e8; }
-body.dark .timeline-event-desc { color: #999; }
 @media (max-width: 768px) {
   .timeline-track::before { left: 20px; }
   .timeline-item { width: 100%; left: 0 !important; padding-left: 3rem; text-align: left !important; }
@@ -726,28 +677,6 @@ body.dark .timeline-event-desc { color: #999; }
 .btn-ghost:hover { background: var(--off-white) !important; border-color: var(--p) !important; color: var(--p) !important; }
 
 /* ── Hero adaptation for dark mode (sin perder la silueta) ── */
-body.dark .hero {
-  background: linear-gradient(180deg, #28221d 0%, #1c1815 100%) !important;
-  border-bottom-color: #2a2620 !important;
-}
-body.dark .hero-render-bg {
-  background-image:
-    linear-gradient(rgba(217, 138, 92, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(217, 138, 92, 0.07) 1px, transparent 1px) !important;
-}
-body.dark .hero-building { opacity: 0.65; }
-body.dark .hero-firm { color: #ffffff !important; }
-body.dark .hero-title { color: #ffffff !important; }
-body.dark .hero-sub { color: rgba(255,255,255,0.75) !important; }
-body.dark .btn-ghost {
-  color: #ffffff !important;
-  border-color: rgba(255,255,255,0.4) !important;
-}
-body.dark .btn-ghost:hover {
-  background: rgba(255,255,255,0.08) !important;
-  border-color: #ffffff !important;
-  color: #ffffff !important;
-}
 
 /* ── Accessibility: skip-link & focus states ── */
 .skip-link {
@@ -772,11 +701,6 @@ textarea:focus-visible {
   outline-offset: 2px;
   border-radius: 2px;
 }
-body.dark a:focus-visible,
-body.dark button:focus-visible,
-body.dark input:focus-visible,
-body.dark select:focus-visible,
-body.dark textarea:focus-visible { outline-color: #d4af37; }
 .hero a:focus-visible, .hero button:focus-visible { outline-color: #d4af37; }
 
 /* ── Footer legal links ── */
@@ -887,6 +811,7 @@ body.dark textarea:focus-visible { outline-color: #d4af37; }
   <a href="#nosotros" onclick="closeMob()" data-i18n="nav.about">Nosotros</a>
   <a href="#areas" onclick="closeMob()" data-i18n="nav.areas">Servicios</a>
   <a href="#equipo" onclick="closeMob()" data-i18n="nav.team">Equipo</a>
+  <a href="#timeline" onclick="closeMob()" data-i18n="nav.history">Trayectoria</a>
   <a href="#insights" onclick="closeMob()" data-i18n="nav.news">Novedades</a>
   <a href="plb_abogados.html" style="color:var(--blue);font-weight:700" data-i18n="nav.legal">Estudio Jurídico</a>
   <a href="#contacto" onclick="closeMob()" data-i18n="nav.contact">Contacto</a>
@@ -902,13 +827,13 @@ body.dark textarea:focus-visible { outline-color: #d4af37; }
     <li><a href="#nosotros" data-i18n="nav.about">Nosotros</a></li>
     <li><a href="#areas" data-i18n="nav.areas">Servicios</a></li>
     <li><a href="#equipo" data-i18n="nav.team">Equipo</a></li>
+    <li><a href="#timeline" data-i18n="nav.history">Trayectoria</a></li>
     <li><a href="#insights" data-i18n="nav.news">Novedades</a></li>
     <li><a href="plb_abogados.html" class="btn-nav-juridico" data-i18n="nav.legal">Estudio Jurídico</a></li>
     
   </ul>
   <div style="display:flex;align-items:center;gap:0.4rem;">
   <a href="#contacto" class="btn-nav-solid" data-i18n="nav.contact">Contacto</a>
-  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Modo oscuro" id="themeBtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
   <div class="lang-wrap" id="langWrap">
     <button class="lang-btn" onclick="toggleLang(event)" aria-label="Idioma">
       <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M2 10h16M10 2a14 14 0 010 16M10 2a14 14 0 000 16"/></svg>
@@ -1235,7 +1160,7 @@ body.dark textarea:focus-visible { outline-color: #d4af37; }
 <script>
 var i18n = {
   es: {
-    "a11y.skip":"Saltar al contenido principal","nav.about":"Nosotros","nav.areas":"Servicios","nav.team":"Equipo","nav.news":"Novedades","nav.legal":"Estudio Jurídico","nav.contact":"Contacto","nav.division":"Área Contable",
+    "a11y.skip":"Saltar al contenido principal","nav.about":"Nosotros","nav.areas":"Servicios","nav.team":"Equipo","nav.history":"Trayectoria","nav.news":"Novedades","nav.legal":"Estudio Jurídico","nav.contact":"Contacto","nav.division":"Área Contable",
     "hero.tag":"Contadores Públicos · Buenos Aires","hero.title":"Contabilidad e impuestos con 20 años de trayectoria","hero.sub":"Área contable integral con sede en Buenos Aires y corresponsales en Estados Unidos y Uruguay. Especializados en liquidación de impuestos, auditoría, estados contables y planificación fiscal.","hero.cta1":"Consultar ahora","hero.cta2":"Ver servicios","hero.stat1":"Años de experiencia","hero.stat2":"Servicios contables","hero.stat3":"Países de operación",
     "about.label":"El área contable","about.title":"Contabilidad y asesoramiento impositivo de excelencia","about.p1":"El área contable de Pantarotto Lértora Bardagí & Asocs. brinda servicios integrales de contabilidad, auditoría e impuestos para empresas de todos los tamaños y sectores, tanto en el mercado local como en operaciones internacionales.","about.p2":"Trabajamos en estrecha coordinación con el área legal del estudio, lo que nos permite ofrecer soluciones unificadas ante situaciones que requieren abordaje jurídico y contable simultáneo.","about.p3":"Nuestro equipo de contadores públicos matriculados actualiza permanentemente su formación en materia impositiva y regulatoria para garantizar el más alto estándar de calidad.",
     "about.hl1t":"Años de trayectoria","about.hl1p":"Experiencia consolidada en contabilidad empresarial y asesoramiento impositivo en Argentina y el exterior.","about.hl2t":"Jurisdicciones activas","about.hl2p":"Argentina, Estados Unidos y Uruguay, con corresponsales activos para atender operaciones transfronterizas.","about.hl3t":"Integración con el área legal","about.hl3p":"Coordinación permanente entre contadores y abogados para soluciones jurídico-contables unificadas.",
@@ -1258,7 +1183,7 @@ var i18n = {
     "footer.tagline":"Pantarotto Lértora Bardagí & Asociados — Área Contable. Buenos Aires, Argentina.","footer.col1":"El área","footer.about":"Quiénes somos","footer.correspondents":"Corresponsales","footer.col2":"Servicios","footer.col3":"Legal","footer.privacy":"Política de privacidad","footer.terms":"Términos de uso","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Todos los derechos reservados."
   },
   en: {
-    "a11y.skip":"Skip to main content","nav.about":"About","nav.areas":"Services","nav.team":"Team","nav.news":"News","nav.legal":"Law Firm","nav.contact":"Contact","nav.division":"Accounting Division",
+    "a11y.skip":"Skip to main content","nav.about":"About","nav.areas":"Services","nav.team":"Team","nav.history":"History","nav.news":"News","nav.legal":"Law Firm","nav.contact":"Contact","nav.division":"Accounting Division",
     "hero.tag":"Certified Public Accountants · Buenos Aires","hero.title":"Accounting & tax services with 20 years of experience","hero.sub":"Full-service accounting division based in Buenos Aires with correspondents in the United States and Uruguay. Specialized in tax compliance, audit, financial statements and tax planning.","hero.cta1":"Get in touch","hero.cta2":"View services","hero.stat1":"Years of experience","hero.stat2":"Accounting services","hero.stat3":"Countries of operation",
     "about.label":"The accounting division","about.title":"Accounting and tax advisory of excellence","about.p1":"The accounting division of Pantarotto Lértora Bardagí & Asocs. provides comprehensive accounting, audit and tax services for companies of all sizes and industries, both locally and internationally.","about.p2":"We work in close coordination with the firm's legal department, allowing us to offer unified solutions when situations require simultaneous legal and accounting advice.","about.p3":"Our team of certified public accountants continuously updates their expertise in tax law and regulatory matters to ensure the highest quality in every service.",
     "about.hl1t":"Years of experience","about.hl1p":"Consolidated expertise in business accounting and tax advisory in Argentina and abroad.","about.hl2t":"Active jurisdictions","about.hl2p":"Argentina, United States and Uruguay, with active correspondents for cross-border operations.","about.hl3t":"Integration with the legal team","about.hl3p":"Permanent coordination between accountants and lawyers for unified legal-accounting solutions.",
@@ -1281,7 +1206,7 @@ var i18n = {
     "footer.tagline":"Pantarotto Lértora Bardagí & Associates — Accounting Division. Buenos Aires, Argentina.","footer.col1":"The division","footer.about":"About us","footer.correspondents":"Correspondents","footer.col2":"Services","footer.col3":"Legal","footer.privacy":"Privacy policy","footer.terms":"Terms of use","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. All rights reserved."
   },
   pt: {
-    "a11y.skip":"Pular para o conteúdo principal","nav.about":"Sobre nós","nav.areas":"Serviços","nav.team":"Equipe","nav.news":"Notícias","nav.legal":"Escritório Jurídico","nav.contact":"Contato","nav.division":"Área Contábil",
+    "a11y.skip":"Pular para o conteúdo principal","nav.about":"Sobre nós","nav.areas":"Serviços","nav.team":"Equipe","nav.history":"Trajetória","nav.news":"Notícias","nav.legal":"Escritório Jurídico","nav.contact":"Contato","nav.division":"Área Contábil",
     "hero.tag":"Contadores Públicos · Buenos Aires","hero.title":"Contabilidade e impostos com 20 anos de trajetória","hero.sub":"Área contábil integral com sede em Buenos Aires e correspondentes nos Estados Unidos e Uruguai.","hero.cta1":"Consultar agora","hero.cta2":"Ver serviços","hero.stat1":"Anos de experiência","hero.stat2":"Serviços contábeis","hero.stat3":"Países de operação",
     "about.label":"A área contábil","about.title":"Contabilidade e assessoria fiscal de excelência","about.p1":"A área contábil da Pantarotto Lértora Bardagí & Asocs. presta serviços integrais de contabilidade, auditoria e impostos para empresas de todos os tamanhos e setores.","about.p2":"Trabalhamos em estreita coordenação com a área jurídica do escritório para oferecer soluções unificadas.","about.p3":"Nossa equipe de contadores atualiza permanentemente sua formação para garantir o mais alto padrão de qualidade.",
     "about.hl1t":"Anos de trajetória","about.hl1p":"Experiência consolidada em contabilidade empresarial e assessoria fiscal na Argentina e no exterior.","about.hl2t":"Jurisdições ativas","about.hl2p":"Argentina, Estados Unidos e Uruguai, com correspondentes ativos para operações transfronteiriças.","about.hl3t":"Integração com a área jurídica","about.hl3p":"Coordenação permanente entre contadores e advogados para soluções jurídico-contábeis unificadas.",
@@ -1298,7 +1223,7 @@ var i18n = {
     "footer.tagline":"Pantarotto Lértora Bardagí & Associados — Área Contábil. Buenos Aires, Argentina.","footer.col1":"A área","footer.about":"Quem somos","footer.correspondents":"Correspondentes","footer.col2":"Serviços","footer.col3":"Legal","footer.privacy":"Política de privacidade","footer.terms":"Termos de uso","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Todos os direitos reservados."
   },
   fr: {
-    "a11y.skip":"Aller au contenu principal","nav.about":"À propos","nav.areas":"Services","nav.team":"Équipe","nav.news":"Actualités","nav.legal":"Cabinet Juridique","nav.contact":"Contact","nav.division":"Division Comptable",
+    "a11y.skip":"Aller au contenu principal","nav.about":"À propos","nav.areas":"Services","nav.team":"Équipe","nav.history":"Parcours","nav.news":"Actualités","nav.legal":"Cabinet Juridique","nav.contact":"Contact","nav.division":"Division Comptable",
     "hero.tag":"Experts-Comptables · Buenos Aires","hero.title":"Comptabilité et fiscalité avec 20 ans d'expérience","hero.sub":"Division comptable intégrale basée à Buenos Aires avec des correspondants aux États-Unis et en Uruguay.","hero.cta1":"Nous contacter","hero.cta2":"Voir les services","hero.stat1":"Années d'expérience","hero.stat2":"Services comptables","hero.stat3":"Pays d'opération",
     "about.label":"La division comptable","about.title":"Comptabilité et conseil fiscal d'excellence","about.p1":"La division comptable de Pantarotto Lértora Bardagí & Asocs. fournit des services complets de comptabilité, d'audit et de fiscalité pour des entreprises de toutes tailles.","about.p2":"Nous travaillons en étroite coordination avec le département juridique pour offrir des solutions unifiées.","about.p3":"Notre équipe d'experts-comptables met continuellement à jour ses connaissances pour garantir le plus haut niveau de qualité.",
     "about.hl1t":"Années d'expérience","about.hl1p":"Expertise consolidée en comptabilité d'entreprise et conseil fiscal en Argentine et à l'étranger.","about.hl2t":"Juridictions actives","about.hl2p":"Argentine, États-Unis et Uruguay, avec des correspondants actifs pour les opérations transfrontalières.","about.hl3t":"Intégration avec l'équipe juridique","about.hl3p":"Coordination permanente entre comptables et avocats pour des solutions juridico-comptables unifiées.",
@@ -1315,7 +1240,7 @@ var i18n = {
     "footer.tagline":"Pantarotto Lértora Bardagí & Associés — Division Comptable. Buenos Aires, Argentine.","footer.col1":"La division","footer.about":"Qui sommes-nous","footer.correspondents":"Correspondants","footer.col2":"Services","footer.col3":"Juridique","footer.privacy":"Politique de confidentialité","footer.terms":"Conditions d'utilisation","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Tous droits réservés."
   },
   it: {
-    "a11y.skip":"Vai al contenuto principale","nav.about":"Chi siamo","nav.areas":"Servizi","nav.team":"Team","nav.news":"Novità","nav.legal":"Studio Legale","nav.contact":"Contatto","nav.division":"Area Contabile",
+    "a11y.skip":"Vai al contenuto principale","nav.about":"Chi siamo","nav.areas":"Servizi","nav.team":"Team","nav.history":"Storia","nav.news":"Novità","nav.legal":"Studio Legale","nav.contact":"Contatto","nav.division":"Area Contabile",
     "hero.tag":"Commercialisti · Buenos Aires","hero.title":"Contabilità e fiscalità con 20 anni di esperienza","hero.sub":"Area contabile integrata con sede a Buenos Aires e corrispondenti negli Stati Uniti e in Uruguay.","hero.cta1":"Contattaci ora","hero.cta2":"Scopri i servizi","hero.stat1":"Anni di esperienza","hero.stat2":"Servizi contabili","hero.stat3":"Paesi di operazione",
     "about.label":"L'area contabile","about.title":"Contabilità e consulenza fiscale di eccellenza","about.p1":"L'area contabile di Pantarotto Lértora Bardagí & Asocs. fornisce servizi integrali di contabilità, revisione e fiscalità per aziende di tutte le dimensioni.","about.p2":"Lavoriamo in stretta coordinazione con il dipartimento legale per offrire soluzioni unificate.","about.p3":"Il nostro team di commercialisti aggiorna costantemente la propria formazione per garantire il massimo standard di qualità.",
     "about.hl1t":"Anni di esperienza","about.hl1p":"Esperienza consolidata in contabilità aziendale e consulenza fiscale in Argentina e all'estero.","about.hl2t":"Giurisdizioni attive","about.hl2p":"Argentina, Stati Uniti e Uruguay, con corrispondenti attivi per le operazioni transfrontaliere.","about.hl3t":"Integrazione con il team legale","about.hl3p":"Coordinazione permanente tra commercialisti e avvocati per soluzioni legali-contabili unificate.",
@@ -1332,7 +1257,7 @@ var i18n = {
     "footer.tagline":"Pantarotto Lértora Bardagí & Associati — Area Contabile. Buenos Aires, Argentina.","footer.col1":"L'area","footer.about":"Chi siamo","footer.correspondents":"Corrispondenti","footer.col2":"Servizi","footer.col3":"Legale","footer.privacy":"Informativa sulla privacy","footer.terms":"Termini di utilizzo","footer.copy":"© 2025 Pantarotto Lértora Bardagí & Asocs. Tutti i diritti riservati."
   },
   de: {
-    "a11y.skip":"Zum Hauptinhalt springen","nav.about":"Über uns","nav.areas":"Leistungen","nav.team":"Team","nav.news":"Neuigkeiten","nav.legal":"Rechtskanzlei","nav.contact":"Kontakt","nav.division":"Buchhaltungsabteilung",
+    "a11y.skip":"Zum Hauptinhalt springen","nav.about":"Über uns","nav.areas":"Leistungen","nav.team":"Team","nav.history":"Historie","nav.news":"Neuigkeiten","nav.legal":"Rechtskanzlei","nav.contact":"Kontakt","nav.division":"Buchhaltungsabteilung",
     "hero.tag":"Wirtschaftsprüfer · Buenos Aires","hero.title":"Buchhaltung & Steuern mit 20 Jahren Erfahrung","hero.sub":"Vollservice-Buchhaltungsabteilung mit Sitz in Buenos Aires und Korrespondenten in den USA und Uruguay.","hero.cta1":"Jetzt anfragen","hero.cta2":"Leistungen entdecken","hero.stat1":"Jahre Erfahrung","hero.stat2":"Buchhaltungsleistungen","hero.stat3":"Länder",
     "about.label":"Die Buchhaltungsabteilung","about.title":"Buchhaltung und Steuerberatung der Spitzenklasse","about.p1":"Die Buchhaltungsabteilung von Pantarotto Lértora Bardagí & Asocs. bietet umfassende Buchhaltungs-, Prüfungs- und Steuerdienstleistungen für Unternehmen aller Größen.","about.p2":"Wir arbeiten eng mit der Rechtsabteilung zusammen, um einheitliche Lösungen anzubieten.","about.p3":"Unser Team zertifizierter Wirtschaftsprüfer aktualisiert kontinuierlich seine Fachkenntnisse für höchste Qualität.",
     "about.hl1t":"Jahre Erfahrung","about.hl1p":"Fundierte Expertise in Unternehmensbesteuerung und Steuerberatung in Argentinien und im Ausland.","about.hl2t":"Aktive Jurisdiktionen","about.hl2p":"Argentinien, USA und Uruguay mit aktiven Korrespondenten für grenzüberschreitende Operationen.","about.hl3t":"Integration mit dem Rechtsteam","about.hl3p":"Permanente Koordination zwischen Buchhaltern und Anwälten für einheitliche Lösungen.",
@@ -1638,14 +1563,9 @@ document.querySelectorAll('.hl-num, .stat-num').forEach(function(el) {
   counterObs.observe(el);
 });
 
-// ── DARK MODE ──
-function toggleTheme() {
-  document.body.classList.toggle('dark');
-  try { localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light'); } catch(e) {}
-}
-try {
-  if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
-} catch(e) {}
+// ── Force light theme (limpia cualquier dark mode guardado de versiones previas) ──
+try { localStorage.removeItem('theme'); } catch(e) {}
+document.body.classList.remove('dark');
 
 // ── LOAD RADAR CONTABLE ──
 (function() {
