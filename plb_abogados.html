@@ -879,27 +879,19 @@ textarea:focus-visible {
   <div class="hero-render-bg"></div>
   <svg class="hero-building" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYEnd slice" aria-hidden="true">
     <defs>
-      <linearGradient id="blueLine" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%"   stop-color="#1a4fa3" stop-opacity="0.65"/>
-        <stop offset="100%" stop-color="#1a4fa3" stop-opacity="0.05"/>
+      <linearGradient id="fadeMask" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%"   stop-color="#fff" stop-opacity="0"/>
+        <stop offset="40%"  stop-color="#fff" stop-opacity="1"/>
+        <stop offset="100%" stop-color="#fff" stop-opacity="1"/>
       </linearGradient>
-      <linearGradient id="goldLine" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%"   stop-color="#b8923a" stop-opacity="0.75"/>
-        <stop offset="100%" stop-color="#b8923a" stop-opacity="0.06"/>
-      </linearGradient>
-      <linearGradient id="fade" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%"   stop-color="#000" stop-opacity="0"/>
-        <stop offset="55%"  stop-color="#000" stop-opacity="1"/>
-        <stop offset="100%" stop-color="#000" stop-opacity="1"/>
-      </linearGradient>
-      <mask id="softTop">
-        <rect x="0" y="0" width="1600" height="900" fill="url(#fade)"/>
+      <mask id="softTop" maskUnits="userSpaceOnUse">
+        <rect x="0" y="0" width="1600" height="900" fill="url(#fadeMask)"/>
       </mask>
     </defs>
 
     <g mask="url(#softTop)" fill="none" stroke-linecap="square">
       <!-- Back tower (blue) -->
-      <g stroke="url(#blueLine)" stroke-width="1.2" opacity="0.9">
+      <g stroke="#1a4fa3" stroke-width="1.2" opacity="0.9">
         <rect x="200" y="260" width="220" height="640"/>
         <line x1="200" y1="300" x2="420" y2="300"/>
         <line x1="200" y1="360" x2="420" y2="360"/>
@@ -917,7 +909,7 @@ textarea:focus-visible {
       </g>
 
       <!-- Main tower (gold highlight) -->
-      <g stroke="url(#goldLine)" stroke-width="1.6">
+      <g stroke="#b8923a" stroke-width="1.6">
         <polyline points="560,900 560,180 620,140 820,140 880,180 880,900"/>
         <line x1="560" y1="180" x2="880" y2="180"/>
         <line x1="620" y1="140" x2="620" y2="180"/>
@@ -965,7 +957,7 @@ textarea:focus-visible {
       </g>
 
       <!-- Secondary tower (blue) -->
-      <g stroke="url(#blueLine)" stroke-width="1.2" opacity="0.85">
+      <g stroke="#1a4fa3" stroke-width="1.2" opacity="0.85">
         <rect x="980" y="320" width="260" height="580"/>
         <line x1="980" y1="380" x2="1240" y2="380"/>
         <line x1="980" y1="440" x2="1240" y2="440"/>
@@ -982,7 +974,7 @@ textarea:focus-visible {
       </g>
 
       <!-- Far right low tower (gold thin) -->
-      <g stroke="url(#goldLine)" stroke-width="1" opacity="0.55">
+      <g stroke="#b8923a" stroke-width="1" opacity="0.55">
         <rect x="1290" y="460" width="150" height="440"/>
         <line x1="1290" y1="520" x2="1440" y2="520"/>
         <line x1="1290" y1="580" x2="1440" y2="580"/>
@@ -995,7 +987,7 @@ textarea:focus-visible {
       </g>
 
       <!-- Ground line -->
-      <line x1="0" y1="900" x2="1600" y2="900" stroke="url(#goldLine)" stroke-width="1.4"/>
+      <line x1="0" y1="900" x2="1600" y2="900" stroke="#b8923a" stroke-width="1.4"/>
     </g>
   </svg>
   <div class="hero-content">
