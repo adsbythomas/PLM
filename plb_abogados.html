@@ -658,40 +658,7 @@ body {
 .hero-content { position: relative; z-index: 3; width: 100%; }
 .hero > .hero-content { z-index: 3; }
 
-/* ── Tránsito en loop al pie del hero ── */
-.hero-traffic {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 24px;
-  height: 22px;
-  z-index: 2;
-  pointer-events: none;
-  overflow: hidden;
-  opacity: 0.5;
-}
-.hero-traffic .car {
-  position: absolute;
-  bottom: 0;
-  width: 64px;
-  height: 18px;
-  will-change: transform;
-}
-.hero-traffic .car svg { display: block; width: 100%; height: 100%; }
-@keyframes carDriveRight {
-  from { transform: translateX(-90px); }
-  to   { transform: translateX(calc(100vw + 90px)); }
-}
-.hero-traffic .car-1 { animation: carDriveRight 26s linear infinite; animation-delay: 0s; }
-.hero-traffic .car-2 { animation: carDriveRight 21s linear infinite; animation-delay: -10s; }
-.hero-traffic .car-3 { animation: carDriveRight 32s linear infinite; animation-delay: -19s; }
-@media (prefers-reduced-motion: reduce) {
-  .hero-traffic { display: none; }
-}
-@media (max-width: 768px) {
-  .hero-traffic { bottom: 12px; opacity: 0.4; }
-  .hero-traffic .car { width: 48px; height: 14px; }
-}
+
 
 /* Hero text — vuelve a paleta original (negro/gris) sobre fondo claro */
 .hero-firm { color: var(--black) !important; }
@@ -1256,6 +1223,94 @@ footer { padding: 4rem 3.5rem 2rem !important; }
 section + section { border-top: 1px solid rgba(0,0,0,0.05); }
 
 
+
+/* ─────────────────────────────────────────────────────────
+   FIXES v2: alineación, márgenes laterales, legibilidad
+   ───────────────────────────────────────────────────────── */
+
+/* FIX 1: Sacar el padding del body que dejaba "cajas grises"
+   a los costados de las secciones, y limpiar cualquier grilla
+   de fondo que haya quedado. Las secciones ya manejan su propio
+   padding interno via calc((100vw - var(--max-w)) / 2). */
+body {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  background: #ffffff !important;
+  background-image: none !important;
+}
+
+/* FIX 1.b: Asegurar que el hero también ocupa el 100vw así el
+   fondo claro y la silueta comparten la misma referencia. */
+.hero {
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  overflow: hidden;
+}
+
+/* FIX 1.c: Centrado perfecto del hero-content y de la silueta
+   en el mismo sistema de referencia (el viewport). */
+.hero-building {
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+.hero-content {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+  text-align: center !important;
+}
+.hero-content > * {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* FIX 2: Legibilidad de los labels de sección.
+   "03 EQUIPO" ahora se lee bien — más grande, más contrastado. */
+.label {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
+  color: var(--dark2) !important;
+  margin-bottom: 1.5rem !important;
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 1.25rem !important;
+}
+.label::before {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 1.6rem !important;
+  font-weight: 500 !important;
+  font-style: italic !important;
+  color: var(--p) !important;
+  opacity: 1 !important;
+  line-height: 1 !important;
+  letter-spacing: 0 !important;
+}
+
+/* Mismo tratamiento en labels de páginas internas (.page-label) */
+.page-label {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.22em !important;
+  color: var(--p) !important;
+}
+
+/* FIX 2.b: header de áreas (los que no tienen data-num) también más grande */
+.areas-header .label,
+.insights-header .label,
+.equipo-header .label {
+  font-size: 0.82rem !important;
+}
+
+
 </style>
 </head>
 <body>
@@ -1396,11 +1451,7 @@ section + section { border-top: 1px solid rgba(0,0,0,0.05); }
       <line x1="0" y1="900" x2="1600" y2="900" stroke="#b8923a" stroke-width="1.4"/>
     </g>
   </svg>
-  <div class="hero-traffic" aria-hidden="true">
-    <div class="car car-1"><svg viewBox="0 0 80 22"><path d="M4 18 V13 Q4 12 5 12 L11 12 L17 5 L60 5 L68 12 L75 12 Q76 12 76 13 V18 Z" fill="#2a2a2a"/><line x1="34" y1="6" x2="34" y2="12" stroke="#0a0a0a" stroke-width="0.8"/><circle cx="14" cy="19" r="2.6" fill="#111"/><circle cx="64" cy="19" r="2.6" fill="#111"/></svg></div>
-    <div class="car car-2"><svg viewBox="0 0 80 22"><path d="M4 18 V13 Q4 12 5 12 L11 12 L17 5 L60 5 L68 12 L75 12 Q76 12 76 13 V18 Z" fill="#2a2a2a"/><line x1="34" y1="6" x2="34" y2="12" stroke="#0a0a0a" stroke-width="0.8"/><circle cx="14" cy="19" r="2.6" fill="#111"/><circle cx="64" cy="19" r="2.6" fill="#111"/></svg></div>
-    <div class="car car-3"><svg viewBox="0 0 80 22"><path d="M4 18 V13 Q4 12 5 12 L11 12 L17 5 L60 5 L68 12 L75 12 Q76 12 76 13 V18 Z" fill="#2a2a2a"/><line x1="34" y1="6" x2="34" y2="12" stroke="#0a0a0a" stroke-width="0.8"/><circle cx="14" cy="19" r="2.6" fill="#111"/><circle cx="64" cy="19" r="2.6" fill="#111"/></svg></div>
-  </div>
+
   <div class="hero-content">
     <div class="hero-firm">PL<span style="color:var(--p)">B</span></div>
     <div class="hero-tag" data-i18n="hero.tag">Abogados · Buenos Aires</div>
