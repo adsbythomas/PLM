@@ -599,53 +599,60 @@ body.dark .timeline-event-desc { color: #999; }
 /* ── COUNTER visible style ── */
 .counter { display: inline-block; }
 
-/* ── HERO VIDEO BACKGROUND ── */
+
+body {
+  background: linear-gradient(180deg, #e8e8e8 0%, #efefef 50%, #e8e8e8 100%) !important;
+}
+
+/* ── HERO RENDER BACKGROUND ── */
 .hero {
   position: relative;
   overflow: hidden;
+  background: linear-gradient(135deg, #0a1428 0%, #1a2f5a 50%, #0f1d38 100%);
 }
-.hero-video-wrap {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 0;
-  overflow: hidden;
-}
-.hero-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%);
-  object-fit: cover;
-}
-.hero-video-overlay {
+.hero-render-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(10,20,40,0.72) 0%, rgba(10,20,40,0.82) 100%);
+  z-index: 0;
+  opacity: 0.15;
+  background-image: 
+    linear-gradient(45deg, transparent 48%, rgba(212,175,55,0.2) 50%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, rgba(26,74,163,0.3) 50%, transparent 52%);
+  background-size: 80px 80px, 60px 60px;
+  animation: shimmer 20s linear infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 80px 80px, -60px -60px; }
+}
+.hero-building {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1400px;
+  height: 70%;
   z-index: 1;
+  opacity: 0.08;
 }
 .hero > * { position: relative; z-index: 2; }
-.hero::before { display: none; }
 
-/* Hero text colors for dark video */
+/* Hero text - back to blue theme */
 .hero-firm { color: #ffffff !important; }
-.hero-firm span { color: #6b9de0 !important; }
-.hero-tag { color: #6b9de0 !important; }
-.hero-tag::after { background: #6b9de0 !important; }
+.hero-firm span { color: var(--p) !important; }
+.hero-tag { color: var(--p) !important; }
+.hero-tag::after { background: var(--p) !important; }
 .hero-title { color: #ffffff !important; }
-.hero-title .accent { color: #6b9de0 !important; }
-.hero-sub { color: rgba(255,255,255,0.82) !important; }
-.btn-solid { background: #ffffff !important; color: #0a1428 !important; }
-.btn-solid:hover { background: #6b9de0 !important; color: #ffffff !important; }
-.btn-ghost { color: #ffffff !important; border-color: rgba(255,255,255,0.4) !important; }
-.btn-ghost:hover { background: rgba(255,255,255,0.1) !important; border-color: #ffffff !important; }
+.hero-sub { color: rgba(255,255,255,0.85) !important; }
+.btn-solid { background: var(--p) !important; color: #ffffff !important; }
+.btn-solid:hover { background: var(--p-dark) !important; }
+.btn-ghost { color: #ffffff !important; border-color: rgba(255,255,255,0.5) !important; }
+.btn-ghost:hover { background: rgba(255,255,255,0.1) !important; }
 
-/* Rest of page has subtle gradient background */
+/* Gradient background for rest */
 body {
-  background: linear-gradient(180deg, #e8e8e8 0%, #efefef 50%, #e8e8e8 100%) !important;
+  background: linear-gradient(180deg, #e8e8e8 0%, #f2f2f2 50%, #e8e8e8 100%) !important;
 }
 </style>
 </head>
@@ -693,6 +700,46 @@ body {
   <button class="hamburger" onclick="openMob()"><span></span><span></span><span></span></button>
 </nav>
 <section class="hero" style="min-height:100vh" id="inicio">
+  <div class="hero-render-bg"></div>
+  <svg class="hero-building" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <!-- Main tower -->
+    <rect x="300" y="100" width="200" height="500" fill="url(#grad1)" opacity="0.4"/>
+    <rect x="320" y="120" width="30" height="40" fill="#d4af37" opacity="0.6"/>
+    <rect x="370" y="120" width="30" height="40" fill="#d4af37" opacity="0.6"/>
+    <rect x="420" y="120" width="30" height="40" fill="#d4af37" opacity="0.6"/>
+    <rect x="320" y="180" width="30" height="40" fill="#d4af37" opacity="0.5"/>
+    <rect x="370" y="180" width="30" height="40" fill="#d4af37" opacity="0.5"/>
+    <rect x="420" y="180" width="30" height="40" fill="#d4af37" opacity="0.5"/>
+    <rect x="320" y="240" width="30" height="40" fill="#d4af37" opacity="0.4"/>
+    <rect x="370" y="240" width="30" height="40" fill="#d4af37" opacity="0.4"/>
+    <rect x="420" y="240" width="30" height="40" fill="#d4af37" opacity="0.4"/>
+    
+    <!-- Side buildings -->
+    <rect x="180" y="250" width="100" height="350" fill="url(#grad2)" opacity="0.3"/>
+    <rect x="520" y="200" width="120" height="400" fill="url(#grad2)" opacity="0.3"/>
+    
+    <!-- Windows pattern -->
+    <rect x="200" y="280" width="20" height="25" fill="#1a4fa3" opacity="0.5"/>
+    <rect x="230" y="280" width="20" height="25" fill="#1a4fa3" opacity="0.5"/>
+    <rect x="200" y="320" width="20" height="25" fill="#1a4fa3" opacity="0.4"/>
+    <rect x="230" y="320" width="20" height="25" fill="#1a4fa3" opacity="0.4"/>
+    
+    <rect x="540" y="240" width="25" height="30" fill="#d4af37" opacity="0.5"/>
+    <rect x="580" y="240" width="25" height="30" fill="#d4af37" opacity="0.5"/>
+    <rect x="540" y="290" width="25" height="30" fill="#d4af37" opacity="0.4"/>
+    <rect x="580" y="290" width="25" height="30" fill="#d4af37" opacity="0.4"/>
+    
+    <defs>
+      <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" style="stop-color:#1a4fa3;stop-opacity:0.6" />
+        <stop offset="100%" style="stop-color:#d4af37;stop-opacity:0.3" />
+      </linearGradient>
+      <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" style="stop-color:#d4af37;stop-opacity:0.4" />
+        <stop offset="100%" style="stop-color:#1a4fa3;stop-opacity:0.2" />
+      </linearGradient>
+    </defs>
+  </svg>
   <div class="hero-video-wrap">
     <video class="hero-video" autoplay muted loop playsinline>
       <source src="https://videos.pexels.com/video-files/4205393/4205393-hd_1920_1080_25fps.mp4" type="video/mp4">
