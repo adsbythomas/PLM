@@ -119,7 +119,7 @@ nav.scrolled{box-shadow:0 2px 16px rgba(0,0,0,0.08)}
 .hero-grid{display:none}
 .hero-bar{display:none}
 .hero-content{position:relative;z-index:1;max-width:760px}
-.hero-tag{display:inline-block;font-size:1.1rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--p);margin-bottom:6rem;padding-bottom:0}
+.hero-tag{display:inline-block;font-size:1.1rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--p);margin-bottom:2rem;padding-bottom:0}
 .hero-title{font-size:clamp(2.4rem,5vw,4rem);font-weight:700;color:var(--black);line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.5rem}
 .hero-title .accent{color:var(--p)}
 .hero-sub{font-size:1.05rem;color:var(--gray);line-height:1.75;margin-bottom:2.5rem;max-width:560px}
@@ -223,7 +223,7 @@ footer{background:transparent;padding:3.5rem 3.5rem 2rem}
 @keyframes barGrow{from{height:0}to{height:100%}}
 @keyframes lineGrow{from{width:0}to{width:48px}}
 .hero-bar{animation:barGrow 0.8s cubic-bezier(.4,0,.2,1) both}
-.hero-tag{display:inline-block;font-size:1.1rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--p);margin-bottom:6rem;padding-bottom:0}
+.hero-tag{display:inline-block;font-size:1.1rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--p);margin-bottom:2rem;padding-bottom:0}
 .hero-title{animation:fadeUp 0.6s ease both 0.35s}
 .hero-sub{animation:fadeUp 0.6s ease both 0.5s}
 .hero-actions{animation:fadeUp 0.6s ease both 0.65s}
@@ -678,6 +678,58 @@ body.dark .timeline-event-desc { color: #999; }
 
 .counter { display: inline-block; }
 
+/* ── HERO RENDER BACKGROUND (área contable · cobre/dorado) ── */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 30% 20%, #3d1f10 0%, #2a1408 45%, #14090a 100%);
+}
+.hero-render-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(rgba(196, 105, 58, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 175, 55, 0.10) 1px, transparent 1px);
+  background-size: 60px 60px, 60px 60px;
+  background-position: 0 0, 0 0;
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  animation: shimmer 40s linear infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 60px 60px, -60px 0; }
+}
+.hero-building {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1600px;
+  height: 90%;
+  z-index: 1;
+  opacity: 0.85;
+  pointer-events: none;
+}
+.hero-content { position: relative; z-index: 3; width: 100%; }
+.hero > .hero-content { z-index: 3; }
+
+/* Hero text - paleta contable sobre fondo oscuro */
+.hero-firm { color: #ffffff !important; }
+.hero-firm span { color: var(--p-light) !important; }
+.hero-tag { color: var(--p-light) !important; }
+.hero-tag::after { background: var(--p-light) !important; }
+.hero-title { color: #ffffff !important; }
+.hero-title .accent { color: var(--p-light) !important; }
+.hero-sub { color: rgba(255,255,255,0.85) !important; }
+.btn-solid { background: var(--p) !important; color: #ffffff !important; }
+.btn-solid:hover { background: var(--p-dark) !important; }
+.btn-ghost { color: #ffffff !important; border-color: rgba(255,255,255,0.5) !important; background: transparent !important; }
+.btn-ghost:hover { background: rgba(255,255,255,0.1) !important; color: #ffffff !important; border-color: #ffffff !important; }
+
 /* ── Accessibility: skip-link & focus states ── */
 .skip-link {
   position: absolute;
@@ -855,10 +907,128 @@ body.dark textarea:focus-visible { outline-color: #d4af37; }
   <button class="hamburger" onclick="openMob()"><span></span><span></span><span></span></button>
 </nav>
 
-<section class="hero" id="inicio">
-  <div class="hero-grid"></div>
+<section class="hero" style="min-height:100vh" id="inicio">
+  <div class="hero-render-bg"></div>
+  <svg class="hero-building" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYEnd slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="copperLine" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%"   stop-color="#d98a5c" stop-opacity="0.70"/>
+        <stop offset="100%" stop-color="#9b4a1e" stop-opacity="0.10"/>
+      </linearGradient>
+      <linearGradient id="goldLine" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%"   stop-color="#e8c872" stop-opacity="0.85"/>
+        <stop offset="100%" stop-color="#d4af37" stop-opacity="0.10"/>
+      </linearGradient>
+      <linearGradient id="fade" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%"   stop-color="#000" stop-opacity="0"/>
+        <stop offset="55%"  stop-color="#000" stop-opacity="1"/>
+        <stop offset="100%" stop-color="#000" stop-opacity="1"/>
+      </linearGradient>
+      <mask id="softTop">
+        <rect x="0" y="0" width="1600" height="900" fill="url(#fade)"/>
+      </mask>
+    </defs>
+
+    <g mask="url(#softTop)" fill="none" stroke-linecap="square">
+      <!-- Back tower (copper) -->
+      <g stroke="url(#copperLine)" stroke-width="1.2" opacity="0.9">
+        <rect x="200" y="260" width="220" height="640"/>
+        <line x1="200" y1="300" x2="420" y2="300"/>
+        <line x1="200" y1="360" x2="420" y2="360"/>
+        <line x1="200" y1="420" x2="420" y2="420"/>
+        <line x1="200" y1="480" x2="420" y2="480"/>
+        <line x1="200" y1="540" x2="420" y2="540"/>
+        <line x1="200" y1="600" x2="420" y2="600"/>
+        <line x1="200" y1="660" x2="420" y2="660"/>
+        <line x1="200" y1="720" x2="420" y2="720"/>
+        <line x1="200" y1="780" x2="420" y2="780"/>
+        <line x1="200" y1="840" x2="420" y2="840"/>
+        <line x1="255" y1="260" x2="255" y2="900"/>
+        <line x1="310" y1="260" x2="310" y2="900"/>
+        <line x1="365" y1="260" x2="365" y2="900"/>
+      </g>
+
+      <!-- Main tower (gold highlight) -->
+      <g stroke="url(#goldLine)" stroke-width="1.6">
+        <polyline points="560,900 560,180 620,140 820,140 880,180 880,900"/>
+        <line x1="560" y1="180" x2="880" y2="180"/>
+        <line x1="620" y1="140" x2="620" y2="180"/>
+        <line x1="820" y1="140" x2="820" y2="180"/>
+        <g>
+          <line x1="560" y1="230" x2="880" y2="230"/>
+          <line x1="560" y1="280" x2="880" y2="280"/>
+          <line x1="560" y1="330" x2="880" y2="330"/>
+          <line x1="560" y1="380" x2="880" y2="380"/>
+          <line x1="560" y1="430" x2="880" y2="430"/>
+          <line x1="560" y1="480" x2="880" y2="480"/>
+          <line x1="560" y1="530" x2="880" y2="530"/>
+          <line x1="560" y1="580" x2="880" y2="580"/>
+          <line x1="560" y1="630" x2="880" y2="630"/>
+          <line x1="560" y1="680" x2="880" y2="680"/>
+          <line x1="560" y1="730" x2="880" y2="730"/>
+          <line x1="560" y1="780" x2="880" y2="780"/>
+          <line x1="560" y1="830" x2="880" y2="830"/>
+        </g>
+        <g>
+          <line x1="620" y1="180" x2="620" y2="900"/>
+          <line x1="680" y1="180" x2="680" y2="900"/>
+          <line x1="720" y1="180" x2="720" y2="900"/>
+          <line x1="760" y1="180" x2="760" y2="900"/>
+          <line x1="820" y1="180" x2="820" y2="900"/>
+        </g>
+        <line x1="720" y1="140" x2="720" y2="60"/>
+        <line x1="710" y1="100" x2="730" y2="100"/>
+      </g>
+
+      <!-- Accent panels -->
+      <g fill="#d4af37" opacity="0.18">
+        <rect x="620" y="230" width="40" height="50"/>
+        <rect x="760" y="380" width="40" height="50"/>
+        <rect x="680" y="530" width="40" height="50"/>
+        <rect x="820" y="680" width="40" height="50"/>
+      </g>
+      <g fill="#9b4a1e" opacity="0.28">
+        <rect x="720" y="280" width="40" height="50"/>
+        <rect x="620" y="430" width="40" height="50"/>
+        <rect x="760" y="630" width="40" height="50"/>
+      </g>
+
+      <!-- Secondary tower (copper) -->
+      <g stroke="url(#copperLine)" stroke-width="1.2" opacity="0.85">
+        <rect x="980" y="320" width="260" height="580"/>
+        <line x1="980" y1="380" x2="1240" y2="380"/>
+        <line x1="980" y1="440" x2="1240" y2="440"/>
+        <line x1="980" y1="500" x2="1240" y2="500"/>
+        <line x1="980" y1="560" x2="1240" y2="560"/>
+        <line x1="980" y1="620" x2="1240" y2="620"/>
+        <line x1="980" y1="680" x2="1240" y2="680"/>
+        <line x1="980" y1="740" x2="1240" y2="740"/>
+        <line x1="980" y1="800" x2="1240" y2="800"/>
+        <line x1="980" y1="860" x2="1240" y2="860"/>
+        <line x1="1045" y1="320" x2="1045" y2="900"/>
+        <line x1="1110" y1="320" x2="1110" y2="900"/>
+        <line x1="1175" y1="320" x2="1175" y2="900"/>
+      </g>
+
+      <!-- Far right low tower -->
+      <g stroke="url(#goldLine)" stroke-width="1" opacity="0.55">
+        <rect x="1290" y="460" width="150" height="440"/>
+        <line x1="1290" y1="520" x2="1440" y2="520"/>
+        <line x1="1290" y1="580" x2="1440" y2="580"/>
+        <line x1="1290" y1="640" x2="1440" y2="640"/>
+        <line x1="1290" y1="700" x2="1440" y2="700"/>
+        <line x1="1290" y1="760" x2="1440" y2="760"/>
+        <line x1="1290" y1="820" x2="1440" y2="820"/>
+        <line x1="1340" y1="460" x2="1340" y2="900"/>
+        <line x1="1390" y1="460" x2="1390" y2="900"/>
+      </g>
+
+      <!-- Ground line -->
+      <line x1="0" y1="900" x2="1600" y2="900" stroke="url(#goldLine)" stroke-width="1.4"/>
+    </g>
+  </svg>
   <div class="hero-content">
-    <div class="hero-firm">PL<span style="color:var(--p)">B</span></div>
+    <div class="hero-firm">PL<span>B</span></div>
     <div class="hero-tag" data-i18n="hero.tag">Contadores Públicos · Buenos Aires</div>
     <h1 class="hero-title" data-i18n="hero.title">Contabilidad e impuestos con<br><span class="accent">20 años</span> de trayectoria</h1>
     <p class="hero-sub" data-i18n="hero.sub">Área contable integral con sede en Buenos Aires y corresponsales en Estados Unidos y Uruguay. Especializados en liquidación de impuestos, auditoría, estados contables y planificación fiscal.</p>
@@ -867,14 +1037,7 @@ body.dark textarea:focus-visible { outline-color: #d4af37; }
       <a href="#areas" class="btn-ghost" data-i18n="hero.cta2">Ver servicios</a>
     </div>
   </div>
-
-  <div class="hero-bar-col"></div>
-    <div class="hero-bar-col"></div>
-    <div class="hero-bar-col"></div>
-    <div class="hero-bar-col"></div>
-    <div class="hero-bar-col"></div>
-  </div>
-  </section>
+</section>
 
 <section class="nosotros reveal" id="nosotros">
   <div class="nosotros-text">
