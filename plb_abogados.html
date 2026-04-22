@@ -34,6 +34,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="PLB Abogados | Derecho Empresarial en Buenos Aires">
 <meta name="twitter:description" content="Estudio integral con 20 años de trayectoria. Tributario, aduanero, societario, laboral, aerocomercial y penal económico.">
+<!-- Fonts: Cormorant Garamond (serif, títulos) + Inter (sans, cuerpo) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap">
 
 <!-- Schema.org: LegalService -->
 <script type="application/ld+json">
@@ -863,6 +867,395 @@ textarea:focus-visible {
   overflow: hidden; clip: rect(0,0,0,0);
   white-space: nowrap; border: 0;
 }
+
+/* ─────────────────────────────────────────────────────────────
+   REFINAMIENTO PROFESIONAL — v1
+   Tipografía editorial, ritmo de secciones, cards más limpias,
+   inspirado en la seriedad de los estudios top-tier
+   ───────────────────────────────────────────────────────────── */
+
+/* Cuerpo en Inter */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.003em;
+}
+
+/* Títulos en Cormorant Garamond (serif) */
+.hero-title,
+.section-title,
+.page-title,
+.timeline-event-title,
+.card-name,
+.member-name,
+.insight-title,
+.carousel-card .insight-title,
+h1, h2, h3 {
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* HERO ─────────────────────────────────────────── */
+.hero-firm {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem) !important;
+  margin-bottom: 2rem !important;
+  color: var(--black) !important;
+  opacity: 0.9;
+}
+.hero-tag {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.3em !important;
+  color: var(--gray) !important;
+  margin-bottom: 2.5rem !important;
+  padding-bottom: 1.25rem !important;
+}
+.hero-tag::after {
+  width: 36px !important;
+  height: 1px !important;
+  background: var(--p) !important;
+}
+.hero-title {
+  font-size: clamp(2.6rem, 6vw, 5rem) !important;
+  line-height: 1.05 !important;
+  font-weight: 500 !important;
+  margin-bottom: 2rem !important;
+  max-width: 900px;
+}
+.hero-title .accent {
+  font-style: italic !important;
+  font-weight: 500 !important;
+  color: var(--p) !important;
+}
+.hero-sub {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 1rem !important;
+  line-height: 1.75 !important;
+  color: var(--gray) !important;
+  max-width: 620px !important;
+  margin-bottom: 3rem !important;
+}
+.hero-actions { gap: 0.75rem !important; }
+
+/* BOTONES ─────────────────────────────────────────── */
+.btn-solid, .btn-ghost {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.18em !important;
+  font-weight: 600 !important;
+  padding: 1.1rem 2.25rem !important;
+  transition: all 0.25s ease !important;
+}
+.btn-solid { border: 1px solid var(--p) !important; }
+.btn-ghost {
+  color: var(--black) !important;
+  border: 1px solid var(--gray-line) !important;
+}
+.btn-ghost:hover {
+  border-color: var(--black) !important;
+  color: var(--black) !important;
+  background: transparent !important;
+}
+
+/* SECCIONES — ritmo + aire ─────────────────────────── */
+section {
+  padding-top: 7rem !important;
+  padding-bottom: 7rem !important;
+}
+@media (max-width: 768px) {
+  section { padding-top: 4.5rem !important; padding-bottom: 4.5rem !important; }
+}
+
+/* Alternancia suave de fondos para dar ritmo editorial */
+.nosotros, .equipo, .timeline-section {
+  background: #fafaf8 !important;
+}
+.areas, .radar-section, .insights {
+  background: #ffffff !important;
+}
+
+/* LABELS de sección — formato "01 — NOSOTROS" ────── */
+.label {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.28em !important;
+  text-transform: uppercase;
+  color: var(--gray) !important;
+  margin-bottom: 1.25rem;
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+}
+.label::before {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 1.1rem !important;
+  font-weight: 500 !important;
+  font-style: italic !important;
+  color: var(--p) !important;
+  letter-spacing: 0 !important;
+  line-height: 1 !important;
+  opacity: 0.8;
+}
+
+/* TÍTULOS de sección */
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.2rem) !important;
+  line-height: 1.1 !important;
+  margin-bottom: 1.5rem !important;
+  max-width: 860px;
+}
+
+/* NOSOTROS — texto más legible */
+.nosotros-text p {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 1rem !important;
+  line-height: 1.85 !important;
+  color: var(--dark2) !important;
+  max-width: 640px !important;
+  margin-bottom: 1.5rem !important;
+}
+.highlights { border-top: 1px solid var(--gray-line); padding-top: 2rem; margin-top: 2rem; }
+.hl { padding: 1.75rem 0 !important; border-bottom: 1px solid #e8e8e6 !important; gap: 2rem !important; }
+.hl:last-child { border-bottom: none !important; }
+.hl-num {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-style: italic !important;
+  font-weight: 500 !important;
+  font-size: clamp(3.5rem, 5vw, 5rem) !important;
+  line-height: 1 !important;
+  color: var(--p) !important;
+  min-width: 110px;
+}
+.hl-text strong {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 0.5rem !important;
+  display: block;
+}
+.hl-text p {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.9rem !important;
+  line-height: 1.7 !important;
+  color: var(--gray) !important;
+}
+
+/* ÁREAS — cards más editoriales, menos boxy */
+.grid-3 { gap: 2px !important; background: var(--gray-line); }
+.card {
+  background: #ffffff !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 2.5rem 2rem !important;
+  transition: background 0.25s ease !important;
+}
+.card:hover {
+  background: #fafaf8 !important;
+  transform: none !important;
+}
+.card-icon {
+  width: 32px !important;
+  height: 32px !important;
+  margin-bottom: 1.25rem !important;
+}
+.card-name {
+  font-size: 1.45rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.6rem !important;
+  color: var(--black) !important;
+}
+.card-desc {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.9rem !important;
+  line-height: 1.7 !important;
+  color: var(--gray) !important;
+}
+
+/* EQUIPO — más prolijo */
+.grid-team { gap: 2rem !important; }
+.member {
+  text-align: center !important;
+  padding: 2rem 1rem !important;
+  background: transparent !important;
+  border: none !important;
+}
+.avatar {
+  width: 110px !important;
+  height: 110px !important;
+  margin: 0 auto 1.5rem !important;
+  border-radius: 50% !important;
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 2.6rem !important;
+  font-weight: 500 !important;
+  font-style: italic !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #fff !important;
+  letter-spacing: 0;
+}
+.member-name {
+  font-size: 1.4rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.35rem !important;
+}
+.member-role {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.7rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  color: var(--p) !important;
+  margin-bottom: 0.5rem !important;
+}
+.member-spec {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.82rem !important;
+  line-height: 1.6 !important;
+  color: var(--gray) !important;
+}
+
+/* TIMELINE — elegante */
+.timeline-year {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-style: italic !important;
+  font-weight: 500 !important;
+  color: var(--p) !important;
+}
+.timeline-event-title {
+  font-size: 1.25rem !important;
+  font-weight: 500 !important;
+}
+.timeline-event-desc {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.88rem !important;
+  line-height: 1.65 !important;
+  color: var(--gray) !important;
+}
+
+/* INSIGHTS / RADAR cards */
+.insight-title,
+.carousel-card .insight-title {
+  font-size: 1.05rem !important;
+  font-weight: 500 !important;
+  line-height: 1.35 !important;
+}
+.insight-excerpt,
+.carousel-card .insight-excerpt {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.85rem !important;
+  line-height: 1.65 !important;
+}
+.insight-tag,
+.carousel-card .insight-tag {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.62rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.16em !important;
+}
+
+/* RADAR item */
+.radar-title {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 1.1rem !important;
+  font-weight: 500 !important;
+}
+.radar-desc {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.85rem !important;
+  line-height: 1.6 !important;
+}
+
+/* CONTACTO */
+.contacto-form-new { background: #fafaf8 !important; border-radius: 0 !important; }
+.form-group label {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.15em !important;
+  font-weight: 600 !important;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.9rem !important;
+  border-radius: 0 !important;
+  background: #ffffff !important;
+}
+.btn-submit {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.2em !important;
+  font-weight: 600 !important;
+  border-radius: 0 !important;
+}
+.cdata-label {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.18em !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  color: var(--p) !important;
+  margin-bottom: 0.35rem;
+}
+.cdata-val {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.92rem !important;
+  line-height: 1.65 !important;
+  color: var(--dark2) !important;
+}
+
+/* NAV más refinado */
+.nav-links a {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.14em !important;
+  font-weight: 500 !important;
+}
+.logo-abbr {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em;
+}
+.logo-name {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.01em;
+}
+
+/* FOOTER */
+footer { padding: 4rem 3.5rem 2rem !important; }
+.footer-logo {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1.2rem !important;
+  letter-spacing: 0.04em;
+}
+.footer-tagline {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.82rem !important;
+  line-height: 1.7 !important;
+  color: var(--gray) !important;
+}
+.footer-bottom, .footer-bottom * {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.04em;
+}
+
+/* Separadores sutiles entre secciones */
+section + section { border-top: 1px solid rgba(0,0,0,0.05); }
+
+
 </style>
 </head>
 <body>
