@@ -4,19 +4,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Área legal — azul vivo, con presencia (tipo royal blue corporativo)
+        // Área legal — azul corporativo intermedio (entre navy y royal)
+        // Referencia: el azul que se ve bien contra fondo navy oscuro.
         legal: {
-          50:  '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
-          950: '#172554',
+          50:  '#eef2fb',
+          100: '#d9e1f3',
+          200: '#b4c2e6',
+          300: '#8aa0d3',
+          400: '#6480bf',
+          500: '#4a6bb3',    // accent principal
+          600: '#3a57a0',
+          700: '#2e4688',
+          800: '#263973',
+          900: '#1c2a56',
+          950: '#0e1628',    // fondo dark navy
         },
         // Área contable — naranja pimentón, no marrón
         ledger: {

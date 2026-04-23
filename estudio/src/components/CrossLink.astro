@@ -1,5 +1,4 @@
 ---
-import Obelisco from './Obelisco.astro';
 import type { Practice } from '@lib/site';
 
 export interface Props { practice: Practice; }
@@ -16,11 +15,9 @@ const body  = isLegal
   : 'El estudio integra seis áreas de derecho empresarial: tributario, aduanero, societario, laboral, aerocomercial y penal económico. Coordinación permanente con el área contable.';
 const oppTheme = isLegal ? 'theme-accounting' : 'theme-legal';
 ---
-<!-- Esta sección invierte la paleta al tema opuesto para que se sienta
-     como un "enlace" a la otra área -->
 <section class={`page-break ${oppTheme} relative py-28 md:py-32 reveal`}>
   <div class="shell relative">
-    <div class="grid md:grid-cols-[1fr_auto_auto] gap-10 items-center">
+    <div class="grid md:grid-cols-[1fr_auto] gap-10 items-center">
       <div>
         <div class="font-mono text-tick uppercase tracking-tick mb-6" style="color: var(--brand-400)">
           También ofrecemos
@@ -32,11 +29,6 @@ const oppTheme = isLegal ? 'theme-accounting' : 'theme-legal';
         <p class="text-[1.05rem] md:text-[1.15rem] max-w-[640px] leading-relaxed" style="color: var(--fg-muted)">
           {body}
         </p>
-      </div>
-
-      <!-- Obelisco pequeño como elemento visual -->
-      <div class="hidden lg:block w-[80px]" style="color: var(--brand-500); opacity: 0.5">
-        <Obelisco />
       </div>
 
       <a href={href} class="btn-editorial self-end md:self-center">

@@ -28,16 +28,16 @@
      Variables contextuales por tema
      ═══════════════════════════════════════════════════════════ */
   .theme-legal {
-    /* Fondo blanco, texto negro — claro, corporativo, serio */
-    --bg: #ffffff;
-    --surface: #fafafa;
-    --surface-2: #f5f5f5;
-    --fg: #0a0a0a;
-    --fg-muted: #525252;
-    --fg-subtle: #a3a3a3;
-    --border: #e5e5e5;
+    /* Fondo navy oscuro — corporativo, serio, con acento azul medio */
+    --bg: #0e1628;
+    --surface: #131c32;
+    --surface-2: #1a253f;
+    --fg: #f5f7fa;
+    --fg-muted: #a3b1c2;
+    --fg-subtle: #6c7a92;
+    --border: #1e2a44;
 
-    /* Marca azul vivo */
+    /* Marca azul corporativo medio */
     --brand-50:  theme('colors.legal.50');
     --brand-100: theme('colors.legal.100');
     --brand-200: theme('colors.legal.200');
