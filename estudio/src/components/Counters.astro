@@ -14,23 +14,23 @@ export interface Props {
 }
 const { items, label = 'En cifras', title = 'El estudio en números', sub } = Astro.props;
 ---
-<section class="reveal py-20 md:py-28 border-y border-ink-200 bg-paperDark/30">
+<section class="reveal py-20 md:py-28 border-y" style="border-color: var(--border);">
   <div class="shell">
     <!-- Header -->
     <header class="mb-16 max-w-2xl">
       <div class="section-kicker"><span>{label}</span></div>
-      <h2 class="font-sans font-bold text-editorial text-ink-900 leading-tight">
+      <h2 class="font-sans font-bold text-editorial leading-tight" style="color: var(--fg);">
         <span class="stack-line inline-block" data-stack-line><span>{title}</span></span>
       </h2>
-      {sub && <p class="mt-4 text-ink-600 leading-relaxed">{sub}</p>}
+      {sub && <p class="mt-4 leading-relaxed" style="color: var(--fg-muted);">{sub}</p>}
     </header>
 
-    <!-- Grid de 2x2 con íconos -->
-    <div class="grid gap-px bg-ink-200 border border-ink-200 md:grid-cols-2">
+    <!-- Grid 2x2 — cards con borde del color del brand -->
+    <div class="grid gap-6 md:grid-cols-2">
       {items.map((c, i) => (
-        <article class="bg-paper p-8 md:p-10 flex items-start gap-6 md:gap-8">
+        <article class="p-8 md:p-10 flex items-start gap-6 md:gap-8 transition-colors duration-300 counter-card">
           <!-- Ícono -->
-          <div class="shrink-0 w-14 h-14 md:w-16 md:h-16 grid place-items-center border border-ink-200 bg-parchment" style="color: var(--brand-700)">
+          <div class="shrink-0 w-14 h-14 md:w-16 md:h-16 grid place-items-center border" style="color: var(--brand-500); border-color: var(--brand-500);">
             {c.icon === 'clock' && (
               <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
                 <circle cx="16" cy="16" r="12"/>
@@ -91,11 +91,21 @@ const { items, label = 'En cifras', title = 'El estudio en números', sub } = As
                 <span data-counter-val>0</span>{c.suffix || ''}
               </span>
             </div>
-            <div class="font-mono text-tick uppercase tracking-tick mb-2" style="color: var(--brand-700)">{c.label}</div>
-            <p class="text-ink-600 leading-relaxed text-[0.95rem] max-w-sm">{c.desc}</p>
+            <div class="font-mono text-tick uppercase tracking-tick mb-2" style="color: var(--brand-500);">{c.label}</div>
+            <p class="leading-relaxed text-[0.95rem] max-w-sm" style="color: var(--fg-muted);">{c.desc}</p>
           </div>
         </article>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .counter-card {
+    background: transparent;
+    border: 1px solid var(--border);
+  }
+  .theme-legal .counter-card     { border-color: rgba(255,255,255,0.18); }
+  .theme-accounting .counter-card{ border-color: var(--brand-700); }
+  .counter-card:hover { border-color: var(--brand-500); }
+</style>

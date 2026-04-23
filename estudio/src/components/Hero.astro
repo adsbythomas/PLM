@@ -1,5 +1,6 @@
 ---
 import Blueprint from './Blueprint.astro';
+import Obelisco from './Obelisco.astro';
 import type { Practice } from '@lib/site';
 import { site } from '@lib/site';
 
@@ -19,6 +20,17 @@ const kicker = practice === 'legal' ? 'Abogados · Buenos Aires' : 'Contadores P
   <!-- Blueprint grid sutil como fondo -->
   <div class="absolute inset-0 z-0" data-parallax data-parallax-speed="0.08">
     <Blueprint />
+  </div>
+
+  <!-- Obelisco decorativo a la derecha (aprovecha el espacio vacío) -->
+  <div class="hidden lg:block absolute right-6 xl:right-16 top-1/2 -translate-y-1/2 z-0 w-[140px] xl:w-[170px] pointer-events-none opacity-[0.45]"
+       style="color: var(--brand-500);" data-parallax data-parallax-speed="0.15">
+    <Obelisco />
+  </div>
+  <!-- Obelisco mirror a la izquierda (más sutil, simétrico) -->
+  <div class="hidden xl:block absolute left-6 xl:left-16 top-1/2 -translate-y-1/2 z-0 w-[110px] pointer-events-none opacity-[0.18]"
+       style="color: var(--brand-500); transform: translateY(-50%) scaleX(-1);" data-parallax data-parallax-speed="-0.1">
+    <Obelisco />
   </div>
 
   <!-- Contenido centrado -->

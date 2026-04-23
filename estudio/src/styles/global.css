@@ -389,11 +389,18 @@
   .border-ink-200, .border-ink-300 { border-color: var(--border) !important; }
 }
 
-/* Nav solid — fondo semitransparente del tema al scrollear */
+/* Nav solid — fondo sólido del tema (sin transparencia para evitar
+   problemas de legibilidad cuando se scrollea sobre secciones de otro color) */
 nav[data-nav].solid {
-  background: color-mix(in oklab, var(--bg) 92%, transparent);
-  backdrop-filter: blur(10px);
+  background: var(--bg);
   border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 8px 24px -20px rgba(0,0,0,0.3);
+}
+nav[data-nav].solid .nav-link {
+  color: var(--fg);
+}
+nav[data-nav].solid .nav-link:hover {
+  color: var(--brand-500);
 }
 
 /* Animaciones reducidas para prefers-reduced-motion */

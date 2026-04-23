@@ -3,7 +3,7 @@ export interface Item { year: string; title: string; desc: string; }
 export interface Props { label: string; title: string; items: Item[]; }
 const { label, title, items } = Astro.props;
 ---
-<section id="historia" class="relative py-28 md:py-32 bg-paperDark/40 border-y border-ink-200 overflow-hidden reveal">
+<section id="historia" class="relative py-28 md:py-32 border-y overflow-hidden reveal" style="border-color: var(--border);">
   <div class="shell">
     <div class="section-kicker"><span>{label}</span></div>
 

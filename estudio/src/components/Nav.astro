@@ -23,23 +23,23 @@ const altLabel = isLegal ? '→ Contable' : '→ Legal';
 <nav id="mainNav" class="fixed inset-x-0 top-0 z-50 transition-all duration-500" data-nav>
   <div class="shell h-16 md:h-20 flex items-center justify-between">
     <a href={withBase('/')} class="flex items-baseline gap-3 group" aria-label="Inicio">
-      <span class="font-sans text-[1.45rem] md:text-[1.6rem] font-semibold leading-none tracking-tight">
-        {site.abbr.a}<span style="color: var(--brand-700)">{site.abbr.b}</span>
+      <span class="font-sans text-[1.45rem] md:text-[1.6rem] font-semibold leading-none tracking-tight" style="color: var(--fg);">
+        {site.abbr.a}<span style="color: var(--brand-500)">{site.abbr.b}</span>
       </span>
-      <span class="hidden md:inline w-8 h-px bg-ink-300 group-hover:w-12 transition-all duration-500" style="background: var(--brand-700)"></span>
-      <span class="hidden md:inline font-mono text-tick uppercase tracking-tick text-ink-400">Desde 2004</span>
+      <span class="hidden md:inline w-8 h-px group-hover:w-12 transition-all duration-500" style="background: var(--brand-500)"></span>
+      <span class="hidden md:inline font-mono text-tick uppercase tracking-tick" style="color: var(--fg-subtle);">Desde 2004</span>
     </a>
 
     <ul class="hidden md:flex items-center gap-9">
       {navLinks.map((l) => (
-        <li><a href={l.href} class="nav-link text-ink-700">{l.label}</a></li>
+        <li><a href={l.href} class="nav-link" style="color: var(--fg);">{l.label}</a></li>
       ))}
       <li>
-        <a href={altHref} class="nav-link font-mono" style="color: var(--brand-700)">{altLabel}</a>
+        <a href={altHref} class="nav-link font-mono" style="color: var(--brand-400);">{altLabel}</a>
       </li>
     </ul>
 
-    <button id="mob-open" class="md:hidden w-10 h-10 grid place-items-center text-ink-900" aria-label="Abrir menú">
+    <button id="mob-open" class="md:hidden w-10 h-10 grid place-items-center" aria-label="Abrir menú" style="color: var(--fg);">
       <svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 1h20M1 7h14M1 13h18"/></svg>
     </button>
   </div>
