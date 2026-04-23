@@ -1,6 +1,12 @@
 # Estudio — Sitio institucional
 
 Sitio institucional del estudio **Pantarotto Lértora Bardagí & Asociados**.
+
+> **Nota:** este directorio se sincroniza automáticamente al repo
+> [`adsbythomas/Estudio`](https://github.com/adsbythomas/Estudio) mediante
+> un GitHub Action en PLM (`.github/workflows/sync-estudio.yml`). Los cambios
+> acá disparan el deploy a GitHub Pages del otro repo.
+
 Dos áreas, un mismo estudio:
 
 - **Legal** (home, `/`) — paleta **azul** · derecho empresarial.
