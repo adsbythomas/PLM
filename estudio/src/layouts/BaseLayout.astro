@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Nav from '@components/Nav.astro';
+import Ribbon from '@components/Ribbon.astro';
 import Footer from '@components/Footer.astro';
 import type { Practice } from '@lib/site';
 
@@ -10,10 +11,9 @@ export interface Props {
   practice: Practice;
   canonical?: string;
 }
-
 const { title, description, practice, canonical } = Astro.props;
 const themeClass = practice === 'legal' ? 'theme-legal' : 'theme-accounting';
-const themeColor = practice === 'legal' ? '#1a3a6c' : '#80371c';
+const themeColor = practice === 'legal' ? '#142a46' : '#63300f';
 ---
 <!doctype html>
 <html lang="es" class={themeClass}>
@@ -32,20 +32,16 @@ const themeColor = practice === 'legal' ? '#1a3a6c' : '#80371c';
     <meta property="og:locale" content="es_AR" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="icon" type="image/svg+xml" href={`data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='10' fill='${encodeURIComponent(themeColor)}'/><text x='50%25' y='55%25' font-family='Georgia,serif' font-size='28' font-weight='700' text-anchor='middle' dominant-baseline='middle' fill='%23ffffff'>PLB</text></svg>`} />
+    <link rel="icon" type="image/svg+xml" href={`data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='10' fill='${encodeURIComponent(themeColor)}'/><text x='50%25' y='56%25' font-family='Georgia,serif' font-size='26' font-weight='700' text-anchor='middle' dominant-baseline='middle' fill='%23f4efe5'>PLB</text></svg>`} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
 
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
       '@type': practice === 'legal' ? 'LegalService' : 'AccountingService',
       name: 'Pantarotto Lértora Bardagí & Asocs.',
-      alternateName: 'PLB & Asocs.',
       description,
       address: {
         '@type': 'PostalAddress',
@@ -54,67 +50,186 @@ const themeColor = practice === 'legal' ? '#1a3a6c' : '#80371c';
         addressLocality: 'Buenos Aires',
         addressCountry: 'AR',
       },
-      areaServed: [
-        { '@type': 'Country', name: 'Argentina' },
-        { '@type': 'Country', name: 'United States' },
-        { '@type': 'Country', name: 'Uruguay' },
-      ],
       foundingDate: '2004',
     })} />
   </head>
-  <body>
-    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:bg-white focus:px-4 focus:py-2 focus:z-50">Saltar al contenido</a>
-    <Nav practice={practice} />
-    <main id="main"><slot /></main>
-    <Footer practice={practice} />
-    <script>
-      // Reveal on scroll — animación sutil al entrar en viewport
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('in-view');
-            io.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  <body class="grain">
+    <!-- Preloader -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+      <svg viewBox="0 0 100 100">
+        <path class="pre-stroke" d="M 20 80 L 20 20 L 35 20 Q 50 20 50 35 Q 50 50 35 50 L 20 50 M 50 80 L 50 20 L 70 20 Q 85 20 85 35 Q 85 45 72 48 L 85 80"/>
+      </svg>
+      <div class="pre-label">Pantarotto · Lértora · Bardagí</div>
+    </div>
 
-      // Nav scroll state
-      const nav = document.getElementById('mainNav');
+    <!-- Cursor personalizado -->
+    <div class="custom-cursor-dot" id="cursorDot"></div>
+    <div class="custom-cursor-ring" id="cursorRing"></div>
+
+    <!-- Skip -->
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:bg-white focus:px-4 focus:py-2 focus:z-50 focus:text-ink-900">Saltar al contenido</a>
+
+    <Ribbon practice={practice} />
+    <Nav practice={practice} />
+
+    <main id="main"><slot /></main>
+
+    <Footer practice={practice} />
+
+    <script is:inline>
+      // ═══════════════════════════════════════════════
+      // Preloader — desaparece cuando el DOM carga
+      // ═══════════════════════════════════════════════
+      window.addEventListener('load', () => {
+        setTimeout(() => document.getElementById('preloader')?.classList.add('done'), 900);
+      });
+
+      // ═══════════════════════════════════════════════
+      // Scroll progress bar
+      // ═══════════════════════════════════════════════
+      const progressBar = document.getElementById('scrollProgress');
+      const nav = document.querySelector('[data-nav]');
       const onScroll = () => {
-        if (!nav) return;
-        if (window.scrollY > 8) nav.classList.add('scrolled');
-        else nav.classList.remove('scrolled');
+        const h = document.documentElement;
+        const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight);
+        if (progressBar) progressBar.style.setProperty('--progress', String(scrolled));
+        if (nav) nav.classList.toggle('solid', h.scrollTop > 40);
+
+        // Parallax
+        document.querySelectorAll('[data-parallax]').forEach((el) => {
+          const speed = parseFloat(el.getAttribute('data-parallax-speed') || '0.2');
+          const rect = el.getBoundingClientRect();
+          const off = (rect.top + rect.height / 2 - window.innerHeight / 2) * speed * -1;
+          el.style.setProperty('--p-offset', off + 'px');
+        });
       };
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
 
-      // Mobile menu
+      // ═══════════════════════════════════════════════
+      // Reveal on scroll — para .reveal y .stack-line y .skyline y .blueprint y .split-word
+      // ═══════════════════════════════════════════════
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            e.target.classList.add('in-view');
+
+            // stagger los stack-lines dentro del reveal
+            const lines = e.target.querySelectorAll?.('[data-stack-line]');
+            lines?.forEach?.((l, i) => {
+              setTimeout(() => l.classList.add('in'), i * 90);
+            });
+
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+      document.querySelectorAll('.reveal, .skyline, .blueprint, [data-stack-line], [data-team-row]').forEach((el) => io.observe(el));
+
+      // ═══════════════════════════════════════════════
+      // Counters — count-up al entrar en viewport
+      // ═══════════════════════════════════════════════
+      const counters = document.querySelectorAll('[data-counter]');
+      const counterIO = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          const target = parseFloat(e.target.getAttribute('data-target') || '0');
+          const valEl = e.target.querySelector('[data-counter-val]');
+          if (!valEl) return;
+          const dur = 1600;
+          const start = performance.now();
+          const step = (t) => {
+            const p = Math.min(1, (t - start) / dur);
+            const ease = 1 - Math.pow(1 - p, 3);
+            valEl.textContent = Math.round(target * ease).toString();
+            if (p < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+          counterIO.unobserve(e.target);
+        });
+      }, { threshold: 0.4 });
+      counters.forEach((c) => counterIO.observe(c));
+
+      // ═══════════════════════════════════════════════
+      // Cursor personalizado (mix-blend-difference)
+      // ═══════════════════════════════════════════════
+      const dot = document.getElementById('cursorDot');
+      const ring = document.getElementById('cursorRing');
+      let mx = 0, my = 0, rx = 0, ry = 0;
+      const hasFine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+      if (hasFine && dot && ring) {
+        window.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
+        const tick = () => {
+          rx += (mx - rx) * 0.18;
+          ry += (my - ry) * 0.18;
+          dot.style.transform = `translate(${mx}px, ${my}px)`;
+          ring.style.transform = `translate(${rx - 17}px, ${ry - 17}px)`;
+          requestAnimationFrame(tick);
+        };
+        tick();
+        document.querySelectorAll('a, button, [data-magnet]').forEach((el) => {
+          el.addEventListener('mouseenter', () => document.documentElement.classList.add('is-hover-target'));
+          el.addEventListener('mouseleave', () => document.documentElement.classList.remove('is-hover-target'));
+        });
+      } else {
+        dot?.remove(); ring?.remove();
+      }
+
+      // ═══════════════════════════════════════════════
+      // Magnetic buttons — siguen el cursor sutilmente
+      // ═══════════════════════════════════════════════
+      if (hasFine) {
+        document.querySelectorAll('[data-magnet]').forEach((el) => {
+          el.addEventListener('mousemove', (e) => {
+            const r = el.getBoundingClientRect();
+            const x = e.clientX - r.left - r.width / 2;
+            const y = e.clientY - r.top - r.height / 2;
+            el.style.transform = `translate(${x * 0.18}px, ${y * 0.25}px)`;
+          });
+          el.addEventListener('mouseleave', () => {
+            el.style.transform = '';
+          });
+        });
+      }
+
+      // ═══════════════════════════════════════════════
+      // Menú mobile
+      // ═══════════════════════════════════════════════
       const openBtn = document.getElementById('mob-open');
       const closeBtn = document.getElementById('mob-close');
       const mob = document.getElementById('mob');
-      openBtn?.addEventListener('click', () => mob?.classList.add('open'));
-      closeBtn?.addEventListener('click', () => mob?.classList.remove('open'));
-      mob?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => mob.classList.remove('open')));
+      openBtn?.addEventListener('click', () => { mob?.classList.add('open'); document.body.style.overflow = 'hidden'; });
+      closeBtn?.addEventListener('click', () => { mob?.classList.remove('open'); document.body.style.overflow = ''; });
+      mob?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
+        mob.classList.remove('open'); document.body.style.overflow = '';
+      }));
 
-      // Form feedback (demo — sin backend)
-      document.querySelectorAll('form[data-contact]')?.forEach((form) => {
+      // ═══════════════════════════════════════════════
+      // Form feedback
+      // ═══════════════════════════════════════════════
+      document.querySelectorAll('form[data-contact]').forEach((form) => {
         form.addEventListener('submit', (e) => {
           e.preventDefault();
           const btn = form.querySelector('button[type="submit"]');
-          if (btn) {
-            btn.textContent = 'Consulta enviada · Gracias';
-            btn.setAttribute('disabled', 'true');
-            btn.classList.add('sent');
-          }
+          if (!btn) return;
+          btn.querySelector('span').textContent = 'Consulta enviada · gracias';
+          btn.setAttribute('disabled', 'true');
+          btn.style.background = '#2f5d38';
+        });
+      });
+
+      // ═══════════════════════════════════════════════
+      // Índice de prácticas — contador activo al hover
+      // ═══════════════════════════════════════════════
+      const indexItems = document.querySelectorAll('[data-index-item]');
+      const indexCount = document.querySelector('[data-index-count]');
+      indexItems.forEach((it, i) => {
+        it.addEventListener('mouseenter', () => {
+          if (indexCount) indexCount.textContent = String(i + 1).padStart(2, '0');
         });
       });
     </script>
-    <style is:global>
-      #mob { display: none; }
-      #mob.open { display: flex; }
-      nav.scrolled { box-shadow: 0 1px 0 rgba(0,0,0,0.06), 0 12px 30px -24px rgba(0,0,0,0.2); }
-      .sent { background: #2d6b3b !important; }
-    </style>
   </body>
 </html>

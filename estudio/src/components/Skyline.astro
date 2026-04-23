@@ -1,0 +1,93 @@
+---
+// Silueta de Buenos Aires — simplificada y editorial.
+// Incluye: Torre Monumental (ex Inglés), Kavanagh, Palacio Barolo,
+// Obelisco (centrado, destacado), Puente de la Mujer (arco), torres modernas.
+export interface Props { class?: string; }
+const { class: cls = '' } = Astro.props;
+---
+<div class={`skyline ${cls}`}>
+  <svg viewBox="0 0 1600 400" preserveAspectRatio="xMidYEnd meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="sky-fade" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%"  stop-color="var(--brand-900)" stop-opacity="0"/>
+        <stop offset="100%" stop-color="var(--brand-900)" stop-opacity="0.15"/>
+      </linearGradient>
+    </defs>
+
+    <!-- ███ Silueta llena (fade-in después del stroke) ███ -->
+    <g class="skyline-fill" fill="var(--brand-900)" fill-opacity="0.92">
+      <!-- tira baja (base) -->
+      <rect x="0" y="340" width="1600" height="60"/>
+
+      <!-- izquierda: torres modernas escalonadas -->
+      <path d="M 20 340 L 20 260 L 90 260 L 90 240 L 120 240 L 120 310 L 160 310 L 160 280 L 200 280 L 200 340 Z"/>
+      <!-- Torre Monumental (Torre de los Ingleses) -->
+      <path d="M 230 340 L 230 200 L 254 200 L 254 175 L 260 145 L 265 115 L 270 100 L 275 115 L 280 145 L 286 175 L 286 200 L 310 200 L 310 340 Z"/>
+      <circle cx="270" cy="195" r="7" />
+      <!-- edificio haussmanniano -->
+      <path d="M 340 340 L 340 220 L 420 220 L 420 210 L 460 210 L 460 240 L 480 240 L 480 340 Z"/>
+      <!-- Palacio Barolo (cúpula + aguja) -->
+      <path d="M 500 340 L 500 170 L 540 170 L 540 150 L 560 130 L 565 95 L 568 70 L 571 95 L 576 130 L 596 150 L 596 170 L 636 170 L 636 340 Z"/>
+      <circle cx="568" cy="62" r="3" />
+      <!-- Kavanagh style -->
+      <path d="M 660 340 L 660 180 L 720 180 L 720 160 L 740 160 L 740 120 L 760 120 L 760 80 L 780 80 L 780 120 L 800 120 L 800 160 L 820 160 L 820 180 L 880 180 L 880 340 Z"/>
+
+      <!-- Obelisco (CENTRO, destacado) -->
+      <path d="M 870 340 L 870 280 L 830 280 L 830 260 L 870 260 L 870 40 L 880 40 L 890 30 L 900 40 L 900 260 L 940 260 L 940 280 L 900 280 L 900 340 Z"
+            fill="var(--brand-700)"/>
+
+      <!-- torres oficinas derecha -->
+      <path d="M 960 340 L 960 200 L 1040 200 L 1040 180 L 1100 180 L 1100 220 L 1140 220 L 1140 340 Z"/>
+      <path d="M 1160 340 L 1160 240 L 1220 240 L 1220 260 L 1260 260 L 1260 220 L 1320 220 L 1320 340 Z"/>
+      <!-- Puerto Madero (torre esbelta) -->
+      <path d="M 1350 340 L 1350 140 L 1390 140 L 1390 120 L 1410 120 L 1410 100 L 1430 100 L 1430 340 Z"/>
+      <!-- torres extremo derecho -->
+      <path d="M 1450 340 L 1450 250 L 1500 250 L 1500 220 L 1540 220 L 1540 280 L 1580 280 L 1580 340 Z"/>
+    </g>
+
+    <!-- ███ Stroke line (dibujado en stroke animation) ███ -->
+    <path class="skyline-path"
+          stroke="var(--brand-700)"
+          stroke-width="1.4"
+          fill="none"
+          stroke-linejoin="round"
+          stroke-linecap="round"
+          d="
+            M 0 340 L 20 340 L 20 260 L 90 260 L 90 240 L 120 240 L 120 310 L 160 310 L 160 280 L 200 280 L 200 340
+            L 230 340 L 230 200 L 254 200 L 254 175 L 260 145 L 265 115 L 270 100 L 275 115 L 280 145 L 286 175 L 286 200 L 310 200 L 310 340
+            L 340 340 L 340 220 L 420 220 L 420 210 L 460 210 L 460 240 L 480 240 L 480 340
+            L 500 340 L 500 170 L 540 170 L 540 150 L 560 130 L 565 95 L 568 70 L 571 95 L 576 130 L 596 150 L 596 170 L 636 170 L 636 340
+            L 660 340 L 660 180 L 720 180 L 720 160 L 740 160 L 740 120 L 760 120 L 760 80 L 780 80 L 780 120 L 800 120 L 800 160 L 820 160 L 820 180 L 880 180 L 880 340
+            M 870 280 L 830 280 L 830 260 L 870 260 L 870 40 L 880 40 L 890 30 L 900 40 L 900 260 L 940 260 L 940 280 L 900 280 L 900 340
+            L 960 340 L 960 200 L 1040 200 L 1040 180 L 1100 180 L 1100 220 L 1140 220 L 1140 340
+            L 1160 340 L 1160 240 L 1220 240 L 1220 260 L 1260 260 L 1260 220 L 1320 220 L 1320 340
+            L 1350 340 L 1350 140 L 1390 140 L 1390 120 L 1410 120 L 1410 100 L 1430 100 L 1430 340
+            L 1450 340 L 1450 250 L 1500 250 L 1500 220 L 1540 220 L 1540 280 L 1580 280 L 1580 340
+            L 1600 340
+          "/>
+
+    <!-- ███ Ventanas que prenden en secuencia ███ -->
+    <g fill="var(--brand-400)" class="skyline-windows">
+      <rect class="window" style="--w:1"  x="40"  y="275" width="4" height="5"/>
+      <rect class="window" style="--w:2"  x="60"  y="285" width="4" height="5"/>
+      <rect class="window" style="--w:3"  x="130" y="260" width="4" height="5"/>
+      <rect class="window" style="--w:4"  x="356" y="250" width="5" height="6"/>
+      <rect class="window" style="--w:5"  x="390" y="240" width="5" height="6"/>
+      <rect class="window" style="--w:6"  x="510" y="220" width="4" height="6"/>
+      <rect class="window" style="--w:7"  x="520" y="260" width="4" height="6"/>
+      <rect class="window" style="--w:8"  x="680" y="220" width="4" height="6"/>
+      <rect class="window" style="--w:9"  x="695" y="200" width="4" height="6"/>
+      <rect class="window" style="--w:10" x="975" y="230" width="5" height="6"/>
+      <rect class="window" style="--w:11" x="1010" y="250" width="5" height="6"/>
+      <rect class="window" style="--w:12" x="1175" y="275" width="4" height="6"/>
+      <rect class="window" style="--w:13" x="1360" y="170" width="4" height="6"/>
+      <rect class="window" style="--w:14" x="1380" y="200" width="4" height="6"/>
+      <rect class="window" style="--w:15" x="1470" y="275" width="4" height="6"/>
+      <rect class="window" style="--w:16" x="870"  y="100" width="3" height="5" fill="var(--brand-300)"/>
+      <rect class="window" style="--w:17" x="885"  y="200" width="3" height="5" fill="var(--brand-300)"/>
+    </g>
+
+    <!-- Gradiente de fundido inferior -->
+    <rect x="0" y="260" width="1600" height="140" fill="url(#sky-fade)"/>
+  </svg>
+</div>

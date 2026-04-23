@@ -1,0 +1,37 @@
+---
+export interface Movimiento { num: string; title: string; body: string; }
+export interface Props {
+  label: string;
+  headline: string[];   // varias líneas para stack reveal
+  intro: string;
+  movimientos: Movimiento[];
+}
+const { label, headline, intro, movimientos } = Astro.props;
+---
+<section id="manifiesto" class="relative py-32 md:py-chapter reveal">
+  <div class="shell">
+    <div class="section-kicker"><span>{label}</span></div>
+
+    <h2 class="monument-stack font-serif font-semibold text-cover text-ink-900 mb-14 max-w-[1100px]">
+      {headline.map((line, i) => (
+        <span class="stack-line" style={`--delay: ${i * 110}`} data-stack-line><span>{line}</span></span>
+      ))}
+    </h2>
+
+    <p class="reader drop-cap font-serif text-[1.3rem] md:text-[1.45rem] leading-[1.55] text-ink-700 mb-20 max-w-[720px]">
+      {intro}
+    </p>
+  </div>
+
+  <div class="shell grid md:grid-cols-3 gap-16 md:gap-20 mt-12">
+    {movimientos.map((m, i) => (
+      <article class="reveal" style={`transition-delay: ${i * 120}ms`}>
+        <div class="font-mono text-tick uppercase tracking-tick mb-5" style="color: var(--brand-700)">{m.num}</div>
+        <h3 class="font-serif font-semibold text-[1.7rem] md:text-[2rem] leading-tight text-ink-900 mb-4">
+          <span class="under-ruler">{m.title}</span>
+        </h3>
+        <p class="text-ink-600 leading-relaxed text-[0.98rem]">{m.body}</p>
+      </article>
+    ))}
+  </div>
+</section>

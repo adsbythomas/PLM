@@ -1,13 +1,15 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Hero from '@components/Hero.astro';
-import About from '@components/About.astro';
-import Areas from '@components/Areas.astro';
-import Sectors from '@components/Sectors.astro';
+import Counters from '@components/Counters.astro';
+import Manifesto from '@components/Manifesto.astro';
+import Practice from '@components/Practice.astro';
+import Marquee from '@components/Marquee.astro';
+import Approach from '@components/Approach.astro';
 import Team from '@components/Team.astro';
 import Timeline from '@components/Timeline.astro';
-import Contact from '@components/Contact.astro';
 import CrossLink from '@components/CrossLink.astro';
+import Contact from '@components/Contact.astro';
 import { accounting } from '@lib/accounting';
 
 const base = import.meta.env.BASE_URL;
@@ -15,42 +17,43 @@ const withBase = (p: string) => (base.endsWith('/') ? base.slice(0, -1) : base) 
 ---
 <BaseLayout
   practice="accounting"
-  title="PLB Contable — Contabilidad e Impuestos · Buenos Aires"
-  description="Área contable integral del estudio Pantarotto Lértora Bardagí: liquidación de impuestos, estados contables, auditoría, planificación fiscal, sueldos y contabilidad internacional.">
+  title="PLB Contable — Contabilidad & Impuestos · Buenos Aires · 20 años"
+  description="Área contable integral del estudio Pantarotto Lértora Bardagí. Liquidación de impuestos, estados contables, auditoría, planificación fiscal, sueldos y contabilidad internacional.">
 
   <Hero
     practice="accounting"
-    eyebrow={accounting.eyebrow}
     kicker={accounting.hero.kicker}
-    title={accounting.hero.title}
-    titleAccent={accounting.hero.titleAccent}
-    titleSuffix={accounting.hero.titleSuffix}
+    words={accounting.hero.words}
+    italicWord={accounting.hero.italicWord}
     lead={accounting.hero.lead}
     ctaPrimary={accounting.hero.ctaPrimary}
-    ctaSecondary={accounting.hero.ctaSecondary}
-    switchHref={withBase('/')}
-    switchLabel="Ver área legal"
+    altLabel="→ Ir al área legal"
+    altHref={withBase('/')}
+    index={accounting.eyebrow}
   />
 
-  <About
-    label={accounting.about.label}
-    title={accounting.about.title}
-    paragraphs={accounting.about.paragraphs}
-    highlights={accounting.about.highlights}
+  <Counters items={accounting.counters} />
+
+  <Manifesto
+    label={accounting.manifesto.label}
+    headline={accounting.manifesto.headline}
+    intro={accounting.manifesto.intro}
+    movimientos={accounting.manifesto.movimientos}
   />
 
-  <Areas
-    label={accounting.areas.label}
-    title={accounting.areas.title}
-    sub={accounting.areas.sub}
-    items={accounting.areas.items}
+  <Practice
+    label={accounting.practice.label}
+    title={accounting.practice.title}
+    sub={accounting.practice.sub}
+    items={accounting.practice.items}
   />
 
-  <Sectors
-    label={accounting.sectors.label}
-    title={accounting.sectors.title}
-    sub={accounting.sectors.sub}
-    items={accounting.sectors.items}
+  <Marquee items={accounting.marquee} />
+
+  <Approach
+    label={accounting.approach.label}
+    title={accounting.approach.title}
+    steps={accounting.approach.steps}
   />
 
   <Team

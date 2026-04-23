@@ -1,13 +1,15 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Hero from '@components/Hero.astro';
-import About from '@components/About.astro';
-import Areas from '@components/Areas.astro';
-import Sectors from '@components/Sectors.astro';
+import Counters from '@components/Counters.astro';
+import Manifesto from '@components/Manifesto.astro';
+import Practice from '@components/Practice.astro';
+import Marquee from '@components/Marquee.astro';
+import Approach from '@components/Approach.astro';
 import Team from '@components/Team.astro';
 import Timeline from '@components/Timeline.astro';
-import Contact from '@components/Contact.astro';
 import CrossLink from '@components/CrossLink.astro';
+import Contact from '@components/Contact.astro';
 import { legal } from '@lib/legal';
 
 const base = import.meta.env.BASE_URL;
@@ -15,42 +17,43 @@ const withBase = (p: string) => (base.endsWith('/') ? base.slice(0, -1) : base) 
 ---
 <BaseLayout
   practice="legal"
-  title="PLB Abogados — Derecho Empresarial en Buenos Aires · 20 años"
-  description="Estudio integral de abogados y contadores en Buenos Aires, con corresponsales en EE.UU. y Uruguay. Tributario, aduanero, societario, laboral, aerocomercial y penal económico.">
+  title="PLB Abogados — Derecho empresarial · Buenos Aires · 20 años"
+  description="Estudio integral de abogados y contadores en Buenos Aires. Tributario, aduanero, societario, laboral, aerocomercial y penal económico. Corresponsalías en EE.UU. y Uruguay.">
 
   <Hero
     practice="legal"
-    eyebrow={legal.eyebrow}
     kicker={legal.hero.kicker}
-    title={legal.hero.title}
-    titleAccent={legal.hero.titleAccent}
-    titleSuffix={legal.hero.titleSuffix}
+    words={legal.hero.words}
+    italicWord={legal.hero.italicWord}
     lead={legal.hero.lead}
     ctaPrimary={legal.hero.ctaPrimary}
-    ctaSecondary={legal.hero.ctaSecondary}
-    switchHref={withBase('/contable')}
-    switchLabel="Ver área contable"
+    altLabel="→ Ir al área contable"
+    altHref={withBase('/contable')}
+    index={legal.eyebrow}
   />
 
-  <About
-    label={legal.about.label}
-    title={legal.about.title}
-    paragraphs={legal.about.paragraphs}
-    highlights={legal.about.highlights}
+  <Counters items={legal.counters} />
+
+  <Manifesto
+    label={legal.manifesto.label}
+    headline={legal.manifesto.headline}
+    intro={legal.manifesto.intro}
+    movimientos={legal.manifesto.movimientos}
   />
 
-  <Areas
-    label={legal.areas.label}
-    title={legal.areas.title}
-    sub={legal.areas.sub}
-    items={legal.areas.items}
+  <Practice
+    label={legal.practice.label}
+    title={legal.practice.title}
+    sub={legal.practice.sub}
+    items={legal.practice.items}
   />
 
-  <Sectors
-    label={legal.sectors.label}
-    title={legal.sectors.title}
-    sub={legal.sectors.sub}
-    items={legal.sectors.items}
+  <Marquee items={legal.marquee} />
+
+  <Approach
+    label={legal.approach.label}
+    title={legal.approach.title}
+    steps={legal.approach.steps}
   />
 
   <Team

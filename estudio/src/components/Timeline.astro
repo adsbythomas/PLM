@@ -3,29 +3,37 @@ export interface Item { year: string; title: string; desc: string; }
 export interface Props { label: string; title: string; items: Item[]; }
 const { label, title, items } = Astro.props;
 ---
-<section id="historia" class="bg-ink-900 text-paper py-24 md:py-32 reveal">
+<section id="historia" class="relative py-32 md:py-chapter bg-paperDark/60 border-y border-ink-200 overflow-hidden reveal">
   <div class="shell">
-    <header class="max-w-3xl mb-16">
-      <div class="text-[0.72rem] font-semibold uppercase tracking-[0.22em] mb-3" style="color: var(--brand-300)">{label}</div>
-      <h2 class="font-serif font-semibold text-h2 text-paper">{title}</h2>
-    </header>
+    <div class="section-kicker"><span>{label}</span></div>
+    <h2 class="font-serif font-semibold text-cover text-ink-900 mb-8 max-w-[900px] leading-[1.05]">
+      <span class="under-ruler">{title}</span>
+    </h2>
+    <p class="reader text-ink-600 text-[1.1rem] leading-relaxed mb-8">
+      Dos décadas acompañando a empresas. Deslizá para recorrer los hitos del estudio.
+    </p>
+  </div>
 
-    <ol class="timeline-rail space-y-12">
-      {items.map((it, i) => {
-        const left = i % 2 === 0;
-        return (
-          <li class="relative grid md:grid-cols-2 items-start gap-6 md:gap-16">
-            <div class={`md:${left ? 'order-1 text-right pr-10' : 'order-2 text-left pl-10'} pl-10 md:pl-0`}>
-              <div class="font-serif font-semibold text-3xl" style="color: var(--brand-300)">{it.year}</div>
-              <h3 class="mt-2 font-serif font-semibold text-xl text-paper">{it.title}</h3>
-              <p class="mt-2 text-sm leading-relaxed text-paper/70">{it.desc}</p>
+  <!-- Timeline horizontal con scroll snap -->
+  <div class="shell">
+    <div class="timeline-scroll" data-timeline>
+      {items.map((it) => (
+        <article class="timeline-card">
+          <div class="pt-12 pr-2">
+            <div class="font-mono text-tick uppercase tracking-tick mb-3" style="color: var(--brand-700)">Anno {it.year}</div>
+            <div class="font-serif font-semibold text-[2.2rem] md:text-[2.6rem] leading-[1.05] text-ink-900 mb-4">
+              <span class="font-mono text-sm align-top mr-2" style="color: var(--brand-700)">·</span>
+              {it.title}
             </div>
-            <div class={`hidden md:block ${left ? 'order-2' : 'order-1'}`}></div>
+            <p class="text-ink-600 leading-relaxed text-[0.98rem]">{it.desc}</p>
+          </div>
+        </article>
+      ))}
+    </div>
 
-            <span class="absolute top-2 md:top-4 left-[12px] md:left-1/2 md:-translate-x-1/2 w-3 h-3 rounded-full ring-4 ring-ink-900" style="background: var(--brand-500)"></span>
-          </li>
-        );
-      })}
-    </ol>
+    <div class="mt-6 flex items-center justify-between text-tick uppercase tracking-tick font-mono text-ink-400">
+      <span>← {items[0].year}</span>
+      <span>→ {items[items.length - 1].year}</span>
+    </div>
   </div>
 </section>

@@ -1,6 +1,5 @@
 ---
 import { site } from '@lib/site';
-
 export interface Props {
   label: string;
   title: string;
@@ -11,112 +10,95 @@ export interface Props {
 }
 const { label, title, titleAccent, desc, formAreas, formAreaLabel } = Astro.props;
 ---
-<section id="contacto" class="border-t border-ink-200 pt-24 md:pt-32 reveal">
-  <div class="shell max-w-4xl text-center mb-14">
-    <div class="eyebrow mb-3">{label}</div>
-    <h2 class="section-title">
-      {title} <span style="color: var(--brand-700)">{titleAccent}</span>
-    </h2>
-    <p class="mt-4 text-ink-600 leading-relaxed max-w-2xl mx-auto">{desc}</p>
-  </div>
+<section id="contacto" class="relative py-32 md:py-chapter reveal border-t border-ink-200">
+  <div class="shell grid md:grid-cols-[1fr_1.2fr] gap-16 md:gap-24">
+    <!-- Lado izquierdo — carta de invitación -->
+    <div>
+      <div class="section-kicker"><span>{label}</span></div>
 
-  <div class="shell grid md:grid-cols-4 gap-6 mb-16">
-    <div class="flex items-start gap-4">
-      <div class="w-10 h-10 grid place-items-center border border-ink-200 bg-white text-ink-600 shrink-0">
-        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 2a6 6 0 016 6c0 4-6 10-6 10S4 12 4 8a6 6 0 016-6z"/><circle cx="10" cy="8" r="2"/></svg>
-      </div>
-      <div>
-        <div class="text-[0.62rem] font-semibold uppercase tracking-[0.18em] mb-1" style="color: var(--brand-700)">Dirección</div>
-        <div class="text-sm text-ink-700 leading-relaxed">{site.address.line1}<br/>{site.address.line2}<br/>{site.address.postalCode} · {site.address.city}</div>
-      </div>
-    </div>
-    <div class="flex items-start gap-4">
-      <div class="w-10 h-10 grid place-items-center border border-ink-200 bg-white text-ink-600 shrink-0">
-        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="16" height="12" rx="2"/><path d="M2 7l8 5 8-5"/></svg>
-      </div>
-      <div>
-        <div class="text-[0.62rem] font-semibold uppercase tracking-[0.18em] mb-1" style="color: var(--brand-700)">Email</div>
-        <div class="text-sm text-ink-700">Disponible vía formulario</div>
-      </div>
-    </div>
-    <div class="flex items-start gap-4">
-      <div class="w-10 h-10 grid place-items-center border border-ink-200 bg-white text-ink-600 shrink-0">
-        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 2"/></svg>
-      </div>
-      <div>
-        <div class="text-[0.62rem] font-semibold uppercase tracking-[0.18em] mb-1" style="color: var(--brand-700)">Horario</div>
-        <div class="text-sm text-ink-700">{site.hours}</div>
-      </div>
-    </div>
-    <div class="flex items-start gap-4">
-      <div class="w-10 h-10 grid place-items-center border border-ink-200 bg-white text-ink-600 shrink-0">
-        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M2 10h16M10 2a14 14 0 010 16M10 2a14 14 0 000 16"/></svg>
-      </div>
-      <div>
-        <div class="text-[0.62rem] font-semibold uppercase tracking-[0.18em] mb-1" style="color: var(--brand-700)">Sedes</div>
-        <div class="text-sm text-ink-700">{site.offices.join(' · ')}</div>
-      </div>
-    </div>
-  </div>
+      <h2 class="font-serif font-semibold text-cover text-ink-900 leading-[1.02] mb-10">
+        {title}<br/>
+        <em style="color: var(--brand-700)">{titleAccent}</em>.
+      </h2>
 
-  <div class="grid md:grid-cols-2 min-h-[480px]">
-    <div class="relative">
-      <iframe
-        src={site.mapsEmbed}
-        class="w-full h-full min-h-[400px] border-0"
-        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-        allowfullscreen title="Ubicación del estudio"
-      ></iframe>
-    </div>
+      <p class="font-serif italic text-[1.2rem] md:text-[1.35rem] text-ink-600 leading-relaxed max-w-md mb-10">
+        {desc}
+      </p>
 
-    <form data-contact class="bg-white p-8 md:p-12 border-l border-ink-200 flex flex-col gap-4" novalidate>
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="flex flex-col gap-1.5">
-          <label for="f-name" class="text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-ink-500">Nombre</label>
-          <input id="f-name" name="name" type="text" required placeholder="Nombre completo"
-                 class="px-4 py-3 border border-ink-200 bg-paper/50 text-ink-900 text-sm focus:outline-none focus:border-current" style="--tw-ring-color: var(--brand-700)" />
+      <dl class="grid gap-6 text-[0.95rem]">
+        <div>
+          <dt class="font-mono text-tick uppercase tracking-tick text-ink-400 mb-2">Dirección</dt>
+          <dd class="font-serif text-ink-800 leading-snug text-[1.1rem]">
+            {site.address.line1}<br/>
+            {site.address.line2}<br/>
+            <span class="text-ink-500">{site.address.postalCode} · {site.address.city}</span>
+          </dd>
         </div>
-        <div class="flex flex-col gap-1.5">
-          <label for="f-company" class="text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-ink-500">Empresa</label>
-          <input id="f-company" name="company" type="text" placeholder="Empresa u organización"
-                 class="px-4 py-3 border border-ink-200 bg-paper/50 text-ink-900 text-sm focus:outline-none" />
+        <div>
+          <dt class="font-mono text-tick uppercase tracking-tick text-ink-400 mb-2">Horario</dt>
+          <dd class="font-serif text-ink-800 text-[1.1rem]">{site.hours}</dd>
+        </div>
+        <div>
+          <dt class="font-mono text-tick uppercase tracking-tick text-ink-400 mb-2">Sedes</dt>
+          <dd class="font-serif text-ink-800 text-[1.1rem]">{site.offices.join(' · ')}</dd>
+        </div>
+        <div>
+          <dt class="font-mono text-tick uppercase tracking-tick text-ink-400 mb-2">Canales</dt>
+          <dd class="font-serif text-ink-800 text-[1.1rem]">
+            <a href={site.linkedin} class="ink-link" target="_blank" rel="noopener">LinkedIn</a> · <span>Email vía formulario</span>
+          </dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- Lado derecho — form editorial -->
+    <form data-contact class="letter-form self-start" novalidate>
+      <p class="font-serif text-[1.4rem] italic text-ink-700 mb-4">
+        Estimados,
+      </p>
+
+      <div class="letter-field">
+        <input id="f-name" name="name" type="text" required placeholder=" " autocomplete="name"/>
+        <label for="f-name">Mi nombre es</label>
+      </div>
+
+      <div class="letter-field">
+        <input id="f-company" name="company" type="text" placeholder=" " autocomplete="organization"/>
+        <label for="f-company">Represento a</label>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="letter-field">
+          <input id="f-email" name="email" type="email" required placeholder=" " autocomplete="email"/>
+          <label for="f-email">Email</label>
+        </div>
+        <div class="letter-field">
+          <input id="f-phone" name="phone" type="tel" placeholder=" " autocomplete="tel"/>
+          <label for="f-phone">Teléfono</label>
         </div>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="flex flex-col gap-1.5">
-          <label for="f-email" class="text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-ink-500">Email</label>
-          <input id="f-email" name="email" type="email" required placeholder="su@email.com"
-                 class="px-4 py-3 border border-ink-200 bg-paper/50 text-ink-900 text-sm focus:outline-none" />
-        </div>
-        <div class="flex flex-col gap-1.5">
-          <label for="f-phone" class="text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-ink-500">Teléfono</label>
-          <input id="f-phone" name="phone" type="tel" placeholder={site.phonePlaceholder}
-                 class="px-4 py-3 border border-ink-200 bg-paper/50 text-ink-900 text-sm focus:outline-none" />
-        </div>
-      </div>
-
-      <div class="flex flex-col gap-1.5">
-        <label for="f-area" class="text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-ink-500">{formAreaLabel}</label>
-        <select id="f-area" name="area" required
-                class="px-4 py-3 border border-ink-200 bg-paper/50 text-ink-900 text-sm focus:outline-none appearance-none">
-          <option value="" disabled selected>Seleccione una opción</option>
+      <div class="letter-field has-value">
+        <select id="f-area" name="area" required>
+          <option value="" disabled selected>{formAreaLabel} —</option>
           {formAreas.map((a) => <option>{a}</option>)}
         </select>
+        <label for="f-area">Los consulto por</label>
       </div>
 
-      <div class="flex flex-col gap-1.5">
-        <label for="f-message" class="text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-ink-500">Mensaje</label>
-        <textarea id="f-message" name="message" required rows="5"
-                  placeholder="Describa brevemente su consulta…"
-                  class="px-4 py-3 border border-ink-200 bg-paper/50 text-ink-900 text-sm focus:outline-none resize-y"></textarea>
+      <div class="letter-field">
+        <textarea id="f-message" name="message" required rows="4" placeholder=" "></textarea>
+        <label for="f-message">Mensaje</label>
       </div>
 
-      <button type="submit" class="btn btn-solid self-start mt-2">
-        Enviar consulta
-        <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 5h12M9 1l4 4-4 4"/></svg>
+      <button type="submit" class="btn-editorial magnet self-start mt-4" data-magnet>
+        <span>Enviar consulta</span>
+        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 5h14M11 1l4 4-4 4"/></svg>
       </button>
-      <p class="text-xs text-ink-500">Respondemos dentro de las 24 horas hábiles. Toda consulta es confidencial.</p>
+
+      <p class="text-ink-400 text-sm leading-relaxed mt-2 font-serif italic">
+        Les saludo atentamente. — <span class="text-ink-600">Respuesta dentro de las 24 horas hábiles.</span>
+      </p>
     </form>
   </div>
 </section>

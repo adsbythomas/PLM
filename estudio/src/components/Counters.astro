@@ -1,0 +1,23 @@
+---
+export interface Counter { num: string; suffix?: string; label: string; desc: string; }
+export interface Props { items: Counter[]; }
+const { items } = Astro.props;
+---
+<section class="reveal py-20 md:py-28 border-y border-ink-200">
+  <div class="shell grid gap-0">
+    {items.map((c, i) => (
+      <div class="counter-block">
+        <div class="flex items-end gap-6">
+          <span class="font-mono text-tick uppercase tracking-tick text-ink-400 pb-6">{String(i + 1).padStart(2, '0')}</span>
+          <span class="counter-num" data-counter data-target={c.num.replace(/\D/g, '')}>
+            <span data-counter-val>0</span>{c.suffix || ''}
+          </span>
+        </div>
+        <div class="text-right max-w-sm">
+          <div class="font-mono text-tick uppercase tracking-tick mb-2" style="color: var(--brand-700)">{c.label}</div>
+          <p class="text-ink-600 leading-relaxed text-[0.98rem]">{c.desc}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

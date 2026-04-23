@@ -1,5 +1,5 @@
 ---
-export interface Member { initials: string; name: string; role: string; spec: string; }
+export interface Member { initials: string; name: string; role: string; spec: string; bio?: string; }
 export interface Props {
   label: string;
   title: string;
@@ -9,39 +9,41 @@ export interface Props {
 }
 const { label, title, sub, members, ctaText } = Astro.props;
 ---
-<section id="equipo" class="border-t border-ink-200 py-24 md:py-32 reveal">
+<section id="equipo" class="relative py-32 md:py-chapter reveal">
   <div class="shell">
-    <header class="max-w-3xl mb-14">
-      <div class="eyebrow mb-3">{label}</div>
-      <h2 class="section-title">{title}</h2>
-      <p class="mt-4 text-ink-600 leading-relaxed">{sub}</p>
-    </header>
+    <div class="section-kicker"><span>{label}</span></div>
+    <h2 class="font-serif font-semibold text-cover text-ink-900 mb-6 max-w-[800px] leading-[1.05]">
+      <span class="under-ruler">{title}</span>
+    </h2>
+    <p class="reader text-ink-600 text-[1.1rem] leading-relaxed mb-20">{sub}</p>
+  </div>
 
-    <div class="grid gap-px bg-ink-200 border border-ink-200 md:grid-cols-2 lg:grid-cols-4">
-      {members.map((m) => (
-        <article class="bg-white p-7 md:p-8 flex flex-col gap-5 transition hover:bg-paper">
-          <div class="flex items-center gap-4">
-            <div class="w-14 h-14 rounded-full grid place-items-center text-white font-serif font-semibold text-lg"
-                 style="background: var(--brand-700)">
-              {m.initials}
-            </div>
-            <div>
-              <div class="font-serif font-semibold text-lg text-ink-900">{m.name}</div>
-              <div class="text-[0.68rem] font-semibold uppercase tracking-[0.16em]" style="color: var(--brand-700)">{m.role}</div>
-            </div>
+  <div class="shell">
+    {members.map((m, i) => (
+      <article class="team-row" data-team-row>
+        <div class="grid md:grid-cols-[auto_1fr] gap-10 md:gap-20 items-center">
+          <div class="team-meta font-mono text-tick uppercase tracking-tick" style="color: var(--brand-700)">
+            <div>0{i + 1} · {m.role}</div>
+            <div class="text-ink-400 mt-2">{m.spec}</div>
           </div>
-          <p class="text-sm text-ink-600 leading-relaxed">{m.spec}</p>
-        </article>
-      ))}
-
-      <article class="bg-parchment p-7 md:p-8 flex flex-col justify-center items-start gap-4 border-2 border-dashed border-ink-200">
-        <div class="font-serif text-3xl text-ink-300 leading-none">+</div>
-        <p class="text-sm text-ink-700 leading-relaxed">{ctaText}</p>
-        <a href="#contacto" class="inline-flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.14em]" style="color: var(--brand-700)">
-          Contactar al equipo
-          <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 5h12M9 1l4 4-4 4"/></svg>
-        </a>
+          <div class="team-name leading-none text-ink-900">
+            {m.name}
+          </div>
+        </div>
+        {m.bio && (
+          <p class="team-meta text-ink-600 leading-relaxed max-w-reader mt-8 md:ml-[260px] text-[0.98rem]">{m.bio}</p>
+        )}
       </article>
+    ))}
+
+    <div class="reveal grid md:grid-cols-[auto_1fr] gap-10 md:gap-20 items-center py-14 border-y border-ink-200">
+      <div class="font-mono text-tick uppercase tracking-tick text-ink-400">+ Equipo completo</div>
+      <div class="flex items-center gap-6 flex-wrap">
+        <p class="font-serif italic text-ink-700 text-[1.2rem] md:text-[1.4rem] leading-snug max-w-xl">
+          {ctaText}
+        </p>
+        <a href="#contacto" class="ink-link font-mono text-tick uppercase tracking-tick">Contactar</a>
+      </div>
     </div>
   </div>
 </section>

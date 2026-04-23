@@ -1,0 +1,37 @@
+---
+export interface Area { key: string; name: string; desc: string; }
+export interface Props {
+  label: string;
+  title: string;
+  sub: string;
+  items: Area[];
+}
+const { label, title, sub, items } = Astro.props;
+---
+<section id="practica" class="relative py-32 md:py-chapter reveal">
+  <div class="shell grid md:grid-cols-[1fr_1.8fr] gap-10 md:gap-20">
+    <aside class="md:sticky md:top-28 self-start">
+      <div class="section-kicker"><span>{label}</span></div>
+      <h2 class="font-serif font-semibold text-cover text-ink-900 leading-[1.05]">
+        <span class="under-ruler">{title}</span>
+      </h2>
+      <p class="mt-6 text-ink-600 max-w-md leading-relaxed">{sub}</p>
+      <div class="mt-8 font-mono text-tick uppercase tracking-tick text-ink-400">
+        <span data-index-count>01</span> / {String(items.length).padStart(2, '0')}
+      </div>
+    </aside>
+
+    <div class="space-y-0" data-index>
+      {items.map((a, i) => (
+        <a href="#contacto" class="block index-row group" data-index-item>
+          <span class="index-num">{String(i + 1).padStart(2, '0')}</span>
+          <div>
+            <span class="index-name">{a.name}</span>
+            <p class="index-desc">{a.desc}</p>
+          </div>
+          <span class="index-arrow">Consultar →</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
