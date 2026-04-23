@@ -1,0 +1,41 @@
+---
+export interface Member { initials: string; name: string; role: string; spec: string; }
+export interface Props {
+  label: string;
+  title: string;
+  sub: string;
+  members: Member[];
+  ctaText: string;
+}
+const { label, title, sub, members, ctaText } = Astro.props;
+---
+<section id="equipo" class="relative py-28 md:py-32 reveal">
+  <div class="shell">
+    <div class="section-kicker"><span>{label}</span></div>
+    <h2 class="font-sans font-bold text-cover text-ink-900 mb-4 max-w-[900px] leading-[1.1]">
+      <span class="stack-line inline-block" data-stack-line><span>{title}</span></span>
+    </h2>
+    <p class="reader text-ink-600 leading-relaxed mb-16">{sub}</p>
+  </div>
+
+  <div class="shell">
+    {members.map((m, i) => (
+      <article class="team-row reveal" data-team-row>
+        <div class="grid md:grid-cols-[1fr_auto] gap-6 md:gap-20 items-center">
+          <div class="team-name text-ink-900">{m.name}</div>
+          <div class="team-meta text-right">
+            <div class="font-mono text-tick uppercase tracking-tick mb-1" style="color: var(--brand-700)">
+              {String(i + 1).padStart(2, '0')} · {m.role}
+            </div>
+            <div class="text-sm text-ink-500">{m.spec}</div>
+          </div>
+        </div>
+      </article>
+    ))}
+
+    <div class="reveal grid md:grid-cols-[1fr_auto] gap-6 md:gap-20 items-center py-10 border-y border-ink-200">
+      <p class="text-ink-700 leading-snug max-w-xl">{ctaText}</p>
+      <a href="#contacto" class="ink-link font-mono text-tick uppercase tracking-tick">Contactar al equipo</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,80 @@
+name: Sync estudio → repo Estudio
+
+# Se dispara cuando cambia algo dentro de estudio/ en la rama de trabajo
+# o cuando lo corrés manualmente desde la pestaña Actions.
+on:
+  push:
+    branches:
+      - main
+      - claude/new-lawyers-website-fwDhl
+    paths:
+      - 'estudio/**'
+      - '.github/workflows/sync-estudio.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sync-estudio
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Replicar estudio/ al repo Estudio
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PLM (source)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Checkout Estudio (target)
+        uses: actions/checkout@v4
+        with:
+          repository: adsbythomas/Estudio
+          token: ${{ secrets.ESTUDIO_DEPLOY_TOKEN }}
+          ref: main
+          path: _estudio_target
+          fetch-depth: 1
+
+      - name: Copiar contenido de estudio/ al target
+        run: |
+          set -euo pipefail
+
+          # Preservamos la carpeta .git del target (nunca se toca)
+          # y borramos todo el resto antes de copiar lo nuevo.
+          find _estudio_target -mindepth 1 -maxdepth 1 \
+            ! -name '.git' -exec rm -rf {} +
+
+          # Copiamos TODO el contenido de estudio/ al repo target,
+          # incluyendo dotfiles (.github, .gitignore, etc.).
+          shopt -s dotglob
+          cp -r estudio/* _estudio_target/
+          shopt -u dotglob
+
+          # No queremos llevarnos node_modules ni dist al repo target
+          rm -rf _estudio_target/node_modules
+          rm -rf _estudio_target/dist
+
+      - name: Commit y push al repo Estudio
+        working-directory: _estudio_target
+        env:
+          SRC_SHA: ${{ github.sha }}
+          SRC_MSG: ${{ github.event.head_commit.message }}
+        run: |
+          set -euo pipefail
+          git config user.name  "estudio-sync-bot"
+          git config user.email "estudio-sync-bot@users.noreply.github.com"
+
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "No hay cambios para sincronizar."
+            exit 0
+          fi
+
+          # Primera línea del commit original como subject; referencia al SHA
+          SUBJECT=$(printf '%s' "${SRC_MSG:-auto sync}" | head -n 1 | cut -c1-72)
+          git commit -m "sync: ${SUBJECT}" -m "Origen: adsbythomas/PLM@${SRC_SHA}"
+          git push origin main

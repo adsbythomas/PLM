@@ -1,0 +1,73 @@
+---
+import { getRadar, formatUpdated } from '@lib/news';
+import type { Practice } from '@lib/site';
+
+export interface Props {
+  practice: Practice;
+  label?: string;
+  title?: string;
+}
+const { practice, label = 'Novedades', title = 'Radar normativo' } = Astro.props;
+const radar = getRadar(practice);
+const base = import.meta.env.BASE_URL;
+const withBase = (p: string) => (base.endsWith('/') ? base.slice(0, -1) : base) + p;
+
+const subpage = practice === 'legal' ? withBase('/novedades') : withBase('/novedades-contable');
+const itemBase = subpage; // mismo prefijo para detalle: /novedades/[slug]
+---
+<section id="novedades" class="relative py-28 md:py-32 border-t reveal" style="border-color: var(--border);">
+  <div class="shell">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-12">
+      <div>
+        <div class="section-kicker"><span>{label}</span></div>
+        <h2 class="font-sans font-bold text-cover leading-[1.05]" style="color: var(--fg);">
+          <span class="stack-line inline-block" data-stack-line><span>{title}</span></span>
+        </h2>
+        <p class="mt-4 max-w-xl leading-relaxed" style="color: var(--fg-muted);">
+          Resoluciones, decretos y leyes relevantes para el área — actualizado automáticamente desde el Boletín Oficial.
+        </p>
+      </div>
+
+      <a href={subpage} class="inline-flex items-center gap-2 font-mono text-tick uppercase tracking-tick transition"
+         style="color: var(--brand-500);">
+        Ver todas
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 5h12M9 1l4 4-4 4"/></svg>
+      </a>
+    </div>
+
+    <!-- Grid de noticias (primeros 3) -->
+    <div class="grid md:grid-cols-3 gap-6">
+      {radar.items.slice(0, 3).map((n) => (
+        <a href={`${itemBase}/${n.slug}`} class="news-card block p-7 md:p-8 transition-all duration-300">
+          <div class="font-mono text-tick uppercase tracking-tick mb-4" style="color: var(--brand-500);">
+            {n.date}
+          </div>
+          <h3 class="font-sans font-bold text-[1.1rem] md:text-[1.2rem] leading-snug mb-3" style="color: var(--fg);">
+            {n.title}
+          </h3>
+          <p class="text-[0.92rem] leading-relaxed mb-4" style="color: var(--fg-muted);">{n.desc}</p>
+          <div class="flex items-center justify-between text-xs font-mono uppercase tracking-tick pt-4 border-t" style="border-color: var(--border); color: var(--fg-subtle);">
+            <span>{n.source}</span>
+            <span style="color: var(--brand-500);">Leer →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <p class="mt-8 text-xs font-mono uppercase tracking-tick" style="color: var(--fg-subtle);">
+      Actualizado: {formatUpdated(radar.updated)} · Fuente: Boletín Oficial
+    </p>
+  </div>
+</section>
+
+<style>
+  .news-card {
+    background: transparent;
+    border: 1px solid var(--border);
+  }
+  .news-card:hover {
+    border-color: var(--brand-500);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px -20px rgba(0,0,0,0.4);
+  }
+</style>

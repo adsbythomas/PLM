@@ -1,0 +1,48 @@
+---
+// Rejilla arquitectónica — se dibuja sola como si fuera un plano.
+// Inspirada en diagramas de Corbusier / Mies: una cuadrícula con líneas
+// diagonales y puntos que aparecen con retraso.
+---
+<div class="blueprint">
+  <svg viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g stroke="var(--brand-700)" stroke-width="0.5" fill="none">
+      <!-- cuadrícula base -->
+      <line class="bp-line" style="--d:0"  x1="0"    y1="100"  x2="1200" y2="100"/>
+      <line class="bp-line" style="--d:1"  x1="0"    y1="200"  x2="1200" y2="200"/>
+      <line class="bp-line" style="--d:2"  x1="0"    y1="300"  x2="1200" y2="300"/>
+      <line class="bp-line" style="--d:3"  x1="0"    y1="400"  x2="1200" y2="400"/>
+      <line class="bp-line" style="--d:4"  x1="0"    y1="500"  x2="1200" y2="500"/>
+      <line class="bp-line" style="--d:5"  x1="0"    y1="600"  x2="1200" y2="600"/>
+
+      <line class="bp-line" style="--d:1"  x1="150"  y1="0" x2="150"  y2="700"/>
+      <line class="bp-line" style="--d:3"  x1="300"  y1="0" x2="300"  y2="700"/>
+      <line class="bp-line" style="--d:5"  x1="450"  y1="0" x2="450"  y2="700"/>
+      <line class="bp-line" style="--d:7"  x1="600"  y1="0" x2="600"  y2="700"/>
+      <line class="bp-line" style="--d:9"  x1="750"  y1="0" x2="750"  y2="700"/>
+      <line class="bp-line" style="--d:11" x1="900"  y1="0" x2="900"  y2="700"/>
+      <line class="bp-line" style="--d:13" x1="1050" y1="0" x2="1050" y2="700"/>
+
+      <!-- diagonales -->
+      <line class="bp-line" style="--d:14" x1="0"    y1="0"   x2="1200" y2="700" stroke-width="0.4"/>
+      <line class="bp-line" style="--d:15" x1="1200" y1="0"   x2="0"    y2="700" stroke-width="0.4"/>
+    </g>
+
+    <!-- cotas -->
+    <g stroke="var(--brand-700)" stroke-width="0.3" fill="var(--brand-700)" font-family="JetBrains Mono, monospace" font-size="7">
+      <text x="155" y="95">A</text>
+      <text x="305" y="95">B</text>
+      <text x="455" y="95">C</text>
+      <text x="605" y="95">D</text>
+      <text x="755" y="95">E</text>
+      <text x="905" y="95">F</text>
+    </g>
+
+    <!-- puntos en intersecciones clave -->
+    <g fill="var(--brand-700)">
+      <circle class="bp-line" style="--d:16" cx="300" cy="200" r="1.5"/>
+      <circle class="bp-line" style="--d:17" cx="600" cy="400" r="1.5"/>
+      <circle class="bp-line" style="--d:18" cx="900" cy="300" r="1.5"/>
+      <circle class="bp-line" style="--d:19" cx="450" cy="500" r="1.5"/>
+    </g>
+  </svg>
+</div>

@@ -1,0 +1,40 @@
+---
+import type { Practice } from '@lib/site';
+
+export interface Props { practice: Practice; }
+const { practice } = Astro.props;
+const isLegal = practice === 'legal';
+
+const base = import.meta.env.BASE_URL;
+const withBase = (p: string) => (base.endsWith('/') ? base.slice(0, -1) : base) + p;
+
+const href  = isLegal ? withBase('/contable') : withBase('/');
+const title = isLegal ? 'Área contable' : 'Área legal';
+const body  = isLegal
+  ? 'El estudio integra un equipo propio de contadores públicos matriculados: liquidación de impuestos, estados contables, auditoría y planificación fiscal. Coordinación permanente con el área jurídica.'
+  : 'El estudio integra seis áreas de derecho empresarial: tributario, aduanero, societario, laboral, aerocomercial y penal económico. Coordinación permanente con el área contable.';
+const oppTheme = isLegal ? 'theme-accounting' : 'theme-legal';
+---
+<section class={`page-break ${oppTheme} relative py-28 md:py-32 reveal`}>
+  <div class="shell relative">
+    <div class="grid md:grid-cols-[1fr_auto] gap-10 items-center">
+      <div>
+        <div class="font-mono text-tick uppercase tracking-tick mb-6" style="color: var(--brand-400)">
+          También ofrecemos
+        </div>
+
+        <h2 class="font-sans font-bold text-cover leading-[1.05] mb-6" style="color: var(--fg)">
+          {title}
+        </h2>
+        <p class="text-[1.05rem] md:text-[1.15rem] max-w-[640px] leading-relaxed" style="color: var(--fg-muted)">
+          {body}
+        </p>
+      </div>
+
+      <a href={href} class="btn-editorial self-end md:self-center">
+        <span>Visitar área</span>
+        <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 6h18M13 1l6 5-6 5"/></svg>
+      </a>
+    </div>
+  </div>
+</section>

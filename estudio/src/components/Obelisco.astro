@@ -1,0 +1,60 @@
+---
+// Silueta del Obelisco de Buenos Aires — elemento decorativo único.
+// El estudio está a pocas cuadras de la Av. 9 de Julio.
+export interface Props { class?: string; strokeOnly?: boolean; }
+const { class: cls = '', strokeOnly = false } = Astro.props;
+---
+<div class={`skyline ${cls}`}>
+  <svg viewBox="0 0 200 600" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- Base inferior (pedestal) -->
+    <g>
+      {!strokeOnly && (
+        <path class="skyline-fill" fill="currentColor" fill-opacity="0.95"
+              d="M 60 560 L 60 520 L 140 520 L 140 560 Z
+                 M 70 520 L 70 490 L 130 490 L 130 520 Z"/>
+      )}
+    </g>
+
+    <!-- Cuerpo del obelisco (aguja) -->
+    <g>
+      {!strokeOnly && (
+        <path class="skyline-fill" fill="currentColor" fill-opacity="0.95"
+              d="M 82 490 L 92 60 L 108 60 L 118 490 Z"/>
+      )}
+
+      <!-- Punta piramidal -->
+      {!strokeOnly && (
+        <path class="skyline-fill" fill="currentColor" fill-opacity="1"
+              d="M 92 60 L 100 30 L 108 60 Z"/>
+      )}
+    </g>
+
+    <!-- Stroke line que se dibuja -->
+    <path class="skyline-path"
+          stroke="currentColor"
+          stroke-width="1.8"
+          fill="none"
+          stroke-linejoin="round"
+          stroke-linecap="round"
+          d="M 60 560 L 60 520 L 70 520 L 70 490 L 82 490 L 92 60 L 100 30 L 108 60 L 118 490 L 130 490 L 130 520 L 140 520 L 140 560"/>
+
+    <!-- Ventanas superiores características -->
+    <g>
+      <rect class="window" style="--w:1" x="97"  y="110" width="6" height="14" fill="currentColor"/>
+      <rect class="window" style="--w:2" x="97"  y="140" width="6" height="10" fill="currentColor"/>
+      <rect class="window" style="--w:3" x="94"  y="380" width="4"  height="8" fill="currentColor"/>
+      <rect class="window" style="--w:4" x="102" y="380" width="4"  height="8" fill="currentColor"/>
+    </g>
+
+    <!-- Leyenda "OBELISCO" al pie (decorativa) -->
+    <text x="100" y="585"
+          text-anchor="middle"
+          font-family="JetBrains Mono, monospace"
+          font-size="8"
+          fill="currentColor"
+          opacity="0.5"
+          letter-spacing="3">
+      OBELISCO · 1936
+    </text>
+  </svg>
+</div>

@@ -1,0 +1,111 @@
+---
+export interface Item { year: string; title: string; desc: string; }
+export interface Props { label: string; title: string; items: Item[]; }
+const { label, title, items } = Astro.props;
+---
+<section id="historia" class="relative py-28 md:py-32 border-y overflow-hidden reveal" style="border-color: var(--border);">
+  <div class="shell">
+    <div class="section-kicker"><span>{label}</span></div>
+
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-8">
+      <h2 class="font-sans font-bold text-cover text-ink-900 leading-[1.05]">
+        <span class="stack-line inline-block" data-stack-line><span>{title}</span></span>
+      </h2>
+
+      <!-- Botones de navegación bien visibles -->
+      <div class="flex items-center gap-3">
+        <button type="button" class="timeline-nav-btn" data-timeline-prev aria-label="Anterior">
+          <svg width="18" height="14" viewBox="0 0 18 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 7H1M7 1L1 7l6 6"/></svg>
+        </button>
+        <button type="button" class="timeline-nav-btn" data-timeline-next aria-label="Siguiente">
+          <svg width="18" height="14" viewBox="0 0 18 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 7h16M11 1l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <p class="text-ink-600 mb-6 max-w-xl">{items.length} hitos · de {items[0].year} a {items[items.length - 1].year}</p>
+  </div>
+
+  <div class="shell">
+    <div class="timeline-scroll" data-timeline-scroll>
+      {items.map((it) => (
+        <article class="timeline-card">
+          <div class="pt-10 pr-2">
+            <div class="font-mono text-tick uppercase tracking-tick mb-3" style="color: var(--brand-700)">{it.year}</div>
+            <div class="font-sans font-bold text-[1.5rem] md:text-[1.7rem] leading-tight text-ink-900 mb-3">
+              {it.title}
+            </div>
+            <p class="text-ink-600 leading-relaxed text-[0.95rem]">{it.desc}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const scroller = document.querySelector('[data-timeline-scroll]') as HTMLElement | null;
+  const prev = document.querySelector('[data-timeline-prev]');
+  const next = document.querySelector('[data-timeline-next]');
+
+  const step = () => {
+    if (!scroller) return 400;
+    const card = scroller.querySelector('.timeline-card') as HTMLElement | null;
+    if (!card) return 400;
+    return card.offsetWidth + 40; // gap-10
+  };
+
+  const goNext = () => {
+    if (!scroller) return;
+    const max = scroller.scrollWidth - scroller.clientWidth;
+    // Si ya está al final, vuelve al principio
+    if (scroller.scrollLeft >= max - 10) {
+      scroller.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      scroller.scrollBy({ left: step(), behavior: 'smooth' });
+    }
+  };
+  const goPrev = () => {
+    if (!scroller) return;
+    if (scroller.scrollLeft <= 10) {
+      scroller.scrollTo({ left: scroller.scrollWidth, behavior: 'smooth' });
+    } else {
+      scroller.scrollBy({ left: -step(), behavior: 'smooth' });
+    }
+  };
+
+  prev?.addEventListener('click', goPrev);
+  next?.addEventListener('click', goNext);
+
+  // Auto-play: avanza cada 4.5s, pausa al pasar el mouse por el carrusel
+  let autoplayId: number | null = null;
+  let isPaused = false;
+  const AUTO_INTERVAL = 4500;
+
+  const startAuto = () => {
+    stopAuto();
+    autoplayId = window.setInterval(() => {
+      if (!isPaused) goNext();
+    }, AUTO_INTERVAL);
+  };
+  const stopAuto = () => {
+    if (autoplayId !== null) { clearInterval(autoplayId); autoplayId = null; }
+  };
+
+  // Solo arranca cuando el timeline entra en viewport (ahorra CPU)
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) startAuto();
+      else stopAuto();
+    });
+  }, { threshold: 0.2 });
+  if (scroller) io.observe(scroller);
+
+  scroller?.addEventListener('mouseenter', () => { isPaused = true; });
+  scroller?.addEventListener('mouseleave', () => { isPaused = false; });
+
+  // Respeta prefers-reduced-motion
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    stopAuto();
+  }
+</script>

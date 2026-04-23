@@ -1,0 +1,71 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@components/Hero.astro';
+import Counters from '@components/Counters.astro';
+import Practice from '@components/Practice.astro';
+import Team from '@components/Team.astro';
+import Timeline from '@components/Timeline.astro';
+import News from '@components/News.astro';
+import CrossLink from '@components/CrossLink.astro';
+import Contact from '@components/Contact.astro';
+import { legal } from '@lib/legal';
+
+const base = import.meta.env.BASE_URL;
+const withBase = (p: string) => (base.endsWith('/') ? base.slice(0, -1) : base) + p;
+---
+<BaseLayout
+  practice="legal"
+  title="PLB Abogados — Derecho empresarial · Buenos Aires · 20 años"
+  description="Estudio integral de abogados y contadores en Buenos Aires. Tributario, aduanero, societario, laboral, aerocomercial y penal económico. Corresponsalías en EE.UU. y Uruguay.">
+
+  <Hero
+    practice="legal"
+    titleLine1={legal.hero.titleLine1}
+    titleLine2={legal.hero.titleLine2}
+    lead={legal.hero.lead}
+    ctaPrimary={legal.hero.ctaPrimary}
+    altLabel="→ Ir al área contable"
+    altHref={withBase('/contable')}
+  />
+
+  <Counters
+    label={legal.counters.label}
+    title={legal.counters.title}
+    sub={legal.counters.sub}
+    items={legal.counters.items}
+  />
+
+  <Practice
+    label={legal.practice.label}
+    title={legal.practice.title}
+    sub={legal.practice.sub}
+    items={legal.practice.items}
+  />
+
+  <CrossLink practice="legal" />
+
+  <Team
+    label={legal.team.label}
+    title={legal.team.title}
+    sub={legal.team.sub}
+    members={legal.team.members}
+    ctaText={legal.team.ctaText}
+  />
+
+  <Timeline
+    label={legal.timeline.label}
+    title={legal.timeline.title}
+    items={legal.timeline.items}
+  />
+
+  <News practice="legal" label="Novedades" title="Radar normativo" />
+
+  <Contact
+    label={legal.contact.label}
+    title={legal.contact.title}
+    titleAccent={legal.contact.titleAccent}
+    desc={legal.contact.desc}
+    formAreas={legal.contact.formAreas}
+    formAreaLabel="Área de consulta"
+  />
+</BaseLayout>

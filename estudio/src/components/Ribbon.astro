@@ -1,0 +1,26 @@
+---
+export interface Props { practice: 'legal' | 'accounting'; }
+const { practice } = Astro.props;
+const label = practice === 'legal' ? 'Abogados' : 'Contadores Públicos';
+
+// Repetimos el contenido para que el marquee sea continuo
+const phrases = [
+  'Pantarotto Lértora Bardagí',
+  `Estudio integral · ${label}`,
+  'Buenos Aires — 34°36′S  58°23′W',
+  'Fundado en MMIV',
+  'Corresponsalías · NY · Miami · Montevideo',
+  'Derecho empresarial & contable',
+  `Est. ${2024 - 2004} años`,
+];
+---
+<aside class="ribbon grain-immune" aria-hidden="true">
+  <div class="ribbon-inner" style="animation-duration: 60s">
+    {[...phrases, ...phrases, ...phrases].map((p) => (
+      <span class="inline-flex items-center gap-10">
+        <span>{p}</span>
+        <span class="ribbon-dot"></span>
+      </span>
+    ))}
+  </div>
+</aside>

@@ -1,0 +1,42 @@
+---
+import Icon from './Icon.astro';
+
+export interface Area {
+  key: string; name: string; desc: string; icon: string;
+}
+export interface Props {
+  label: string;
+  title: string;
+  sub: string;
+  items: Area[];
+}
+const { label, title, sub, items } = Astro.props;
+---
+<section id="areas" class="border-t border-ink-200 bg-parchment/40 py-24 md:py-32 reveal">
+  <div class="shell">
+    <header class="max-w-3xl mb-14">
+      <div class="eyebrow mb-3">{label}</div>
+      <h2 class="section-title">{title}</h2>
+      <p class="mt-4 text-ink-600 leading-relaxed">{sub}</p>
+    </header>
+
+    <div class="grid gap-px bg-ink-200 border border-ink-200 md:grid-cols-2 lg:grid-cols-3">
+      {items.map((a, i) => (
+        <article class="area-card bg-white">
+          <div class="flex items-start justify-between gap-6">
+            <div class="text-ink-900" style="color: var(--brand-700)">
+              <Icon name={a.icon} />
+            </div>
+            <span class="font-serif text-sm text-ink-400">0{i + 1}</span>
+          </div>
+          <h3 class="mt-6 font-serif font-semibold text-xl text-ink-900">{a.name}</h3>
+          <p class="mt-3 text-[0.92rem] text-ink-600 leading-[1.7]">{a.desc}</p>
+          <a href="#contacto" class="mt-6 inline-flex items-center gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em]" style="color: var(--brand-700)">
+            Consultar
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 5h12M9 1l4 4-4 4"/></svg>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

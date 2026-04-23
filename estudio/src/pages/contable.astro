@@ -1,0 +1,71 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@components/Hero.astro';
+import Counters from '@components/Counters.astro';
+import Practice from '@components/Practice.astro';
+import Team from '@components/Team.astro';
+import Timeline from '@components/Timeline.astro';
+import News from '@components/News.astro';
+import CrossLink from '@components/CrossLink.astro';
+import Contact from '@components/Contact.astro';
+import { accounting } from '@lib/accounting';
+
+const base = import.meta.env.BASE_URL;
+const withBase = (p: string) => (base.endsWith('/') ? base.slice(0, -1) : base) + p;
+---
+<BaseLayout
+  practice="accounting"
+  title="PLB Contable — Contabilidad & Impuestos · Buenos Aires · 20 años"
+  description="Área contable integral del estudio Pantarotto Lértora Bardagí. Liquidación de impuestos, estados contables, auditoría, planificación fiscal, sueldos y contabilidad internacional.">
+
+  <Hero
+    practice="accounting"
+    titleLine1={accounting.hero.titleLine1}
+    titleLine2={accounting.hero.titleLine2}
+    lead={accounting.hero.lead}
+    ctaPrimary={accounting.hero.ctaPrimary}
+    altLabel="→ Ir al área legal"
+    altHref={withBase('/')}
+  />
+
+  <Counters
+    label={accounting.counters.label}
+    title={accounting.counters.title}
+    sub={accounting.counters.sub}
+    items={accounting.counters.items}
+  />
+
+  <Practice
+    label={accounting.practice.label}
+    title={accounting.practice.title}
+    sub={accounting.practice.sub}
+    items={accounting.practice.items}
+  />
+
+  <CrossLink practice="accounting" />
+
+  <Team
+    label={accounting.team.label}
+    title={accounting.team.title}
+    sub={accounting.team.sub}
+    members={accounting.team.members}
+    ctaText={accounting.team.ctaText}
+  />
+
+  <Timeline
+    label={accounting.timeline.label}
+    title={accounting.timeline.title}
+    items={accounting.timeline.items}
+  />
+
+  <News practice="accounting" label="Novedades" title="Radar impositivo" />
+
+  <Contact
+    label={accounting.contact.label}
+    title={accounting.contact.title}
+    titleAccent={accounting.contact.titleAccent}
+    desc={accounting.contact.desc}
+    formAreas={accounting.contact.formAreas}
+    formAreaLabel="Servicio requerido"
+  />
+</BaseLayout>

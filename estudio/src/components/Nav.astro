@@ -1,0 +1,70 @@
+---
+import { site } from '@lib/site';
+import type { Practice } from '@lib/site';
+
+export interface Props { practice: Practice }
+const { practice } = Astro.props;
+const isLegal = practice === 'legal';
+
+const base = import.meta.env.BASE_URL;
+const withBase = (p: string) => (base.endsWith('/') ? base.slice(0, -1) : base) + p;
+
+const navLinks = [
+  { href: '#practica',   label: 'Práctica' },
+  { href: '#equipo',     label: 'Equipo' },
+  { href: '#novedades',  label: 'Novedades' },
+  { href: '#contacto',   label: 'Contacto' },
+];
+const altHref = isLegal ? withBase('/contable') : withBase('/');
+const altLabel = isLegal ? '→ Contable' : '→ Legal';
+---
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<nav id="mainNav" class="fixed inset-x-0 top-0 z-50 transition-all duration-500" data-nav>
+  <div class="shell h-16 md:h-20 flex items-center justify-between">
+    <a href={withBase('/')} class="flex items-baseline gap-3 group" aria-label="Inicio">
+      <span class="font-sans text-[1.45rem] md:text-[1.6rem] font-semibold leading-none tracking-tight" style="color: var(--fg);">
+        {site.abbr.a}<span style="color: var(--brand-500)">{site.abbr.b}</span>
+      </span>
+      <span class="hidden md:inline w-8 h-px group-hover:w-12 transition-all duration-500" style="background: var(--brand-500)"></span>
+      <span class="hidden md:inline font-mono text-tick uppercase tracking-tick" style="color: var(--fg-subtle);">Desde 2004</span>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-9">
+      {navLinks.map((l) => (
+        <li><a href={l.href} class="nav-link" style="color: var(--fg);">{l.label}</a></li>
+      ))}
+      <li>
+        <a href={altHref} class="nav-link font-mono" style="color: var(--brand-400);">{altLabel}</a>
+      </li>
+    </ul>
+
+    <button id="mob-open" class="md:hidden w-10 h-10 grid place-items-center" aria-label="Abrir menú" style="color: var(--fg);">
+      <svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 1h20M1 7h14M1 13h18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<div id="mob" class="fixed inset-0 z-[60] hidden flex-col" style="background: var(--bg); color: var(--fg);">
+  <div class="shell h-16 flex justify-between items-center">
+    <span class="font-sans text-[1.5rem] font-semibold">{site.abbr.a}<span style="color: var(--brand-600)">{site.abbr.b}</span></span>
+    <button id="mob-close" aria-label="Cerrar" class="text-3xl leading-none" style="color: var(--fg-muted);">×</button>
+  </div>
+  <nav class="shell flex-1 flex flex-col justify-center gap-6">
+    {navLinks.map((l, i) => (
+      <a href={l.href} class="font-sans text-4xl font-semibold transition" style={`transition-delay: ${i * 60}ms; color: var(--fg);`}>
+        <span class="font-mono text-tick tracking-tick mr-5" style="color: var(--brand-600)">0{i + 1}</span>{l.label}
+      </a>
+    ))}
+    <a href={altHref} class="mt-8 font-mono text-tick tracking-tick uppercase border-b w-fit pb-1" style="color: var(--brand-600); border-color: var(--border);">{altLabel}</a>
+  </nav>
+</div>
+
+<style>
+  #mob.open { display: flex; }
+  nav[data-nav].solid {
+    background: color-mix(in oklab, theme('colors.paper') 95%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid color-mix(in oklab, theme('colors.ink.300') 50%, transparent);
+  }
+</style>

@@ -1,0 +1,111 @@
+---
+export interface Counter {
+  num: string;
+  suffix?: string;
+  label: string;
+  desc: string;
+  icon?: string;
+}
+export interface Props {
+  items: Counter[];
+  label?: string;
+  title?: string;
+  sub?: string;
+}
+const { items, label = 'En cifras', title = 'El estudio en números', sub } = Astro.props;
+---
+<section class="reveal py-20 md:py-28 border-y" style="border-color: var(--border);">
+  <div class="shell">
+    <!-- Header -->
+    <header class="mb-16 max-w-2xl">
+      <div class="section-kicker"><span>{label}</span></div>
+      <h2 class="font-sans font-bold text-editorial leading-tight" style="color: var(--fg);">
+        <span class="stack-line inline-block" data-stack-line><span>{title}</span></span>
+      </h2>
+      {sub && <p class="mt-4 leading-relaxed" style="color: var(--fg-muted);">{sub}</p>}
+    </header>
+
+    <!-- Grid 2x2 — cards con borde del color del brand -->
+    <div class="grid gap-6 md:grid-cols-2">
+      {items.map((c, i) => (
+        <article class="p-8 md:p-10 flex items-start gap-6 md:gap-8 transition-colors duration-300 counter-card">
+          <!-- Ícono -->
+          <div class="shrink-0 w-14 h-14 md:w-16 md:h-16 grid place-items-center border" style="color: var(--brand-500); border-color: var(--brand-500);">
+            {c.icon === 'clock' && (
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+                <circle cx="16" cy="16" r="12"/>
+                <path d="M16 8v8l5 3"/>
+                <circle cx="16" cy="16" r="0.8" fill="currentColor"/>
+              </svg>
+            )}
+            {c.icon === 'layers' && (
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
+                <path d="M16 4 3 11l13 7 13-7z"/>
+                <path d="M3 17l13 7 13-7"/>
+                <path d="M3 23l13 7 13-7"/>
+              </svg>
+            )}
+            {c.icon === 'globe' && (
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+                <circle cx="16" cy="16" r="12"/>
+                <path d="M4 16h24"/>
+                <path d="M16 4c4 4 4 20 0 24M16 4c-4 4-4 20 0 24"/>
+                <circle cx="22" cy="10" r="0.8" fill="currentColor"/>
+                <circle cx="10" cy="22" r="0.8" fill="currentColor"/>
+              </svg>
+            )}
+            {c.icon === 'shield' && (
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
+                <path d="M16 3 5 7v10c0 7 5 11 11 12 6-1 11-5 11-12V7z"/>
+                <path d="M12 16l3 3 5-6"/>
+              </svg>
+            )}
+            {c.icon === 'balance' && (
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
+                <path d="M16 5v22M7 27h18"/>
+                <path d="M16 8l-7 10h14zM16 8l7 10"/>
+                <path d="M4 18c1 2 3 3 5 3s4-1 5-3"/>
+                <path d="M18 18c1 2 3 3 5 3s4-1 5-3"/>
+              </svg>
+            )}
+            {c.icon === 'book' && (
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
+                <path d="M5 6h10a4 4 0 014 4v16a4 4 0 00-4-4H5z"/>
+                <path d="M27 6H17a4 4 0 00-4 4v16a4 4 0 014-4h10z"/>
+                <path d="M9 11h6M9 15h6M9 19h4M19 11h4M19 15h4M19 19h4"/>
+              </svg>
+            )}
+            {c.icon === 'link' && (
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+                <path d="M12 20l8-8"/>
+                <path d="M14 10h-4a5 5 0 000 10h4"/>
+                <path d="M18 22h4a5 5 0 000-10h-4"/>
+              </svg>
+            )}
+          </div>
+
+          <!-- Texto -->
+          <div class="flex-1 min-w-0">
+            <div class="flex items-baseline gap-3 mb-2">
+              <span class="counter-num" style="font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1" data-counter data-target={c.num.replace(/\D/g, '')}>
+                <span data-counter-val>0</span>{c.suffix || ''}
+              </span>
+            </div>
+            <div class="font-mono text-tick uppercase tracking-tick mb-2" style="color: var(--brand-500);">{c.label}</div>
+            <p class="leading-relaxed text-[0.95rem] max-w-sm" style="color: var(--fg-muted);">{c.desc}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .counter-card {
+    background: transparent;
+    border: 1px solid var(--border);
+  }
+  .theme-legal .counter-card     { border-color: rgba(255,255,255,0.18); }
+  .theme-accounting .counter-card{ border-color: var(--brand-700); }
+  .counter-card:hover { border-color: var(--brand-500); }
+</style>

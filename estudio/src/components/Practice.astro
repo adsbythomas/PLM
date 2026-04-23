@@ -1,0 +1,71 @@
+---
+export interface Area { key: string; name: string; desc: string; }
+export interface Props {
+  label: string;
+  title: string;
+  sub: string;
+  items: Area[];
+}
+const { label, title, sub, items } = Astro.props;
+---
+<section id="practica" class="relative py-28 md:py-32 reveal">
+  <div class="shell grid md:grid-cols-[1fr_1.8fr] gap-12 md:gap-20">
+    <!-- Columna sticky editorial — sin caja, solo tipografía + contador gigante -->
+    <aside class="md:sticky md:top-28 self-start">
+      <div class="section-kicker"><span>{label}</span></div>
+      <h2 class="font-sans font-bold text-cover leading-[1.05] mb-6" style="color: var(--fg);">
+        <span class="stack-line inline-block" data-stack-line><span>{title}</span></span>
+      </h2>
+      <p class="leading-relaxed max-w-md mb-10" style="color: var(--fg-muted);">{sub}</p>
+
+      <!-- Contador gigante + área activa -->
+      <div class="hidden md:flex items-baseline gap-6 pt-6 border-t" style="border-color: var(--border);">
+        <div class="font-sans font-bold leading-none"
+             style="font-size: clamp(4.5rem, 9vw, 7rem); color: var(--brand-500);">
+          <span data-index-count>01</span>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="font-mono text-tick uppercase tracking-tick mb-1" style="color: var(--fg-subtle);">
+            de {String(items.length).padStart(2, '0')}
+          </div>
+          <div class="font-sans font-semibold text-[1.4rem] leading-tight transition-colors duration-300" data-area-name style="color: var(--fg);">
+            {items[0].name}
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Lista de áreas -->
+    <div class="space-y-0" data-index>
+      {items.map((a, i) => (
+        <a href="#contacto"
+           class="block index-row group"
+           data-index-item
+           data-area-key={a.key}
+           data-area-name={a.name}>
+          <span class="index-num">{String(i + 1).padStart(2, '0')}</span>
+          <div>
+            <span class="index-name">{a.name}</span>
+            <p class="index-desc">{a.desc}</p>
+          </div>
+          <span class="index-arrow">Consultar →</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Sincroniza el nombre del área con el ítem sobre el que está el mouse
+  const items = document.querySelectorAll('[data-index-item]');
+  const count = document.querySelector('[data-index-count]');
+  const nameLabel = document.querySelector('[data-area-name]');
+
+  items.forEach((it, i) => {
+    it.addEventListener('mouseenter', () => {
+      const name = it.getAttribute('data-area-name');
+      if (count) count.textContent = String(i + 1).padStart(2, '0');
+      if (nameLabel && name) nameLabel.textContent = name;
+    });
+  });
+</script>

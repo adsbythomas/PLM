@@ -1,0 +1,38 @@
+---
+export interface Highlight { num: string; title: string; desc: string; }
+export interface Props {
+  label: string;
+  title: string;
+  paragraphs: string[];
+  highlights: Highlight[];
+}
+const { label, title, paragraphs, highlights } = Astro.props;
+---
+<section id="nosotros" class="shell py-24 md:py-32 reveal">
+  <div class="grid gap-12 md:grid-cols-2 md:gap-20 items-start">
+    <div>
+      <div class="eyebrow mb-3">{label}</div>
+      <h2 class="section-title">{title}</h2>
+      <div class="mt-8 space-y-5 text-[1rem] leading-[1.85] text-ink-700 max-w-prose-lg">
+        {paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+
+    <div class="paper-card divide-y divide-ink-200/80">
+      {highlights.map((h) => (
+        <div class="grid grid-cols-[90px_1fr] gap-6 items-start p-6 md:p-8">
+          <div class="font-serif text-[2.4rem] font-semibold text-ink-900 leading-none">
+            {h.num.replace(/[+%]/, '')}
+            {(h.num.includes('+') || h.num.includes('%')) && (
+              <span style="color: var(--brand-700)">{h.num.match(/[+%]/)?.[0]}</span>
+            )}
+          </div>
+          <div>
+            <div class="font-semibold text-[0.82rem] uppercase tracking-[0.1em] text-ink-900 mb-1">{h.title}</div>
+            <p class="text-[0.92rem] text-ink-600 leading-relaxed">{h.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

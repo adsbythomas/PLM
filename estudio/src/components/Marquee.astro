@@ -1,0 +1,19 @@
+---
+export interface Props { items: string[]; label?: string; }
+const { items, label = 'Prácticas' } = Astro.props;
+const duplicated = [...items, ...items, ...items];
+---
+<section class="relative py-10 md:py-14 border-y border-ink-200 bg-paperDark/60" aria-label={label}>
+  <div class="marquee">
+    <div class="marquee-track">
+      {duplicated.map((item, i) => (
+        <span class="inline-flex items-baseline gap-8">
+          <span class="font-serif font-semibold italic text-[2.5rem] md:text-[4.5rem] leading-none text-ink-900">
+            {item}
+          </span>
+          <span class="w-2 h-2 rounded-full" style="background: var(--brand-700)"></span>
+        </span>
+      ))}
+    </div>
+  </div>
+</section>

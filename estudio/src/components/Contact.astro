@@ -1,0 +1,103 @@
+---
+import { site } from '@lib/site';
+export interface Props {
+  label: string;
+  title: string;
+  titleAccent: string;
+  desc: string;
+  formAreas: string[];
+  formAreaLabel: string;
+}
+const { label, title, titleAccent, desc, formAreas, formAreaLabel } = Astro.props;
+---
+<section id="contacto" class="relative py-28 md:py-32 reveal border-t border-ink-200">
+  <div class="shell grid md:grid-cols-[1fr_1.2fr] gap-16 md:gap-24">
+    <!-- Lado izquierdo — datos de contacto -->
+    <div>
+      <div class="section-kicker"><span>{label}</span></div>
+
+      <h2 class="font-sans font-bold text-cover text-ink-900 leading-[1.05] mb-8">
+        <span class="stack-line inline-block" data-stack-line><span>{title} <span style="color: var(--brand-700)">{titleAccent}</span>.</span></span>
+      </h2>
+
+      <p class="text-[1.05rem] md:text-[1.15rem] text-ink-600 leading-relaxed max-w-md mb-10">
+        {desc}
+      </p>
+
+      <dl class="grid gap-6 text-[0.95rem]">
+        <div>
+          <dt class="font-mono text-tick uppercase tracking-tick text-ink-400 mb-2">Dirección</dt>
+          <dd class="text-ink-800 leading-snug">
+            {site.address.line1}<br/>
+            {site.address.line2}<br/>
+            <span class="text-ink-500">{site.address.postalCode} · {site.address.city}</span>
+          </dd>
+        </div>
+        <div>
+          <dt class="font-mono text-tick uppercase tracking-tick text-ink-400 mb-2">Horario</dt>
+          <dd class="text-ink-800">{site.hours}</dd>
+        </div>
+        <div>
+          <dt class="font-mono text-tick uppercase tracking-tick text-ink-400 mb-2">Sedes</dt>
+          <dd class="text-ink-800">{site.offices.join(' · ')}</dd>
+        </div>
+        <div>
+          <dt class="font-mono text-tick uppercase tracking-tick text-ink-400 mb-2">Canales</dt>
+          <dd class="text-ink-800">
+            <a href={site.linkedin} class="ink-link" target="_blank" rel="noopener">LinkedIn</a> · <span>Email vía formulario</span>
+          </dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- Lado derecho — formulario -->
+    <form data-contact class="letter-form self-start" novalidate>
+      <p class="text-sm uppercase tracking-tick font-mono text-ink-500 mb-2">
+        Formulario de consulta
+      </p>
+
+      <div class="letter-field">
+        <input id="f-name" name="name" type="text" required placeholder=" " autocomplete="name"/>
+        <label for="f-name">Nombre completo</label>
+      </div>
+
+      <div class="letter-field">
+        <input id="f-company" name="company" type="text" placeholder=" " autocomplete="organization"/>
+        <label for="f-company">Empresa u organización</label>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="letter-field">
+          <input id="f-email" name="email" type="email" required placeholder=" " autocomplete="email"/>
+          <label for="f-email">Email</label>
+        </div>
+        <div class="letter-field">
+          <input id="f-phone" name="phone" type="tel" placeholder=" " autocomplete="tel"/>
+          <label for="f-phone">Teléfono</label>
+        </div>
+      </div>
+
+      <div class="letter-field has-value">
+        <select id="f-area" name="area" required>
+          <option value="" disabled selected>Seleccione una opción</option>
+          {formAreas.map((a) => <option>{a}</option>)}
+        </select>
+        <label for="f-area">{formAreaLabel}</label>
+      </div>
+
+      <div class="letter-field">
+        <textarea id="f-message" name="message" required rows="4" placeholder=" "></textarea>
+        <label for="f-message">Mensaje</label>
+      </div>
+
+      <button type="submit" class="btn-editorial self-start mt-4">
+        <span>Enviar consulta</span>
+        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 5h14M11 1l4 4-4 4"/></svg>
+      </button>
+
+      <p class="text-ink-500 text-sm leading-relaxed mt-2">
+        Respondemos dentro de las 24 horas hábiles. Toda consulta es confidencial.
+      </p>
+    </form>
+  </div>
+</section>
