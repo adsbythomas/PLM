@@ -5,6 +5,7 @@ import Counters from '@components/Counters.astro';
 import Practice from '@components/Practice.astro';
 import Team from '@components/Team.astro';
 import Timeline from '@components/Timeline.astro';
+import News from '@components/News.astro';
 import CrossLink from '@components/CrossLink.astro';
 import Contact from '@components/Contact.astro';
 import { legal } from '@lib/legal';
@@ -56,6 +57,8 @@ const withBase = (p: string) => (base.endsWith('/') ? base.slice(0, -1) : base) 
     title={legal.timeline.title}
     items={legal.timeline.items}
   />
+
+  <News practice="legal" label="Novedades" title="Radar normativo" />
 
   <Contact
     label={legal.contact.label}

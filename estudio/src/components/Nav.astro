@@ -10,9 +10,9 @@ const base = import.meta.env.BASE_URL;
 const withBase = (p: string) => (base.endsWith('/') ? base.slice(0, -1) : base) + p;
 
 const navLinks = [
-  { href: '#manifiesto', label: 'Estudio' },
   { href: '#practica',   label: 'Práctica' },
   { href: '#equipo',     label: 'Equipo' },
+  { href: '#novedades',  label: 'Novedades' },
   { href: '#contacto',   label: 'Contacto' },
 ];
 const altHref = isLegal ? withBase('/contable') : withBase('/');

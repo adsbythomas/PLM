@@ -1,6 +1,5 @@
 ---
 import { site } from '@lib/site';
-import Obelisco from './Obelisco.astro';
 import type { Practice } from '@lib/site';
 
 export interface Props { practice: Practice }
@@ -11,11 +10,6 @@ const withBase = (p: string) => (base.endsWith('/') ? base.slice(0, -1) : base) 
 const year = new Date().getFullYear();
 ---
 <footer class="relative border-t overflow-hidden" style="border-color: var(--border)">
-  <!-- Obelisco discreto — marca de lugar -->
-  <div class="absolute right-6 md:right-14 top-14 w-[60px] md:w-[80px] opacity-25 pointer-events-none hidden md:block" style="color: var(--brand-500)">
-    <Obelisco />
-  </div>
-
   <div class="shell relative z-10 pt-24 pb-14">
     <!-- Cierre -->
     <div class="max-w-4xl mb-16">

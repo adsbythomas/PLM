@@ -1,0 +1,39 @@
+{
+  "updated": "2026-04-22T14:40:05.689626",
+  "items": [
+    {
+      "date": "Reciente",
+      "title": "RG AFIP 5528/24 – Regularización Activos",
+      "desc": "Procedimiento para el Régimen de Regularización de Activos Ley 27.743.",
+      "source": "AFIP · Boletín Oficial",
+      "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/312948/20240731",
+      "categories": [
+        "tributario",
+        "aduanero"
+      ]
+    },
+    {
+      "date": "Esta semana",
+      "title": "Decreto 608/2024 – Reglamentación Ley 27.743",
+      "desc": "Reglamentación de Medidas Fiscales Paliativas, modificada por Dec. 773/2024.",
+      "source": "Decreto PEN",
+      "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/312829/20240731",
+      "categories": [
+        "tributario",
+        "aduanero",
+        "penal_economico"
+      ]
+    },
+    {
+      "date": "Este mes",
+      "title": "Acuerdo FATCA con EEUU",
+      "desc": "Intercambio automático de información financiera entre AFIP e IRS.",
+      "source": "AFIP · IRS",
+      "url": "https://www.afip.gob.ar/institucional/acuerdos/fatca.asp",
+      "categories": [
+        "tributario",
+        "penal_economico"
+      ]
+    }
+  ]
+}

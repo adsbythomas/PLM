@@ -55,6 +55,57 @@ const { label, title, items } = Astro.props;
     return card.offsetWidth + 40; // gap-10
   };
 
-  prev?.addEventListener('click', () => scroller?.scrollBy({ left: -step(), behavior: 'smooth' }));
-  next?.addEventListener('click', () => scroller?.scrollBy({ left:  step(), behavior: 'smooth' }));
+  const goNext = () => {
+    if (!scroller) return;
+    const max = scroller.scrollWidth - scroller.clientWidth;
+    // Si ya está al final, vuelve al principio
+    if (scroller.scrollLeft >= max - 10) {
+      scroller.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      scroller.scrollBy({ left: step(), behavior: 'smooth' });
+    }
+  };
+  const goPrev = () => {
+    if (!scroller) return;
+    if (scroller.scrollLeft <= 10) {
+      scroller.scrollTo({ left: scroller.scrollWidth, behavior: 'smooth' });
+    } else {
+      scroller.scrollBy({ left: -step(), behavior: 'smooth' });
+    }
+  };
+
+  prev?.addEventListener('click', goPrev);
+  next?.addEventListener('click', goNext);
+
+  // Auto-play: avanza cada 4.5s, pausa al pasar el mouse por el carrusel
+  let autoplayId: number | null = null;
+  let isPaused = false;
+  const AUTO_INTERVAL = 4500;
+
+  const startAuto = () => {
+    stopAuto();
+    autoplayId = window.setInterval(() => {
+      if (!isPaused) goNext();
+    }, AUTO_INTERVAL);
+  };
+  const stopAuto = () => {
+    if (autoplayId !== null) { clearInterval(autoplayId); autoplayId = null; }
+  };
+
+  // Solo arranca cuando el timeline entra en viewport (ahorra CPU)
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) startAuto();
+      else stopAuto();
+    });
+  }, { threshold: 0.2 });
+  if (scroller) io.observe(scroller);
+
+  scroller?.addEventListener('mouseenter', () => { isPaused = true; });
+  scroller?.addEventListener('mouseleave', () => { isPaused = false; });
+
+  // Respeta prefers-reduced-motion
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    stopAuto();
+  }
 </script>

@@ -1,0 +1,78 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getRadar, formatUpdated } from '@lib/news';
+
+const base = import.meta.env.BASE_URL;
+const withBase = (p: string) => (base.endsWith('/') ? base.slice(0, -1) : base) + p;
+
+const radar = getRadar('legal');
+---
+<BaseLayout
+  practice="legal"
+  title="Novedades — PLB Abogados"
+  description="Radar normativo del área legal del estudio Pantarotto Lértora Bardagí: resoluciones, decretos y leyes publicadas en el Boletín Oficial, relevantes para derecho empresarial.">
+
+  <section class="pt-32 pb-16 md:pt-40 md:pb-20 reveal">
+    <div class="shell">
+      <a href={withBase('/')} class="inline-flex items-center gap-2 font-mono text-tick uppercase tracking-tick mb-10 transition" style="color: var(--brand-500);">
+        ← Volver al estudio
+      </a>
+
+      <div class="section-kicker"><span>Radar normativo</span></div>
+      <h1 class="font-sans font-bold text-monument leading-[1.05] mb-6" style="color: var(--fg);">
+        Novedades
+      </h1>
+      <p class="max-w-2xl text-[1.05rem] md:text-[1.15rem] leading-relaxed" style="color: var(--fg-muted);">
+        Resoluciones, decretos y leyes relevantes para el área legal — aerocomercial,
+        societario, laboral y penal económico. Radar actualizado automáticamente desde
+        el Boletín Oficial.
+      </p>
+      <p class="mt-6 text-xs font-mono uppercase tracking-tick" style="color: var(--fg-subtle);">
+        Última actualización: {formatUpdated(radar.updated)}
+      </p>
+    </div>
+  </section>
+
+  <section class="pb-28 md:pb-32">
+    <div class="shell">
+      <ul class="divide-y" style="border-color: var(--border);">
+        {radar.items.map((n, i) => (
+          <li class="news-row" style="border-color: var(--border);">
+            <a href={withBase(`/novedades/${n.slug}`)} class="grid md:grid-cols-[120px_1fr_auto] gap-6 md:gap-10 py-8 md:py-10 transition">
+              <div class="font-mono text-tick uppercase tracking-tick" style="color: var(--brand-500);">
+                <div class="mb-1">{n.date}</div>
+                <div style="color: var(--fg-subtle);">{String(i + 1).padStart(2, '0')}</div>
+              </div>
+              <div>
+                <h2 class="font-sans font-bold text-[1.3rem] md:text-[1.5rem] leading-snug mb-3" style="color: var(--fg);">
+                  {n.title}
+                </h2>
+                <p class="leading-relaxed max-w-prose-lg mb-3" style="color: var(--fg-muted);">{n.desc}</p>
+                <div class="flex flex-wrap gap-2 text-xs font-mono uppercase tracking-tick" style="color: var(--fg-subtle);">
+                  <span>{n.source}</span>
+                  {n.categories.map((c) => (
+                    <span class="px-2 py-1 border" style="border-color: var(--border);">{c.replace('_', ' ')}</span>
+                  ))}
+                </div>
+              </div>
+              <div class="font-mono text-tick uppercase tracking-tick self-center" style="color: var(--brand-500);">
+                Leer →
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      {radar.items.length === 0 && (
+        <p class="text-center py-20" style="color: var(--fg-muted);">
+          Sin novedades por el momento. Vuelva a consultar en las próximas horas.
+        </p>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .news-row:hover { background: var(--surface); }
+  .news-row a { padding-inline: 1rem; margin-inline: -1rem; }
+</style>
