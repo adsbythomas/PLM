@@ -1,5 +1,5 @@
 ---
-import Skyline from './Skyline.astro';
+import Obelisco from './Obelisco.astro';
 import type { Practice } from '@lib/site';
 
 export interface Props { practice: Practice; }
@@ -14,30 +14,32 @@ const title = isLegal ? 'Área contable' : 'Área legal';
 const body  = isLegal
   ? 'El estudio integra un equipo propio de contadores públicos matriculados: liquidación de impuestos, estados contables, auditoría y planificación fiscal. Coordinación permanente con el área jurídica.'
   : 'El estudio integra seis áreas de derecho empresarial: tributario, aduanero, societario, laboral, aerocomercial y penal económico. Coordinación permanente con el área contable.';
-const kicker = isLegal ? 'También ofrecemos' : 'También ofrecemos';
 const oppTheme = isLegal ? 'theme-accounting' : 'theme-legal';
 ---
+<!-- Esta sección invierte la paleta al tema opuesto para que se sienta
+     como un "enlace" a la otra área -->
 <section class={`page-break ${oppTheme} relative py-28 md:py-32 reveal`}>
-  <div class="absolute inset-x-0 bottom-0 h-[60%] opacity-60 pointer-events-none">
-    <Skyline class="w-full h-full" />
-  </div>
-
   <div class="shell relative">
-    <div class="font-mono text-tick uppercase tracking-tick mb-6" style="color: var(--brand-300)">
-      {kicker}
-    </div>
-
-    <div class="grid md:grid-cols-[1.2fr_auto] gap-10 items-end">
+    <div class="grid md:grid-cols-[1fr_auto_auto] gap-10 items-center">
       <div>
-        <h2 class="font-sans font-bold text-cover leading-[1.05] mb-6" style="color: var(--brand-50)">
+        <div class="font-mono text-tick uppercase tracking-tick mb-6" style="color: var(--brand-400)">
+          También ofrecemos
+        </div>
+
+        <h2 class="font-sans font-bold text-cover leading-[1.05] mb-6" style="color: var(--fg)">
           {title}
         </h2>
-        <p class="text-[1.05rem] md:text-[1.15rem] max-w-[640px] leading-relaxed" style="color: color-mix(in oklab, var(--brand-50) 85%, transparent)">
+        <p class="text-[1.05rem] md:text-[1.15rem] max-w-[640px] leading-relaxed" style="color: var(--fg-muted)">
           {body}
         </p>
       </div>
 
-      <a href={href} class="btn-editorial" style="background: var(--brand-300); color: var(--brand-950)">
+      <!-- Obelisco pequeño como elemento visual -->
+      <div class="hidden lg:block w-[80px]" style="color: var(--brand-500); opacity: 0.5">
+        <Obelisco />
+      </div>
+
+      <a href={href} class="btn-editorial self-end md:self-center">
         <span>Visitar área</span>
         <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 6h18M13 1l6 5-6 5"/></svg>
       </a>

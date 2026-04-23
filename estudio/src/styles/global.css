@@ -10,18 +10,34 @@
     text-rendering: optimizeLegibility;
   }
   body {
-    @apply bg-paper text-ink-700 font-sans;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: theme('fontFamily.sans');
     font-feature-settings: 'kern', 'ss01';
+    transition: background 0.4s ease, color 0.4s ease;
   }
   ::selection {
-    background: var(--brand-800, theme('colors.legal.800'));
+    background: var(--brand-700);
     color: #fff;
   }
-  h1, h2, h3, h4, h5 { @apply font-sans font-semibold; letter-spacing: -0.02em; }
+  h1, h2, h3, h4, h5 { font-weight: 700; letter-spacing: -0.02em; }
 }
 
 @layer components {
+  /* ═══════════════════════════════════════════════════════════
+     Variables contextuales por tema
+     ═══════════════════════════════════════════════════════════ */
   .theme-legal {
+    /* Fondo blanco, texto negro — claro, corporativo, serio */
+    --bg: #ffffff;
+    --surface: #fafafa;
+    --surface-2: #f5f5f5;
+    --fg: #0a0a0a;
+    --fg-muted: #525252;
+    --fg-subtle: #a3a3a3;
+    --border: #e5e5e5;
+
+    /* Marca azul vivo */
     --brand-50:  theme('colors.legal.50');
     --brand-100: theme('colors.legal.100');
     --brand-200: theme('colors.legal.200');
@@ -35,6 +51,16 @@
     --brand-950: theme('colors.legal.950');
   }
   .theme-accounting {
+    /* Fondo negro, texto blanco — dramático, contraste alto */
+    --bg: #0a0a0a;
+    --surface: #171717;
+    --surface-2: #1f1f1f;
+    --fg: #fafafa;
+    --fg-muted: #d4d4d4;
+    --fg-subtle: #737373;
+    --border: #262626;
+
+    /* Marca naranja pimentón */
     --brand-50:  theme('colors.ledger.50');
     --brand-100: theme('colors.ledger.100');
     --brand-200: theme('colors.ledger.200');
@@ -48,26 +74,28 @@
     --brand-950: theme('colors.ledger.950');
   }
 
+  /* Cuando se usa `page-break` con tema opuesto (CrossLink),
+     ese tema rige la sección completa vía las variables de arriba. */
+
   .shell  { @apply mx-auto w-full max-w-shell px-6 md:px-10 lg:px-14; }
   .reader { @apply mx-auto w-full max-w-reader px-6 md:px-0; }
 
-  /* Filete editorial (línea + número) */
   .chapter-mark { @apply flex items-baseline gap-4; }
   .chapter-mark::before {
     content: '';
     display: inline-block;
     width: 64px;
     height: 1px;
-    background: var(--brand-700);
+    background: var(--brand-600);
   }
   .chapter-num {
     @apply font-mono text-tick uppercase tracking-tick;
-    color: var(--brand-700);
+    color: var(--brand-600);
   }
 
   .ink-link {
     @apply inline-block relative font-medium;
-    color: var(--brand-700);
+    color: var(--brand-600);
   }
   .ink-link::after {
     content: '';
@@ -81,21 +109,16 @@
   }
   .ink-link:hover::after { transform-origin: left; transform: scaleX(1); }
 
-  /* Reveal on scroll */
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity .9s cubic-bezier(0.2, 0.6, 0.2, 1), transform .9s cubic-bezier(0.2, 0.6, 0.2, 1); }
   .reveal.in { opacity: 1; transform: translateY(0); }
 
-  /* Línea subrayada que crece al entrar en viewport */
-  .under-ruler {
-    position: relative;
-    display: inline-block;
-  }
+  .under-ruler { position: relative; display: inline-block; }
   .under-ruler::after {
     content: '';
     position: absolute;
     left: 0; bottom: -8px;
     height: 3px; width: 100%;
-    background: var(--brand-700);
+    background: var(--brand-600);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 1s cubic-bezier(0.2, 0.6, 0.2, 1);
@@ -106,43 +129,49 @@
   .index-row {
     @apply grid items-baseline gap-6 py-7 md:py-8 border-b transition;
     grid-template-columns: 64px 1fr auto;
-    border-color: color-mix(in oklab, theme('colors.ink.700') 12%, transparent);
+    border-color: var(--border);
   }
   .index-row .index-num {
-    @apply font-mono text-tick uppercase tracking-tick text-ink-400 pt-2;
+    @apply font-mono text-tick uppercase tracking-tick pt-2;
+    color: var(--fg-subtle);
   }
   .index-row .index-name {
-    @apply font-sans font-semibold text-editorial text-ink-800 transition-colors;
+    @apply font-sans font-semibold text-editorial transition-colors;
+    color: var(--fg);
     transition-duration: .45s;
   }
   .index-row .index-arrow {
-    @apply font-mono text-tick uppercase tracking-tick text-ink-400 opacity-0 transition;
+    @apply font-mono text-tick uppercase tracking-tick opacity-0 transition;
+    color: var(--fg-subtle);
     transform: translateX(-6px);
   }
-  .index-row:hover .index-name { color: var(--brand-800); }
-  .index-row:hover { background: color-mix(in oklab, var(--brand-50) 70%, transparent); padding-inline: 12px; }
-  .index-row:hover .index-arrow { opacity: 1; transform: translateX(0); color: var(--brand-700); }
+  .index-row:hover .index-name { color: var(--brand-600); }
+  .index-row:hover { background: color-mix(in oklab, var(--brand-500) 8%, transparent); padding-inline: 12px; }
+  .index-row:hover .index-arrow { opacity: 1; transform: translateX(0); color: var(--brand-600); }
   .index-row .index-desc {
-    @apply text-sm text-ink-500 leading-relaxed mt-2 max-w-column;
+    @apply text-sm leading-relaxed mt-2 max-w-column;
+    color: var(--fg-muted);
   }
 
   /* Botón primario */
   .btn-editorial {
     @apply inline-flex items-center gap-3 px-7 py-4 text-[0.78rem] font-semibold uppercase tracking-tick transition relative overflow-hidden;
     color: #fff;
-    background: var(--brand-800);
+    background: var(--brand-700);
   }
+  .theme-accounting .btn-editorial { color: #0a0a0a; background: var(--brand-400); }
   .btn-editorial::before {
     content: '';
     position: absolute; inset: 0;
-    background: var(--brand-950);
+    background: var(--brand-800);
     transform: translateY(100%);
     transition: transform .5s cubic-bezier(0.2, 0.6, 0.2, 1);
   }
+  .theme-accounting .btn-editorial::before { background: var(--brand-500); }
   .btn-editorial:hover::before { transform: translateY(0); }
   .btn-editorial > * { position: relative; z-index: 1; }
 
-  /* Stack-line reveal (animación que se conserva para otros títulos) */
+  /* Stack-line reveal */
   .stack-line { display: block; overflow: hidden; }
   .stack-line > span {
     display: inline-block;
@@ -152,16 +181,16 @@
   }
   .stack-line.in > span { transform: translateY(0); }
 
-  /* Parallax binding */
   [data-parallax] {
     will-change: transform;
     transform: translateY(var(--p-offset, 0));
     transition: transform 0.1s linear;
   }
 
-  /* Blueprint grid animada */
+  /* Blueprint grid */
   .blueprint { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 2s ease; }
-  .blueprint.in { opacity: 0.22; }
+  .blueprint.in { opacity: 0.18; }
+  .theme-accounting .blueprint.in { opacity: 0.12; }
   .blueprint svg { width: 100%; height: 100%; }
   .blueprint .bp-line {
     stroke-dasharray: 1200; stroke-dashoffset: 1200;
@@ -170,22 +199,26 @@
   }
   @keyframes bp-draw { to { stroke-dashoffset: 0; } }
 
-  /* Skyline — silueta que se dibuja sola */
-  .skyline-path { stroke-dasharray: 4000; stroke-dashoffset: 4000; transition: stroke-dashoffset 3s cubic-bezier(0.2, 0.6, 0.2, 1); }
+  /* Obelisco — se dibuja solo */
+  .skyline-path { stroke-dasharray: 2000; stroke-dashoffset: 2000; transition: stroke-dashoffset 2.4s cubic-bezier(0.2, 0.6, 0.2, 1); }
   .skyline.in .skyline-path { stroke-dashoffset: 0; }
-  .skyline-fill { opacity: 0; transform: translateY(20px); transition: opacity 1.4s ease 1.6s, transform 1.4s cubic-bezier(0.2, 0.6, 0.2, 1) 1.6s; }
-  .skyline.in .skyline-fill { opacity: 0.95; transform: translateY(0); }
+  .skyline-fill { opacity: 0; transform: translateY(12px); transition: opacity 1.2s ease 1.2s, transform 1.2s cubic-bezier(0.2, 0.6, 0.2, 1) 1.2s; }
+  .skyline.in .skyline-fill { opacity: 0.92; transform: translateY(0); }
   .skyline .window {
     opacity: 0;
-    animation: flicker 120ms ease forwards;
-    animation-delay: calc(var(--w, 0) * 110ms + 2.2s);
+    animation: flicker 180ms ease forwards;
+    animation-delay: calc(var(--w, 0) * 150ms + 1.8s);
   }
   @keyframes flicker {
     0% { opacity: 0; } 60% { opacity: 1; } 70% { opacity: 0.4; } 100% { opacity: 0.85; }
   }
 
-  /* Team row (nombres más chicos y prolijos) */
-  .team-row { @apply relative overflow-hidden border-y transition; border-color: color-mix(in oklab, theme('colors.ink.700') 12%, transparent); padding: clamp(1.75rem, 3.5vw, 2.5rem) 0; }
+  /* Team */
+  .team-row {
+    @apply relative overflow-hidden border-y transition;
+    border-color: var(--border);
+    padding: clamp(1.75rem, 3.5vw, 2.5rem) 0;
+  }
   .team-row + .team-row { border-top: 0; }
   .team-name {
     display: block;
@@ -194,54 +227,47 @@
     font-size: clamp(1.8rem, 3.5vw, 3rem);
     line-height: 1;
     letter-spacing: -0.025em;
+    color: var(--fg);
     transform: translateX(-20%);
     opacity: 0;
-    transition: transform 1.2s cubic-bezier(0.2, 0.6, 0.2, 1), opacity 1s ease;
+    transition: transform 1.2s cubic-bezier(0.2, 0.6, 0.2, 1), opacity 1s ease, color .45s;
   }
   .team-row.in .team-name { transform: translateX(0); opacity: 1; }
-  .team-row:hover .team-name { color: var(--brand-700); transition: color .45s; }
+  .team-row:hover .team-name { color: var(--brand-600); }
   .team-row .team-meta { opacity: 0; transform: translateY(8px); transition: all .8s cubic-bezier(0.2, 0.6, 0.2, 1) .25s; }
   .team-row.in .team-meta { opacity: 1; transform: translateY(0); }
 
-  /* Timeline horizontal con botones de scroll */
+  /* Timeline */
   .timeline-scroll { @apply flex gap-10 overflow-x-auto snap-x snap-mandatory py-8 scroll-smooth; scrollbar-width: none; }
   .timeline-scroll::-webkit-scrollbar { display: none; }
   .timeline-card { @apply relative snap-center shrink-0 w-[78vw] md:w-[380px] pr-10; }
-  .timeline-card::before { content: ''; position: absolute; top: 12px; left: 0; right: 0; height: 1px; background: var(--brand-200); }
-  .timeline-card::after { content: ''; position: absolute; top: 7px; left: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--brand-700); box-shadow: 0 0 0 4px var(--brand-50); }
+  .timeline-card::before { content: ''; position: absolute; top: 12px; left: 0; right: 0; height: 1px; background: var(--border); }
+  .timeline-card::after {
+    content: ''; position: absolute; top: 7px; left: 0;
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--brand-600);
+    box-shadow: 0 0 0 4px var(--bg);
+  }
   .timeline-nav-btn {
     @apply inline-flex items-center justify-center w-11 h-11 border transition;
-    border-color: color-mix(in oklab, theme('colors.ink.700') 20%, transparent);
-    color: theme('colors.ink.700');
+    border-color: var(--border);
+    color: var(--fg-muted);
+    background: transparent;
   }
   .timeline-nav-btn:hover {
     color: #fff;
-    background: var(--brand-800);
-    border-color: var(--brand-800);
+    background: var(--brand-700);
+    border-color: var(--brand-700);
   }
+  .theme-accounting .timeline-nav-btn:hover { color: #0a0a0a; background: var(--brand-400); border-color: var(--brand-400); }
   .timeline-nav-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 
-  /* Área index — línea horizontal que se extiende al pasar el mouse */
-  .area-link { @apply relative flex items-center gap-8; }
-  .area-link .area-line {
-    flex: 1; height: 1px; background: var(--brand-200);
-    transform: scaleX(0.35); transform-origin: left;
-    transition: transform .7s cubic-bezier(0.2, 0.6, 0.2, 1);
-  }
-  .area-link:hover .area-line { transform: scaleX(1); background: var(--brand-700); }
-
-  /* Full-bleed section con cambio de paleta (CrossLink) */
+  /* CrossLink page-break — usa el tema opuesto directamente */
   .page-break {
     position: relative;
-    background: var(--brand-900);
-    color: theme('colors.paper');
+    background: var(--bg);
+    color: var(--fg);
     overflow: hidden;
-  }
-  .page-break::before {
-    content: ''; position: absolute; inset: 0;
-    background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 4px 4px;
-    pointer-events: none;
   }
 
   /* Nav */
@@ -259,7 +285,7 @@
   /* Preloader */
   .preloader {
     position: fixed; inset: 0;
-    background: theme('colors.ink.900');
+    background: #0a0a0a;
     z-index: 100;
     display: grid; place-items: center;
     transition: opacity .7s ease, visibility .7s;
@@ -267,7 +293,7 @@
   .preloader.done { opacity: 0; visibility: hidden; }
   .preloader svg { width: 84px; height: 84px; }
   .preloader .pre-stroke {
-    stroke: var(--brand-300, theme('colors.legal.300'));
+    stroke: var(--brand-400);
     fill: none;
     stroke-width: 2;
     stroke-dasharray: 700;
@@ -280,39 +306,41 @@
     font-family: theme('fontFamily.mono');
     font-size: 0.7rem;
     letter-spacing: 0.3em;
-    color: theme('colors.ink.400');
+    color: #737373;
     text-transform: uppercase;
     opacity: 0;
     animation: fadeIn .6s ease .9s forwards;
   }
   @keyframes fadeIn { to { opacity: 1; } }
 
-  /* Counter block */
+  /* Counter */
   .counter-num {
     @apply font-sans font-bold;
     font-size: clamp(2.4rem, 5vw, 3.5rem);
     line-height: 1;
     letter-spacing: -0.03em;
-    color: var(--brand-800);
+    color: var(--brand-700);
     font-variant-numeric: tabular-nums;
   }
+  .theme-accounting .counter-num { color: var(--brand-400); }
 
   /* Section kicker */
   .section-kicker {
     @apply flex items-center gap-4 text-tick uppercase tracking-tick font-mono mb-6;
-    color: var(--brand-700);
+    color: var(--brand-600);
   }
+  .theme-accounting .section-kicker { color: var(--brand-400); }
   .section-kicker::before {
     content: ''; width: 48px; height: 1px; background: currentColor;
   }
 
-  /* Form — campos flotantes */
+  /* Form */
   .letter-form { display: grid; gap: 2rem; }
   .letter-field { position: relative; padding-top: 1.5rem; }
   .letter-field label {
     position: absolute; top: 2rem; left: 0;
     font-family: theme('fontFamily.sans');
-    font-size: 1rem; color: theme('colors.ink.400');
+    font-size: 1rem; color: var(--fg-subtle);
     pointer-events: none;
     transition: all .35s cubic-bezier(0.2, 0.6, 0.2, 1);
   }
@@ -322,18 +350,18 @@
     width: 100%;
     background: transparent;
     border: 0;
-    border-bottom: 1px solid theme('colors.ink.300');
+    border-bottom: 1px solid var(--border);
     padding: 0.8rem 0 0.5rem;
     font-family: theme('fontFamily.sans');
     font-size: 1rem;
-    color: theme('colors.ink.800');
+    color: var(--fg);
     outline: none;
     transition: border-color .35s;
   }
   .letter-field textarea { resize: vertical; min-height: 100px; }
   .letter-field input:focus,
   .letter-field textarea:focus,
-  .letter-field select:focus { border-color: var(--brand-800); }
+  .letter-field select:focus { border-color: var(--brand-600); }
   .letter-field input:focus + label,
   .letter-field input:not(:placeholder-shown) + label,
   .letter-field textarea:focus + label,
@@ -343,12 +371,32 @@
     font-size: 0.68rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--brand-700);
+    color: var(--brand-600);
     font-family: theme('fontFamily.mono');
   }
+  .theme-accounting .letter-field input:focus + label,
+  .theme-accounting .letter-field input:not(:placeholder-shown) + label,
+  .theme-accounting .letter-field textarea:focus + label,
+  .theme-accounting .letter-field textarea:not(:placeholder-shown) + label,
+  .theme-accounting .letter-field.has-value label { color: var(--brand-400); }
+
+  /* ── Overrides para que clases tailwind legacy respeten las variables */
+  .bg-paper     { background: var(--bg) !important; }
+  .bg-paperDark { background: var(--surface) !important; }
+  .text-ink-900, .text-ink-800, .text-ink-700 { color: var(--fg) !important; }
+  .text-ink-600, .text-ink-500 { color: var(--fg-muted) !important; }
+  .text-ink-400, .text-ink-300 { color: var(--fg-subtle) !important; }
+  .border-ink-200, .border-ink-300 { border-color: var(--border) !important; }
 }
 
-/* Silencia animaciones si el usuario prefiere reducir movimiento */
+/* Nav solid — fondo semitransparente del tema al scrollear */
+nav[data-nav].solid {
+  background: color-mix(in oklab, var(--bg) 92%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Animaciones reducidas para prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
   .preloader { display: none !important; }

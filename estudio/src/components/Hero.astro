@@ -1,5 +1,5 @@
 ---
-import Skyline from './Skyline.astro';
+import Obelisco from './Obelisco.astro';
 import Blueprint from './Blueprint.astro';
 import type { Practice } from '@lib/site';
 
@@ -14,24 +14,25 @@ export interface Props {
 }
 const { practice, titleLine1, titleLine2, lead, ctaPrimary, altLabel, altHref } = Astro.props;
 ---
-<section class="relative overflow-hidden border-b border-ink-200" data-hero>
+<section class="relative overflow-hidden border-b" data-hero
+         style="border-color: var(--border);">
   <div class="absolute inset-0 z-0" data-parallax data-parallax-speed="0.12">
     <Blueprint />
   </div>
 
-  <div class="shell relative z-10 pt-32 md:pt-40 pb-14 md:pb-16">
-    <div class="max-w-[1400px]">
-      <h1 class="font-sans font-bold leading-[1.04] tracking-tight text-ink-900 mb-10">
+  <div class="shell relative z-10 pt-32 md:pt-40 pb-24 md:pb-32 grid md:grid-cols-[1.5fr_auto] gap-10 items-end">
+    <div class="max-w-[1000px]">
+      <h1 class="font-sans font-bold leading-[1.04] tracking-tight mb-10" style="color: var(--fg);">
         <span class="stack-line block" data-stack-line>
           <span class="inline-block text-monument">{titleLine1}</span>
         </span>
         <span class="stack-line block mt-1" style="--delay: 180" data-stack-line>
-          <span class="inline-block text-monument" style="color: var(--brand-700)">{titleLine2}</span>
+          <span class="inline-block text-monument" style="color: var(--brand-600)">{titleLine2}</span>
         </span>
       </h1>
 
       <div class="grid md:grid-cols-[1.2fr_auto] gap-10 items-end reveal">
-        <p class="text-ink-700 text-[1.05rem] md:text-[1.15rem] leading-relaxed max-w-[620px]">
+        <p class="text-[1.05rem] md:text-[1.15rem] leading-relaxed max-w-[620px]" style="color: var(--fg-muted);">
           {lead}
         </p>
 
@@ -40,15 +41,16 @@ const { practice, titleLine1, titleLine2, lead, ctaPrimary, altLabel, altHref } 
             <span>{ctaPrimary}</span>
             <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 5h14M11 1l4 4-4 4"/></svg>
           </a>
-          <a href={altHref} class="font-mono text-tick uppercase tracking-tick text-ink-500 hover:text-ink-900 transition">
+          <a href={altHref} class="font-mono text-tick uppercase tracking-tick transition" style="color: var(--fg-subtle);">
             {altLabel}
           </a>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="relative h-[220px] md:h-[300px] pointer-events-none z-0" data-parallax data-parallax-speed="-0.06">
-    <Skyline class="w-full h-full" />
+    <!-- Obelisco como elemento decorativo único -->
+    <div class="hidden md:block self-end w-[140px] lg:w-[180px]" style="color: var(--brand-700); opacity: 0.85">
+      <Obelisco />
+    </div>
   </div>
 </section>

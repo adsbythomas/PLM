@@ -45,18 +45,18 @@ const altLabel = isLegal ? '→ Contable' : '→ Legal';
   </div>
 </nav>
 
-<div id="mob" class="fixed inset-0 z-[60] bg-ink-900 text-paper hidden flex-col">
+<div id="mob" class="fixed inset-0 z-[60] hidden flex-col" style="background: var(--bg); color: var(--fg);">
   <div class="shell h-16 flex justify-between items-center">
-    <span class="font-sans text-[1.5rem] font-semibold">{site.abbr.a}<span style="color: var(--brand-300)">{site.abbr.b}</span></span>
-    <button id="mob-close" aria-label="Cerrar" class="text-3xl leading-none text-paper/70">×</button>
+    <span class="font-sans text-[1.5rem] font-semibold">{site.abbr.a}<span style="color: var(--brand-600)">{site.abbr.b}</span></span>
+    <button id="mob-close" aria-label="Cerrar" class="text-3xl leading-none" style="color: var(--fg-muted);">×</button>
   </div>
   <nav class="shell flex-1 flex flex-col justify-center gap-6">
     {navLinks.map((l, i) => (
-      <a href={l.href} class="font-sans text-4xl font-semibold text-paper hover:text-paper/70 transition" style={`transition-delay: ${i * 60}ms`}>
-        <span class="font-mono text-tick tracking-tick mr-5" style="color: var(--brand-300)">0{i + 1}</span>{l.label}
+      <a href={l.href} class="font-sans text-4xl font-semibold transition" style={`transition-delay: ${i * 60}ms; color: var(--fg);`}>
+        <span class="font-mono text-tick tracking-tick mr-5" style="color: var(--brand-600)">0{i + 1}</span>{l.label}
       </a>
     ))}
-    <a href={altHref} class="mt-8 font-mono text-tick tracking-tick uppercase border-b border-paper/40 w-fit pb-1" style="color: var(--brand-300)">{altLabel}</a>
+    <a href={altHref} class="mt-8 font-mono text-tick tracking-tick uppercase border-b w-fit pb-1" style="color: var(--brand-600); border-color: var(--border);">{altLabel}</a>
   </nav>
 </div>
 

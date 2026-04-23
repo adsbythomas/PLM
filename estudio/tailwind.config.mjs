@@ -4,33 +4,33 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Área legal — azul océano profundo, editorial, denso
+        // Área legal — azul vivo, con presencia (tipo royal blue corporativo)
         legal: {
-          50:  '#eef1f7',
-          100: '#d6dee9',
-          200: '#a9b8d0',
-          300: '#7690b3',
-          400: '#4a6a91',
-          500: '#2f4d72',
-          600: '#1f3a5c',
-          700: '#142a46',
-          800: '#0b1c33',
-          900: '#07142a',
-          950: '#040b1a',
+          50:  '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          900: '#1e3a8a',
+          950: '#172554',
         },
-        // Área contable — cobre / terracota / cuero viejo, cálido y denso
+        // Área contable — naranja pimentón, no marrón
         ledger: {
-          50:  '#fbf2ea',
-          100: '#f3dcc6',
-          200: '#e6b68b',
-          300: '#d38a57',
-          400: '#bc6930',
-          500: '#a1521f',
-          600: '#824015',
-          700: '#63300f',
-          800: '#44210a',
-          900: '#2a1407',
-          950: '#180b03',
+          50:  '#fff7ed',
+          100: '#ffedd5',
+          200: '#fed7aa',
+          300: '#fdba74',
+          400: '#fb923c',
+          500: '#f97316',
+          600: '#ea580c',
+          700: '#c2410c',
+          800: '#9a3412',
+          900: '#7c2d12',
+          950: '#431407',
         },
         // Papel editorial — crema tibia, con textura cálida
         paper:     '#f4efe5',
